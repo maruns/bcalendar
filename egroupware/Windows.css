@@ -55,13 +55,27 @@ table {
     empty-cells: show;
     overflow: scroll;
 }
+html#wh, body#whb {
+    width: 700px;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
 ul#al {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    float: left;
+    width: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position:fixed; 
+    height: 100%;
 }
 ul#al li {
-    
+    width:200px;
+    float:left;
     height: 35px;
     line-height: 35px !important;
     padding: 0;
@@ -71,7 +85,6 @@ ul#al li a {
     display: inline-block;
     text-align: center;
     white-space: nowrap;
-    padding: 0 30px 0 30px;
     margin: 0;
     height: 35px !important;
     min-height: 35px;
@@ -79,37 +92,57 @@ ul#al li a {
     background: url(calendar/WorkingHours/button1.gif);
     color: #ddd;
     text-decoration: none;
+    width: 190px !important;
+}
+ul#al li a strong {
+    color: #ddd;
+    font-weight: bold;
 }
 ul#al li a#current {
     background: url(calendar/WorkingHours/button3.gif);
-    padding: 0 0 0 15px;
     color: #fff;
     cursor: default;
-
+    width: 183px !important;
 }
 ul#al li a#current strong {
     display: inline-block;
-    padding: 0 30px 0 15px;
+    position: relative;
     background: url(calendar/WorkingHours/button3.gif) right top;
     cursor: default;
     line-height: 35px;
     height: 35px;
+    color: #fff;
+    width: 180px;
+    left: 2px;
+    float: right;
+}
+ul#al li a#current:hover strong {
+    left: -3px;
 }
 ul#al li a:hover, .ul#al li:hover a {
     background: url(calendar/WorkingHours/button4.gif);
-    padding: 0 0 0 15px;
     cursor: pointer;
     color: #fff;
+    width: 180px !important;
+    padding-left: 5px;
+    position:relative;
+    top:-1px !important;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: black;
 }
 ul#al li a:hover strong, ul#al li:hover a strong {
     display: block;
-    padding: 0 30px 0 15px;
     background: url(calendar/WorkingHours/button4.gif) right top;
     cursor: pointer;
     font-weight: bold;
+    width: 180px !important;;
+    color: #fff;
 }
-
-
 div#wts {
-
+    margin-left: 205px;
+    width: 400px;
+}
+legend {
+    font-size: 10px;
 }

@@ -1,5 +1,5 @@
 <?php 
-//ini_set('display_errors', 1); //pokazywanie błędów PHP
+ini_set('display_errors', 1); //pokazywanie błędów PHP
 require('Smarty/libs/Smarty.class.php');
 define('SMARTY_DIR', 'Smarty/libs/');
 $smarty = new Smarty();
