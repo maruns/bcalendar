@@ -21,12 +21,11 @@ while ($row = GetNextRow($result))
 $smarty->assign('dentists', $dentists);
 if ($AccountIsSet)
 {
-    
     if($_POST['submit'] == 'Zapisz')
-    {
+    {print_r($_POST);
         foreach($_POST as $key=>$value)
         {
-            if ($key[2] != 'S' || $key[3] != 'H')
+            if ($key[0] != 'S' || $key[1] != 'H')
             {
                 continue;
             }
@@ -52,15 +51,15 @@ if ($AccountIsSet)
                             case 'N':
                                 if (isset($nnq))
                                 {
-                                    $nnq .= ', ('.intval($_POST['dentist']).', '.$i.", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
+                                    $nnq .= ', ('.intval($_POST['dentist']).', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
                                             sprintf("%02d",$he).
                                             ':'.sprintf("%02d",$me)."')";
                                 }
                                 else
-                                {
+                                {echo $key.$value;
                                     $nnq = 'insert into `PeriodsOfNormalWorkingTime` (`account_id`, `Day`, `Start`, `End`) values ('.
                                            intval($_POST['dentist']).
-                                           ', '.$i.", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
+                                           ', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
                                            sprintf("%02d",$he).
                                            ':'.sprintf("%02d",$me)."')";
                                 }
@@ -68,7 +67,7 @@ if ($AccountIsSet)
                 }
             }
         }
-        SendQuery($enq.$nnq);
+        SendQuery($enq.$nnq);echo $enq.$nnq;
     }
     $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".intval($_GET['dentist']).
                         " order by `Start`");
