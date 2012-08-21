@@ -10,6 +10,7 @@ while ($row = GetNextRow($result))
     {
         $smarty->assign('name',$row['n_fn']);
         $smarty->assign('did',$row['account_id']);
+        $did = $row['account_id'];
         $AccountIsSet = true;
         $dentists[] = '<a id="current" href="?dentist='.$row['account_id'].'"><strong>'.$row['n_fn'].'</strong></a>';
     }
@@ -22,7 +23,7 @@ $smarty->assign('dentists', $dentists);
 if ($AccountIsSet)
 {
     if($_POST['submit'] == 'Zapisz')
-    {print_r($_POST);
+    {
         foreach($_POST as $key=>$value)
         {
             if ($key[0] != 'S' || $key[1] != 'H')
@@ -30,9 +31,9 @@ if ($AccountIsSet)
                 continue;
             }
             $hs = intval($value);
-            $ms = intval($_POST['SM'.substr($value, 2)]);
-            $he = intval($_POST['E'.substr($value, 1)]);
-            $me = intval($_POST['EM'.substr($value, 2)]);
+            $ms = intval($_POST['SM'.substr($key, 2)]);;
+            $he = intval($_POST['E'.substr($key, 1)]);
+            $me = intval($_POST['EM'.substr($key, 2)]);
             if ($hs > -1 && $hs < 24 && $he > -1 && $he < 24 && $ms > -1 && $ms < 60 && $me > -1 && $me < 60)
             {
                 switch($key[2])
@@ -42,7 +43,7 @@ if ($AccountIsSet)
                         {
                             case 'N':
                                 $enq .= "update `PeriodsOfNormalWorkingTime` set `Start` = '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms).
-                                        ", `End` = '".sprintf("%02d",$he).':'.sprintf("%02d",$me)." where `ID` = ".inval(substr($key,5)).";";
+                                        "', `End` = '".sprintf("%02d",$he).':'.sprintf("%02d",$me)."' where `ID` = ".intval(substr($key,5)).";";
                         }
                         break;
                     case 'N':
@@ -56,7 +57,7 @@ if ($AccountIsSet)
                                             ':'.sprintf("%02d",$me)."')";
                                 }
                                 else
-                                {echo $key.$value;
+                                {
                                     $nnq = 'insert into `PeriodsOfNormalWorkingTime` (`account_id`, `Day`, `Start`, `End`) values ('.
                                            intval($_POST['dentist']).
                                            ', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
@@ -67,9 +68,9 @@ if ($AccountIsSet)
                 }
             }
         }
-        SendQuery($enq.$nnq);echo $enq.$nnq;
+        SendQuery($enq.$nnq);
     }
-    $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".intval($_GET['dentist']).
+    $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".$did.
                         " order by `Start`");
     while ($row = GetNextRow($result))
     {

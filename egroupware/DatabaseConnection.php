@@ -1,36 +1,43 @@
 <?php
-mysql_connect('localhost', 'egroupware');
-mysql_select_db('egroupware');
-mysql_query('SET NAMES utf8');
+//mysql_connect('localhost', 'egroupware');
+//mysql_select_db('egroupware');
+$mysqli = new mysqli('localhost', 'egroupware', null, 'egroupware');
+//mysql_query('SET NAMES utf8');
+$mysqli->real_query('SET NAMES utf8');
 /**
  * Wysyła zapytanie do bazy danych
  *
  * @param string $query zapytanie w języku SQL
- * @return wynik zapytania
+ * @return resource wynik zapytania
  */
 function SendQuery($query)
 {
-    return mysql_query($query);
+    //return mysql_query($query);
+    global $mysqli;
+    return $mysqli->query($query);
 }
 /**
  * Zwraca następny wiersz
  *
  * @param $result wynik zapytania do bazy danych
- * @return wiersz
+ * @return array wiersz
  */
 function GetNextRow($result)
 {
-    return mysql_fetch_array($result, MYSQL_ASSOC);
+    //return mysql_fetch_array($result, MYSQL_ASSOC);
+    return $result->fetch_array(MYSQLI_ASSOC);
 }
 /**
  * Dodaje ukośniki przed znaki specjalnymi w celu bezpiecznego użycia łańcucha w zapytaniu
  *
- * @param $string łańcuch
- * @return bezpieczny łańcuch
+ * @param string łańcuch
+ * @return string bezpieczny łańcuch
  */
 function EscapeSpecialCharacters($string)
 {
-    return mysql_escape_string(stripslashes($string));
+    //return mysql_escape_string(stripslashes($string)); 
+    global $mysqli;
+    return $mysqli->escape_string(stripslashes($string));
 }
 /**
  * Zamyka połączenie z bazą danych
@@ -38,6 +45,8 @@ function EscapeSpecialCharacters($string)
  */
 function CloseConnection()
 {
-    mysql_close();
+    //mysql_close();
+    global $mysqli;
+    $mysqli->close();
 }
 ?>
