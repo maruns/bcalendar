@@ -5,10 +5,20 @@ $mysqli = new mysqli('localhost', 'egroupware', null, 'egroupware');
 //mysql_query('SET NAMES utf8');
 $mysqli->real_query('SET NAMES utf8');
 /**
+ * Wysyła zapytania do bazy danych
+ *
+ * @param string $queries zapytania w języku SQL oddzielone średnikiem
+ */
+function SendQueries($queries)
+{
+    global $mysqli;
+    $mysqli->multi_query($queries);
+}
+/**
  * Wysyła zapytanie do bazy danych
  *
  * @param string $query zapytanie w języku SQL
- * @return resource wynik zapytania
+ * @return mixed wynik zapytania
  */
 function SendQuery($query)
 {
@@ -19,12 +29,16 @@ function SendQuery($query)
 /**
  * Zwraca następny wiersz
  *
- * @param $result wynik zapytania do bazy danych
- * @return array wiersz
+ * @param object $result wynik zapytania do bazy danych
+ * @return mixed wiersz
  */
 function GetNextRow($result)
 {
     //return mysql_fetch_array($result, MYSQL_ASSOC);
+    if (!is_object($result))
+    {
+        return null;
+    }
     return $result->fetch_array(MYSQLI_ASSOC);
 }
 /**

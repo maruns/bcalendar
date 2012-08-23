@@ -68,7 +68,7 @@ if ($AccountIsSet)
                 }
             }
         }
-        SendQuery($enq.$nnq);
+        $mysqli->multi_query($enq.$nnq);
     }
     $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".$did.
                         " order by `Start`");
