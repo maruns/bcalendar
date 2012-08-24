@@ -142,6 +142,8 @@ ul#al li a:hover strong, ul#al li:hover a strong {
 div#wts {
     margin-left: 205px;
     width: 400px;
+    height: 100%;
+    overflow-y: scroll;
 }
 legend {
     font-size: 10px;

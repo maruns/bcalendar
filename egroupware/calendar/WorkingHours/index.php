@@ -34,7 +34,7 @@ if ($AccountIsSet)
             $ms = intval($_POST['SM'.substr($key, 2)]);;
             $he = intval($_POST['E'.substr($key, 1)]);
             $me = intval($_POST['EM'.substr($key, 2)]);
-            if ($hs > -1 && $hs < 24 && $he > -1 && $he < 24 && $ms > -1 && $ms < 60 && $me > -1 && $me < 60)
+            if ($hs > -1 && $hs < 24 && $he > -1 && $he < 24 && $ms > -1 && $ms < 60 && $me > -1 && $me < 60 && ($he != 0 || $me != 0))
             {
                 switch($key[2])
                 {
@@ -68,7 +68,7 @@ if ($AccountIsSet)
                 }
             }
         }
-        $mysqli->multi_query($enq.$nnq);
+        SendQueries($enq.$nnq);
     }
     $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".$did.
                         " order by `Start`");
