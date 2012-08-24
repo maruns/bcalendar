@@ -26,6 +26,7 @@
                             do 
                             <input type="text" name="EHEN1{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
                             <input type="text" name="MEEN1{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>Nowy przedział: od <input type="text" name="SHNN10" maxlength="2" size="2"/>:<input type="text" name="SMNN10" maxlength="2" size="2"/> do <input type="text" name="EHNN10" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/></p>

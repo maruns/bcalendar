@@ -148,3 +148,7 @@ div#wts {
 legend {
     font-size: 10px;
 }
+div#wts a img {
+    top: 1px;
+    position: relative;
+}

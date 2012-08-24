@@ -5,6 +5,16 @@ $mysqli = new mysqli('localhost', 'egroupware', null, 'egroupware');
 //mysql_query('SET NAMES utf8');
 $mysqli->real_query('SET NAMES utf8');
 /**
+ * Wysyła szybko zapytanie do bazy danych
+ *
+ * @param string $queries zapytanie w języku SQL
+ */
+function SendQueryQuickly($query)
+{
+    global $mysqli;
+    return $mysqli->real_query($query);
+}
+/**
  * Wysyła zapytania do bazy danych
  *
  * @param string $queries zapytania w języku SQL oddzielone średnikiem

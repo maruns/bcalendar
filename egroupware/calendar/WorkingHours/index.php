@@ -2,6 +2,10 @@
 require_once('../../SmartyConfig.php');
 require_once('../../DatabaseConnection.php');
 
+if (isset($_GET['rnp']))
+{
+    SendQueryQuickly('delete from `PeriodsOfNormalWorkingTime` where `ID`='.$_GET['rnp']);
+}
 $result = SendQuery("select `egw_addressbook`.`n_fn`, `egw_addressbook`.`account_id` from `egw_addressbook` inner join `egw_accounts` on `egw_addressbook`.`account_id` = `egw_accounts`.`account_id` where `egw_accounts`.`account_type` = 'u' and `egw_accounts`.`account_primary_group` = -329 and (`egw_accounts`.`account_expires` = -1 or `egw_accounts`.`account_expires` > ".intval($_SERVER['REQUEST_TIME']).") order by `egw_addressbook`.`n_family`, `egw_addressbook`.`n_given`, `egw_addressbook`.`n_middle`");
 $AccountIsSet = false;
 while ($row = GetNextRow($result))
