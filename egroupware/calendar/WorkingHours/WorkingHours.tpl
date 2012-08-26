@@ -3,11 +3,11 @@
 <head>
     <title>{if $name}Czas pracy dentysty {$name}{else}Czas pracy dentystów{/if}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="../../DataPicker/jquery.min.js"></script>
-    <script type="text/javascript" src="../../DataPicker/jquery.datePicker.js"></script>
-    <script type="text/javascript" src="../../DataPicker/date.js"></script>
+    <script type="text/javascript" src="../../DatePicker/jquery.min.js"></script>
+    <script type="text/javascript" src="../../DatePicker/jquery.datePicker.js"></script>
+    <script type="text/javascript" src="../../DatePicker/date.js"></script>
     <script type="text/javascript" src="Script.js"></script>
-    <link type="text/css" rel="stylesheet" href="../../DataPicker/datePicker.css" />
+    <link type="text/css" rel="stylesheet" href="../../DatePicker/datePicker.css" />
     <link type="text/css" rel="stylesheet" href="../../Windows.css" />
 </head>
 <body id="whb">
@@ -37,15 +37,18 @@
                 <p>Piątek:</p>
                 <p>Sobota:</p>
                 <p>Niedziela:</p>
-                <fieldset><legend>Terminy szczególne:</legend></fieldset>
-                
-                {foreach $dates as $date}
-                <p><input type="text" id="date{$date['SpecialDateID']}" name="date-pick" class="date-pick" /></p>
-                {foreach $date as $p}
-                    <p>Od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>
-                    {/foreach}
-                    <p>Nowy przedział: od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>
-                {/foreach}
+                <fieldset>
+                    <legend>Terminy szczególne</legend>
+                    {foreach $dates as $date}<fieldset>                        
+                        <legend><input type="text" id="date{$date['SpecialDateID']}" name="date-pick" class="date-pick" /></legend>
+                        {foreach $date as $p}
+                            <p>Od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>
+                        {/foreach}
+                        <p>Nowy przedział: od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>    
+                    </fieldset>{/foreach}
+                    <p>Nowy termin:</p>
+                    <p><input type="text" id="date{$date['SpecialDateID']}" name="date-pick_" class="date-pick" /></p>
+                </fieldset>
                 <p><input type="hidden" name="dentist" value="{$did}" /><input name="submit" type="submit" value="Zapisz" /></p>
             </form>
         {else}

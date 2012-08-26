@@ -3,11 +3,11 @@
 <head>
     <title>Tworzenie faktury</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="../DataPicker/jquery.min.js"></script>
-    <script type="text/javascript" src="../DataPicker/jquery.datePicker.js"></script>
-    <script type="text/javascript" src="../DataPicker/date.js"></script>
+    <script type="text/javascript" src="../DatePicker/jquery.min.js"></script>
+    <script type="text/javascript" src="../DatePicker/jquery.datePicker.js"></script>
+    <script type="text/javascript" src="../DatePicker/date.js"></script>
     <script type="text/javascript" src="Script.js"></script>
-    <link type="text/css" rel="stylesheet" href="../DataPicker/datePicker.css" />
+    <link type="text/css" rel="stylesheet" href="../DatePicker/datePicker.css" />
     <link type="text/css" rel="stylesheet" href="../Windows.css" />
 </head>
 <body>
