@@ -37,7 +37,8 @@
                 <p>Piątek:</p>
                 <p>Sobota:</p>
                 <p>Niedziela:</p>
-                <p>Terminy szczególne:</p>
+                <fieldset><legend>Terminy szczególne:</legend></fieldset>
+                
                 {foreach $dates as $date}
                 <p><input type="text" id="date{$date['SpecialDateID']}" name="date-pick" class="date-pick" /></p>
                 {foreach $date as $p}
