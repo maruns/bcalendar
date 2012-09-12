@@ -40,14 +40,17 @@
                 <fieldset>
                     <legend>Terminy szczególne</legend>
                     {foreach $dates as $date}<fieldset>                        
-                        <legend><input type="text" id="date{$date['SpecialDateID']}" name="date-pick" class="date-pick" /></legend>
-                        {foreach $date as $p}
-                            <p>Od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>
-                        {/foreach}
-                        <p>Nowy przedział: od <input type="text" maxlength="2" value="{$period['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>    
+                        <legend>
+                            <input type="text" id="ED{$date[0]['SpecialDateID']}" name="ED{$date[0]['SpecialDateID']}" class="date-pick"
+                                   value="{$date[0]['Day']}.{$date[0]['Month']}"/>
+                        </legend>
+                        {foreach $date as $p}{if $p['Start']}
+                            <p>Od <input type="text" maxlength="2" value="{$p['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$p['End']}" size="2"/></p>
+                        {/if}{/foreach}
+                        <p>Nowy przedział: od <input type="text" maxlength="2" value="{$p['Start']}" size="2"/> do <input type="text" maxlength="2" value="{$period['End']}" size="2"/></p>    
                     </fieldset>{/foreach}
-                    <p>Nowy termin:</p>
-                    <p><input type="text" id="date{$date['SpecialDateID']}" name="date-pick_" class="date-pick" /></p>
+                    <p><label for="ND">Nowy termin:</label></p>
+                    <p><input type="text" id="ND" name="ND" class="date-pick" /></p>
                 </fieldset>
                 <p><input type="hidden" name="dentist" value="{$did}" /><input name="submit" type="submit" value="Zapisz" /></p>
             </form>

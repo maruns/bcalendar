@@ -23,7 +23,7 @@ function SendQueries($queries)
 {
     global $mysqli;
     $mysqli->multi_query($queries);
-    for(; $mysqli->next_result() == 0;){}
+    for(; $mysqli->next_result();$mysqli->store_result()){}
 }
 /**
  * Wysyła zapytanie do bazy danych

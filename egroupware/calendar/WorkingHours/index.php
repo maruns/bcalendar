@@ -14,7 +14,7 @@ while ($row = GetNextRow($result))
     {
         $smarty->assign('name',$row['n_fn']);
         $smarty->assign('did',$row['account_id']);
-        $did = $row['account_id'];
+        $did = intval($row['account_id']);
         $AccountIsSet = true;
         $dentists[] = '<a id="current" href="?dentist='.$row['account_id'].'"><strong>'.$row['n_fn'].'</strong></a>';
     }
@@ -30,6 +30,15 @@ if ($AccountIsSet)
     {
         foreach($_POST as $key=>$value)
         {
+            if ($key[1] == 'D')
+            {
+                switch($key[0])
+                {
+                    case 'N':echo $value." ".substr($value, 0, 2);
+                        $enq .= "insert into `SpecialDates` (`account_id`, `Day`, `Month`) values (".$did.", ".intval(substr($value, 0, 2)).
+                                ", ".intval(substr($value, 3, 2)).");";
+                }
+            }
             if ($key[0] != 'S' || $key[1] != 'H')
             {
                 continue;
@@ -71,7 +80,7 @@ if ($AccountIsSet)
                         }
                 }
             }
-        }
+        }echo $enq.$nnq;
         SendQueries($enq.$nnq);
     }
     $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".$did.
@@ -87,12 +96,13 @@ if ($AccountIsSet)
     $smarty->assign('Friday', $periods[5]);
     $smarty->assign('Saturday', $periods[6]);
     $smarty->assign('Sunday', $periods[7]);
-    $result = SendQuery("select `PeriodsOfWorkingTimeForSpecialDates`.`ID`, `PeriodsOfWorkingTimeForSpecialDates`.`SpecialDateID`, `SpecialDates`.`Day`, `SpecialDates`.`Month`, `SpecialDates`.`Year`, `PeriodsOfWorkingTimeForSpecialDates`.`Start`, `PeriodsOfWorkingTimeForSpecialDates`.`End` from `SpecialDates` left join `PeriodsOfWorkingTimeForSpecialDates` on `PeriodsOfWorkingTimeForSpecialDates`.`SpecialDateID` = `SpecialDates`.`ID` where `SpecialDates`.`account_id` = ".intval($_GET['dentist']).
-                        " order by `Start`");
+    $result = SendQuery("select `PeriodsOfWorkingTimeForSpecialDates`.`ID`, `SpecialDates`.`ID` as `SpecialDateID`, `SpecialDates`.`Day`, `SpecialDates`.`Month`, `SpecialDates`.`Year`, `PeriodsOfWorkingTimeForSpecialDates`.`Start`, `PeriodsOfWorkingTimeForSpecialDates`.`End` from `SpecialDates` left join `PeriodsOfWorkingTimeForSpecialDates` on `PeriodsOfWorkingTimeForSpecialDates`.`SpecialDateID` = `SpecialDates`.`ID` where `SpecialDates`.`account_id` = ".intval($_GET['dentist']).
+    " order by `SpecialDates`.`Day`, `SpecialDates`.`Month`, `SpecialDates`.`Year`, `PeriodsOfWorkingTimeForSpecialDates`.`Start`");
     while ($row = GetNextRow($result))
     {
         $dates[$row['SpecialDateID']][] = $row;
     }
+    $smarty->assign('dates', $dates);
 }
     
 CloseConnection();
