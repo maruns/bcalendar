@@ -4,6 +4,7 @@
     <title>Wizyty pacjentów</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="../Windows.css" />
+    <link rel="icon" type="image/png" href="../../phpgwapi/templates/idots/images/PatientVisits.png"/>
 </head>
 <body id="pv" onload="document.getElementById('{$focus}').focus()">
     <h1>Wizyty pacjentów</h1>

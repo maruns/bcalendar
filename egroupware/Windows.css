@@ -152,3 +152,11 @@ div#wts a img {
     top: 1px;
     position: relative;
 }
+div#wts label.ad {
+    top: -3px; 
+    margin-left: -6px;
+    position: relative;
+}
+div#wts input[type=submit] {
+    margin-bottom: 70px;
+}

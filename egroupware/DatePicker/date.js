@@ -52,7 +52,7 @@ Date.abbrDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
  * @cat Plugins/Methods/Date
  */
 Date.monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Pa&#378;&#100;ziernik', 
-                   'Listopad', 'Grudzień'];
+                   'Listopa&#100;', 'Gru&#100;zień'];
 
 /**
  * An Array of abbreviated month names starting with Jan.
