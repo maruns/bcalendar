@@ -1169,7 +1169,7 @@
 		TEXT_NEXT_YEAR		:	'Następny rok',
 		TEXT_NEXT_MONTH		:	'Następny miesiąc',
 		TEXT_CLOSE			:	'Close',
-		TEXT_CHOOSE_DATE	:	'Wybierz daŧę',
+		TEXT_CHOOSE_DATE	:	'Wybierz datę',
 		HEADER_FORMAT		:	'mmmm yyyy'
 	};
 	// version

@@ -35,7 +35,7 @@ $smarty->assign('dentists', $dentists);
 if ($AccountIsSet)
 {
     if($_POST['submit'] == 'Zapisz')
-    {print_r($_POST);
+    {
         foreach($_POST as $key=>$value)
         {
             if ($key[1] == 'D')
@@ -96,9 +96,7 @@ if ($AccountIsSet)
                             case 'S':
                                 $enq .= "update `PeriodsOfWorkingTimeForSpecialDates` set `Start` = '".
                                         sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', `End` = '".
-                                        sprintf("%02d",$he).
-                                        ':'.sprintf("%02d",$me)."' where `ID` = ".intval(substr($key,4)).
-                                        ";";
+                                        sprintf("%02d",$he).':'.sprintf("%02d",$me)."' where `ID` = ".intval(substr($key,4)).";";
                         }
                         break;
                     case 'N':
@@ -128,7 +126,7 @@ if ($AccountIsSet)
                         }
                 }
             }
-        }echo $enq.$nnq;
+        }
         SendQueries($enq.$nnq);
     }
     $result = SendQuery("select `ID`, `Day`, `Start`, `End` from `PeriodsOfNormalWorkingTime` where `account_id` = ".$did.

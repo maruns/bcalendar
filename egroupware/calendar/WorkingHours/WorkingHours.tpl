@@ -27,7 +27,7 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
@@ -47,14 +47,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
-                        Nowy przedział: od <input type="text" name="SHNN10" maxlength="2" size="2"/>:
+                        Nowy przedział: od <input type="text" name="SHNN20" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN20" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN20" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN20" maxlength="2" size="2"/>:<input name="EMNN20" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -67,14 +67,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
                         Nowy przedział: od <input type="text" name="SHNN30" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN30" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN30" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN30" maxlength="2" size="2"/>:<input name="EMNN30" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -87,14 +87,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
                         Nowy przedział: od <input type="text" name="SHNN40" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN40" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN40" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN40" maxlength="2" size="2"/>:<input name="EMNN40" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -107,14 +107,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
-                        Nowy przedział: od <input type="text" name="SHNN10" maxlength="2" size="2"/>:
+                        Nowy przedział: od <input type="text" name="SHNN50" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN50" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN50" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN50" maxlength="2" size="2"/>:<input name="EMNN50" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -127,14 +127,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
-                        Nowy przedział: od <input type="text" name="SHNN10" maxlength="2" size="2"/>:
+                        Nowy przedział: od <input type="text" name="SHNN60" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN60" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN60" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN60" maxlength="2" size="2"/>:<input name="EMNN60" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -147,14 +147,14 @@
                                    size="2"/> 
                             do 
                             <input type="text" name="EHEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EMEN{$period['ID']}" maxlength="2" value="{$period['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rnp={$period['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>
                     {/foreach}
                     <p>
-                        Nowy przedział: od <input type="text" name="SHNN10" maxlength="2" size="2"/>:
+                        Nowy przedział: od <input type="text" name="SHNN70" maxlength="2" size="2"/>:
                         <input type="text" name="SMNN70" maxlength="2" size="2"/>
-                        do <input type="text" name="EHNN70" maxlength="2" size="2"/>:<input name="EMNN10" type="text" maxlength="2" size="2"/>
+                        do <input type="text" name="EHNN70" maxlength="2" size="2"/>:<input name="EMNN70" type="text" maxlength="2" size="2"/>
                     </p>
                 </fieldset>
                 <fieldset>
@@ -169,12 +169,12 @@
                             <a href="?dentist={$did}&amp;rd={$date[0]['SpecialDateID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </legend>
                         {foreach $date as $p}{if $p['Start']}<p>
-                            Od <input type="text" name="SHES1{$p['ID']}" maxlength="2" value="{$p['Start']|date_format:"%H"}"
+                            Od <input type="text" name="SHES{$p['ID']}" maxlength="2" value="{$p['Start']|date_format:"%H"}"
                                       size="2"/>:
-                            <input type="text" name="SMES1{$p['ID']}" maxlength="2" value="{$p['Start']|date_format:"%M"}" size="2"/> 
+                            <input type="text" name="SMES{$p['ID']}" maxlength="2" value="{$p['Start']|date_format:"%M"}" size="2"/> 
                             do 
-                            <input type="text" name="EHES1{$p['ID']}" maxlength="2" value="{$p['End']|date_format:"%H"}" size="2"/>:
-                            <input type="text" name="MEES1{$p['ID']}" maxlength="2" value="{$p['End']|date_format:"%M"}" size="2"/>
+                            <input type="text" name="EHES{$p['ID']}" maxlength="2" value="{$p['End']|date_format:"%H"}" size="2"/>:
+                            <input type="text" name="EMES{$p['ID']}" maxlength="2" value="{$p['End']|date_format:"%M"}" size="2"/>
                             <a href="?dentist={$did}&amp;rsp={$p['ID']}" title="Usuń"><img src="Remove.png" alt="Usuń"/></a>
                         </p>{/if}{/foreach}
                         <p>
