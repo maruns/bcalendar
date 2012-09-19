@@ -1455,7 +1455,8 @@ class addressbook_bo extends addressbook_so
 	 */
         function AppendPhoneNumber(&$phones, &$isNotFirst, $number, $description = null)
         {
-            if (isset($number))
+            $number = trim($number);
+            if (isset($number) && $number != '')
             {
                 if ($isNotFirst)
                 {
@@ -1464,6 +1465,11 @@ class addressbook_bo extends addressbook_so
                 else
                 {
                     $isNotFirst = true;
+                }
+                if (substr($number, -1) == ')' && $description != null)
+                {
+                    $number = substr($number, 0, -1);
+                    $description = ' ' . substr($description, 2);
                 }
                 $phones = $phones.$number.$description;
             }
@@ -1483,9 +1489,10 @@ class addressbook_bo extends addressbook_so
             {
                     if (!($contact = $this->read($id))) continue;
                     $phones = ''; //ciąg znaków na numer telefonu
-                    if (isset($contact['tel_prefer'])) //jeśli jest ustawiony numer preferowany, to tylko go dołącz
+                    $ppn = trim($contact['tel_prefer']);
+                    if (isset($ppn) && $ppn != '') //jeśli jest ustawiony numer preferowany, to tylko go dołącz
                     {
-                        $phones = $contact[$contact['tel_prefer']];
+                        $phones = $contact[$ppn];
                     }
                     else //jeśli nie jest ustawiony numer prywatny, dołącz wszystkie numery telefonu, przez które można rozmawiać
                     {

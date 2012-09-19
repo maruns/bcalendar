@@ -1,3 +1,3 @@
 <?php
-header('Location: ../../../calendar/WorkingHours/index.php');
+header('Location: ../../../bcalendar/WorkingHours/index.php');
 ?>

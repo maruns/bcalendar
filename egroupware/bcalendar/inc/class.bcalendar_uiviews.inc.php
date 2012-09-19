@@ -1312,15 +1312,15 @@ SCRIPT;
             'date' => $day_ymd,
             'hour' => sprintf("%02d", floor($t / 60)),
             'minute' => sprintf("%02d", floor($t % 60)),
-        );
+        );//echo '<pre>';print_r($GLOBALS['egw']['backend']);echo '</pre>';
         if ($owner)
-          $linkData['owner'] = $owner;
-
+          $linkData['owner'] = $owner;//ini_set('display_errors', 1); //pokazywanie błędów PHP
+//$this->so->db->select('PeriodsOfNormalWorkingTime','*','',__LINE__,__FILE__,false,'',0,'');
         $droppableDateTime = $linkData['date'] . "T" . $linkData['hour'] . $linkData['minute'];
         $droppableID = 'drop_' . $droppableDateTime . '_O' . $owner;
-
+        //$ec = ' fftq';
         $html .= $indent . "\t" . '<div id="' . $droppableID . '" style="height:' . $this->rowHeight . 'px; top: ' . $i * $this->rowHeight .
-                'px;" class="calAddEvent"';
+                'px;" class="calAddEvent'.$ec.'"';
         if ($this->allowEdit) {
           $html .= ' onclick="' . $this->popup($GLOBALS['egw']->link('/index.php', $linkData)) . ';return false;"';
         }
