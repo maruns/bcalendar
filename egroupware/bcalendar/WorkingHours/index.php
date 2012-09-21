@@ -1,7 +1,13 @@
 <?php
+$GLOBALS['egw_info'] = array(
+        'flags' => array(
+                'currentapp' => 'bcalendar',
+                'noheader'   => True
+        ),
+);
+include('../../header.inc.php');
 require_once('../../SmartyConfig.php');
 require_once('../../DatabaseConnection.php');
-
 if (isset($_GET['rnp']))
 {
     SendQueryQuickly('delete from `PeriodsOfNormalWorkingTime` where `ID`='.$_GET['rnp']);
@@ -16,9 +22,13 @@ if (isset($_GET['rd']))
 }
 $result = SendQuery("select `egw_addressbook`.`n_fn`, `egw_addressbook`.`account_id` from `egw_addressbook` inner join `egw_accounts` on `egw_addressbook`.`account_id` = `egw_accounts`.`account_id` where `egw_accounts`.`account_type` = 'u' and `egw_accounts`.`account_primary_group` = -329 and (`egw_accounts`.`account_expires` = -1 or `egw_accounts`.`account_expires` > ".intval($_SERVER['REQUEST_TIME']).") order by `egw_addressbook`.`n_family`, `egw_addressbook`.`n_given`, `egw_addressbook`.`n_middle`");
 $AccountIsSet = false;
+if (!isset($_GET['dentist']) && !isset($_POST['dentist']))
+{
+    $lu = $GLOBALS['egw_info']['user']['account_id'];
+}
 while ($row = GetNextRow($result))
 {
-    if ($_GET['dentist'] == $row['account_id'] || $_POST['dentist'] == $row['account_id'])
+    if ($_GET['dentist'] == $row['account_id'] || $_POST['dentist'] == $row['account_id'] || $lu == $row['account_id'])
     {
         $smarty->assign('name',$row['n_fn']);
         $smarty->assign('did',$row['account_id']);
@@ -103,20 +113,22 @@ if ($AccountIsSet)
                         switch($key[3])
                         {
                             case 'N':
-//                                if (isset($nnq))
-//                                {
-//                                    $nnq .= ', ('.intval($_POST['dentist']).', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
-//                                            sprintf("%02d",$he).
-//                                            ':'.sprintf("%02d",$me)."')";
-//                                }
-//                                else
-//                                {
+                                if (isset($nnq))
+                                {
+                                    $nnq .= ', ('.
+                                           intval($_POST['dentist']).
+                                           ', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
+                                           sprintf("%02d",$he).
+                                           ':'.sprintf("%02d",$me)."')";
+                                }
+                                else
+                                {
                                     $nnq = 'insert into `PeriodsOfNormalWorkingTime` (`account_id`, `Day`, `Start`, `End`) values ('.
                                            intval($_POST['dentist']).
                                            ', '.$key[4].", '".sprintf("%02d",$hs).':'.sprintf("%02d",$ms)."', '".
                                            sprintf("%02d",$he).
                                            ':'.sprintf("%02d",$me)."')";
-//                                }
+                                }
                                 break;
                             case 'S':
                                 $enq .= 'insert into `PeriodsOfWorkingTimeForSpecialDates` (`SpecialDateID`, `Start`, `End`) values ('.

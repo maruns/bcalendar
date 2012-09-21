@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Klasa MinutePeriod
+ */
+require_once 'MinutePeriod.php';
 /**
  * eGroupWare - Calendar's views and widgets
  *
@@ -11,7 +14,7 @@
  * @version $Id: class.calendar_uiviews.inc.php 37859 2012-01-31 21:05:25Z hjtappe $
  * poprawki ziwązane z kalendarzem
  */
-
+ini_set('display_errors', 1); //pokazywanie błędów PHP
 /**
  * Class to generate the calendar views and the necesary widgets
  *
@@ -124,6 +127,20 @@ class bcalendar_uiviews extends bcalendar_ui {
   var $allowEdit = true;
 
   /**
+   * Przedziały czasu pracy w terminach wyjątkowych
+   * 
+   * @var object
+   */
+  private $SpecialWorkingPeriods;
+  
+  /**
+   * Przedziały normalnego czasu pracy
+   * 
+   * @var object
+   */
+  private $NormalWorkingPeriods;
+  
+  /**
    * Constructor
    *
    * @param array $set_states=null to manualy set / change one of the states, default NULL = use $_REQUEST
@@ -131,7 +148,7 @@ class bcalendar_uiviews extends bcalendar_ui {
   function __construct($set_states = null) {
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
-
+    
     $GLOBALS['egw_info']['flags']['nonavbar'] = False;
     $app_header = array(
         'day' => lang('Dayview'),
@@ -205,7 +222,7 @@ class bcalendar_uiviews extends bcalendar_ui {
     // get manual to load the right page
     $GLOBALS['egw_info']['flags']['params']['manual'] = array('page' => 'ManualCalendar' . ucfirst($this->view));
 
-    var_dump($this->view);
+    //var_dump($this->view);
       $this->{$this->view}();
   }
 
@@ -974,6 +991,19 @@ function open_edit(series)
    */
   function &timeGridWidget($daysEvents, $granularity_m = 15, $height = 400, $indent = '', $title = '', $owner = 0, $last = true) {
     $granularity_m = 15;
+    foreach (explode(',', $this->owner) as $account) //zbierz numery ID użytkowników
+    {
+        $accounts[] = $account;
+    }
+    //pobierz przedziały czasu pracy w terminach szczególnych z bazy danych (poniżej)
+    $this->SpecialWorkingPeriods = $GLOBALS['egw']->db->select('PeriodsOfWorkingTimeForSpecialDates',
+                                                               '`Start` , `End` , `Day` , `Month` , `Year`, `account_id`',
+                                                               array('account_id' => $accounts),__LINE__,__FILE__,false,' ORDER BY `Start`',0,
+                                                               0,
+    'LEFT JOIN `SpecialDates` ON `PeriodsOfWorkingTimeForSpecialDates`.`SpecialDateID` = `SpecialDates`.`ID`'); 
+    $this->NormalWorkingPeriods = $GLOBALS['egw']->db->select('PeriodsOfNormalWorkingTime','`account_id` , `Day` , `Start` , `End`',
+                                                              array('account_id' => $accounts),__LINE__,__FILE__,false,' ORDER BY `Start`',0,
+                                                              0); //pobierz  przedziały normalnego czasu pracy z bazy danych
     if ($this->debug > 1 || $this->debug === 'timeGridWidget')
       $this->bo->debug_message('uiviews::timeGridWidget(events=%1,granularity_m=%2,height=%3,,title=%4)', True, $daysEvents, $granularity_m, $height, $title);
     $html = <<<SCRIPT
@@ -1159,8 +1189,10 @@ SCRIPT;
             $day = $this->date;
              $col_owner = $owner[$n];
           }
-          $html .= $this->dayColWidget($day, $userEvents[$user], $n * ($docWidth+1), $docWidth, $indent . "\t\t", $short_title, ++$on_off & 1, $user);
+          $html .= $this->dayColWidget($day, $userEvents[$user], $n * ($docWidth+1), $docWidth, $indent . "\t\t", $short_title, ++$on_off & 1, $user, $u == 0); //ze sprawdzaniem czy kolumna jest pierwsza w danym dniu
           ++$n;
+          ++$u; //powiększ numer kolumny
+          $u = $u % $userCount; //wyzeruj, gdy numer równy liczbie użytkowników
         }
       }
       if (html::$user_agent == 'msie')
@@ -1198,7 +1230,7 @@ SCRIPT;
     }
 
     $eventCols = $col_ends = array();
-    foreach ($events as $event) {
+    foreach ((array)$events as $event) {
       $event['multiday'] = False;
       $event['start_m'] = ($event['start'] - $day_start) / 60;
       if ($event['start_m'] < 0) {
@@ -1284,7 +1316,7 @@ SCRIPT;
       $this->bo->debug_message('uiviews::dayColWidget(%1,%2,left=%3,width=%4,)', False, $day_ymd, $events, $left, $width);
     if ($isFirst) //czy kolumna jest pierwsza
     {
-        $fc = 'border-left: 2px solid black;'; // jeśli tak to zmień obramowanie
+        $fc = 'border-left: 1px solid black; box-sizing: border-box;'; // jeśli tak to zmień obramowanie
     }
     else
     {
@@ -1304,27 +1336,125 @@ SCRIPT;
           $dropPermission = true;
         }
       }
-      
+      $day = substr($day_ymd, 6, 2); //dzień bieżącej komórka
+        $month = substr($day_ymd, 4, 2); //miesiąc bieżącej komórki
+        $year = substr($day_ymd, 0, 4); //rok bieżącej komórki
+        $YearIsNotFound = true; //czy nie został znaleziony żaden przedział z niecorocznym terminem szczególnym
+        $periods = array(); //przedziały czasu pracy
+        foreach ($this->SpecialWorkingPeriods as $period) //sprawdzanie przedziałow niecorocznych terminów szczególnych
+        {
+            if ($period['Day'] == $day && $period['Month'] == $month && $period['Year'] == $year && $period['account_id'] == $owner)
+            {
+                $periods[] = new MinutePeriod(intval($period['Start']) * 60 + substr($period['Start'], 3),
+                                              intval($period['End']) * 60 + substr($period['End'], 3), $period['Start'], $period['End']);
+                $YearIsNotFound = false;
+            }
+        }
+        if ($YearIsNotFound) //jeżeli nie został znaleziony żaden przedział z niecorocznym terminem szczególnym
+        {
+            $SpecialDateIsNotFound = true;
+            foreach ($this->SpecialWorkingPeriods as $period)
+            {
+                if ($period['Day'] == $day && $period['Month'] == $month && $period['Year'] == '' && $period['account_id'] == $owner)
+                {
+                    $periods[] = new MinutePeriod(intval($period['Start']) * 60 + substr($period['Start'], 3),
+                                                  intval($period['End']) * 60 + substr($period['End'], 3), $period['Start'], $period['End']);
+                    $SpecialDateIsNotFound = false;
+                }
+            }
+            if ($SpecialDateIsNotFound)
+            {
+                $wd = date('w',$this->bo->date2ts((string) $day_ymd));
+                if ($wd == '0')
+                {
+                    $wd = '7';
+                }
+                foreach ($this->NormalWorkingPeriods as $period)
+                {
+                    if ($period['Day'] == $wd && $period['account_id'] == $owner)
+                    {
+                        $periods[] = new MinutePeriod(intval($period['Start']) * 60 + substr($period['Start'], 3),
+                                                      intval($period['End']) * 60 + substr($period['End'], 3), $period['Start'],
+                                                      $period['End']);
+                    }
+                }
+            }
+        }
       // adding divs to click on for each row / time-span
-      for ($t = $this->scroll_to_wdstart ? 0 : $this->wd_start, $i = 0; $t <= $this->wd_end || $this->scroll_to_wdstart && $t < 24 * 60; $t += $this->granularity_m, ++$i, $input_cnt++) {
+      for ($t = $this->scroll_to_wdstart ? 0 : $this->wd_start, $i = 0, $fq = true, $z = 0, $n = count($periods), $cwt = '';
+           $t <= $this->wd_end || $this->scroll_to_wdstart && $t < 24 * 60;
+           $t = $nt, ++$i, $input_cnt++, $fq = !$fq, $ec = '', $cwt = '') //z inicjalizacją i aktualizacją dodatkowych zmiennych
+      {
         $linkData = array(
             'menuaction' => 'calendar.calendar_uiforms.edit',
             'date' => $day_ymd,
             'hour' => sprintf("%02d", floor($t / 60)),
             'minute' => sprintf("%02d", floor($t % 60)),
-        );//echo '<pre>';print_r($GLOBALS['egw']['backend']);echo '</pre>';
+        );
         if ($owner)
-          $linkData['owner'] = $owner;//ini_set('display_errors', 1); //pokazywanie błędów PHP
-//$this->so->db->select('PeriodsOfNormalWorkingTime','*','',__LINE__,__FILE__,false,'',0,'');
+          $linkData['owner'] = $owner;
+        
         $droppableDateTime = $linkData['date'] . "T" . $linkData['hour'] . $linkData['minute'];
         $droppableID = 'drop_' . $droppableDateTime . '_O' . $owner;
-        //$ec = ' fftq';
-        $html .= $indent . "\t" . '<div id="' . $droppableID . '" style="height:' . $this->rowHeight . 'px; top: ' . $i * $this->rowHeight .
-                'px;" class="calAddEvent'.$ec.'"';
-        if ($this->allowEdit) {
-          $html .= ' onclick="' . $this->popup($GLOBALS['egw']->link('/index.php', $linkData)) . ';return false;"';
+        $nt = $t + $this->granularity_m; //obliczenie końca obecnej i jednocześnie początka następnej komórki
+        if ($fq) //przypisz style nieprzyjmowania pacjentów przez dentystę
+        {
+            $ec = ' fftq';
         }
-        $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].'</div></div>' . "\n"; // godzina w komórce
+        else
+        {
+            $ec = ' sftq';
+        }
+        for(; $z < $n; $z++) //sprawdź przedziały czasu pracy
+        {
+            if ($periods[$z]->GetStart() <= $t && $periods[$z]->GetEnd() >= $nt)
+            {
+                if ($fq)
+                {
+                    $ec = ' fwtq';
+                }
+                else
+                {
+                    $ec = ' swtq';
+                }
+                break;
+            }
+            if ($periods[$z]->GetStart() >= $nt)
+            {
+                break;
+            }
+            if ($periods[$z]->GetEnd() > $t)
+            {
+                $ec = '';
+                if ($cwt == '')
+                {
+                    $cwt = 'Przyjmuje '.$periods[$z]->GetVersionToDisplay();
+                }
+                else
+                {
+                    $cwt .= ', '.$periods[$z]->GetVersionToDisplay();
+                }
+                if ($periods[$z]->GetEnd() > $nt)
+                {
+                    break;
+                }
+            }
+        }
+        if ($cwt != '') //zakończ dokładną informację o czasie pracy dentysty
+        {
+            $CellTitle = ' title="'.$cwt.'"';
+            $cwt = '<p>'.$cwt.'.</p>';
+        }
+        else
+        {
+            $CellTitle = '';
+        }
+        $html .= $indent . "\t" . '<div id="' . $droppableID . '" style="height:' . $this->rowHeight . 'px; top: ' . $i * $this->rowHeight .
+                'px;" class="calAddEvent'.$ec.'"'; //ze stylem zależnym od czasu pracy
+        if ($this->allowEdit) {
+          $html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/index.php', $linkData)) . ';return false;"'; //z etykietą
+        }
+        $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].$cwt.'</div></div>' . "\n"; //tekst w komórce
         if (is_object($this->dragdrop) && $dropPermission) {
           $this->dragdrop->addDroppable(
                   $droppableID, array(

@@ -42,10 +42,10 @@
 	<div id="divAppIconBar">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top: 7px">
 			<tr>
-				<td width="100"></td><!-- 
+				<td width="100"></td> 
                                 <td class="iatd"><a title="Ustaw czas pracy w dniach tygodnia i terminach szczególnych"
-onclick="window.open('calendar/WorkingHours/index.php','_blank','width='+300+',height='+300+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/WorkingHours.png" alt="Czas pracy dentystów"/>
-                                Czas pracy dentystów</a></td>-->
+onclick="window.open('bcalendar/WorkingHours/index.php','_blank','width='+605+',height='+screen.height+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/WorkingHours.png" alt="Czas pracy dentystów"/>
+                                Czas pracy dentystów</a></td>
                                 <td class="iatd"><a title="Zobacz wizyty pacjentów"
 onclick="window.open('PatientVisits/index.php','_blank','width='+750+',height='+600+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/PatientVisits.png" alt="Wizyty pacjentów"/>
                                 Wizyty pacjentów</a></td>

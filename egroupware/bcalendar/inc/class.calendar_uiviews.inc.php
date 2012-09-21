@@ -1158,8 +1158,10 @@ SCRIPT;
             $day = $this->date;
              $col_owner = $owner[$n];
           }
-          $html .= $this->dayColWidget($day, $userEvents[$user], $n * ($docWidth+1), $docWidth, $indent . "\t\t", $short_title, ++$on_off & 1, $user);
+          $html .= $this->dayColWidget($day, $userEvents[$user], $n * ($docWidth+1), $docWidth, $indent . "\t\t", $short_title, ++$on_off & 1, $user, $u == 0); //ze sprawdzaniem czy kolumna jest pierwsza w danym dniu
           ++$n;
+          ++$u; //powiększ numer kolumny
+          $u = $u % $userCount; //wyzeruj, gdy numer równy liczbie użytkowników
         }
       }
       if (html::$user_agent == 'msie')
