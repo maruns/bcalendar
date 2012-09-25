@@ -5,9 +5,8 @@ $GLOBALS['egw_info'] = array(
                 'noheader'   => True
         ),
 );
-include('../../header.inc.php');
-require_once('../../SmartyConfig.php');
 require_once('../../DatabaseConnection.php');
+require_once('../../SmartyConfig.php');
 if (isset($_GET['rnp']))
 {
     SendQueryQuickly('delete from `PeriodsOfNormalWorkingTime` where `ID`='.$_GET['rnp']);

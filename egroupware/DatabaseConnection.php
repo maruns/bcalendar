@@ -1,7 +1,16 @@
 <?php
-//mysql_connect('localhost', 'egroupware');
-//mysql_select_db('egroupware');
-$mysqli = new mysqli('localhost', 'egroupware', null, 'egroupware');
+require_once('header.inc.php');
+$host = $GLOBALS['egw_domain']['default']['db_host'];
+$username = $GLOBALS['egw_domain']['default']['db_user'];
+$passwd = $GLOBALS['egw_domain']['default']['db_pass'];
+$dbname = $GLOBALS['egw_domain']['default']['db_name'];
+if ($passwd == '')
+{
+    $passwd = null;
+}
+//mysql_connect($host, $username, $passwd);
+//mysql_select_db($dbname);
+$mysqli = new mysqli($host, $username, $passwd, $dbname);
 //mysql_query('SET NAMES utf8');
 $mysqli->real_query('SET NAMES utf8');
 /**
@@ -53,7 +62,7 @@ function GetNextRow($result)
     return $result->fetch_array(MYSQLI_ASSOC);
 }
 /**
- * Dodaje ukośniki przed znaki specjalnymi w celu bezpiecznego użycia łańcucha w zapytaniu
+ * Dodaje ukośniki przed znakami specjalnymi w celu bezpiecznego użycia łańcucha w zapytaniu
  *
  * @param string łańcuch
  * @return string bezpieczny łańcuch

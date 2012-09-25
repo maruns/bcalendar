@@ -141,11 +141,19 @@ class bcalendar_uiviews extends bcalendar_ui {
   private $NormalWorkingPeriods;
   
   /**
+   * Kolory rodzajów wizyt
+   * 
+   * @var object
+   */
+  private $ColorsOfVisits;
+  
+  /**
    * Constructor
    *
    * @param array $set_states=null to manualy set / change one of the states, default NULL = use $_REQUEST
    */
   function __construct($set_states = null) {
+      
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
     
@@ -242,7 +250,6 @@ class bcalendar_uiviews extends bcalendar_ui {
         'multiple' => 0,
         'view' => $this->bo->cal_prefs['defaultcalendar'],
     ));
-
     if (($error = $this->check_owners_access())) {
       return $error;
     }
@@ -1004,6 +1011,9 @@ function open_edit(series)
     $this->NormalWorkingPeriods = $GLOBALS['egw']->db->select('PeriodsOfNormalWorkingTime','`account_id` , `Day` , `Start` , `End`',
                                                               array('account_id' => $accounts),__LINE__,__FILE__,false,' ORDER BY `Start`',0,
                                                               0); //pobierz  przedziały normalnego czasu pracy z bazy danych
+    $this->ColorsOfVisits = $GLOBALS['egw']->db->select('ColorsOfVisits','`cal_extra_value` , `FirstColor` , `SecondColor`',null,__LINE__,
+                                                        __FILE__,false,'',0,
+                                                              0); //pobierz kolory rodzajów wizyt z bazy danych
     if ($this->debug > 1 || $this->debug === 'timeGridWidget')
       $this->bo->debug_message('uiviews::timeGridWidget(events=%1,granularity_m=%2,height=%3,,title=%4)', True, $daysEvents, $granularity_m, $height, $title);
     $html = <<<SCRIPT
@@ -1624,12 +1634,31 @@ SCRIPT;
     $headerbgcolor = $color ? $color : '#808080';
     $headercolor = self::brightness($headerbgcolor) > 128 ? 'black' : 'white';
     // the body-colors (gradient) are calculated from the headercolor, which depends on the cat of an event
-    $bodybgcolor1 = $this->brighter($headerbgcolor, $headerbgcolor == '#808080' ? 100 : 170);
-    $bodybgcolor2 = $this->brighter($headerbgcolor, 220);
-
+    //$bodybgcolor1 = $this->brighter($headerbgcolor, $headerbgcolor == '#808080' ? 100 : 170);
+    //$bodybgcolor2 = $this->brighter($headerbgcolor, 220);
     // mark event as invitation, by NOT using category based background color, but plain white
     if ($event['participants'][$this->user][0] == 'U') {
       $bodybgcolor1 = $bodybgcolor2 = 'white';
+    }
+    else //kolor na podstawie rodzaju wydarzenia
+    {
+        if (isset($this->ColorsOfVisits))
+        {
+            foreach ($this->ColorsOfVisits as $color)
+            {
+                switch ($color['cal_extra_value'])
+                {
+                    case '':
+                        $bodybgcolor1 = trim($color['FirstColor']);
+                        $bodybgcolor2 = trim($color['SecondColor']);
+                        break;
+                    case $event['#kolor']:
+                        $bodybgcolor1 = trim($color['FirstColor']);
+                        $bodybgcolor2 = trim($color['SecondColor']);
+                        break 2;
+                }
+            }
+        }
     }
 
     // get status class of event: calEventAllAccepted, calEventAllAnswered or calEventSomeUnknown
@@ -1672,8 +1701,6 @@ SCRIPT;
 
     $small_height = $this->use_time_grid && ( $event['end_m'] - $event['start_m'] < 2 * $this->granularity_m ||
             $event['end_m'] <= $this->wd_start || $event['start_m'] >= $this->wd_end);
-    $Colors = array(0 => array('#aaaaaa','#bbbbbb'),'zwykla rezerwacja' => array('#FFFfff', '#cccccc'));
-    $bodybgcolor2 = $Colors[0][1];
     $tpl->set_var(array(
         // event-content, some of it displays only if it really has content or is needed
         'owner' => $GLOBALS['egw']->common->grab_owner_name($event['owner']),
@@ -1706,7 +1733,7 @@ SCRIPT;
         'headerbgcolor' => $headerbgcolor,
         'headercolor' => $headercolor,
         'bodybackground' => ($background = 'url(' . $GLOBALS['egw_info']['server']['webserver_url'] .
-        '/calendar/inc/gradient.php?color1=' . urlencode($Colors[0][0]) . '&color2=' . 
+        '/calendar/inc/gradient.php?color1=' . urlencode($bodybgcolor1) . '&color2=' . 
         urlencode($bodybgcolor2) .
         '&width=' . $width . ') repeat-y ' . $bodybgcolor2),
         'Small' => $small ? 'Small' : '', // to use in css class-names

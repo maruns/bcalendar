@@ -1,6 +1,12 @@
 <?php
-require_once('../SmartyConfig.php');
+$GLOBALS['egw_info'] = array(
+        'flags' => array(
+                'currentapp' => 'Invoice',
+                'noheader'   => True
+        ),
+);
 require_once('../DatabaseConnection.php');
+require_once('../SmartyConfig.php');
 $name = strtok($_GET['dentist'],'α');
 $smarty->assign('dentist', $name);
 $id = intval(strtok('α'));

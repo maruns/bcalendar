@@ -1,13 +1,10 @@
 <?php
-
 $GLOBALS['egw_info'] = array(
         'flags' => array(
                 'currentapp' => 'Invoice',
                 'noheader'   => True
         ),
 );
-include('../header.inc.php');
-
 require_once('../SmartyConfig.php');
 require_once('../DatabaseConnection.php');
 include_once('/var/lib/egroupware/Invoice.php');

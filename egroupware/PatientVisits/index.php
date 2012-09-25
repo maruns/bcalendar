@@ -1,6 +1,12 @@
 <?php  
-require_once('../SmartyConfig.php');
+$GLOBALS['egw_info'] = array(
+        'flags' => array(
+                'currentapp' => 'calendar',
+                'noheader'   => True
+        ),
+);
 require_once('../DatabaseConnection.php');
+require_once('../SmartyConfig.php');
 if ($_GET['search'] == null)
 {
     $patients = SendQuery("select `n_fn`, `contact_id` from `egw_addressbook` order by `n_family`, `n_given`, `n_middle`");
