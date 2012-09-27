@@ -89,7 +89,7 @@ ul#al li a {
     height: 35px !important;
     min-height: 35px;
     line-height: 35px;
-    background: url(calendar/WorkingHours/button1.gif);
+    background: url(bcalendar/WorkingHours/button1.gif);
     color: #ddd;
     text-decoration: none;
     width: 190px !important;
@@ -99,7 +99,7 @@ ul#al li a strong {
     font-weight: bold;
 }
 ul#al li a#current {
-    background: url(calendar/WorkingHours/button3.gif);
+    background: url(bcalendar/WorkingHours/button3.gif);
     color: #fff;
     cursor: default;
     width: 183px !important;
@@ -107,7 +107,7 @@ ul#al li a#current {
 ul#al li a#current strong {
     display: inline-block;
     position: relative;
-    background: url(calendar/WorkingHours/button3.gif) right top;
+    background: url(bcalendar/WorkingHours/button3.gif) right top;
     cursor: default;
     line-height: 35px;
     height: 35px;
@@ -120,7 +120,7 @@ ul#al li a#current:hover strong {
     left: -3px;
 }
 ul#al li a:hover, .ul#al li:hover a {
-    background: url(calendar/WorkingHours/button4.gif);
+    background: url(bcalendar/WorkingHours/button4.gif);
     cursor: pointer;
     color: #fff;
     width: 180px !important;
@@ -133,7 +133,7 @@ ul#al li a:hover, .ul#al li:hover a {
 }
 ul#al li a:hover strong, ul#al li:hover a strong {
     display: block;
-    background: url(calendar/WorkingHours/button4.gif) right top;
+    background: url(bcalendar/WorkingHours/button4.gif) right top;
     cursor: pointer;
     font-weight: bold;
     width: 180px !important;;
