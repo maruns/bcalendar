@@ -22,7 +22,7 @@
  *
  * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
  */
-class bbcalendar_uiforms extends calendar_ui
+class bcalendar_uiforms extends calendar_ui
 {
 	var $public_functions = array(
 		'freetimesearch'  => True,
@@ -1163,7 +1163,7 @@ function replace_eTemplate_onsubmit()
 			$onload = "check_recur_type('recur_type',2);";
 			// We hide the enddate if one of our predefined durations fits
 			// the call to set_style_by_class has to be in onload, to make sure the function and the element is already created
-			$onload .= " set_style_by_class('table','end_hide','display','".($content['duration'] && isset($sel_options['duration'][$content['duration']]) ? 'none' : 'block')."');";
+			$onload .= " set_style_by_class('table','end_hide','display','".($content['duration'] && isset($sel_options['duration'][$content['duration']]) ? 'none' : 'block')."');";//OnLoad();
 
 			$GLOBALS['egw']->js->set_onload($onload);
 

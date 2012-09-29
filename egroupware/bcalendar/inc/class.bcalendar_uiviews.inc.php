@@ -843,7 +843,7 @@ class bcalendar_uiviews extends bcalendar_ui {
    */
   function edit_series($link = null, $target = '_blank') {
     if (is_null($link))
-      $link = egw::link('/index.php', array('menuaction' => 'calendar.calendar_uiforms.edit'));
+      $link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit'));
 
     $tpl = new etemplate('calendar.edit_series');
 
@@ -1396,7 +1396,7 @@ SCRIPT;
            $t = $nt, ++$i, $input_cnt++, $fq = !$fq, $ec = '', $cwt = '') //z inicjalizacją i aktualizacją dodatkowych zmiennych
       {
         $linkData = array(
-            'menuaction' => 'calendar.calendar_uiforms.edit',
+            'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
             'date' => $day_ymd,
             'hour' => sprintf("%02d", floor($t / 60)),
             'minute' => sprintf("%02d", floor($t % 60)),
@@ -1764,7 +1764,7 @@ SCRIPT;
       if ($event['recur_type'] != MCAL_RECUR_NONE) {
         $popup = ' onclick="edit_series(' . $event['id'] . ',' . $this->bo->date2string($event['start']) . ');"';
       } else {
-        $view_link = egw::link('/index.php', array('menuaction' => 'calendar.calendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
+        $view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
 
         $popup = ' onclick="' . $this->popup($view_link) . '; return false;"';
       }
