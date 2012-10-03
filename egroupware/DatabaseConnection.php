@@ -62,6 +62,20 @@ function GetNextRow($result)
     return $result->fetch_array(MYSQLI_ASSOC);
 }
 /**
+ * Zwraca liczbę wierszy w wyniku
+ *
+ * @param object $result wynik zapytania do bazy danych
+ * @return int liczba wierszy
+ */
+function GetRowsNumber($result)
+{
+    if (!is_object($result))
+    {
+        return 0;
+    }
+    return $result->field_count;
+}
+/**
  * Dodaje ukośniki przed znakami specjalnymi w celu bezpiecznego użycia łańcucha w zapytaniu
  *
  * @param string łańcuch
