@@ -1804,9 +1804,10 @@ function GetParameterByName(name)
         : null;
  
 }
-function OnParticipantsQueryKeyPress(value)
-{document.getElementById("calendar.edit").innerHTML += value;
-    if (value.length == 0)
+function OnParticipantsQueryKeyPress()
+{document.getElementById("exec[participants][resource][select_line]").innerHTML += 'uyjyumm';
+    var query = document.getElementById('exec[participants][resource][query]');
+    if (query.value.length == 0)
     {
         return;
     }
@@ -1815,10 +1816,10 @@ function OnParticipantsQueryKeyPress(value)
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            document.getElementById("exec[participants][resource][search_line]").innerHTML += xmlhttp.responseText;
+            document.getElementById("exec[participants][resource][select_line]").innerHTML += xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET","bcalendar\inc\Contacts.php?search="+value,true);
+    xmlhttp.open("GET","bcalendar/inc/Contacts.php?search="+query.value,true);
     xmlhttp.send();
 }
 function OnLoad()
@@ -1829,7 +1830,5 @@ function OnLoad()
 //                                                          GetParameterByName('hour')+
 //                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
     var query = document.getElementById('exec[participants][resource][query]');
-    //query.setAttribute('onkeypress','OnParticipantsQueryKeyPress(this.value)');
-    query.addEventListener('keypress', function () {OnParticipantsQueryKeyPress(query.value);});
-    //query.attachEvent('onkeypress',function () {OnParticipantsQueryKeyPress(this.value);});
+    query.addEventListener('keypress', function () {OnParticipantsQueryKeyPress();});
 }
