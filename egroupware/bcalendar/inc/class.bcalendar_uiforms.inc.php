@@ -1163,7 +1163,7 @@ function replace_eTemplate_onsubmit()
 			$onload = "check_recur_type('recur_type',2);";
 			// We hide the enddate if one of our predefined durations fits
 			// the call to set_style_by_class has to be in onload, to make sure the function and the element is already created
-			$onload .= " set_style_by_class('table','end_hide','display','".($content['duration'] && isset($sel_options['duration'][$content['duration']]) ? 'none' : 'block')."');";//OnLoad();
+			$onload .= " set_style_by_class('table','end_hide','display','".($content['duration'] && isset($sel_options['duration'][$content['duration']]) ? 'none' : 'block')."');OnEditFormLoad();"; //z wykonywaniem dodatkowej funkcji
 
 			$GLOBALS['egw']->js->set_onload($onload);
 

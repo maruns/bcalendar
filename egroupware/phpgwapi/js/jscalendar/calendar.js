@@ -1793,42 +1793,63 @@ if ( !Date.prototype.__msh_oldSetFullYear ) {
 
 // global object that remembers the calendar
 window.calendar = null;
-function GetParameterByName(name)
+function GetParameterByName(name) //zwraca wartość określonego pola w łańcuchu zapytania
 {
- 
-    var match = RegExp('[?&]' + name + '=([^&]*)')
-                    .exec(window.location.search);
- 
-    return match ?
-        decodeURIComponent(match[1].replace(/\+/g, ' '))
-        : null;
- 
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
 }
-function OnParticipantsQueryKeyPress()
-{document.getElementById("exec[participants][resource][select_line]").innerHTML += 'uyjyumm';
+function ShowEventID(addition) //wyświetla ID zdarzenia i dodatkowo inną zawartość
+{
+    var eid = GetParameterByName('cal_id');
+    if (eid == null)
+    {
+        document.getElementById("id").innerHTML = '' + addition;
+    }
+    else
+    {
+        document.getElementById("id").innerHTML = '<b>' + eid + '</b>' + addition;
+    }
+}
+function OnParticipantsQueryKeyPress(event) //informuje o zwolnieniu klawisza w polu wyszukiwania kontaktów
+{
+    if (event.keyCode == 13)
+    {
+        document.getElementById("exec[participants][resource][search]").click();
+        ShowEventID(null);
+        return;
+    }
     var query = document.getElementById('exec[participants][resource][query]');
     if (query.value.length == 0)
     {
+        query.setAttribute("autocomplete", "on" );
+        ShowEventID(null);
         return;
     }
     xmlhttp = new XMLHttpRequest();
+    query.setAttribute( "autocomplete", "off" );
     xmlhttp.onreadystatechange = function()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            document.getElementById("exec[participants][resource][select_line]").innerHTML += xmlhttp.responseText;
+            if (xmlhttp.responseText != '')
+            {
+                query.setAttribute("autocomplete", "off" );
+            }
+            else
+            {
+                query.setAttribute("autocomplete", "on" );
+            }
+            ShowEventID(xmlhttp.responseText);
         }
     }
-    xmlhttp.open("GET","bcalendar/inc/Contacts.php?search="+query.value,true);
+    xmlhttp.open("GET", "bcalendar/inc/Contacts.php?search=" + query.value, true);
     xmlhttp.send();
 }
-function OnLoad()
+function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załadowane
 {
-//    document.getElementById('exec[participants][resource][query]').
-//    setAttribute('onkeypress','if (event.keyCode==13){document.getElementById("exec[participants][resource][search]").click();}');
 //    document.getElementById("calendar.edit").innerHTML += '<a target="_blank" href="file:///'+GetParameterByName('date')+
 //                                                          GetParameterByName('hour')+
 //                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
     var query = document.getElementById('exec[participants][resource][query]');
-    query.addEventListener('keypress', function () {OnParticipantsQueryKeyPress();});
+    query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);});
 }
