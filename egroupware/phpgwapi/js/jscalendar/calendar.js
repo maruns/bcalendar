@@ -1815,21 +1815,20 @@ function OnParticipantsQueryKeyPress(event) //informuje o zwolnieniu klawisza w 
     if (event.keyCode == 13)
     {
         document.getElementById("exec[participants][resource][search]").click();
-        ShowEventID(null);
+        ShowEventID('');
         return;
     }
     var query = document.getElementById('exec[participants][resource][query]');
     if (query.value.length == 0)
     {
-        query.setAttribute("autocomplete", "on" );
-        ShowEventID(null);
+        ShowEventID('');
         return;
     }
     xmlhttp = new XMLHttpRequest();
     query.setAttribute( "autocomplete", "off" );
     xmlhttp.onreadystatechange = function()
     {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             if (xmlhttp.responseText != '')
             {
