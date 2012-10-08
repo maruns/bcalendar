@@ -1850,5 +1850,5 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
 //                                                          GetParameterByName('hour')+
 //                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
     var query = document.getElementById('exec[participants][resource][query]');
-    query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);});
+    query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);
 }
