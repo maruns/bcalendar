@@ -1077,7 +1077,7 @@ SCRIPT;
     }
     $overflow = 'overflow: hidden;';
     //echo $height;
-    $html .= $indent . '<div class="calTimeGrid" style="' . $overflow . 'height:480px;">' . "\n";
+    $html .= $indent . '<div class="calTimeGrid" id="calTimeGrid" style="' . $overflow . '">' . "\n";
 
     
     $docs_html = '';
@@ -1272,7 +1272,7 @@ SCRIPT;
             ($short_title ? lang(adodb_date('l', $ts)) . ' ' . adodb_date('d.', $ts) : $this->bo->long_date($ts, 0, false, true));
 
     $day_view = array(
-        'menuaction' => 'calendar.calendar_uiviews.day',
+        'menuaction' => 'bcalendar.bcalendar_uiviews.day', //używając bcalendar
         'date' => $day_ymd,
     );
     $this->_day_class_holiday($day_ymd, $class, $holidays);

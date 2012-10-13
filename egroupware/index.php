@@ -48,7 +48,10 @@ else
 	$app = 'home';
 	$invalid_data = True;
 }
-
+if ($app == 'calendar' && $method != 'index' && strstr($_SERVER['HTTP_REFERER'], 'bcalendar') != false)
+{
+    header('Location: ?menuaction=bcalendar.b'.$class.'.'.$method);
+}
 if($app == 'phpgwapi')
 {
 	$app = 'home';

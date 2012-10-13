@@ -1852,3 +1852,23 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
     var query = document.getElementById('exec[participants][resource][query]');
     query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);
 }
+window.onload = OnCalendarLoad; //uruchomienie funkcji po załadowaniu okna
+var GridIsNotResized = true; //zmienna ograniczająca uromienie funcji tylko do jednego razu
+function OnCalendarLoad() //informuje, że okno kalendarza zostało załadowane
+{
+    if (GridIsNotResized)
+    {
+        var ctg = document.getElementById('calTimeGrid');
+        if (ctg != null)
+        {
+            var t = ctg.offsetTop;
+            var o = ctg;
+            while (o = o.offsetParent)
+            {
+                t += o.offsetTop;
+            }
+            ctg.style.height = (window.innerHeight - t - 8) + 'px';
+        }
+    }
+    GridIsNotResized = false;
+}
