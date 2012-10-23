@@ -1849,6 +1849,16 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
 //    document.getElementById("calendar.edit").innerHTML += '<a target="_blank" href="file:///'+GetParameterByName('date')+
 //                                                          GetParameterByName('hour')+
 //                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
+    xmlhttpr = new XMLHttpRequest();
+    xmlhttpr.open("GET", "bcalendar/inc/VideosList.php?date=" + GetParameterByName('date'), true);
+    xmlhttpr.onreadystatechange = function()
+    {
+        if (xmlhttpr.readyState == 4 && xmlhttp.status == 200)
+        {
+            document.getElementById("calendar.edit").innerHTML += xmlhttpr.responseText;
+        }
+    }
+    xmlhttpr.send();document.getElementById("calendar.edit").innerHTML += xmlhttpr.responseText;
     var query = document.getElementById('exec[participants][resource][query]');
     query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);
 }

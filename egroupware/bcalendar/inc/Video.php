@@ -1,16 +1,12 @@
 <?php
 $GLOBALS['egw_info'] = array(
         'flags' => array(
-                'currentapp' => 'calendar',
+                'currentapp' => 'bcalendar',
                 'noheader'   => True
         ),
 );
-$file = '/usr/local/apache2/htdocs/cam1/';
-$filenames = glob('/usr/local/apache2/htdocs/cam1/'. $username . '\*.jpg');
-foreach ($filenames as $filename) {
-    echo $filename ."\n";
-}
+$file = '/usr/local/apache2/htdocs/cam1/' + $_GET['file'];
 header('Content-type: ' . mime_content_type($file));
-header('Content-Disposition: attachment; filename="' . pathinfo('/www/htdocs/inc/lib.inc.php', PATHINFO_BASENAME) . '"');
+header('Content-Disposition: attachment; filename="' . $_GET['file'] . '"');
 readfile($file);
 ?>
