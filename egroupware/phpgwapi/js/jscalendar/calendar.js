@@ -1853,12 +1853,12 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
     xmlhttpr.open("GET", "bcalendar/inc/VideosList.php?date=" + GetParameterByName('date'), true);
     xmlhttpr.onreadystatechange = function()
     {
-        if (xmlhttpr.readyState == 4 && xmlhttp.status == 200)
+        if (xmlhttpr.readyState == 4 && xmlhttpr.status == 200)
         {
             document.getElementById("calendar.edit").innerHTML += xmlhttpr.responseText;
         }
     }
-    xmlhttpr.send();document.getElementById("calendar.edit").innerHTML += xmlhttpr.responseText;
+    xmlhttpr.send();
     var query = document.getElementById('exec[participants][resource][query]');
     query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);
 }
