@@ -1850,7 +1850,7 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
 //                                                          GetParameterByName('hour')+
 //                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
     xmlhttpr = new XMLHttpRequest();
-    xmlhttpr.open("GET", "bcalendar/inc/VideosList.php?date=" + GetParameterByName('date'), true);
+    xmlhttpr.open("GET", "bcalendar/inc/VideosList.php?date=" + GetParameterByName('date') + "&id=" + GetParameterByName('cal_id'), true);
     xmlhttpr.onreadystatechange = function()
     {
         if (xmlhttpr.readyState == 4 && xmlhttpr.status == 200)
