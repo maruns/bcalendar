@@ -19,8 +19,11 @@
             <label for="percent">Procent franczyzny: </label>
             <input id="percent" size="3" maxlength="3" value="{$d_FRANCZYZA}" name="percent" type="text" />%
         </p>
-        <p><label for="date-pick">Za dzień: </label></p>
-        <p><input type="text" id="date-pick" name="date-pick" class="date-pick" /></p>
+        <p><label for="from">Od dnia: </label></p>
+        <p><input type="text" id="from" name="from" class="date-pick" /></p>
+        <p>&nbsp;</p>
+        <p id="sd"><label for="to">Do dnia: </label></p>
+        <p><input type="text" id="to" name="to" class="date-pick" /></p>
         <p>&nbsp;</p>
         <p><label for="vat">Podatek VAT: </label><input type="text" id="vat" name="vat" value="{$d_VAT}" size="2" maxlength="2" />%</p>
         <p><input type="submit" id="submit" value="Utwórz fakturę" disabled="disabled"/></p>
