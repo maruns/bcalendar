@@ -40,16 +40,27 @@ table {
     border-spacing: 0;
     text-align: center;
 }
+#dt {
+    float: right;
+}
   /*]]>*/
   </style>
 </head>
 
 <body>
-    <div id="lc"><p><strong>Blue Dental</strong></p><p>ul. Zamenhofa 12/4</p><p>00-187 Warszawa</p><p>Tel. 22 6352399</p></div>
+    <div id="lc">
+        <p>{$dentist}</p>
+        <p>{$company}</p>
+        <p>{$street}</p>
+        {if $PostalPlace}<p>{$place}</p>{/if}
+        <p>{$PostalCode} {if $PostalPlace}{$PostalPlace}{else}{$place}{/if}</p>
+        {if $phone}<p>Tel. {$phone}</p>{/if}
+    </div>
     <div id="rc">
         <h1>FAKTURA</h1>
         <p>{$smarty.now|date_format: '%d.%m.%Y'} r.</p>
     </div>
-    {html_table loop=$DentistTable cols="Imię i nazwisko, Procent franczyzy, Dzień, Franczyza netto, Procent VAT, Podatek VAT, Franczyza brutto"}
+    {html_table loop=$DentistTable cols="Dzien, Procent franczyzy, Franczyza netto, Procent VAT, Podatek VAT, Franczyza brutto"}
+    {html_table loop=$SumTable id="dt"}
 </body>
 </html>
