@@ -163,3 +163,6 @@ div#wts input[type=submit] {
 p#sd {
     margin-top: 17px;
 }
+p#nbm {
+    margin-bottom: 0;
+}

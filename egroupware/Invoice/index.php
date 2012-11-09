@@ -15,8 +15,8 @@ while ($row = GetNextRow($result))
      $dentists[$row["contact_id"].'α'.$row["account_id"]] = $row["n_fn"];
 }
 CloseConnection();
-$smarty->assign('d_VAT',D_VAT);
-$smarty->assign('d_FRANCZYZA',D_FRANCZYZA);
+$smarty->assign('d_VAT',d_VAT);
+$smarty->assign('d_FRANCZYZA',d_FRANCZYZA);
 $smarty->assign('dentists',$dentists);
 $smarty->display('InvoiceWindow.tpl');
 ?>

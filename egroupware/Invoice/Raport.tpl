@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Faktura dla {$company}</title>
+  <title>Raport dla {$company}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style type="text/css">
 /*<![CDATA[*/
@@ -163,8 +163,10 @@ th {
         </table>
     </div>
     <div class="bc" id="separator">&nbsp;</div>
-    <h1 class="bc">Faktura VAT   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
-    {html_table loop=$DentistTable cols="Lp, Nazwa, Ilość, j.m., Rabat [%], Cena netto, VAT [%], Wartość netto, VAT, Wielkość brutto"}
+    <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
+    {html_table
+     loop=$DentistTable
+     cols="Pacjent, Nazwa, Opis, Kategoria, Kwota zapłacona, Materiały, Technik, Franczyza, Cena netto, VAT [%], Wartość netto, VAT, Wielkość brutto"}
     <div>
         {html_table table_attr='id="rt"' loop=$RateTable cols="według stawki VAT, wartość netto, kwota VAT, wartość brutto"}
         <table id="sst">

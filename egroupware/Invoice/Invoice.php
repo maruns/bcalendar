@@ -39,11 +39,11 @@ while($row = GetNextRow($result))
     {
         case 'suma_na_wizycie':
             $netto += $row['cal_extra_value'];
-            $dn[$row['date']] += $row['cal_extra_value'];
+            $dn[date('d.m.Y', $row['date'])] += $row['cal_extra_value'];
             break;
         case 'koszty_łącznie':
             $netto -= $row['cal_extra_value'];
-            $dn[$row['date']] -= $row['cal_extra_value'];
+            $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
     }
 }
 CloseConnection();
@@ -54,18 +54,19 @@ foreach($dn as $key => $value)
 {
     $DentistTable[] = $lp;
     ++$lp;
-    $DentistTable[] = 'Franczyza Bluedental ' . date('d.m.Y', $key) . '&nbsp;r.';
+    $DentistTable[] = 'Franczyza Bluedental ' . $key . '&nbsp;r.';
     $DentistTable[] = '1,000';
     $DentistTable[] = 'szt.';
     $DentistTable[] = '0,00';
     $dv = $value*$percent;
-    $dvt = number_format(round($dv, 2), 2, ',', ' ');
-    $DentistTable[] = $dvt;
+    $dvt = round($dv, 2);
+    $fdvt = str_replace(" ", utf8_encode("\xA0"), number_format($dvt, 2, ',', ' '));
+    $DentistTable[] = $fdvt;
     $DentistTable[] = $_GET['vat'];
-    $DentistTable[] = $dvt;
+    $DentistTable[] = $fdvt;
     $DVAT = $dvt*$VAT;
-    $DentistTable[] = number_format(round($DVAT, 2), 2, ',', ' ');
-    $DentistTable[] = number_format(round($dvt + $DVAT, 2), 2, ',', ' ');
+    $DentistTable[] = str_replace(" ", utf8_encode("\xA0"), number_format(round($DVAT, 2), 2, ',', ' '));
+    $DentistTable[] = str_replace(" ", utf8_encode("\xA0"), number_format(round($dvt + $DVAT, 2), 2, ',', ' '));
 }
 if (!isset($DentistTable))
 {
@@ -255,11 +256,12 @@ function slownie($int){
 $netto = $netto*$percent;
 $TVAT = $netto*$VAT;
 $brutto = round($netto + $TVAT, 2);
-$sum = number_format($brutto, 2, ',', ' ');
-$smarty->assign('RateTable', array('Podstawowy podatek VAT '. $_GET['vat'].'%', number_format(round($netto, 2), 2, ',', ' '),
-                                   number_format(round($TVAT, 2), 2, ',', ' '), $sum,
-                                   'Razem: ', number_format(round($netto, 2), 2, ',', ' '),
-                                   number_format(round($TVAT, 2), 2, ',', ' '), $sum));
+$sum = str_replace(" ", utf8_encode("\xA0"), number_format($brutto, 2, ',', ' '));
+$smarty->assign('RateTable', array('Podstawowy podatek VAT '. $_GET['vat'].'%',
+                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum,
+                                   'Razem: ', str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
 $smarty->assign('sum', $sum);
 $SumParts = explode(',', $brutto);
 $smarty->assign('InWords', slownie($SumParts[0]));
@@ -268,5 +270,12 @@ if ($SumParts[1] == '' || $SumParts[1] == null)
     $SumParts[1] = 0;
 }
 $smarty->assign('FractionalPart', $SumParts[1]);
-$smarty->display('Invoice.tpl');
+if ($_GET['type'] == 'raport')
+{
+    $smarty->display('Raport.tpl');
+}
+ else
+{
+    $smarty->display('Invoice.tpl');
+}
 ?>
