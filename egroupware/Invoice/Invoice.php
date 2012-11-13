@@ -30,9 +30,27 @@ while($row = GetNextRow($result))
     $smarty->assign('PostalCode', $row['adr_one_postalcode']);
     $smarty->assign('place', $row['adr_one_locality']);
 }
-$result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date` from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ') order by `date`');
+if ($_GET['type'] == 'report')
+{
+    $result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date`, (select `egw_cal`.`cal_title` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) as `title`, (select `egw_cal`.`cal_description` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) as `description`,
+
+(select distinct `egw_addressbook`.`n_fn` from `egw_addressbook` join `egw_cal_user` on (`egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_id`) where `egw_cal_user`.`cal_id` = `egw_cal_extra`.`cal_id` and `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT') 
+
+as `patient`,
+(select `egw_categories`.`cat_name` from `egw_categories` join `egw_cal` on (`egw_categories`.`cat_id` = CAST(`egw_cal`.`cal_category` AS UNSIGNED)) where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) as `category`
+from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_technika' or `egw_cal_extra`.`cal_extra_name` = 'nazwa_pracowni_protetycznej') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+}
+ else
+{
+    $result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date` from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_technika') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ') order by `date`');
+}
 $netto = 0;
+$tc = 0;
+$mc = 0;
 $dn = array();
+$dmc = array();
+$dtc = array();
+$gprn = array();
 while($row = GetNextRow($result))
 {
     switch($row['cal_extra_name'])
@@ -40,33 +58,68 @@ while($row = GetNextRow($result))
         case 'suma_na_wizycie':
             $netto += $row['cal_extra_value'];
             $dn[date('d.m.Y', $row['date'])] += $row['cal_extra_value'];
+            $patients[] = $row['patients'];
+            $titles[] = $row['title'];
+            $descriptions[] = $row['description'];
+            $cat[] = $row['category'];
             break;
         case 'koszty_łącznie':
             $netto -= $row['cal_extra_value'];
             $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
+            $mc += $row['cal_extra_value'];
+            $dmc[] = $row['cal_extra_value'];
+            break;
+        case 'koszty_technika':
+            $netto -= $row['cal_extra_value'];
+            $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
+            $tc += $row['cal_extra_value'];
+            $dtc[] = $row['cal_extra_value'];
+            break;
+        case 'nazwa_pracowni_protetycznej':
+            $prn[] = $row['cal_extra_value'];
+            $gprn[$row['cal_extra_value']] = $row['cal_extra_value'];
     }
 }
 CloseConnection();
 $percent = $_GET['percent']*0.01;
 $VAT = 0.01*$_GET['vat'];
 $lp = 1;
+$nbsp = utf8_encode("\xA0");
+$i = 0;
 foreach($dn as $key => $value)
 {
-    $DentistTable[] = $lp;
-    ++$lp;
-    $DentistTable[] = 'Franczyza Bluedental ' . $key . '&nbsp;r.';
-    $DentistTable[] = '1,000';
-    $DentistTable[] = 'szt.';
-    $DentistTable[] = '0,00';
+    if ($_GET['type'] == 'report')
+    {
+        $DentistTable[] = $patients[$i];
+        $DentistTable[] = $titles[$i];
+        $DentistTable[] = $descriptions[$i];
+        $DentistTable[] = $cat[$i];
+        $DentistTable[] = str_replace(" ", $nbsp, number_format($value, 2, ',', ' ')); 
+        $DentistTable[] = $dmc[$i];
+        $DentistTable[] = $prn[$i];
+        $DentistTable[] = $dtc[$i];
+    }
+    else
+    {
+        $DentistTable[] = $lp;
+        ++$lp;
+        $DentistTable[] = 'Franczyza Bluedental ' . $key . '&nbsp;r.';
+        $DentistTable[] = '1,000';
+        $DentistTable[] = 'szt.';
+        $DentistTable[] = '0,00'; 
+    }
     $dv = $value*$percent;
     $dvt = round($dv, 2);
-    $fdvt = str_replace(" ", utf8_encode("\xA0"), number_format($dvt, 2, ',', ' '));
+    $fdvt = str_replace(" ", $nbsp, number_format($dvt, 2, ',', ' '));
     $DentistTable[] = $fdvt;
-    $DentistTable[] = $_GET['vat'];
+    if ($_GET['type'] != 'report')
+    {
+       $DentistTable[] = $_GET['vat']; 
+    }
     $DentistTable[] = $fdvt;
     $DVAT = $dvt*$VAT;
-    $DentistTable[] = str_replace(" ", utf8_encode("\xA0"), number_format(round($DVAT, 2), 2, ',', ' '));
-    $DentistTable[] = str_replace(" ", utf8_encode("\xA0"), number_format(round($dvt + $DVAT, 2), 2, ',', ' '));
+    $DentistTable[] = str_replace(" ", $nbsp, number_format(round($DVAT, 2), 2, ',', ' '));
+    $DentistTable[] = str_replace(" ", $nbsp, number_format(round($dvt + $DVAT, 2), 2, ',', ' '));
 }
 if (!isset($DentistTable))
 {
@@ -257,11 +310,26 @@ $netto = $netto*$percent;
 $TVAT = $netto*$VAT;
 $brutto = round($netto + $TVAT, 2);
 $sum = str_replace(" ", utf8_encode("\xA0"), number_format($brutto, 2, ',', ' '));
-$smarty->assign('RateTable', array('Podstawowy podatek VAT '. $_GET['vat'].'%',
-                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
-                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum,
-                                   'Razem: ', str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
-                                   str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
+if ($_GET['type'] == 'report')
+{
+    foreach($gprn as $value)
+    {
+        
+    }
+    $smarty->assign('RateTable', array('Podstawowy podatek VAT '. $_GET['vat'].'%',
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum,
+                                       'Razem: ', str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
+}
+else
+{
+    $smarty->assign('RateTable', array('Podstawowy podatek VAT '. $_GET['vat'].'%',
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum,
+                                       'Razem: ', str_replace(" ", utf8_encode("\xA0"), number_format(round($netto, 2), 2, ',', ' ')),
+                                       str_replace(" ", utf8_encode("\xA0"), number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
+}
 $smarty->assign('sum', $sum);
 $SumParts = explode(',', $brutto);
 $smarty->assign('InWords', slownie($SumParts[0]));
@@ -270,9 +338,9 @@ if ($SumParts[1] == '' || $SumParts[1] == null)
     $SumParts[1] = 0;
 }
 $smarty->assign('FractionalPart', $SumParts[1]);
-if ($_GET['type'] == 'raport')
+if ($_GET['type'] == 'report')
 {
-    $smarty->display('Raport.tpl');
+    $smarty->display('Report.tpl');
 }
  else
 {

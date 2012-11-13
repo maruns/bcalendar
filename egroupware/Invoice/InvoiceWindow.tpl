@@ -27,7 +27,7 @@
         <p>&nbsp;</p>
         <p><label for="vat">Podatek VAT: </label><input type="text" id="vat" name="vat" value="{$d_VAT}" size="2" maxlength="2" />%</p>
         <p id="nbm"><input type="radio" name="type" checked="checked" value="invoice">Faktura</input></p>
-        <p><input type="radio" name="type" value="raport">Raport</input></p>
+        <p><input type="radio" name="type" value="report">Raport</input></p>
         <p><input type="submit" id="submit" value="Utwórz fakturę" disabled="disabled"/></p>
     </form>
 </body>

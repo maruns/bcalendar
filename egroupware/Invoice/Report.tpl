@@ -8,8 +8,8 @@
   <style type="text/css">
 /*<![CDATA[*/
 body {
-    width: 18.2cm;
-    padding: 1.4cm;
+    width: 19cm;
+    padding: 0.5cm;
     font-family: Arial,Helvetica,Garuda,sans-serif;
 }
 h1 {
@@ -166,9 +166,9 @@ th {
     <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
-     cols="Pacjent, Nazwa, Opis, Kategoria, Kwota zapłacona, Materiały, Technik, Franczyza, Cena netto, VAT [%], Wartość netto, VAT, Wielkość brutto"}
+     cols="Pacjent, Nazwa wizyty, Opis, Kategoria, Kwota zapłacona, Materiały, Technik, Koszt technika, Franczyza, Wartość netto, VAT, Wielkość brutto"}
     <div>
-        {html_table table_attr='id="rt"' loop=$RateTable cols="według stawki VAT, wartość netto, kwota VAT, wartość brutto"}
+        {html_table table_attr='id="rt"' loop=$RateTable cols="technik, koszt technika, franczyza, wartość netto, kwota VAT, wartość brutto"}
         <table id="sst">
             <tr><th>Razem do zapłaty:</th><th>{$sum}</th></tr>
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>
