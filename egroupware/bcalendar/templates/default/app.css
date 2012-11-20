@@ -555,3 +555,9 @@ ul#ch li:hover { /* element listy podpowiedzi kontaktów w oknie edycji zdarzeni
     background-color: #EFEFEF;
     cursor:context-menu;
 }
+p#vl, a.ael {
+    color: blue;
+}
+p#vl a:hover, a.ael:hover {
+    color: darkgoldenrod;
+}

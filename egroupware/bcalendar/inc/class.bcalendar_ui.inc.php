@@ -454,39 +454,39 @@ class bcalendar_ui
 		}
                 if ($event['#image_vip'] == 1) //ikonki pól niestandardowych
                 {
-                    $icons[] = html::image('calendar','VIP','VIP');
+                    $icons[] = html::image('bcalendar','VIP','VIP');
                 }
                 if ($event['#image_wazne'] == 1)
                 {
-                    $icons[] = html::image('calendar','Important','Ważne');
+                    $icons[] = html::image('bcalendar','Important','Ważne');
                 }
                 if ($event['#image_pacjent_z_bolem'] == 1)
                 {
-                    $icons[] = html::image('calendar','Pain','Pacjent z bólem');
+                    $icons[] = html::image('bcalendar','Pain','Pacjent z bólem');
                 }
                 if ($event['#image_brak_diagnozy'] == 1)
                 {
-                    $icons[] = html::image('calendar','NoDiagnosis','Brak diagnozy');
+                    $icons[] = html::image('bcalendar','NoDiagnosis','Brak diagnozy');
                 }
                 if ($event['#image_potwierdzic'] == 1)
                 {
-                    $icons[] = html::image('calendar','Confirm','Potwierdź');
+                    $icons[] = html::image('bcalendar','Confirm','Potwierdź');
                 }
                 if ($event['#image_potwierdzone'] == 1)
                 {
-                    $icons[] = html::image('calendar','Confirmed','Potwierdzone');
+                    $icons[] = html::image('bcalendar','Confirmed','Potwierdzone');
                 }
                 if ($event['#image_ostroznie_roszczeniowy'] == 1)
                 {
-                    $icons[] = html::image('calendar','Shout','Pacjent roszczeniowy');
+                    $icons[] = html::image('bcalendar','Shout','Pacjent roszczeniowy');
                 }
                 if ($event['#image_ostroznie_niebezpieczny'] == 1)
                 {
-                    $icons[] = html::image('calendar','Danger','Pacjent niebezpieczny');
+                    $icons[] = html::image('bcalendar','Danger','Pacjent niebezpieczny');
                 }
                 if ($event['#image_potwierdzic_prace'] == 1)
                 {
-                    $icons[] = html::image('calendar','ConfirmWork','Potwierdź pracę');
+                    $icons[] = html::image('bcalendar','ConfirmWork','Potwierdź pracę');
                 }
 		return $icons;
 	}

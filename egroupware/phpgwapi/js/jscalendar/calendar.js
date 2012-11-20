@@ -1825,7 +1825,6 @@ function OnParticipantsQueryKeyPress(event) //informuje o zwolnieniu klawisza w 
         return;
     }
     xmlhttp = new XMLHttpRequest();
-    query.setAttribute( "autocomplete", "off" );
     xmlhttp.onreadystatechange = function()
     {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -1844,11 +1843,11 @@ function OnParticipantsQueryKeyPress(event) //informuje o zwolnieniu klawisza w 
     xmlhttp.open("GET", "bcalendar/inc/Contacts.php?search=" + query.value, true);
     xmlhttp.send();
 }
-function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załadowane
+function ShowVideos() //pokazuje listę nagrań programu Motion z okresu zdarzenia
 {
-//    document.getElementById("calendar.edit").innerHTML += '<a target="_blank" href="file:///'+GetParameterByName('date')+
-//                                                          GetParameterByName('hour')+
-//                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
+    VideosAreDisplayed = true;
+    var element = document.getElementById('vl');
+    element.parentNode.removeChild(element);
     xmlhttpr = new XMLHttpRequest();
     xmlhttpr.open("GET", "bcalendar/inc/VideosList.php?date=" + GetParameterByName('date') + "&id=" + GetParameterByName('cal_id'), true);
     xmlhttpr.onreadystatechange = function()
@@ -1859,8 +1858,21 @@ function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załad
         }
     }
     xmlhttpr.send();
+    document.getElementById("calendar.edit").innerHTML += 
+    '<p><a onclick="document.location.reload();" class="ael" title="Odśwież okno bez ładowania z serwera ukrywając odnośniki do nagrań i włączając podpowiedzi kontaktów">Ukryj nagrania odświeżając okno z pamięci</a></p>';
+}
+function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załadowane
+{
+//    document.getElementById("calendar.edit").innerHTML += '<a target="_blank" href="file:///'+GetParameterByName('date')+
+//                                                          GetParameterByName('hour')+
+//                                                          GetParameterByName('minute')+'">Nagranie z wizyty</a>';
+    document.getElementById("calendar.edit").innerHTML += 
+    '<p id="vl"><a onclick="ShowVideos()" title="Pokaż listę nagrań MPEG programu Motion z okresu zdarzenia i wyłącz podpowiedzi kontaktów">Pokaż nagrania i zablokuj podpowiedzi kontaktów</a></p>';
     var query = document.getElementById('exec[participants][resource][query]');
     query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);
+    query.setAttribute( "autocomplete", "off" );
+    //document.getElementById("calendar.edit").innerHTML += '<p><a onclick="OnLClick()">Pokaż nagrania</a></p>';
+    
 }
 window.onload = OnCalendarLoad; //uruchomienie funkcji po załadowaniu okna
 var GridIsNotResized = true; //zmienna ograniczająca uromienie funcji tylko do jednego razu

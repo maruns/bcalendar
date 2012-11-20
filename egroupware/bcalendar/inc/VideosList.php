@@ -26,7 +26,7 @@ foreach ($filenames as $filename)
         {
             if ($vd >= $di['cal_start'] && $vd <= $di['cal_end'])
             {
-                echo '<a target="_blank" href="Video.php?file=' . $filename . '">'. $filename . '</a> ';
+                echo '<a target="_blank" class="ael" href="Video.php?file=' . $filename . '">'. $filename . '</a> ';
                 break;
             }
         }

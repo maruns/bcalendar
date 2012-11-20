@@ -8,7 +8,7 @@
   <style type="text/css">
 /*<![CDATA[*/
 body {
-    width: 19cm;
+    width: 41cm;
     padding: 0.5cm;
     font-family: Arial,Helvetica,Garuda,sans-serif;
 }
@@ -83,13 +83,14 @@ th {
 .signature .sd {
     font-size: 8pt;
     width: 100%;
-    border-bottom: 0;;
+    border-bottom: 0;
     height: 0.3cm;
 }
 #sst {
     width: 10cm;
     border-left: 0;
     border-right: 0;
+    clear: both;
 }
 #sst th {
     border-top: black solid 2px;
@@ -100,15 +101,14 @@ th {
     clear: both;
 }
 #rt {
-    width: 11.9cm;
+    width: 14.5cm;
     border: 0;
 }
-#rt {
-    width: 11.9cm;
-    border: 0;
-}
-#rt tr:first-child td, #rt th {
+#rt td, #rt th {
     border: black solid 1px;
+}
+#rt tr:last-child td {
+    border-width: 1px 0 0 0;
 }
 #separator {
     height: 0;
@@ -166,9 +166,10 @@ th {
     <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
-     cols="Pacjent, Nazwa wizyty, Opis, Kategoria, Kwota zapłacona, Materiały, Technik, Koszt technika, Franczyza, Wartość netto, VAT, Wielkość brutto"}
+     cols="Data, Pacjent, Nazwa wizyty, Opis, Kategoria, Kwota zapłacona, Technik, Koszt technika, Materiały, Suma kosztów, Wartość netto, VAT, Wielkość brutto"}
     <div>
-        {html_table table_attr='id="rt"' loop=$RateTable cols="technik, koszt technika, franczyza, wartość netto, kwota VAT, wartość brutto"}
+        {html_table table_attr='id="rt"' loop=$RateTable
+                    cols="technik, koszt technika, materiały, suma kosztów, wartość netto, kwota VAT, wartość brutto"}
         <table id="sst">
             <tr><th>Razem do zapłaty:</th><th>{$sum}</th></tr>
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>
