@@ -1839,8 +1839,19 @@ function OnParticipantsQueryKeyPress(event) //informuje o zwolnieniu klawisza w 
             }
             ShowEventID(xmlhttp.responseText);
         }
+    };
+    var t = 0;
+    var l = 0;
+    var obj = query;
+    while (obj.offsetParent)
+    {
+        t += obj.offsetTop;
+        l += obj.offsetLeft;
+        obj = obj.offsetParent;
     }
-    xmlhttp.open("GET", "bcalendar/inc/Contacts.php?search=" + query.value, true);
+    t += query.offsetHeight + 1;
+    l += 2;
+    xmlhttp.open("GET", "bcalendar/inc/Contacts.php?search=" + query.value + "&top=" + t + "&left=" + l, true);
     xmlhttp.send();
 }
 function ShowVideos() //pokazuje listę nagrań programu Motion z okresu zdarzenia

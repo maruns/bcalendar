@@ -213,12 +213,14 @@ class bcalendar_uiforms extends calendar_ui
 			{
 				if ($this->bo->delete_alarm($id))
 				{
-					$msg = lang('Alarm deleted');
+					//$msg = lang('Alarm deleted');
+                                        $msg = 'Usunięty alarm';
 					unset($content['alarm'][$id]);
 				}
 				else
 				{
-					$msg = lang('Permission denied');
+					//$msg = lang('Permission denied');
+                                        $msg = 'Odmowa dostępu';
 				}
 			}
 			else
@@ -295,7 +297,8 @@ class bcalendar_uiforms extends calendar_ui
 						}
 						elseif (!$content['participants']['account'] && !$content['participants']['resource'])
 						{
-							$msg = lang('You need to select an account, contact or resource first!');
+							//$msg = lang('You need to select an account, contact or resource first!');
+                                                        $msg = 'Musisz najpierw wybrać konto, kontakt lub zasób';
 						}
 						break;
 
@@ -336,7 +339,8 @@ class bcalendar_uiforms extends calendar_ui
 								}
 								elseif(!$msg_permission_denied_added)
 								{
-									$msg .= lang('Permission denied!');
+									//$msg .= lang('Permission denied!');
+                                                                        $msg .= ' Odmowa dostępu!';
 									$msg_permission_denied_added = true;
 								}
 							}
@@ -353,7 +357,8 @@ class bcalendar_uiforms extends calendar_ui
 							}
 							elseif($uid && !$msg_permission_denied_added)
 							{
-								$msg .= lang('Permission denied!');
+								//$msg .= lang('Permission denied!');
+                                                                $msg .= ' Odmowa dostępu!';
 								$msg_permission_denied_added = true;
 							}
 						}
@@ -389,20 +394,23 @@ class bcalendar_uiforms extends calendar_ui
 									// refreshing the calendar-view with the changed participant-status
 									if($event['recur_type'] != MCAL_RECUR_NONE)
 									{
-										$msg = lang('Status for all future scheduled days changed');
+										//$msg = lang('Status for all future scheduled days changed');
+                                                                                $msg = 'Status zaplanowanych dni się zmienił';
 									}
 									else
 									{
 										if(isset($content['edit_single']))
 										{
-											$msg = lang('Status for this particular day changed');
+											//$msg = lang('Status for this particular day changed');
 											// prevent accidentally creating a real exception afterwards
+                                                                                        $msg = 'Status tego dnia zmienił się';
 											$view = true;
 											$hide_delete = true;
 										}
 										else
 										{
-											$msg = lang('Status changed');
+											//$msg = lang('Status changed');
+                                                                                        $msg = 'Status został zmieniony';
 										}
 									}
 									if (!$preserv['no_popup'])
@@ -467,8 +475,10 @@ class bcalendar_uiforms extends calendar_ui
 				}
 			}
 			$preserv['view'] = $preserv['edit_single'] = false;
-			$msg = lang('Event copied - the copy can now be edited');
-			$event['title'] = lang('Copy of:').' '.$event['title'];
+			//$msg = lang('Event copied - the copy can now be edited');
+                        $msg = 'Termin został skopiowany - kopia może być teraz edytowana';
+			//$event['title'] = lang('Copy of:').' '.$event['title'];
+                        $event['title'] = 'Kopia z: '.$event['title'];
 			break;
 
 		case 'ignore':
@@ -491,25 +501,28 @@ class bcalendar_uiforms extends calendar_ui
 						$js = $this->custom_print($event,false);
 						break 2;
 				}
-				$msg = lang('Permission denied');
+				//$msg = lang('Permission denied');
+                                $msg = lang('Dostęp zabroniony');
 				$button = '';
 				break;
 			}
 			if ($event['start'] > $event['end'])
 			{
-				$msg = lang('Error: Starttime has to be before the endtime !!!');
+				//$msg = lang('Error: Starttime has to be before the endtime !!!');
+                                $msg = lang('Błąd: czas rozpoczęcia musi być wcześniejszy niż czas zakończenia');
 				$button = '';
 				break;
 			}
 			if ($event['recur_type'] != MCAL_RECUR_NONE && $event['recur_enddate'] && $event['start'] > $event['recur_enddate'])
 			{
-				$msg = lang('repetition').': '.lang('Error: Starttime has to be before the endtime !!!');
+				$msg = lang('repetition').': Błąd: czas rozpoczęcia musi być wcześniejszy niż czas zakończenia';
 				$button = '';
 				break;
 			}
 			if (!$event['participants'])
 			{
-				$msg = lang('Error: no participants selected !!!');
+				//$msg = lang('Error: no participants selected !!!');
+                                $msg = 'Błąd: nie wybrano uczestników';
 				$button = '';
 				break;
 			}
@@ -520,7 +533,8 @@ class bcalendar_uiforms extends calendar_ui
 				{
 					if ($uid[0] == 'r') //ressource detection
 					{
-						$msg = lang('Error: ressources reservation in private events is not allowed!!!');
+						//$msg = lang('Error: ressources reservation in private events is not allowed!!!');
+                                                $msg = 'Błąd: rezerwacja zasobów w prywatnych zdarzeniach zabroniona !!!';
 						$button = '';
 						break 2; //break foreach and case
 					}
@@ -573,8 +587,17 @@ class bcalendar_uiforms extends calendar_ui
 			}
 			if ($conflicts === 0)
 			{
-				$msg .= ($msg ? ', ' : '') .lang('Error: the entry has been updated since you opened it for editing!').'<br />'.
+				/*$msg .= ($msg ? ', ' : '') .lang('Error: the entry has been updated since you opened it for editing!').'<br />'.
 							lang('Copy your changes to the clipboard, %1reload the entry%2 and merge them.','<a href="'.
+								htmlspecialchars(egw::link('/index.php',array(
+								'menuaction' => 'calendar.calendar_uiforms.edit',
+								'cal_id'    => $content['id'],
+								'referer'    => $referer,
+							))).'">','</a>');*/
+                            $msg .= ($msg ? ', ' : '') .
+                                    'Błąd: wpis został zaktualizowany od czasu jego otwarcia do edycji!<br />Skopiuj zmiany do schowka, %1przeładuj wpis%2 i zastosuj je ('.
+							lang('Copy your changes to the clipboard, %1reload the entry%2 and merge them.',
+                                                                ') <a href="'.
 								htmlspecialchars(egw::link('/index.php',array(
 								'menuaction' => 'calendar.calendar_uiforms.edit',
 								'cal_id'    => $content['id'],
@@ -584,8 +607,8 @@ class bcalendar_uiforms extends calendar_ui
 			}
 			elseif ($conflicts > 0)
 			{
-				$msg = lang('Event saved').($msg ? ', '.$msg : '');
-
+				//$msg = lang('Event saved').($msg ? ', '.$msg : '');
+                                $msg = 'Termin został zachowany'.($msg ? ', '.$msg : '');
 				// writing links for new entry, existing ones are handled by the widget itself
 				if (!$content['id'] && is_array($content['link_to']['to_id']))
 				{
@@ -607,7 +630,8 @@ class bcalendar_uiforms extends calendar_ui
 			}
 			else
 			{
-				$msg = lang('Error: saving the event !!!');
+				//$msg = lang('Error: saving the event !!!');
+                                $msg = 'Błąd przy zapisywaniu terminu';
 			}
 			break;
 
@@ -625,7 +649,8 @@ class bcalendar_uiforms extends calendar_ui
 			{
 				if ($content['reference'] == 0 && !$content['edit_single'])
 				{
-					$msg = lang('Series deleted');
+					//$msg = lang('Series deleted');
+                                        $msg = 'Seria usunięta';
 					$delete_exceptions = false;
 					$exceptions_kept = false;
 					// Handle the exceptions
@@ -647,12 +672,14 @@ class bcalendar_uiforms extends calendar_ui
 					}
 					if ($exceptions_kept)
 					{
-						$msg .= lang(', exceptions preserved');
+						//$msg .= lang(', exceptions preserved');
+                                                $msg .= ', wyjątków zachowano';
 					}
 				}
 				else
 				{
-					$msg = lang('Event deleted');
+					//$msg = lang('Event deleted');
+                                        $msg = 'Termin usunięty';
 				}
 				$js = 'opener.location.href=\''.addslashes(egw::link($referer,array(
 					'msg' => $msg,
@@ -677,7 +704,8 @@ class bcalendar_uiforms extends calendar_ui
 				);
 				if ($alarm['time'] < $this->bo->now_su)
 				{
-					$msg = lang("Can't add alarms in the past !!!");
+					//$msg = lang("Can't add alarms in the past !!!");
+                                        $msg = 'Nie możesz dodać alarmów w przeszłości.';
 				}
 				elseif ($event['id'])	// save the alarm immediatly
 				{
@@ -686,11 +714,13 @@ class bcalendar_uiforms extends calendar_ui
 						$alarm['id'] = $alarm_id;
 						$event['alarm'][$alarm_id] = $alarm;
 
-						$msg = lang('Alarm added');
+						//$msg = lang('Alarm added');
+                                                $msg = 'Alarm dodany';
 					}
 					else
 					{
-						$msg = lang('Error adding the alarm');
+						//$msg = lang('Error adding the alarm');
+                                                $msg = 'Bład przy dodawaniu alramu';
 					}
 				}
 				else
@@ -701,7 +731,8 @@ class bcalendar_uiforms extends calendar_ui
 			}
 			else
 			{
-				$msg = lang('Permission denied');
+				//$msg = lang('Permission denied');
+                                $msg = 'Dostęp zabroniony';
 			}
 			break;
 		}
@@ -1239,7 +1270,7 @@ function replace_eTemplate_onsubmit()
 		}
 		else
 		{
-			$etpl->exec('calendar.calendar_uiforms.process_edit',$content,$sel_options,$readonlys,$preserv,$preserv['no_popup'] ? 0 : 2);
+			$etpl->exec('bcalendar.bcalendar_uiforms.process_edit',$content,$sel_options,$readonlys,$preserv,$preserv['no_popup'] ? 0 : 2);
 		}
 	}
 
@@ -1286,15 +1317,17 @@ function replace_eTemplate_onsubmit()
 					'participants' => array_intersect_key($conflict['participants'],$event['participants']),
 				),true,true)),	// show group invitations too
 				'icon_recur' => $conflict['recur_type'] != MCAL_RECUR_NONE ? 'recur' : '',
-				'text_recur' => $conflict['recur_type'] != MCAL_RECUR_NONE ? lang('Recurring event') : ' ',
+				//'text_recur' => $conflict['recur_type'] != MCAL_RECUR_NONE ? lang('Recurring event') : ' ',
+                                'text_recur' => $conflict['recur_type'] != MCAL_RECUR_NONE ? 'Termin powtarzany' : ' ',
 			);
 		}
 		$content = $event + array(
 			'conflicts' => array_values($conflicts),	// conflicts have id-start as key
 		);
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('calendar') . ' - ' . lang('Scheduling conflict');
+		//$GLOBALS['egw_info']['flags']['app_header'] = lang('calendar') . ' - ' . lang('Scheduling conflict');
+                $GLOBALS['egw_info']['flags']['app_header'] = lang('calendar') . ' - Konflikt w terminarzu';
 
-		$etpl->exec('calendar.calendar_uiforms.process_edit',$content,false,false,array_merge($event,$preserv),$preserv['no_popup'] ? 0 : 2);
+		$etpl->exec('bcalendar.bcalendar_uiforms.process_edit',$content,false,false,array_merge($event,$preserv),$preserv['no_popup'] ? 0 : 2);
 	}
 
 	/**
@@ -1590,7 +1623,7 @@ function replace_eTemplate_onsubmit()
 		$start_time = (int) $start_time;	// ignore leading zeros
 		$end_time   = (int) $end_time;
 
-		// ignore the end_time, if duration would never fit
+		// confthe end_time, if duration would never fit
 		if (($end_time - $start_time)*HOUR_s < $duration)
 		{
 			$end_time = 0;
