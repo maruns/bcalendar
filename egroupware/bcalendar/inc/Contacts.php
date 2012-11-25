@@ -11,7 +11,7 @@ $result = SendQuery("SELECT `n_family`, `n_given` FROM `egw_addressbook` WHERE `
                     ."%' OR `n_given` like '%".$search
                     ."%' order by `n_family`, `n_given` LIMIT 5");
 if (GetRowsNumber($result) > 0)
-{echo $_GET['left'];
+{
     echo '<ul id="ch" style="top:' . $_GET['top'] . 'px;left:' . $_GET['left'] . 'px">';
     while ($row = GetNextRow($result))
     {
