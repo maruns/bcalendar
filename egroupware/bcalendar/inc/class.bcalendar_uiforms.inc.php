@@ -1074,7 +1074,7 @@ function replace_eTemplate_onsubmit()
 				$content['participants'][$row]['delete_id'] = strpbrk($uid,'"\'<>') !== false ? md5($uid) : $uid;
 				//echo "<p>$uid ($quantity): $role --> {$content['participants'][$row]['role']}</p>\n";
 				$readonlys[$row.'[status]'] = !$this->bo->check_status_perms($uid,$event);
-				$readonlys["delete[$uid]"] = $preserv['hide_delete'] || !$this->bo->check_perms(EGW_ACL_EDIT,$event);
+				$readonlys["delete[$uid]"] = $presPerv['hide_delete'] || !$this->bo->check_perms(EGW_ACL_EDIT,$event);
 				// todo: make the participants available as links with email as title
 				if ($name == 'accounts')
 				{

@@ -689,12 +689,20 @@ class link_widget
 		if($type) {
 			$options['type'] = $type;
 		}
-                $found = $GLOBALS['egw']->db->select('egw_addressbook',"`contact_id`,concat_ws(', ', `n_family`, `n_given`) as 'label'",
+                if($id_input == 'exec[participants][resource][query]')
+                {
+                    $found = $GLOBALS['egw']->db->select('egw_addressbook',"`contact_id`,concat_ws(', ', `n_family`, `n_given`) as 'label'",
                                                      "concat_ws(', ', `n_family`, `n_given`) = '" . $search . "' or `n_fileas` like '%" . 
                                                      $search . "%' or `n_fn` like '%" . 
                                                      $search . "%'",__LINE__,
                                                         __FILE__,false,'',0,
                                                               0);
+                }
+                else
+                {
+                    $found = egw_link::query($app,$search,$options);
+                }
+                
 		//if (!($found = egw_link::query($app,$search,$options)))       // ignore the blur-text
                 if($found == null || count($found) == 0)
 		{
@@ -711,17 +719,24 @@ class link_widget
 			{
 				$script .= "opt = select.options[select.options.length] = new Option('".addslashes(lang('%1 entries found, select one ...',count($found)))."',' ');\n";
 			}
-			//foreach($found as $id => $option)
-                        foreach($found as $option)
+			foreach($found as $id => $option)
+                        //foreach($found as $option)
 			{
 				if (!is_array($option)) $option = array('label' => $option);
 				// xajax uses xml to transport the label, therefore we have to replace not only CR, LF
 				// (not allowed unencoded in Javascript strings) but also all utf-8 C0 and C1 plus CR and LF
 				$option['label'] = preg_replace('/[\000-\037\177-\237]/u',' ',$option['label']);
-
-				//$script .= "opt = select.options[select.options.length] = new Option('".addslashes($option['label'])."','".addslashes($id)."');\n";
-                                $script .= "opt = select.options[select.options.length] = new Option('".addslashes($option['label'])."','".
+                                if($id_input == 'exec[participants][resource][query]')
+                                {
+                                    $script .= "opt = select.options[select.options.length] = new Option('".addslashes($option['label'])."','".
                                            addslashes($option['contact_id'])."');\n";
+                                }
+                                else
+                                {
+                                    $script .= "opt = select.options[select.options.length] = new Option('".addslashes($option['label'])."','".addslashes($id)."');\n";
+                                }
+				//$script .= "opt = select.options[select.options.length] = new Option('".addslashes($option['label'])."','".addslashes($id)."');\n";
+                                
 				if (count($option) > 1)
 				{
 					foreach($option as $name => $value)
