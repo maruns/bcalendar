@@ -3,7 +3,7 @@
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	ko	%1개 항목을 읽음 ( 아직 가져오기를 수행하지 않음, 뒤로돌아가기를 선택해서 가져오기테스트를 체크해제 할 수 있습니다)
 accept or reject an invitation	calendar	ko	초대에 대해 승락 혹은 거절
 accepted	calendar	ko	승락됨
-access denied to the calendar of %1 !!!	calendar	ko	%1 일정의 접근이 금지되었습니다 !!
+access denied to the bcalendar of %1 !!!	calendar	ko	%1 일정의 접근이 금지되었습니다 !!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	ko	알림 메세지를 발생하는 행동: 추가됨,취소됨,승락됨,거부됨, ...
 add alarm	calendar	ko	알람 추가
 added	calendar	ko	추가됨
@@ -51,8 +51,8 @@ days of the week for a weekly repeated event	calendar	ko	주간반복이벤트�
 days repeated	calendar	ko	일동안 반복됨
 dayview	calendar	ko	하루 보기
 default appointment length (in minutes)	calendar	ko	기본 약속 길이(분단위)
-default calendar filter	calendar	ko	기본 일정 필터
-default calendar view	calendar	ko	기본 일정 보기
+default bcalendar filter	calendar	ko	기본 일정 필터
+default bcalendar view	calendar	ko	기본 일정 보기
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	ko	새롭게 생성될 이벤트의 기본 길이. 길이는 분단위 예) 60 은 한시간
 default week view	calendar	ko	기본 주간보기
 delete series	calendar	ko	연속 삭제
@@ -62,11 +62,11 @@ delete this exception	calendar	ko	이 예외 삭제
 delete this series of recuring events	calendar	ko	이 연속 이벤트 삭제
 disinvited	calendar	ko	제외
 display status of events	calendar	ko	이벤트의 상태를 표시
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	ko	기본 한달 보기를 시작페이지에 보이겠습니까? ( eGroupWare에 들어올때나 홈페이지 아이콘을 클릭했을때의 페이지)
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	ko	기본 한달 보기를 시작페이지에 보이겠습니까? ( eGroupWare에 들어올때나 홈페이지 아이콘을 클릭했을때의 페이지)
 do you want a weekview with or without weekend?	calendar	ko	주간보기에 주말을 포함하시겠습니까? 포함하지 않겠습니까?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	ko	약속이 변경되거나 새로 만들어지면 알림메세지를 받으시겠습니까? 만약 그렇다면 자신이 작성한 약속에도 알림메세지를 받게 됩니다.<br> 알림메세지를 특정페이지에서만 동작하도록 제한할수 있습니다. 각 항목은 모든 알림메세지를 가지고 있게 됩니다. 제목, 설명, 참여자를 포함한 어떠한 수정사항이 발생하는 것도 포함합니다. 단 참여자의 응답은 제외합니다. 만약 이벤트의 주최자가 모든 알림메세지를 요구했을 경우 그는 언제든 참여자의 승낙과 거부등의 대답을 받을수 있습니다.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	ko	약속을 요약한 이메일을 정기적 수신하시겠습니까?<br>요약문은 기본 이메일 주소로 매일 아침이나 매주 월요일 주별 요약을 발송합니다.<br> 그 날이나 그 주에 약속이 있을경우에만 발송됩니다.
-do you wish to autoload calendar holidays files dynamically?	admin	ko	공휴일 일정 자동로드를 동적으로 수행할까요?
+do you wish to autoload bcalendar holidays files dynamically?	admin	ko	공휴일 일정 자동로드를 동적으로 수행할까요?
 download	calendar	ko	내려받기
 download this event as ical	calendar	ko	이 이벤트 iCal로 다운로드
 duration of the meeting	calendar	ko	미팅기간
@@ -93,7 +93,7 @@ exceptions	calendar	ko	예외
 existing links	calendar	ko	기존링크
 export	calendar	ko	내보내기
 extended	calendar	ko	확장
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	ko	완전한 이벤트-설명을 항상 포함하는 확장. iCal은 특정 다른 일정 응용프로그램으로 가져오기를 할수 있습니다.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	ko	완전한 이벤트-설명을 항상 포함하는 확장. iCal은 특정 다른 일정 응용프로그램으로 가져오기를 할수 있습니다.
 fieldseparator	calendar	ko	필드구분자
 filename	calendar	ko	파일명
 filename of the download	calendar	ko	내려받을 파일명
@@ -203,7 +203,7 @@ select a time	calendar	ko	시간선택
 select resources	calendar	ko	리소스 선택
 set a year only for one-time / non-regular holidays.	calendar	ko	1회만 있거나 정기적이지 않은 휴일을 포함한 년도 설정
 set new events to private	calendar	ko	새 개인 이벤트 설정
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	ko	거부된 초대도 계속 일정에 표시할까요?<br>만약 이들이 귀하의 일정에 아직 보여진다면 이들은 나중에 승락만 할수 있습니다(예 일정에서 다른일정과의 중복이 없어졌을때)
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	ko	거부된 초대도 계속 일정에 표시할까요?<br>만약 이들이 귀하의 일정에 아직 보여진다면 이들은 나중에 승락만 할수 있습니다(예 일정에서 다른일정과의 중복이 없어졌을때)
 should new events created as private by default ?	calendar	ko	새로 생성되는 이벤트는 개인 - 기본 으로 하시겠습니까?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	ko	접속하지 않은 사람도 귀하의 freebusy 정보를 볼수 있게 하시겠습니까? 기본적인 암호와 다른 추가 암호를 설정하셔서 이 정보를 보호할 수 있습니다. 귀하가 바쁘실때의 freebusy 정보는 iCal 포멧형식에 시간을 포함한 형태로 포함되어 있습니다. 이는 이벤트이름이나 설명, 위치등의 정보를 포함하고 있지 않습니다. 귀하의 freebusy 정보의 URL은 %1 입니다.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	ko	이벤트-참가자의 상황이 각 참가자이름 이후에 괄호로 표시하시겠습니까? ( 승락, 거부, 등)
@@ -249,8 +249,8 @@ weekly	calendar	ko	매주
 weekview	calendar	ko	주간 보기
 weekview with weekend	calendar	ko	주간보기 (주말포함)
 weekview without weekend	calendar	ko	주간보기 (주말제외)
-which events do you want to see when you enter the calendar.	calendar	ko	일정을 보실때 어떤 이벤트를 보고 싶으신가요?
-which of calendar view do you want to see, when you start calendar ?	calendar	ko	일정을 시작할때 어떤 형식의 일정을 보고 싶으신가요?
+which events do you want to see when you enter the bcalendar.	calendar	ko	일정을 보실때 어떤 이벤트를 보고 싶으신가요?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	ko	일정을 시작할때 어떤 형식의 일정을 보고 싶으신가요?
 whole day	calendar	ko	하루종일
 wk	calendar	ko	주
 work day ends on	calendar	ko	업무 끝나는 날

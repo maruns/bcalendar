@@ -47,7 +47,7 @@ canceled	calendar	vi	H&#7911;y b&#7887;
 change all events for $params['old_owner'] to $params['new_owner'].	calendar	vi	Chuy&#7875;n t&#7845;t c&#7843; các s&#7921; ki&#7879;n c&#7911;a $params['old_owner'] sang cho $params['new_owner'].
 change status	calendar	vi	&#272;&#7893;i tr&#7841;ng thái
 charset of file	calendar	vi	Charset c&#7911;a t&#7853;p tin
-click %1here%2 to return to the calendar.	calendar	vi	Click %1vào &#273;ây%2 &#273;&#7875; tr&#7903; v&#7873; l&#7883;ch.
+click %1here%2 to return to the bcalendar.	calendar	vi	Click %1vào &#273;ây%2 &#273;&#7875; tr&#7903; v&#7873; l&#7883;ch.
 configuration	calendar	vi	C&#7845;u hình
 countries	calendar	vi	Các qu&#7889;c gia
 country	calendar	vi	Qu&#7889;c gia
@@ -62,12 +62,12 @@ days	calendar	vi	ngày
 days repeated	calendar	vi	ngày &#273;&#432;&#7907;c l&#7863;p l&#7841;i
 dayview	calendar	vi	B&#7843;ng xem Ngày
 default appointment length (in minutes)	calendar	vi	m&#7863;c &#273;&#7883;nh th&#7901;i gian cu&#7897;c h&#7865;n (tính theo phút)
-default calendar filter	calendar	vi	M&#7863;c &#273;&#7883;nh b&#7897; l&#7885;c l&#7883;ch
-default calendar view	calendar	vi	M&#7863;c &#273;&#7883;nh b&#7843;ng xem l&#7883;ch
+default bcalendar filter	calendar	vi	M&#7863;c &#273;&#7883;nh b&#7897; l&#7885;c l&#7883;ch
+default bcalendar view	calendar	vi	M&#7863;c &#273;&#7883;nh b&#7843;ng xem l&#7883;ch
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	vi	Th&#7901;i gian m&#7863;c &#273;&#7883;nh c&#7911;a các s&#7921; ki&#7879;n &#273;&#432;&#7907;c t&#7841;o m&#7899;i. Tính theo phút, ví d&#7909;: 60 ngh&#297;a là 1 gi&#7901;.
 defines the size in minutes of the lines in the day view.	calendar	vi	&#272;&#7883;nh ngh&#297;a kích th&#432;&#7899;c theo phút c&#7911;a các dòng trong b&#7843;ng xem ngày.
 delete a single entry by passing the id.	calendar	vi	Xóa 1 m&#7909;c b&#7857;ng cách truy&#7873;n id.
-delete an entire users calendar.	calendar	vi	Xóa toàn b&#7897; l&#7883;ch c&#7911;a các ng&#432;&#7901;i dùng.
+delete an entire users bcalendar.	calendar	vi	Xóa toàn b&#7897; l&#7883;ch c&#7911;a các ng&#432;&#7901;i dùng.
 delete selected contacts	calendar	vi	Xóa các danh b&#7841; &#273;&#432;&#7907;c ch&#7885;n
 delete series	calendar	vi	Xóa m&#7897;t lo&#7841;t
 delete single	calendar	vi	Xóa t&#7915;ng m&#7909;c
@@ -76,12 +76,12 @@ description	calendar	vi	Di&#7877;n gi&#7843;i
 disable	calendar	vi	C&#7845;m
 disabled	calendar	vi	b&#7883; c&#7845;m
 display interval in day view	calendar	vi	Hi&#7875;n th&#7883; &#273;&#7883;nh th&#7901;i trong B&#7843;ng xem Ngày
-display mini calendars when printing	calendar	vi	Hi&#7875;n th&#7883; các l&#7883;ch mini khi in
+display mini bcalendars when printing	calendar	vi	Hi&#7875;n th&#7883; các l&#7883;ch mini khi in
 display status of events	calendar	vi	Hi&#7875;n th&#7883; Tr&#7841;ng thái c&#7911;a các S&#7921; ki&#7879;n
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	vi	Hi&#7875;n th&#7883; b&#7843;ng xem l&#7883;ch m&#7863;c &#273;&#7883;nh c&#7911;a b&#7841;n trên trang &#273;&#7847;u tiên(trang mà b&#7841;n th&#7845;y ngay sau khi &#273;&#259;ng nh&#7853;p vào h&#7879; th&#7889;ng ho&#7863;c click vào bi&#7875;u t&#432;&#7907;ng trang ch&#7911;)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	vi	Hi&#7875;n th&#7883; b&#7843;ng xem l&#7883;ch m&#7863;c &#273;&#7883;nh c&#7911;a b&#7841;n trên trang &#273;&#7847;u tiên(trang mà b&#7841;n th&#7845;y ngay sau khi &#273;&#259;ng nh&#7853;p vào h&#7879; th&#7889;ng ho&#7863;c click vào bi&#7875;u t&#432;&#7907;ng trang ch&#7911;)?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	vi	B&#7841;n có mu&#7889;n nh&#7853;n &#273;&#432;&#7907;c thông báo v&#7873; các cu&#7897;c h&#7865;n m&#7899;i ho&#7863;c có thay &#273;&#7893;i? B&#7841;n &#273;&#432;&#7907;c thông báo v&#7873; các thay &#273;&#7893;i do chính b&#7841;n t&#7841;o ra.<br>B&#7841;n có th&#7875; gi&#7899;i h&#7841;n nh&#7919;ng thông báo ch&#7881; cho nh&#7919;ng thay &#273;&#7893;i nào &#273;ó mà thôi. M&#7895;i m&#7909;c bao g&#7891;m t&#7845;t c&#7843; thông báo &#273;&#432;&#7907;c li&#7879;t kê &#7903; phía trên nó. T&#7845;t c&#7843; s&#7921; thay &#273;&#7893;i bao g&#7891;m thay &#273;&#7893;i tiêu &#273;&#7873;, di&#7877;n gi&#7843;i, thành viên, nh&#432;ng không có &#273;áp &#7913;ng thành viên nào. N&#7871;u ng&#432;&#7901;i ch&#7911; trì s&#7921; ki&#7879;n yêu c&#7847;u b&#7845;t k&#7923; thông báo nào, anh &#7845;y c&#361;ng luôn luôn nh&#7853;n &#273;&#432;&#7907;c các ph&#7843;n h&#7891;i c&#7911;a thành viên nh&#432; nh&#7919;ng s&#7921; &#273;&#7891;ng ý và t&#7915; ch&#7889;i
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	vi	B&#7841;n có mu&#7889;n nh&#7853;n m&#7897;t b&#7843;ng tóm t&#7855;t các cu&#7897;c h&#7865;n qua email hay không?<br>B&#7843;ng tóm t&#7855;t &#273;&#432;&#7907;c g&#7917;i t&#7899;i &#273;&#7883;a ch&#7881; email chính th&#7913;c c&#7911;a b&#7841;n vào sáng ngày hôm &#273;ó ho&#7863;c vào th&#7913; Hai &#273;&#7889;i v&#7899;i các b&#7843;ng t&#7893;ng k&#7871;t hàng tu&#7847;n.<br>Nó ch&#7881; &#273;&#432;&#7907;c g&#7917;i &#273;i khi b&#7841;n có b&#7845;t k&#7923; cu&#7897;c h&#7865;n nào trong ngày hôm &#273;ó ho&#7863;c trong tu&#7847;n &#273;ó.
-do you wish to autoload calendar holidays files dynamically?	admin	vi	B&#7841;n có mu&#7889;n t&#7921; &#273;&#7897;ng t&#7843;i các t&#7853;p tin ngày ngh&#7881; l&#7877; ?
+do you wish to autoload bcalendar holidays files dynamically?	admin	vi	B&#7841;n có mu&#7889;n t&#7921; &#273;&#7897;ng t&#7843;i các t&#7853;p tin ngày ngh&#7881; l&#7877; ?
 download	calendar	vi	T&#7843;i v&#7873;
 duration	calendar	vi	Th&#7901;i gian
 edit series	calendar	vi	Hi&#7879;u ch&#7881;nh hàng lo&#7841;t
@@ -100,7 +100,7 @@ exceptions	calendar	vi	Các ngo&#7841;i l&#7879;
 export	calendar	vi	Xu&#7845;t
 export a list of entries in ical format.	calendar	vi	Xu&#7845;t m&#7897;t danh sách các m&#7909;c theo &#273;&#7883;nh d&#7841;ng iCal.
 extended	calendar	vi	M&#7903; r&#7897;ng
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	vi	Các c&#7853;p nh&#7853;t m&#7903; r&#7897;ng luôn luôn bao g&#7891;m toàn b&#7897; chi ti&#7871;t s&#7921; ki&#7879;n. iCal có th&#7875; &#273;&#432;&#7907;c nh&#7853;p b&#7857;ng các &#7913;ng d&#7909;ng l&#7883;ch nào &#273;ó.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	vi	Các c&#7853;p nh&#7853;t m&#7903; r&#7897;ng luôn luôn bao g&#7891;m toàn b&#7897; chi ti&#7871;t s&#7921; ki&#7879;n. iCal có th&#7875; &#273;&#432;&#7907;c nh&#7853;p b&#7857;ng các &#7913;ng d&#7909;ng l&#7883;ch nào &#273;ó.
 external participants	calendar	vi	Thành viên bên ngoài
 failed sending message to '%1' #%2 subject='%3', sender='%4' !!!	calendar	vi	Không th&#7875; g&#7917;i tin nh&#7855;n t&#7899;i '%1' #%2 ch&#7911; &#273;&#7873;='%3', ng&#432;&#7901;i g&#7917;i='%4' !!!
 fieldseparator	calendar	vi	D&#7845;u phân cách tr&#432;&#7901;ng
@@ -118,7 +118,7 @@ global categories	calendar	vi	Các phân lo&#7841;i chung
 global public and group public	calendar	vi	Môi tr&#432;&#7901;ng chung và môi tr&#432;&#7901;ng nhóm
 global public only	calendar	vi	Dành cho môi tr&#432;&#7901;ng chung
 go!	calendar	vi	B&#7855;t &#273;&#7847;u!
-grant calendar access	common	vi	Phân quy&#7873;n truy c&#7853;p L&#7883;ch
+grant bcalendar access	common	vi	Phân quy&#7873;n truy c&#7853;p L&#7883;ch
 group planner	calendar	vi	Ng&#432;&#7901;i L&#7853;p K&#7871; ho&#7841;ch Nhóm
 group public only	calendar	vi	Dành cho môi tr&#432;&#7901;ng chung
 here is your requested alarm.	calendar	vi	&#272;ây là nh&#7855;c nh&#7903; &#273;&#432;&#7907;c yêu c&#7847;u c&#7911;a b&#7841;n.
@@ -196,11 +196,11 @@ permission denied	calendar	vi	Không có quy&#7873;n
 planner	calendar	vi	Ng&#432;&#7901;i l&#7853;p k&#7871; ho&#7841;ch
 planner by category	calendar	vi	Ng&#432;&#7901;i l&#7853;p k&#7871; ho&#7841;ch theo nhóm
 planner by user	calendar	vi	Ng&#432;&#7901;i l&#7853;p k&#7871; ho&#7841;ch theo tên ng&#432;&#7901;i s&#7917; d&#7909;ng
-please confirm,accept,reject or examine changes in the corresponding entry in your calendar	calendar	vi	Vui lòng xác nh&#7853;n, &#273;&#7891;ng ý, t&#7915; ch&#7889;i ho&#7863;c xem xét các thay &#273;&#7893;i trong m&#7909;c t&#432;&#417;ng &#7913;ng trên l&#7883;ch c&#7911;a b&#7841;n
+please confirm,accept,reject or examine changes in the corresponding entry in your bcalendar	calendar	vi	Vui lòng xác nh&#7853;n, &#273;&#7891;ng ý, t&#7915; ch&#7889;i ho&#7863;c xem xét các thay &#273;&#7893;i trong m&#7909;c t&#432;&#417;ng &#7913;ng trên l&#7883;ch c&#7911;a b&#7841;n
 please enter a filename !!!	calendar	vi	vui lòng &#273;i&#7873;n tên t&#7853;p tin
 preselected group for entering the planner	calendar	vi	Nhóm cho ng&#432;&#7901;i l&#7853;p k&#7871; ho&#7841;ch l&#7921;a ch&#7885;n tham d&#7921;
-print calendars in black & white	calendar	vi	In các l&#7883;ch d&#7841;ng tr&#7855;ng &#273;en
-print the mini calendars	calendar	vi	In các l&#7883;ch mini
+print bcalendars in black & white	calendar	vi	In các l&#7883;ch d&#7841;ng tr&#7855;ng &#273;en
+print the mini bcalendars	calendar	vi	In các l&#7883;ch mini
 printer friendly	calendar	vi	B&#7843;n in ra gi&#7845;y
 privat	calendar	vi	Cá nhân
 private and global public	calendar	vi	Cá nhân và môi tr&#432;&#7901;ng chung
@@ -234,10 +234,10 @@ send updates via email	common	vi	G&#7917;i các c&#7853;p nh&#7853;t qua email
 send/receive updates via email	calendar	vi	G&#7917;i/Nh&#7853;n các c&#7853;p nh&#7853;t qua email
 set a year only for one-time / non-regular holidays.	calendar	vi	Thi&#7871;t l&#7853;p ngày ngh&#7881; m&#7897;t l&#7847;n trong n&#259;m/ngày ngh&#7881; b&#7845;t th&#432;&#7901;ng
 set new events to private	calendar	vi	Gi&#7919; kín các s&#7921; ki&#7879;n m&#7899;i cho cá nhân
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	vi	Có nên gi&#7919; nguyên các l&#7901;i m&#7901;i mà b&#7841;n t&#7915; ch&#7889;i trong l&#7883;ch c&#7911;a b&#7841;n ?<br>B&#7841;n ch&#7881; có th&#7875; nh&#7853;n l&#7901;i sau này (ví d&#7909;: lúc b&#7841;n dàn x&#7871;p &#7893;n th&#7887;a các ch&#7891;ng chéo khi lên l&#7883;ch) n&#7871;u nh&#432; các l&#7901;i m&#7901;i v&#7851;n còn gi&#7919; nguyên trên l&#7883;ch c&#7911;a b&#7841;n!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	vi	Có nên gi&#7919; nguyên các l&#7901;i m&#7901;i mà b&#7841;n t&#7915; ch&#7889;i trong l&#7883;ch c&#7911;a b&#7841;n ?<br>B&#7841;n ch&#7881; có th&#7875; nh&#7853;n l&#7901;i sau này (ví d&#7909;: lúc b&#7841;n dàn x&#7871;p &#7893;n th&#7887;a các ch&#7891;ng chéo khi lên l&#7883;ch) n&#7871;u nh&#432; các l&#7901;i m&#7901;i v&#7851;n còn gi&#7919; nguyên trên l&#7883;ch c&#7911;a b&#7841;n!
 should new events created as private by default ?	calendar	vi	Có nên &#273;&#7875; m&#7863;c &#273;&#7883;nh các s&#7921; ki&#7879;n m&#7899;i &#273;&#432;&#7907;c gi&#7919; riêng cho cá nhân ?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	vi	Có nên &#273;&#7875; nh&#7919;ng ng&#432;&#7901;i s&#7917; d&#7909;ng ch&#432;a &#273;&#259;ng nh&#7853;p xem &#273;&#432;&#7907;c thông tin v&#7873; l&#7883;ch công tác c&#7911;a b&#7841;n ? B&#7841;n có th&#7875; thi&#7871;t l&#7853;p m&#7897;t m&#7853;t kh&#7849;u &#273;&#7863;c bi&#7879;t, khác v&#7899;i m&#7853;t kh&#7849;u bình th&#432;&#7901;ng c&#7911;a b&#7841;n, &#273;&#7875; gi&#7919; kín nh&#7919;ng thông tin này. Thông tin v&#7873; l&#7883;ch công tác &#273;&#432;&#7907;c trình bày &#7903; d&#7841;ng iCal và ch&#7881; th&#7875; hi&#7879;n các kho&#7843;ng th&#7901;i gian mà b&#7841;n b&#7853;n vi&#7879;c. Nó không th&#7875; hi&#7879;n tên s&#7921; ki&#7879;n/công vi&#7879;c, n&#7897;i dung s&#7921; ki&#7879;n/công vi&#7879;c và nh&#7919;ng n&#417;i di&#7877;n ra. URL ch&#7881; &#273;&#7871;n thông tin v&#7873; l&#7883;ch công tác c&#7911;a b&#7841;n là %1.
-should the mini calendars by printed / displayed in the printer friendly views ?	calendar	vi	Có c&#7847;n &#273;&#7875; các l&#7883;ch mini &#273;&#432;&#7907;c in ra/hi&#7875;n th&#7883; trên b&#7843;n in ra gi&#7845;y ?
+should the mini bcalendars by printed / displayed in the printer friendly views ?	calendar	vi	Có c&#7847;n &#273;&#7875; các l&#7883;ch mini &#273;&#432;&#7907;c in ra/hi&#7875;n th&#7883; trên b&#7843;n in ra gi&#7845;y ?
 should the printer friendly view be in black & white or in color (as in normal view)?	calendar	vi	B&#7843;n in ra gi&#7845;y nên in ra d&#7841;ng tr&#7855;ng &#273;en hay màu (nh&#432; lúc xem trên màn hình) ?
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	vi	Có c&#7847;n hi&#7875;n th&#7883; tình tr&#7841;ng c&#7911;a s&#7921; ki&#7879;n/công vi&#7879;c-các thành viên (&#273;&#7891;ng ý, t&#7915; ch&#7889;i, ...) trong ngo&#7863;c vuông phía sau m&#7895;i tên thành viên không?
 show day view on main screen	calendar	vi	hi&#7879;n b&#7843;ng xem theo ngày trên màn hình chính
@@ -301,8 +301,8 @@ weekday starts on	calendar	vi	Ngày &#273;&#7847;u tiên trong tu&#7847;n
 weekly	calendar	vi	Hàng tu&#7847;n
 weekview	calendar	vi	B&#7843;ng xem theo tu&#7847;n
 when creating new events default set to private	calendar	vi	Khi t&#7841;o s&#7921; ki&#7879;n m&#7899;i, m&#7863;c nhiên gi&#7919; nó riêng cho cá nhân
-which events do you want to see when you enter the calendar.	calendar	vi	Nh&#7919;ng s&#7921; ki&#7879;n nào b&#7841;n c&#7847;n th&#7845;y khi b&#7841;n m&#7903; l&#7883;ch
-which of calendar view do you want to see, when you start calendar ?	calendar	vi	B&#7843;ng xem l&#7883;ch d&#7841;ng nào b&#7841;n mu&#7889;n th&#7845;y khi m&#7903; l&#7883;ch ?
+which events do you want to see when you enter the bcalendar.	calendar	vi	Nh&#7919;ng s&#7921; ki&#7879;n nào b&#7841;n c&#7847;n th&#7845;y khi b&#7841;n m&#7903; l&#7883;ch
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	vi	B&#7843;ng xem l&#7883;ch d&#7841;ng nào b&#7841;n mu&#7889;n th&#7845;y khi m&#7903; l&#7883;ch ?
 work day ends on	calendar	vi	Ngày làm vi&#7879;c k&#7871;t thúc vào
 work day starts on	calendar	vi	Ngày làm vi&#7879;c b&#7855;t &#273;&#7847;u vào
 workdayends	calendar	vi	ngày làm vi&#7879;c k&#7871;t thúc
@@ -314,8 +314,8 @@ you do not have permission to add alarms to this event !!!	calendar	vi	B&#7841;n
 you do not have permission to delete this alarm !!!	calendar	vi	B&#7841;n không có quy&#7873;n xóa l&#7901;i nh&#7855;c nh&#7903; này !!!
 you do not have permission to enable/disable this alarm !!!	calendar	vi	B&#7841;n không có quy&#7873;n b&#7853;t/t&#7855;t l&#7901;i nh&#7855;c nh&#7903; này !!!
 you do not have permission to read this record!	calendar	vi	B&#7841;n không có quy&#7873;n &#273;&#7885;c m&#7849;u tin này!
-you have %1 high priority events on your calendar today.	common	vi	B&#7841;n có %1 s&#7921; ki&#7879;n kh&#7849;n trong l&#7883;ch hôm nay.
-you have 1 high priority event on your calendar today.	common	vi	B&#7841;n có 1 s&#7921; ki&#7879;n kh&#7849;n trong l&#7883;ch hôm nay.
+you have %1 high priority events on your bcalendar today.	common	vi	B&#7841;n có %1 s&#7921; ki&#7879;n kh&#7849;n trong l&#7883;ch hôm nay.
+you have 1 high priority event on your bcalendar today.	common	vi	B&#7841;n có 1 s&#7921; ki&#7879;n kh&#7849;n trong l&#7883;ch hôm nay.
 you have a meeting scheduled for %1	calendar	vi	B&#7841;n có m&#7897;t cu&#7897;c h&#7885;p &#273;ã lên l&#7883;ch tr&#432;&#7899;c vào %1
 you have not entered a title	calendar	vi	B&#7841;n ch&#432;a &#273;i&#7873;n vào tiêu &#273;&#7873;
 you have not entered a valid date	calendar	vi	B&#7841;n &#273;i&#7873;n sai ngày
@@ -326,5 +326,5 @@ you must select a [iv]cal. (*.[iv]cs)	calendar	vi	B&#7841;n ph&#7843;i ch&#7885;
 you need to set either a day or a occurence !!!	calendar	vi	B&#7841;n c&#7847;n &#273;&#7863;t m&#7897;t ngày ho&#7863;c m&#7897;t s&#7921; ki&#7879;n
 your meeting scheduled for %1 has been canceled	calendar	vi	Cu&#7897;c h&#7885;p &#273;ã lên l&#7883;ch tr&#432;&#7899;c c&#7911;a b&#7841;n vào %1 &#273;ã b&#7883; h&#7911;y
 your meeting that had been scheduled for %1 has been rescheduled to %2	calendar	vi	Cu&#7897;c h&#7885;p c&#7911;a b&#7841;n &#273;&#432;&#7907;c lên l&#7883;ch vào %1 bây gi&#7901; &#273;ã d&#7901;i l&#7841;i vào %2
-your suggested time of <b> %1 - %2 </b> conflicts with the following existing calendar entries:	calendar	vi	Kho&#7843;ng th&#7901;i gian &#273;&#7873; xu&#7845;t c&#7911;a b&#7841;n t&#7915; <B> %1 - %2 </B> trùng v&#7899;i các s&#7921; ki&#7879;n &#273;ã &#273;&#432;&#7907;c lên l&#7883;ch sau:
+your suggested time of <b> %1 - %2 </b> conflicts with the following existing bcalendar entries:	calendar	vi	Kho&#7843;ng th&#7901;i gian &#273;&#7873; xu&#7845;t c&#7911;a b&#7841;n t&#7915; <B> %1 - %2 </B> trùng v&#7899;i các s&#7921; ki&#7879;n &#273;ã &#273;&#432;&#7907;c lên l&#7883;ch sau:
 deleted	calendar	vi	&#272;ã xóa

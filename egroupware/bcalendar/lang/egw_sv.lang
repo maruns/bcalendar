@@ -3,11 +3,11 @@
 %1 records imported	calendar	sv	%1 poster importerade
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	sv	%1 poster lästa (ännu inte importerade, gå tillbaks för att avmarkera Testimport)
 %1 weeks	calendar	sv	%1 veckor
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	sv	<b>Anmärkning</b>: Kalendern använder helgdagar för ditt land som är %1. Du kan ändra detta i %2.<br />Helgdagar %3 installeras automatiskt via %4. Du kan ändra detta i %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	sv	<b>Anmärkning</b>: Kalendern använder helgdagar för ditt land som är %1. Du kan ändra detta i %2.<br />Helgdagar %3 installeras automatiskt via %4. Du kan ändra detta i %5.
 a non blocking event will not conflict with other events	calendar	sv	En ej blockerande händelse påverkar inte andra händelser.
 accept or reject an invitation	calendar	sv	Acceptera eller avvisa inbjudan
 accepted	calendar	sv	Accepterat
-access denied to the calendar of %1 !!!	calendar	sv	Åtkomst nekas till %1 kalender
+access denied to the bcalendar of %1 !!!	calendar	sv	Åtkomst nekas till %1 kalender
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	sv	Händelse som orsakade meddelandet: Tillagd, Avbruten, Accepterade, Avvisade ....
 actions	calendar	sv	Åtgärder
 add alarm	calendar	sv	Skapa larm
@@ -81,10 +81,10 @@ days of the week for a weekly repeated event	calendar	sv	Dagar för veckovis åt
 days repeated	calendar	sv	Återkommande dagar
 dayview	calendar	sv	Dag
 default appointment length (in minutes)	calendar	sv	Mötens standard längd (i minuter)
-default calendar filter	calendar	sv	Kalenderns standard filter
-default calendar view	calendar	sv	Kalenderns standard vy
+default bcalendar filter	calendar	sv	Kalenderns standard filter
+default bcalendar view	calendar	sv	Kalenderns standard vy
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	sv	Nya händelsers standard längd i minuter, ex. 60 för 1 timme.
-default type of resources application selected in the calendar particpants research form.	calendar	sv	Förvald typ för resurs-app i kalenderns mall för deltagarsökning.
+default type of resources application selected in the bcalendar particpants research form.	calendar	sv	Förvald typ för resurs-app i kalenderns mall för deltagarsökning.
 default type of resources selection	calendar	sv	Förvald typ för resursval
 default week view	calendar	sv	Standard veckovy
 delete selected events	calendar	sv	Radera valda evenemang
@@ -97,13 +97,13 @@ deny ressources reservation for private events	calendar	sv	Neka resurserna bokni
 disinvited	calendar	sv	Avbokad
 display status of events	calendar	sv	Visa händelse status
 displayed view	calendar	sv	vy
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	sv	Visa din standard kalender på Startsidan (den sida du kommer till efter inloggningen eller när du klickar på Startsida ikonen)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	sv	Visa din standard kalender på Startsidan (den sida du kommer till efter inloggningen eller när du klickar på Startsida ikonen)?
 do not include events of group members	calendar	sv	Inkludera inte evenemang för gruppmedlemmar
 do you want a weekview with or without weekend?	calendar	sv	Vill du se veckovy med eller utan veckoslut?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	sv	Vill du mottaga meddelande om nya eller ändrade möten? Du får bekräftelse på dina egna ändringar.<br>Du kan begränsa meddelandena till vissa ändringar. Varje objekt inkluderar alla meddelande typer listade ovan den. Alla ändringar inkluderar titel ändring, beskrivning, deltagare men inte deltagares svar. Om ägaren till en händelse begär meddelande får han/hon deltagarnas svar som accepterar eller tackar nej till.
 do you want to edit this event as an exception or the whole series?	calendar	sv	Vill du ändra denna förekomst som ett undantag eller hela serien?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	sv	Vill du få regelbunden summering av dina möten via e-post?<br>Summeringen skickas till din standard e-postadress på morgonen eller på måndagar för vecko summering.<br>Skickas bara när du har planerade händelser för dagen eller veckan.
-do you wish to autoload calendar holidays files dynamically?	admin	sv	Vill du autoladda kalenderns helgdagar dynamiskt?
+do you wish to autoload bcalendar holidays files dynamically?	admin	sv	Vill du autoladda kalenderns helgdagar dynamiskt?
 download	calendar	sv	Ladda ner
 download this event as ical	calendar	sv	Ladda ner händelsen som iCAL
 duration of the meeting	calendar	sv	Mötets längd
@@ -139,14 +139,14 @@ execute a further action for this entry	calendar	sv	Utför fler åtgärder för 
 existing links	calendar	sv	Nuvarande länkar
 export	calendar	sv	Export
 extended	calendar	sv	Utökad
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	sv	Utökade uppdateringar inkluderar alltid all händelse info. iCal kan importeras av vissa andra applikationer.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	sv	Utökade uppdateringar inkluderar alltid all händelse info. iCal kan importeras av vissa andra applikationer.
 fieldseparator	calendar	sv	Fältavskiljare
 filename	calendar	sv	Filnamn
 filename of the download	calendar	sv	Filnamn för nerladdning
 find free timeslots where the selected participants are availible for the given timespan	calendar	sv	Hitta en tid då valda deltagare är tillgängliga
 firstname of person to notify	calendar	sv	Förnamn på person att meddela
 for	calendar	sv	för
-for which views should calendar show distinct lines with a fixed time interval.	calendar	sv	För vilka vyer ska kalendern visa tydliga rader med fast tids intervall.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	sv	För vilka vyer ska kalendern visa tydliga rader med fast tids intervall.
 format of event updates	calendar	sv	Format på händelse uppdateringar
 forward half a month	calendar	sv	Fram halv månad
 forward one month	calendar	sv	Fram en månad
@@ -189,7 +189,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	sv	Ignorera schema konflikt
 import	calendar	sv	Import
 import csv-file	common	sv	Importera CSV fil
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	sv	Importerar händelser in i din kalender från en CSV-fil. CSV betyder 'Kommaavgränsade värden', men du kan välja en annan avgränsare i tabben Inställningar.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	sv	Importerar händelser in i din kalender från en CSV-fil. CSV betyder 'Kommaavgränsade värden', men du kan välja en annan avgränsare i tabben Inställningar.
 interval	calendar	sv	Intervall
 invalid email-address "%1" for user %2	calendar	sv	Ogiltig e-postadress "%1" för användare %2
 invitations	calendar	sv	Inbjudningar
@@ -377,7 +377,7 @@ update timezones	calendar	sv	Uppdatera tidzoner
 updated	calendar	sv	Uppdaterad
 use end date	calendar	sv	Använd Slutdatum
 use the selected time and close the popup	calendar	sv	Använd vald tid och stäng dialogen
-use this timezone to export calendar data.	calendar	sv	Använd denna tidzon för att exportera kalenderdata.
+use this timezone to export bcalendar data.	calendar	sv	Använd denna tidzon för att exportera kalenderdata.
 user or group	calendar	sv	Användare eller grupp
 users + groups: inviting both allways requires an invite grant	admin	sv	Användare + grupper: Bjuda in båda kräver alltid rättigheter
 view exception	calendar	sv	Visa undantag
@@ -395,8 +395,8 @@ weeks in multiple week view	calendar	sv	Veckor i flerveckovy
 weekview	calendar	sv	Vecka
 weekview with weekend	calendar	sv	Vecka med veckoslut
 weekview without weekend	calendar	sv	Vecka utan veckoslut
-which events do you want to see when you enter the calendar.	calendar	sv	Vilka händelser vill du se när du öppnar kalendern?
-which of calendar view do you want to see, when you start calendar ?	calendar	sv	Vilken vy vill du se när du öppnar kalendern?
+which events do you want to see when you enter the bcalendar.	calendar	sv	Vilka händelser vill du se när du öppnar kalendern?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	sv	Vilken vy vill du se när du öppnar kalendern?
 whole day	calendar	sv	Heldag
 whole query	calendar	sv	hel fråga
 wk	calendar	sv	v

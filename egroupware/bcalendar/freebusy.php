@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package calendar
+ * @package bcalendar
  * @subpackage export
  * @version $Id: freebusy.php 26233 2008-10-18 08:22:28Z ralfbecker $
  */
@@ -77,4 +77,4 @@ else
 {
 	ExecMethod2('phpgwapi.browser.content_header','freebusy.ifb','text/calendar');
 }
-echo ExecMethod2('calendar.calendar_ical.freebusy',$user,$_GET['end']);
+echo ExecMethod2('bcalendar.bcalendar_ical.freebusy',$user,$_GET['end']);

@@ -14,9 +14,9 @@
 	/* $Id: class.holidaycalc_US.inc.php 19688 2005-11-08 23:15:14Z ralfbecker $ */
 
 	/**
-	 * Calculations for calendar US and other holidays
+	 * Calculations for bcalendar US and other holidays
 	 *
-	 * @package calendar
+	 * @package bcalendar
 	 * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
 	 */
 	class holidaycalc

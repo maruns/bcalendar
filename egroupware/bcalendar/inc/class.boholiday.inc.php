@@ -13,9 +13,9 @@
 	/* $Id: class.boholiday.inc.php 27222 2009-06-08 16:21:14Z ralfbecker $ */
 
 	/**
-	 * Business object for calendar holidays
+	 * Business object for bcalendar holidays
 	 *
-	 * @package calendar
+	 * @package bcalendar
 	 * @author Mark Peters <skeeter@phpgroupware.org>
 	 * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
 	 */
@@ -53,7 +53,7 @@
 
 		function boholiday()
 		{
-			$this->so =& CreateObject('calendar.soholiday');
+			$this->so =& CreateObject('bcalendar.soholiday');
 
 			$this->start  = (int)get_var('start',array('POST','GET'));
 			$this->query  = get_var('query',array('POST','GET'));
@@ -108,7 +108,7 @@
 				}
 			}
 
-			$this->ui =& CreateObject('calendar.uiholiday');
+			$this->ui =& CreateObject('bcalendar.uiholiday');
 			if($id)
 			{
 				$this->so->delete_holiday($id);
@@ -134,7 +134,7 @@
 			{
 				$this->so->delete_locale($locale);
 			}
-			$this->ui =& CreateObject('calendar.uiholiday');
+			$this->ui =& CreateObject('bcalendar.uiholiday');
 			$this->ui->admin();
 		}
 
@@ -256,7 +256,7 @@
 			{
 				@set_time_limit(0);
 
-				/* get the file that contains the calendar events for your locale */
+				/* get the file that contains the bcalendar events for your locale */
 				/* "http://www.egroupware.org/cal/holidays.US.csv";                 */
 				$network =& CreateObject('phpgwapi.network');
 				if(isset($GLOBALS['egw_info']['server']['holidays_url_path']) && $GLOBALS['egw_info']['server']['holidays_url_path'] != 'localhost')
@@ -376,7 +376,7 @@
 
 	// Still need to put some validation in here.....
 
-				$this->ui =& CreateObject('calendar.uiholiday');
+				$this->ui =& CreateObject('bcalendar.uiholiday');
 
 				if (is_array($errors))
 				{
@@ -444,7 +444,7 @@
 						unset($holidaycalc);
 					}
 					$GLOBALS['egw_info']['user']['preferences']['common']['country'] = $holidays[$i]['locale'];
-					$holidaycalc =& CreateObject('calendar.holidaycalc');
+					$holidaycalc =& CreateObject('bcalendar.holidaycalc');
 				}
 				$holidays[$i]['date'] = $holidaycalc->calculate_date($holiday, $holidays, $this->year);
 			}

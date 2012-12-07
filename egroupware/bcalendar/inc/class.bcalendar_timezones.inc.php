@@ -5,11 +5,11 @@
  * Timezone information get imported from SQLite database, "borrowed" of Lighting TB extension.
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2009-11 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_timezones.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
+ * @version $Id: class.bcalendar_timezones.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
  */
 
 /**
@@ -19,14 +19,14 @@
  * - convert between TZID strings and nummeric tz_id's stored in database
  * - get iCal VTIMEZONE component for a TZID (data from Lighting extension)
  *
- * Recommendations about timezone handling in calendars:
+ * Recommendations about timezone handling in bcalendars:
  * @link http://www.calconnect.org/publications/icalendartimezoneproblemsandrecommendationsv1.0.pdf
  *
  * Mapping Windows timezone to standard TZID's:
  * @link http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/windows_tzid.html
  *
  * UTC is treated specially: it's implicitly mapped to tz_id=-1 (to be able to store it for events),
- * but calendar_ical creates NO VTIMEZONE component for it.
+ * but bcalendar_ical creates NO VTIMEZONE component for it.
  */
 class bcalendar_timezones
 {
@@ -80,8 +80,8 @@ class bcalendar_timezones
 	 * Get the nummeric id (or other data) for a given TZID
 	 *
 	 * Examples:
-	 * - calendar_timezone::tz2id('Europe/Berlin') returns nummeric id for given TZID
-	 * - calendar_timezone::tz2id('Europe/Berlin','component') returns VTIMEZONE component for given TZID
+	 * - bcalendar_timezone::tz2id('Europe/Berlin') returns nummeric id for given TZID
+	 * - bcalendar_timezone::tz2id('Europe/Berlin','component') returns VTIMEZONE component for given TZID
 	 *
 	 * @param string $tzid TZID
 	 * @param string $what='id' what to return, default id, null for whole array
@@ -114,8 +114,8 @@ class bcalendar_timezones
 	 * if NOT tzid or alias queried, we automatically resolve an evtl. alias
 	 *
 	 * Example:
-	 * - calendar_timezone::id2tz($id) returns TZID
-	 * - calendar_timezone::id2tz($id,'component') returns VTIMEZONE component for the given id
+	 * - bcalendar_timezone::id2tz($id) returns TZID
+	 * - bcalendar_timezone::id2tz($id,'component') returns VTIMEZONE component for the given id
 	 *
 	 * @param int $id
 	 * @param string $what='tzid' what data to return or null for whole data array, with keys 'id', 'tzid', 'component', 'alias', 'latitude', 'longitude'
@@ -153,7 +153,7 @@ class bcalendar_timezones
 		self::$tz_cache =& egw_cache::getSession(__CLASS__,'tz_cache');
 		self::$tz2id =& egw_cache::getSession(__CLASS__,'tz2id');
 
-		// init cache with mapping UTC <--> -1, as UTC is no real timezone, but we need to be able to use it in calendar
+		// init cache with mapping UTC <--> -1, as UTC is no real timezone, but we need to be able to use it in bcalendar
 		if (!is_array(self::$tz2id))
 		{
 			self::$tz_cache = array('-1' => array(
@@ -338,7 +338,7 @@ class bcalendar_timezones
 			throw new egw_exception_wrong_parameter(__METHOD__.'('.array2string($val).", '$tzid') no Horde_iCalendar!");
 		}
 		// check if we have vtimezone component data for $tzid
-		if (!($vtimezone = calendar_timezones::tz2id($tzid, 'component')))
+		if (!($vtimezone = bcalendar_timezones::tz2id($tzid, 'component')))
 		{
 			return false;
 		}
@@ -426,7 +426,7 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && $_SERVER['SCRIPT_FILENAME'] == __FILE_
 	echo "<h3>Testing availability of VTIMEZONE data for each TZID supported by EGroupware</h3>\n";
 	foreach(call_user_func_array('array_merge',egw_time::getTimezones()) as $tz => $label)
 	{
-		if (($id = calendar_timezones::tz2id($tz,'component')) || $tz == 'UTC')	// UTC is always supported
+		if (($id = bcalendar_timezones::tz2id($tz,'component')) || $tz == 'UTC')	// UTC is always supported
 		{
 			$found[] = $tz;
 			//if (substr($tz,0,10) == 'Australia/') echo "$tz: found<br />\n";
@@ -447,13 +447,13 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && $_SERVER['SCRIPT_FILENAME'] == __FILE_
 		try
 		{
 			$timezone = new DateTimeZone($row['tz_tzid']);
-			//$timezone = calendar_timezones::DateTimeZone($row['tz_tzid']);
+			//$timezone = bcalendar_timezones::DateTimeZone($row['tz_tzid']);
 			echo $row['tz_tzid'].": available<br />\n";
 		}
 		catch(Exception $e)
 		{
-			if (($id = calendar_timezones::tz2id($row['tz_tzid'],'alias')) &&
-				($alias = calendar_timezones::id2tz($id)))
+			if (($id = bcalendar_timezones::tz2id($row['tz_tzid'],'alias')) &&
+				($alias = bcalendar_timezones::id2tz($id)))
 			{
 
 				try

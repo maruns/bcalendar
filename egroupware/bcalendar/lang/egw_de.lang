@@ -5,11 +5,11 @@
 %1 weeks	calendar	de	%1 Wochen
 (%1 events in %2 seconds)	calendar	de	(%1 Termine in %2 Sekunden)
 , exceptions preserved	calendar	de	_und Ausnahmen erhalten
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	de	<b>Bitte beachten</b>: Der Kalender verwendet die Feiertages des Landes, welches auf %1 eingestellt ist. Das können Sie in Ihren %2 ändern.<br />Feiertage werden %3 automatisch von %4 installiert, was in %5 änderbar ist.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	de	<b>Bitte beachten</b>: Der Kalender verwendet die Feiertages des Landes, welches auf %1 eingestellt ist. Das können Sie in Ihren %2 ändern.<br />Feiertage werden %3 automatisch von %4 installiert, was in %5 änderbar ist.
 a non blocking event will not conflict with other events	calendar	de	Ein nicht blockierender Termin ergibt keine Konflikt mit anderen Terminen
 accept or reject an invitation	calendar	de	Einladung zu- oder absagen
 accepted	calendar	de	Zugesagt
-access denied to the calendar of %1 !!!	calendar	de	Zugriff zum Kalender von %1 verweigert !!!
+access denied to the bcalendar of %1 !!!	calendar	de	Zugriff zum Kalender von %1 verweigert !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	de	Aktion, welche die Benachrichtigung verursacht hat: Zugefügt, Storniert, Zugesagt, Abgesagt
 actions	calendar	de	Befehle
 add alarm	calendar	de	Alarm zufügen
@@ -86,10 +86,10 @@ days of the week for a weekly repeated event	calendar	de	Wochentage für wöchen
 days repeated	calendar	de	wiederholte Tage
 dayview	calendar	de	Tagesansicht
 default appointment length (in minutes)	calendar	de	Standardlänge eines neuen Kalendereintrags (in Minuten)
-default calendar filter	calendar	de	Standard-Filter des Kalenders
-default calendar view	calendar	de	Standard-Ansicht des Kalenders
+default bcalendar filter	calendar	de	Standard-Filter des Kalenders
+default bcalendar view	calendar	de	Standard-Ansicht des Kalenders
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	de	Vorgabe für die Länge von neuen Kalendereinträgen. Die Länge ist in Minuten, z.B. 60 für 1 Stunde.
-default type of resources application selected in the calendar particpants research form.	calendar	de	Vorgabe für die gewählte Anwendung bei der Ressourcen-Suche im Kartenreiter Teilnehmer
+default type of resources application selected in the bcalendar particpants research form.	calendar	de	Vorgabe für die gewählte Anwendung bei der Ressourcen-Suche im Kartenreiter Teilnehmer
 default type of resources selection	calendar	de	Vorgabe für die Ressourcen-Suche
 default week view	calendar	de	Vorgabe Wochenansicht
 delegated	calendar	de	Delegiert
@@ -103,7 +103,7 @@ deny ressources reservation for private events	calendar	de	Verbiete die Reservie
 disinvited	calendar	de	Ausgeladen
 display status of events	calendar	de	Status von Terminen anzeigen
 displayed view	calendar	de	Ansicht
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	de	Soll Ihre Standard-Kalender-Ansicht auf der Startseite angezeigt werden (die Seite die sich nach dem Login öffnet oder wenn Sie auf Home klicken)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	de	Soll Ihre Standard-Kalender-Ansicht auf der Startseite angezeigt werden (die Seite die sich nach dem Login öffnet oder wenn Sie auf Home klicken)?
 do not include events of group members	calendar	de	Zeige nicht die Termine der Gruppenmitglieder
 do you want a weekview with or without weekend?	calendar	de	Wollen Sie das Wochenende in der Wochenansicht angezeigt bekommen?
 do you want to be notified about changes of appointments you modified?	calendar	de	Wollen Sie über Änderungen an Terminen benachrichtigt werden, die Sie modifiziert haben?
@@ -111,7 +111,7 @@ do you want to be notified about new or changed appointments? you are not notifi
 do you want to be notified about new or changed appointments? you be notified about changes you make yourself.<br>you can limit the notifications to certain changes only. each item includes all the notification listed above it. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get the participant responses like acceptions and rejections too.	calendar	de	Wollen Sie über neue oder geänderte Termine benachrichtigt werden? Sie werden nie über eigene Änderungen benachrichtigt.<br>Sie können die Benachrichtigungen auf verschiedene Änderungen begrenzen. Jede Zeile enthält die Benachrichtigungen der darüber liegenden. Alle Änderungen umfasst den Titel, die Beschreibung, Teilnehmer, aber keine Antworten der Teilnehmer. Wenn der Ersteller eines Termins irgendeine Benachrichtigung will, erhält er automatisch auch die Antworten der Teilnehmer, wie Zusagen oder Absagen.
 do you want to edit this event as an exception or the whole series?	calendar	de	Wollen Sie diesen Termin als Ausnahme bearbeiten oder die ganze Serie?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	de	Möchten Sie eine regelmäßige Zusammenfassung Ihrer Termine via E-Mail erhalten?<br>Die Zusammenfassung wird täglich (jeden Morgen), oder für eine wöchentliche Zusammenfassung Montags an Ihre Standard E-Mail Adresse gesendet.<br> Die Benachrichtigung wird nur versendet, wenn Sie am nächsten Tag oder in der nächsten Woche auch einen Termin haben.
-do you wish to autoload calendar holidays files dynamically?	admin	de	Sollen die Feiertage automatisch geladen werden?
+do you wish to autoload bcalendar holidays files dynamically?	admin	de	Sollen die Feiertage automatisch geladen werden?
 download	calendar	de	Herunterladen
 download this event as ical	calendar	de	Termin als iCal herunterladen
 duration of the meeting	calendar	de	Dauer des Termins
@@ -147,14 +147,14 @@ execute a further action for this entry	calendar	de	Führt einen weiteren Befehl
 existing links	calendar	de	Bestehende Verknüpfungen
 export	calendar	de	Exportieren
 extended	calendar	de	Erweitert
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	de	Erweiterte Benachrichtigungen enthalten immer die kompletten Termindetails. iCal's können von vielen anderen Kalenderprogrammen importiert werden.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	de	Erweiterte Benachrichtigungen enthalten immer die kompletten Termindetails. iCal's können von vielen anderen Kalenderprogrammen importiert werden.
 fieldseparator	calendar	de	Feldtrenner
 filename	calendar	de	Dateiname
 filename of the download	calendar	de	Name der herunterzuladenden Datei
 find free timeslots where the selected participants are availible for the given timespan	calendar	de	Suche freie Zeitabschnitte, an denen die ausgewählten Teilnehmer für die gegebene Zeitspanne verfügbar sind.
 firstname of person to notify	calendar	de	Vorname der zu benachrichtigenden Person
 for	calendar	de	für
-for which views should calendar show distinct lines with a fixed time interval.	calendar	de	Für welche Ansichten soll der Kalender einzelne Zeilen mit festen Zeitintervallen anzeigen.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	de	Für welche Ansichten soll der Kalender einzelne Zeilen mit festen Zeitintervallen anzeigen.
 format of event updates	calendar	de	Format der Benachrichtigungen
 forward half a month	calendar	de	einen halben Monat weiter
 forward one month	calendar	de	einen Monat weiter
@@ -172,7 +172,7 @@ global public only	calendar	de	nur Global öffentlich
 group invitation	calendar	de	Gruppeneinladung
 group planner	calendar	de	Gruppenplaner
 group public only	calendar	de	Gruppen-Öffentlich
-group(s) or user(s) whose calendars to show (if acl exists)	calendar	de	Gruppe(n) oder Benutzer deren Kalender angezeigt werden (wenn eine ACL existiert)
+group(s) or user(s) whose bcalendars to show (if acl exists)	calendar	de	Gruppe(n) oder Benutzer deren Kalender angezeigt werden (wenn eine ACL existiert)
 groupmember(s) %1 not included, because you have no access.	calendar	de	Gruppenmitglied(er) %1 nicht enthalten, da Sie keinen Zugriff haben.
 groups: other users can allways be invited, only groups require an invite grant	admin	de	Gruppen: andere Benutzer können immer eingeladen werden, nur Gruppen benötigen eine Freigabe
 h	calendar	de	h
@@ -200,7 +200,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	de	Konflikt ignorieren
 import	calendar	de	Importieren
 import csv-file	common	de	CSV-Datei importieren
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	de	Importieren von Terminen von einer CSV Datei. CSV bedeutet: Mit Komma getrennte Werte. Sie können in den Optionen des Import ebenso einen anderen Separator (Tab) wählen.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	de	Importieren von Terminen von einer CSV Datei. CSV bedeutet: Mit Komma getrennte Werte. Sie können in den Optionen des Import ebenso einen anderen Separator (Tab) wählen.
 interval	calendar	de	Intervall
 invalid email-address "%1" for user %2	calendar	de	Ungültige E-Mail-Adresse "%1" für Benutzer %2
 invitations	calendar	de	Einladungen
@@ -325,7 +325,7 @@ should new events created as private by default ?	calendar	de	Sollen neue Termin
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	de	Sollen nicht angemeldete Personen Ihre Belegtzeiten einsehen können? Sie können ein Passwort setzen um diese Informationen zu schützen. Das Passwort sollte sich von Ihrem normalen Passwort unterscheiden. Die Belegtzeiten sind im iCal Format und enthalten ausschließlich die Zeiten, an denen Sie nicht verfügbar sind. Sie enthalten NICHT den Namen, die Beschreibung oder den Ort des Termins. Die Adresse (URL) Ihrer Belegtzeiten ist %1.
 should the planner display an empty row for users or categories without any appointment.	calendar	de	Soll der Planer eine leere Zeile für Benutzer oder Kategorien ohne einen Termin anzeigen.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	de	Soll der Status (zugesagt, abgesagt ...) der Termin- Teilnehmer in Klammern hinter jeden Teilnehmer angezeigt werden?
-show a calendar title	calendar	de	Zeige den Kalendertitel
+show a bcalendar title	calendar	de	Zeige den Kalendertitel
 show all events, as if they were private	calendar	de	Zeige alle Termine, so als wären sie privat
 show all status incl. rejected events	calendar	de	Zeige alle Status einschl. abgesagte Termine
 show all status, but rejected	calendar	de	Zeige alle Status außer abgesagte Termine
@@ -396,8 +396,8 @@ update timezones	calendar	de	Zeitzonen aktualisieren
 updated	calendar	de	Aktualisiert
 use end date	calendar	de	Enddatum benutzen
 use the selected time and close the popup	calendar	de	benutzt die ausgewählte Zeit und schließt das Popup
-use this timezone to export calendar data.	calendar	de	Diese Zeitzone zum exportieren von Kalenderdaten verwenden
-use this timezone to import/export calendar data.	calendar	de	Diese Zeitzone wird für den Import/Export von Kalendardaten verwendet.
+use this timezone to export bcalendar data.	calendar	de	Diese Zeitzone zum exportieren von Kalenderdaten verwenden
+use this timezone to import/export bcalendar data.	calendar	de	Diese Zeitzone wird für den Import/Export von Kalendardaten verwendet.
 use weekday start	calendar	de	Dies Tag wird als Wochenanfang verwendet.
 user or group	calendar	de	Benutzer oder Gruppe
 users + groups: inviting both allways requires an invite grant	admin	de	Benutzer + Gruppen: Einladungen beider brauchen eine Freigabe
@@ -416,8 +416,8 @@ weeks in multiple week view	calendar	de	Wochen in der Mehrwochenansicht
 weekview	calendar	de	Wochenansicht
 weekview with weekend	calendar	de	Wochenansicht mit Wochenende
 weekview without weekend	calendar	de	Wochenansicht ohne Wochenende
-which events do you want to see when you enter the calendar.	calendar	de	Welche Termine möchten Sie angezeigt bekommen wenn Sie den Kalender öffnen?
-which of calendar view do you want to see, when you start calendar ?	calendar	de	Welche der möglichen Ansichten des Kalenders möchten Sie als Standard sehen, wenn der Kalender geöffnet wird?
+which events do you want to see when you enter the bcalendar.	calendar	de	Welche Termine möchten Sie angezeigt bekommen wenn Sie den Kalender öffnen?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	de	Welche der möglichen Ansichten des Kalenders möchten Sie als Standard sehen, wenn der Kalender geöffnet wird?
 whole day	calendar	de	ganztägig
 whole query	calendar	de	Ganze Abfrage
 wk	calendar	de	KW

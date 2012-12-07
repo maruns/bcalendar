@@ -5,7 +5,7 @@
  * Please note: dont use addressbook_... naming convention, as it would break the existing xmlrpc clients
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2005-8 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
@@ -13,7 +13,7 @@
  */
 
 /**
- * Class to access AND manipulate calendar data via XMLRPC or SOAP
+ * Class to access AND manipulate bcalendar data via XMLRPC or SOAP
  *
  * eGW's xmlrpc interface is documented at http://egroupware.org/wiki/xmlrpc
  *
@@ -233,7 +233,7 @@ class bocalendar
 	}
 
 	/**
-	 * search calendar for events
+	 * search bcalendar for events
 	 *
 	 * If daywise is not set or false, an XMLRPC array of events is returned, otherwise an
 	 * XMLRCP struct with date as string (eg. '20060101') and an array of events is returned.

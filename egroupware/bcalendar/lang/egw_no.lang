@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	no	%1 %2 i %3
 %1 records imported	calendar	no	%1 oppføringer importert
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	no	%1 oppføringer lest (ikke importert enda, du kan gå tilbake og hake av Test Import)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	no	<b>Vennligst bemerk</b>: Kalenderen bruker helligdager for ditt land som er satt til %1.  Du kan endre dette i ditt %2.<b/>Helligdager er %3 automatisk lagt til for %4.  Du kan endre dette til %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	no	<b>Vennligst bemerk</b>: Kalenderen bruker helligdager for ditt land som er satt til %1.  Du kan endre dette i ditt %2.<b/>Helligdager er %3 automatisk lagt til for %4.  Du kan endre dette til %5.
 a non blocking event will not conflict with other events	calendar	no	En hendelse som ikke blokkerer vil ikke være i konflikt med andre hendelser
 accept or reject an invitation	calendar	no	Aksepter eller avslå invitasjonen
 accepted	calendar	no	Godtatt
-access denied to the calendar of %1 !!!	calendar	no	Ikke tilgang til %1 kalender !
+access denied to the bcalendar of %1 !!!	calendar	no	Ikke tilgang til %1 kalender !
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	no	Handling som utløste denne meldingen: Lagt til, Kansellert, Akseptert, Avslått, ...
 actions	calendar	no	Aksjoner
 add alarm	calendar	no	Legg til alarm
@@ -59,8 +59,8 @@ days of the week for a weekly repeated event	calendar	no	Ukedag for ukentlig rep
 days repeated	calendar	no	dager gjentatt
 dayview	calendar	no	Dagvisning
 default appointment length (in minutes)	calendar	no	standard avtalelengde (i minutter)
-default calendar filter	calendar	no	Standard kalender filter
-default calendar view	calendar	no	Standard kalender visning
+default bcalendar filter	calendar	no	Standard kalender filter
+default bcalendar view	calendar	no	Standard kalender visning
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	no	Standard lengde for nyopprettede hendelse. Lengden er i minutter, f.eks 60 for 1 time.
 default week view	calendar	no	Standard ukevisning
 defines the size in minutes of the lines in the day view.	calendar	no	Definerer størrelsen på linjene i forhold til minutter i dagvisning.
@@ -72,11 +72,11 @@ delete this series of recuring events	calendar	no	Slett serie med repeterende he
 disinvited	calendar	no	Ikke lenger invitert
 display status of events	calendar	no	Vis Status av Hending
 displayed view	calendar	no	Gjeldende visning
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	no	Viser din standard kalender visning på startsiden (siden du får når du logger på eGroupWare eller klikker på hjemmeside-ikonet)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	no	Viser din standard kalender visning på startsiden (siden du får når du logger på eGroupWare eller klikker på hjemmeside-ikonet)?
 do you want a weekview with or without weekend?	calendar	no	Ønsker du ukevisning uten helg ?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	no	Vil du bli varslet om alle forandrede avtaler? Du blir varslet om alle endringer du selv utfører.<br>Du kan begrense varslingen til bare å gjelde spesifikke endringer. Hvert objekt inkluderer alle varslingene over det. Alle endringer inkluderer endringer av tittel, beskrivelse, men ikke deltakeres responser. Hvis eieren av en oppføring ber om varsling, vil han alltid få deltakeres responser som godkjenninger eller avslag også.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	no	Ønsker du å motta regelmessige sammendrag av dine avtaler via e-post?<br>Oppsummeringen vil bli sendt til din standard e-post adresse på morgenen samme dag, eller på mandager for ukentlige sammendrag.<br>Den vil bare bli sendt når du har en avtale den dagen eller uken.
-do you wish to autoload calendar holidays files dynamically?	admin	no	Ønsker du å automatisk laste kalenderferiefiler?
+do you wish to autoload bcalendar holidays files dynamically?	admin	no	Ønsker du å automatisk laste kalenderferiefiler?
 download	calendar	no	Last ned
 download this event as ical	calendar	no	Last ned denne hendelsen som iCal
 duration of the meeting	calendar	no	Varighet av møtet
@@ -106,7 +106,7 @@ exceptions	calendar	no	Unntak
 existing links	calendar	no	Eksisterende lenker
 export	calendar	no	Eksporter
 extended	calendar	no	Forlenget
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	no	Forlengelses-endringer inkluderer alltid komplette hendelses-detaljer. iCal filer kan importeres i fler andre kalender programmer.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	no	Forlengelses-endringer inkluderer alltid komplette hendelses-detaljer. iCal filer kan importeres i fler andre kalender programmer.
 fieldseparator	calendar	no	Feltseperator
 filename	calendar	no	Filnavn
 filename of the download	calendar	no	Filnavn for nedlastingen
@@ -235,7 +235,7 @@ select resources	calendar	no	Velg ressurser
 select who should get the alarm	calendar	no	Velg hvem som skal motta alarmen
 set a year only for one-time / non-regular holidays.	calendar	no	Sett kun ett år for engangs / ikke faste ferier.
 set new events to private	calendar	no	Sett nye oppføringer som private
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	no	Skal invitasjoner som du avslo fortsatt vises i kalenderen din?<br>Du kan bare akseptere dem senere (f.eks. når planleggingskonflikten din er fjernet), hvis den fortsatt viser i din kalender!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	no	Skal invitasjoner som du avslo fortsatt vises i kalenderen din?<br>Du kan bare akseptere dem senere (f.eks. når planleggingskonflikten din er fjernet), hvis den fortsatt viser i din kalender!
 should new events created as private by default ?	calendar	no	Skal nye oppføringer som blir laget, være private som standard?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	no	Skal personer som ikke er påloggt ha muliget å se din freebusy informasjon? Du kan sette et ekstra passord, forkjellig fra ditt normale passord, for å beskytte denne informasjonen. Freebusy informasjonen er i iCal format og inkluderer bare tider du er opptatt. Den inkluderer ikke oppføringsnavn, beskrivelse eller lokasjon. Adressen til din freebusy informasjon er %1.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	no	Skal status på oppførings-deltakere(godta, avslå,...) bli vist som bokser etter hver deltakers navn ?
@@ -289,8 +289,8 @@ weekly	calendar	no	Ukentlig
 weekview	calendar	no	Ukevisning
 weekview with weekend	calendar	no	Ukevisning inkl. helg
 weekview without weekend	calendar	no	Ukevisning eksl. helg
-which events do you want to see when you enter the calendar.	calendar	no	Hvilke oppføringer du ønsker å se når du starter kalenderen.
-which of calendar view do you want to see, when you start calendar ?	calendar	no	Hvilke kalendervisning ønsker du å se når du starter kalenderen?
+which events do you want to see when you enter the bcalendar.	calendar	no	Hvilke oppføringer du ønsker å se når du starter kalenderen.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	no	Hvilke kalendervisning ønsker du å se når du starter kalenderen?
 whole day	calendar	no	Hele dagen
 wk	calendar	no	Uke
 work day ends on	calendar	no	Arbeidsdagen ender på

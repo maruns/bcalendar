@@ -4,7 +4,7 @@
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
- * @package calendar
+ * @package bcalendar
  * @copyright (c) 2003-9 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: csv_import.php 33197 2010-11-29 11:45:39Z leithoff $
@@ -42,7 +42,7 @@ if (isset($_POST['charset']))
 	common::setlocale(LC_CTYPE,$_POST['charset']);
 }
 $GLOBALS['egw_info']['flags']['app_header'] = $GLOBALS['egw_info']['apps']['calendar']['title'].' - '.lang('Import CSV-File');
-$cal = new calendar_boupdate(true);
+$cal = new bcalendar_boupdate(true);
 $GLOBALS['egw']->common->egw_header();
 
 $template = CreateObject('phpgwapi.Template',common::get_tpl_dir('calendar'));
@@ -261,10 +261,10 @@ case 'download':
 		"You can use the 'No CVS #'-fields to assign cvs-values to more than on field, the following example uses the ".
 		"cvs-field 'Note' (which gots already assingned to the description) and construct a short subject: ".
 		"<b>@substr(${CPre}Note$CPos,0,60).' ...'</b><p>".
-		"Their is two important user-function for the calendar:<br>".
+		"Their is two important user-function for the bcalendar:<br>".
 		"<b>@addr_id(${CPre}NFamily$CPos,${CPre}NGiven$CPos,${CPre}Company$CPos)</b> ".
 		"searches the addressbook for an address and returns the id if it founds an exact match of at least ".
-		"<i>NFamily</i> AND (<i>NGiven</i> OR <i>Company</i>). This is necessary to link your imported calendar-entrys ".
+		"<i>NFamily</i> AND (<i>NGiven</i> OR <i>Company</i>). This is necessary to link your imported bcalendar-entrys ".
 		"with the addressbook.<br>".
 		"<b>@cat_id(Cat1,...,CatN)</b> returns a (','-separated) list with the cat_id's. If a category isn't found, it ".
 		"will be automaticaly added. This function is automaticaly called if the category is not numerical!<p>".
@@ -503,7 +503,7 @@ case 'import':
 					list($app,$app_id) = explode(':',$value);
 					if ($app && $app_id)
 					{
-						//echo "<p>linking calendar:$cal_id with $app:$app_id</p>\n";
+						//echo "<p>linking bcalendar:$cal_id with $app:$app_id</p>\n";
 						egw_link::link('calendar',$cal_id,$app,$app_id);
 					}
 				}

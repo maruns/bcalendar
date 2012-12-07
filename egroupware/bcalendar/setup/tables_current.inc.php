@@ -3,7 +3,7 @@
  * eGroupWare - Calendar setup
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: tables_current.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
@@ -14,7 +14,7 @@ $phpgw_baseline = array(
 		'fd' => array(
 			'cal_id' => array('type' => 'auto','nullable' => False),
 			'cal_uid' => array('type' => 'varchar','precision' => '255','nullable' => False,'comment' => 'unique id of event(-series)'),
-			'cal_owner' => array('type' => 'int','precision' => '4','nullable' => False,'comment' => 'event owner / calendar'),
+			'cal_owner' => array('type' => 'int','precision' => '4','nullable' => False,'comment' => 'event owner / bcalendar'),
 			'cal_category' => array('type' => 'varchar','precision' => '30','comment' => 'category id'),
 			'cal_modified' => array('type' => 'int','precision' => '8','comment' => 'ts of last modification'),
 			'cal_priority' => array('type' => 'int','precision' => '2','nullable' => False,'default' => '2'),

@@ -1,20 +1,20 @@
 <?php
 /**
- * EGroupware: CalDAV / GroupDAV access: calendar handler
+ * EGroupware: CalDAV / GroupDAV access: bcalendar handler
  *
  * @link http://www.egroupware.org
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package calendar
+ * @package bcalendar
  * @subpackage groupdav
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2007-12 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
- * @version $Id: class.calendar_groupdav.inc.php 40154 2012-08-15 15:28:00Z ralfbecker $
+ * @version $Id: class.bcalendar_groupdav.inc.php 40154 2012-08-15 15:28:00Z ralfbecker $
  */
 
 require_once EGW_SERVER_ROOT.'/phpgwapi/inc/horde/lib/core.php';
 
 /**
- * EGroupware: CalDAV / GroupDAV access: calendar handler
+ * EGroupware: CalDAV / GroupDAV access: bcalendar handler
  *
  * Permanent error_log() calls should use $this->groupdav->log($str) instead, to be send to PHP error_log()
  * and our request-log (prefixed with "### " after request and response, like exceptions).
@@ -24,7 +24,7 @@ class bcalendar_groupdav extends groupdav_handler
 	/**
 	 * bo class of the application
 	 *
-	 * @var calendar_boupdate
+	 * @var bcalendar_boupdate
 	 */
 	var $bo;
 
@@ -62,7 +62,7 @@ class bcalendar_groupdav extends groupdav_handler
 	/**
 	 * Enable or disable Schedule-Tag handling:
 	 * - return Schedule-Tag header in PUT response
-	 * - update only status and alarms of calendar owner, if If-Schedule-Tag-Match header in PUT
+	 * - update only status and alarms of bcalendar owner, if If-Schedule-Tag-Match header in PUT
 	 *
 	 * Disabling Schedule-Tag for iCal, as current implementation seems to create too much trouble :-(
 	 * - iCal on OS X always uses If-Schedule-Tag-Match, even if other stuff in event is changed (eg. title)
@@ -124,7 +124,7 @@ class bcalendar_groupdav extends groupdav_handler
 	}
 
 	/**
-	 * Handle propfind in the calendar folder
+	 * Handle propfind in the bcalendar folder
 	 *
 	 * @param string $path
 	 * @param array &$options
@@ -184,7 +184,7 @@ class bcalendar_groupdav extends groupdav_handler
 		if (($id || $options['root']['name'] != 'propfind') && !$this->_report_filters($options,$filter,$id))
 		{
 			// return empty collection, as iCal under iOS 5 had problems with returning "404 Not found" status
-			// when trying to request not supported components, eg. VTODO on a calendar collection
+			// when trying to request not supported components, eg. VTODO on a bcalendar collection
 			return true;
 		}
 		if ($id) $path = dirname($path).'/';	// caldav_name get's added anyway in the callback
@@ -379,7 +379,7 @@ class bcalendar_groupdav extends groupdav_handler
 				}
 			}
 
-			if ($this->debug > 1) error_log(__FILE__ . __METHOD__ ."($options[path],...,$id) calendar-multiget: ids=".implode(',',$ids).', cal_filters='.array2string($cal_filters));
+			if ($this->debug > 1) error_log(__FILE__ . __METHOD__ ."($options[path],...,$id) bcalendar-multiget: ids=".implode(',',$ids).', cal_filters='.array2string($cal_filters));
 		}
 		return true;
 	}
@@ -416,7 +416,7 @@ class bcalendar_groupdav extends groupdav_handler
 	 * Taking into account virtual an real exceptions for recuring events
 	 *
 	 * @param array $event
-	 * @param int $user=null account_id of calendar to display
+	 * @param int $user=null account_id of bcalendar to display
 	 * @param string $method=null eg. 'PUBLISH' for inbox, nothing anywhere else
 	 * @param boolean|array $expand=false true or array with values for 'start', 'end' to expand recurrences
 	 * @return string
@@ -428,7 +428,7 @@ class bcalendar_groupdav extends groupdav_handler
 
 		if (!$user) $user = $GLOBALS['egw_info']['user']['account_id'];
 
-		// only return alarms in own calendar, not other users calendars
+		// only return alarms in own bcalendar, not other users bcalendars
 		if ($user != $GLOBALS['egw_info']['user']['account_id'])
 		{
 			//error_log(__METHOD__.'('.array2string($event).", $user) clearing alarms");
@@ -457,10 +457,10 @@ class bcalendar_groupdav extends groupdav_handler
 	/**
 	 * Get array with events of a series identified by its UID (master and all exceptions)
 	 *
-	 * Maybe that should be part of calendar_bo
+	 * Maybe that should be part of bcalendar_bo
 	 *
 	 * @param string $uid UID
-	 * @param calendar_bo $bo=null calendar_bo object to reuse for search call
+	 * @param bcalendar_bo $bo=null bcalendar_bo object to reuse for search call
 	 * @param boolean|array $expand=false true or array with values for 'start', 'end' to expand recurrences
 	 * @return array
 	 */
@@ -553,9 +553,9 @@ class bcalendar_groupdav extends groupdav_handler
 
 		if (is_null($oldEvent) && ($user >= 0) && !$this->bo->check_perms(EGW_ACL_ADD, 0, $user))
 		{
-			// we have no add permission on this user's calendar
-			// ToDo: create event in current users calendar and invite only $user
-			if ($this->debug) error_log(__METHOD__."(,,$user) we have not enough rights on this calendar");
+			// we have no add permission on this user's bcalendar
+			// ToDo: create event in current users bcalendar and invite only $user
+			if ($this->debug) error_log(__METHOD__."(,,$user) we have not enough rights on this bcalendar");
 			return '403 Forbidden';
 		}
 
@@ -612,8 +612,8 @@ class bcalendar_groupdav extends groupdav_handler
 					return '412 Precondition Failed';
 				}
 				// update only participant status and alarms of current user
-				// fix for iCal on OS X, which uses only a schedule-tag (no etag), if event has no participants (only calendar owner)
-				// --> do regular calendar update as with matching etag (otherwise no updates possible)
+				// fix for iCal on OS X, which uses only a schedule-tag (no etag), if event has no participants (only bcalendar owner)
+				// --> do regular bcalendar update as with matching etag (otherwise no updates possible)
 				if (!(count($oldEvent['participants']) == 1 && isset($oldEvent['participants'][$user])) &&
 					($events = $handler->icaltoegw($vCalendar)))
 				{
@@ -677,7 +677,7 @@ class bcalendar_groupdav extends groupdav_handler
 					header('Schedule-Tag: "'.$schedule_tag.'"');
 					return '204 No Content';
 				}
-				if ($this->debug && !isset($events)) error_log(__METHOD__."(,,$user) only schedule-tag given for event without participants (only calendar owner) --> handle as regular PUT");
+				if ($this->debug && !isset($events)) error_log(__METHOD__."(,,$user) only schedule-tag given for event without participants (only bcalendar owner) --> handle as regular PUT");
 			}
 			if ($return_no_access)
 			{
@@ -994,7 +994,7 @@ class bcalendar_groupdav extends groupdav_handler
 	}
 
 	/**
-	 * Fix event series with exceptions, called by calendar_ical::importVCal():
+	 * Fix event series with exceptions, called by bcalendar_ical::importVCal():
 	 *	a) only series master = first event got cal_id from URL
 	 *	b) exceptions need to be checked if they are already in DB or new
 	 *	c) recurrence-id of (real not virtual) exceptions need to be re-added to master
@@ -1143,7 +1143,7 @@ class bcalendar_groupdav extends groupdav_handler
 	}
 
 	/**
-	 * Query ctag for calendar
+	 * Query ctag for bcalendar
 	 *
 	 * @return string
 	 */
@@ -1188,7 +1188,7 @@ class bcalendar_groupdav extends groupdav_handler
 	}
 
 	/**
-	 * Add extra properties for calendar collections
+	 * Add extra properties for bcalendar collections
 	 *
 	 * @param array $props=array() regular props by the groupdav handler
 	 * @param string $displayname
@@ -1201,7 +1201,7 @@ class bcalendar_groupdav extends groupdav_handler
 	{
 		if (!isset($props['calendar-description']))
 		{
-			// default calendar description: can be overwritten via PROPPATCH, in which case it's already set
+			// default bcalendar description: can be overwritten via PROPPATCH, in which case it's already set
 			$props['calendar-description'] = HTTP_WebDAV_Server::mkprop(groupdav::CALDAV,'calendar-description',$displayname);
 		}
 		$supported_components = array(
@@ -1228,7 +1228,7 @@ class bcalendar_groupdav extends groupdav_handler
 			HTTP_WebDAV_Server::mkprop(groupdav::CALDAV,'calendar-data', array('content-type' => 'text/calendar', 'version'=> '2.0')),
 			HTTP_WebDAV_Server::mkprop(groupdav::CALDAV,'calendar-data', array('content-type' => 'text/x-calendar', 'version'=> '1.0'))));
 
-		// get timezone of calendar
+		// get timezone of bcalendar
 		if ($this->groupdav->prop_requested('calendar-timezone'))
 		{
 			$props['calendar-timezone'] = HTTP_WebDAV_Server::mkprop(groupdav::CALDAV,'calendar-timezone',
@@ -1240,7 +1240,7 @@ class bcalendar_groupdav extends groupdav_handler
 	/**
 	 * Get the handler and set the supported fields
 	 *
-	 * @return calendar_ical
+	 * @return bcalendar_ical
 	 */
 	private function _get_handler()
 	{
@@ -1251,7 +1251,7 @@ class bcalendar_groupdav extends groupdav_handler
 	}
 
 	/**
-	 * Return calendars/addressbooks shared from other users with the current one
+	 * Return bcalendars/addressbooks shared from other users with the current one
 	 *
 	 * return array account_id => account_lid pairs
 	 */
@@ -1270,7 +1270,7 @@ class bcalendar_groupdav extends groupdav_handler
 				$calendar_home_set[$key] = $id;
 			}
 		}
-		foreach(ExecMethod('calendar.calendar_bo.list_cals') as $entry)
+		foreach(ExecMethod('bcalendar.bcalendar_bo.list_cals') as $entry)
 		{
 			$id = $entry['grantor'];
 			if ($id && $GLOBALS['egw_info']['user']['account_id'] != $id &&	// no current user
@@ -1310,7 +1310,7 @@ class bcalendar_groupdav extends groupdav_handler
 		$settings = array();
 		$settings['calendar-home-set'] = array(
 			'type'   => 'multiselect',
-			'label'  => 'Calendars to sync in addition to personal calendar',
+			'label'  => 'Calendars to sync in addition to personal bcalendar',
 			'name'   => 'calendar-home-set',
 			'help'   => lang('Only supported by a few fully conformant clients (eg. from Apple). If you have to enter a URL, it will most likly not be suppored!').'<br/>'.lang('They will be sub-folders in users home (%1 attribute).','CalDAV "calendar-home-set"'),
 			'values' => $calendars,

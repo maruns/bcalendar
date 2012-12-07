@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	fi	%1 %2 %3:ssa
 %1 records imported	calendar	fi	%1 tapahtumaa tuotu
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	fi	%1 tapahtumaa luettu (ei vielä tuotu, voit palata ja poistaa valinnan Kokeile tuontia)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	fi	<b>Huom<b>: Kalenteri käyttää lomapäiviä, jotka on asetettu %1:ksi. Voit vaihtaa ne omasta %2:sta.<br/>Lomapäivät ovat %3 automaattisesti asennettuja %4:sta. Voit vaihtaa sen %5:sta.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	fi	<b>Huom<b>: Kalenteri käyttää lomapäiviä, jotka on asetettu %1:ksi. Voit vaihtaa ne omasta %2:sta.<br/>Lomapäivät ovat %3 automaattisesti asennettuja %4:sta. Voit vaihtaa sen %5:sta.
 a non blocking event will not conflict with other events	calendar	fi	Joustava tapahtuma ei aiheita päällekkäisyyttä muiden tapahtumien kanssa
 accept or reject an invitation	calendar	fi	Hyväksy tai kieltäydy kutsusta
 accepted	calendar	fi	Hyväksytty
-access denied to the calendar of %1 !!!	calendar	fi	Pääsy %1 kalenteriin kielletty !!!
+access denied to the bcalendar of %1 !!!	calendar	fi	Pääsy %1 kalenteriin kielletty !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	fi	Toimenpide, joka aiheutti huomautuksen: lisätty, peruutettu, poistettu, hylätty ...
 actions	calendar	fi	Toimenpiteet
 actions...	calendar	fi	Toimenpiteet...
@@ -63,8 +63,8 @@ days of the week for a weekly repeated event	calendar	fi	Viikonpäivät viikotta
 days repeated	calendar	fi	päivää toistettu
 dayview	calendar	fi	Päivänäkymä
 default appointment length (in minutes)	calendar	fi	tapaamisen oletuspituus (minuutteina)
-default calendar filter	calendar	fi	Kalenterin oletussuodin
-default calendar view	calendar	fi	Kalenterin oletusnäkymä
+default bcalendar filter	calendar	fi	Kalenterin oletussuodin
+default bcalendar view	calendar	fi	Kalenterin oletusnäkymä
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	fi	Uusien tapahtumien oletuspituus. Pituus annetaan minuutteina, eli 60 tarkoittaa tuntia.
 default week view	calendar	fi	Oletus viikkonäkymä
 delete series	calendar	fi	Poista sarjat
@@ -75,11 +75,11 @@ delete this series of recuring events	calendar	fi	Poista tämä toistuvien tapah
 disinvited	calendar	fi	Kutsu peruttu
 display status of events	calendar	fi	Näytä tapahtumien tila
 displayed view	calendar	fi	valittu näkymä
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	fi	Näyttää kalenterin oletusnäkymän aloitussivulla (sivu, joka näytetään kun kirjaudut eGroupWareen tai napsautat Koti-kuvaketta)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	fi	Näyttää kalenterin oletusnäkymän aloitussivulla (sivu, joka näytetään kun kirjaudut eGroupWareen tai napsautat Koti-kuvaketta)?
 do you want a weekview with or without weekend?	calendar	fi	Haluatko viikkonäkymän viikonlopun kanssa vai ilman?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	fi	Haluatko, että sinua huomautetaan uusista tai muuttuneista tapahtumista?<br>Voit rajoittaa huomautukset vain jonkin tyyppisiin muutoksiin. Jokaisella tietueella on mahdolliset huomautuksen syyt yläpuolellaan. Kaikki muutokset tarkoittavat muutoksia otsikossa, kuvauksessa ja osanottajissa. Muutoksista osanottajien vastauksissa ei ilmoiteta. Jos tapahtuman omistaja on pyytänyt huomautuksia, hän saa osanottajien vastaukset (hyväksymiset tai hylkäykset).
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	fi	Haluatko vastaanottaa säännöllisen yhteenvedon tapaamisistasi sähköpostilla?<br>Yhteenveto lähetetään sähköpostiosoitteeseesi joka aamu, tai maanantaina jos kyseessä on viikoittainen yhteenveto.<br>Yhteenveto lähetetään vain, jos  sinulla on tapaamisia kyseisenä päivänä tai kyseisellä viikolla.
-do you wish to autoload calendar holidays files dynamically?	admin	fi	Haluatko ladata kalenterin juhlapäivät-tiedostot automaattisesti?
+do you wish to autoload bcalendar holidays files dynamically?	admin	fi	Haluatko ladata kalenterin juhlapäivät-tiedostot automaattisesti?
 download	calendar	fi	Lataa
 download this event as ical	calendar	fi	Lataa tämä tapahtuma iCal-kalenterina
 duration of the meeting	calendar	fi	Tapaamisen kesto
@@ -109,7 +109,7 @@ exceptions	calendar	fi	Poikkeukset
 existing links	calendar	fi	Olemassaolevat linkit
 export	calendar	fi	Vie
 extended	calendar	fi	Laajennettu
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	fi	Laajennetuissa päivityksissä on aina täydelliset tapahtuman yksityiskohdat. iCal-kalenterin voi viedä muihin kalenterisovelluksiin.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	fi	Laajennetuissa päivityksissä on aina täydelliset tapahtuman yksityiskohdat. iCal-kalenterin voi viedä muihin kalenterisovelluksiin.
 fieldseparator	calendar	fi	Kentän erotin
 filename	calendar	fi	Tiedostonimi
 filename of the download	calendar	fi	Latauksen tiedostonimi
@@ -244,7 +244,7 @@ select who should get the alarm	calendar	fi	Valitse kuka saa hälytyksen
 selected range	calendar	fi	Valitse aikaväli
 set a year only for one-time / non-regular holidays.	calendar	fi	Määrittele vain kerran tapahtuvien / epäsäännöllisten lomien vuosi.
 set new events to private	calendar	fi	Määrittele uudet tapahtumat yksityisiksi
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	fi	Säilytetäänkö hylätyt kutsut kalenterissa?<br>Voit hyväksyä kutsun myöhemmin (esim. päällekkäisyyden poistuttua), jos tapahtuma on kalenterissasi!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	fi	Säilytetäänkö hylätyt kutsut kalenterissa?<br>Voit hyväksyä kutsun myöhemmin (esim. päällekkäisyyden poistuttua), jos tapahtuma on kalenterissasi!
 should new events created as private by default ?	calendar	fi	Luodaanko uudet tapahtumat oletuksena yksityisenä?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	fi	Voivatko kirjautumattomat käyttäjät nähdä vapaat aikasi? Voit asettaa ylimääräisen salasanan (eri kun normaali salasanasi) suojaamaan tietoja. Vapaat ajat ovat iCal muodossa ja näyttävät vain ajat jolloin olet varattu. Se ei näytä tapahtuman nimeä, kuvasta tai sijaintia. Vapaat ajat URL on %1.
 should the planner display an empty row for users or categories without any appointment.	calendar	fi	Näytetäänkö suunnittelunäkymässä tyhjät rivit käyttäjillä tai kategorioilla joilla ei ole tapahtumia.
@@ -302,8 +302,8 @@ weekly	calendar	fi	Viikottain
 weekview	calendar	fi	Viikkonäkymä
 weekview with weekend	calendar	fi	Viikkonäkymä viikonlopun kanssa
 weekview without weekend	calendar	fi	Viikkonäkymä ilman viikonloppua
-which events do you want to see when you enter the calendar.	calendar	fi	Mitkä tapahtumat haluat nähdä, kun avaat kalenterin?
-which of calendar view do you want to see, when you start calendar ?	calendar	fi	Minkä kalenterinäkymän haluat nähdä, kun avaat kalenterin ?
+which events do you want to see when you enter the bcalendar.	calendar	fi	Mitkä tapahtumat haluat nähdä, kun avaat kalenterin?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	fi	Minkä kalenterinäkymän haluat nähdä, kun avaat kalenterin ?
 whole day	calendar	fi	Koko päivä
 wk	calendar	fi	Vk
 work day ends on	calendar	fi	Työpäivä päättyy kello

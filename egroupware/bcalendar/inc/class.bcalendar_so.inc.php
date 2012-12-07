@@ -3,17 +3,17 @@
  * EGroupware - Calendar's storage-object
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Christian Binder <christian-AT-jaytraxx.de>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @copyright (c) 2005-11 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_so.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
+ * @version $Id: class.bcalendar_so.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
  */
 
 /**
- * some necessary defines used by the calendar
+ * some necessary defines used by the bcalendar
  */
 if(!extension_loaded('mcal'))
 {
@@ -51,10 +51,10 @@ define('DAY_s',24*HOUR_s);
 define('WEEK_s',7*DAY_s);
 
 /**
- * Class to store all calendar data (storage object)
+ * Class to store all bcalendar data (storage object)
  *
  * Tables used by socal:
- *	- egw_cal: general calendar data: cal_id, title, describtion, locations, ...
+ *	- egw_cal: general bcalendar data: cal_id, title, describtion, locations, ...
  *	- egw_cal_dates: start- and enddates (multiple entry per cal_id for recuring events!)
  *	- egw_cal_user: participant info including status (multiple entries per cal_id AND startdate for recuring events)
  * 	- egw_cal_repeats: recur-data: type, optional enddate, etc.
@@ -66,12 +66,12 @@ define('WEEK_s',7*DAY_s);
  *  SO operates only on server-time
  *
  * DB-model uses egw_cal_user.cal_status='X' for participants who got deleted. They never get returned by
- * read or search methods, but influence the ctag of the deleted users calendar!
+ * read or search methods, but influence the ctag of the deleted users bcalendar!
  */
 class bcalendar_so
 {
 	/**
-	 * name of the main calendar table and prefix for all other calendar tables
+	 * name of the main bcalendar table and prefix for all other bcalendar tables
 	 */
 	var $cal_table = 'egw_cal';
 	var $extra_table,$repeats_table,$user_table,$dates_table,$all_tables;
@@ -118,7 +118,7 @@ class bcalendar_so
 	}
 
 	/**
-	 * reads one or more calendar entries
+	 * reads one or more bcalendar entries
 	 *
 	 * All times (start, end and modified) are returned as timesstamps in servertime!
 	 *
@@ -330,7 +330,7 @@ class bcalendar_so
 	 *
 	 * This includes ALL recurences of an event series
 	 *
-	 * @param int|array $users one or mulitple calendar users
+	 * @param int|array $users one or mulitple bcalendar users
 	 * @param booelan $owner_too=false if true return also events owned by given users
 	 * @param boolean $master_only=false only check recurance master (egw_cal_user.recur_date=0)
 	 * @return int maximum modification timestamp
@@ -392,7 +392,7 @@ class bcalendar_so
 	}
 
 	/**
-	 * Searches / lists calendar entries, including repeating ones
+	 * Searches / lists bcalendar entries, including repeating ones
 	 *
 	 * @param int $start startdate of the search/list (servertime)
 	 * @param int $end enddate of the search/list (servertime)
@@ -411,7 +411,7 @@ class bcalendar_so
 	 * 						if specified and not false an iterator for the rows is returned
 	 * @param string $params['append'] SQL to append to the query before $order, eg. for a GROUP BY clause
 	 * @param array $params['cfs'] custom fields to query, null = none, array() = all, or array with cfs names
-	 * @param array $params['users'] raw parameter as passed to calendar_bo::search() no memberships resolved!
+	 * @param array $params['users'] raw parameter as passed to bcalendar_bo::search() no memberships resolved!
 	 * @param boolean $params['master_only']=false, true only take into account participants/status from master (for AS)
 	 * @param int $remove_rejected_by_user=null add join to remove entry, if given user has rejected it
 	 * @return array of cal_ids, or false if error in the parameters
@@ -807,21 +807,21 @@ class bcalendar_so
 	}
 
 	/**
-	 * Data returned by calendar_search_union hook
+	 * Data returned by bcalendar_search_union hook
 	 */
 	private static $integration_data;
 
 	/**
-	 * Ask other apps if they want to participate in calendar search / display
+	 * Ask other apps if they want to participate in bcalendar search / display
 	 *
 	 * @param &$selects parts of union query
 	 * @param $start see search()
 	 * @param $end
-	 * @param $users as used in calendar_so ($users_raw plus all members and memberships added by calendar_bo)
+	 * @param $users as used in bcalendar_so ($users_raw plus all members and memberships added by bcalendar_bo)
 	 * @param $cat_id
 	 * @param $filter
 	 * @param $query
-	 * @param $users_raw as passed to calendar_bo::search (no members and memberships added)
+	 * @param $users_raw as passed to bcalendar_bo::search (no members and memberships added)
 	 */
 	private static function get_union_selects(array &$selects,$start,$end,$users,$cat_id,$filter,$query,$users_raw)
 	{
@@ -1271,7 +1271,7 @@ ORDER BY cal_user_type, cal_usre_id
 					$event['start'] = $event['cal_start'];
 					$event['end'] = $event['cal_end'];
 					$event['tzid'] = $event['cal_tzid'];
-					$rrule = calendar_rrule::event2rrule($event, false);
+					$rrule = bcalendar_rrule::event2rrule($event, false);
 					foreach ($rrule as $time)
 					{
 						if ($start < ($ts = egw_time::to($time,'server'))) break;
@@ -1735,7 +1735,7 @@ ORDER BY cal_user_type, cal_usre_id
 	}
 
 	/**
-	 * read the alarms of a calendar-event specified by $cal_id
+	 * read the alarms of a bcalendar-event specified by $cal_id
 	 *
 	 * alarm-id is a string of 'cal:'.$cal_id.':'.$alarm_nr, it is used as the job-id too
 	 *
@@ -1784,7 +1784,7 @@ ORDER BY cal_user_type, cal_usre_id
 	/**
 	 * saves a new or updated alarm
 	 *
-	 * @param int $cal_id Id of the calendar-entry
+	 * @param int $cal_id Id of the bcalendar-entry
 	 * @param array $alarm array with fields: text, owner, enabled, ..
 	 * @param timestamp $now=0 timestamp for modification of related event
 	 * @return string id of the alarm
@@ -1811,7 +1811,7 @@ ORDER BY cal_user_type, cal_usre_id
 		$alarm['cal_id'] = $cal_id;		// we need the back-reference
 
 		// allways store job with the alarm owner as job-owner to get eg. the correct from address
-		if (!$this->async->set_timer($alarm['time'],$id,'calendar.calendar_boupdate.send_alarm',$alarm,$alarm['owner']))
+		if (!$this->async->set_timer($alarm['time'],$id,'bcalendar.bcalendar_boupdate.send_alarm',$alarm,$alarm['owner']))
 		{
 			return False;
 		}
@@ -1826,9 +1826,9 @@ ORDER BY cal_user_type, cal_usre_id
 	}
 
 	/**
-	 * delete all alarms of a calendar-entry
+	 * delete all alarms of a bcalendar-entry
 	 *
-	 * @param int $cal_id Id of the calendar-entry
+	 * @param int $cal_id Id of the bcalendar-entry
 	 * @return int number of alarms deleted
 	 */
 	function delete_alarms($cal_id)
@@ -1894,7 +1894,7 @@ ORDER BY cal_user_type, cal_usre_id
 				'cal_user_id'   => $user_id,
 			),__LINE__,__FILE__,'calendar');
 
-			// delete calendar entries without participants (can happen if the deleted user is the only participants, but not the owner)
+			// delete bcalendar entries without participants (can happen if the deleted user is the only participants, but not the owner)
 			foreach($this->db->select($this->cal_table,"DISTINCT $this->cal_table.cal_id",'cal_user_id IS NULL',__LINE__,__FILE__,
 				False,'','calendar',0,"LEFT JOIN $this->user_table ON $this->cal_table.cal_id=$this->user_table.cal_id") as $row)
 			{
@@ -2067,12 +2067,12 @@ ORDER BY cal_user_type, cal_usre_id
 
 		$remote = in_array($filter, array('tz_rrule', 'rrule'));
 
-		$egw_rrule = calendar_rrule::event2rrule($event, false);
+		$egw_rrule = bcalendar_rrule::event2rrule($event, false);
 		$egw_rrule->current = clone $egw_rrule->time;
 		if ($expand_all)
 		{
 			unset($event['recur_exception']);
-			$remote_rrule = calendar_rrule::event2rrule($event, false, $tz_id);
+			$remote_rrule = bcalendar_rrule::event2rrule($event, false, $tz_id);
 			$remote_rrule->current = clone $remote_rrule->time;
 		}
 		while ($egw_rrule->valid())
@@ -2337,7 +2337,7 @@ ORDER BY cal_user_type, cal_usre_id
 		{
 			if (!isset(self::$tz_cache[$event['tzid']]))
 			{
-				self::$tz_cache[$event['tzid']] = calendar_timezones::DateTimeZone($event['tzid']);
+				self::$tz_cache[$event['tzid']] = bcalendar_timezones::DateTimeZone($event['tzid']);
 			}
 			$timezone = self::$tz_cache[$event['tzid']];
 		}
@@ -2372,7 +2372,7 @@ ORDER BY cal_user_type, cal_usre_id
 		{
 			if (!isset(self::$tz_cache[$tz_id]))
 			{
-				self::$tz_cache[$tz_id] = calendar_timezones::DateTimeZone($tz_id);
+				self::$tz_cache[$tz_id] = bcalendar_timezones::DateTimeZone($tz_id);
 			}
 			$timezone = self::$tz_cache[$tz_id];
 		}

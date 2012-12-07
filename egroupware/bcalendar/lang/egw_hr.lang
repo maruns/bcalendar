@@ -77,7 +77,7 @@ change all events for $params['old_owner'] to $params['new_owner'].	calendar	hr	
 change status	calendar	hr	Status promjene
 charset of file	calendar	hr	Charset of file
 city	common	hr	Grad
-click %1here%2 to return to the calendar.	calendar	hr	Pritisnite %1ovdje%2 za povratak u kalendar.
+click %1here%2 to return to the bcalendar.	calendar	hr	Pritisnite %1ovdje%2 za povratak u kalendar.
 company	common	hr	Tvrtka
 company name	common	hr	Naziv tvrtke
 configuration	calendar	hr	Postavke
@@ -100,13 +100,13 @@ days repeated	calendar	hr	dana ponavljano
 dayview	calendar	hr	Dnevni pregled
 debug output in browser	admin	hr	Prikaz poruka o izlaznim greškama unutar pretraživača
 default appointment length (in minutes)	calendar	hr	Početno vrijeme obveze (u minutama)
-default calendar filter	calendar	hr	Početna vrijednost kalendarskog filtra
-default calendar view	calendar	hr	Početni izgled kalendara
+default bcalendar filter	calendar	hr	Početna vrijednost kalendarskog filtra
+default bcalendar view	calendar	hr	Početni izgled kalendara
 default filter	admin	hr	Osnovni Filter
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	hr	Početno postavljeno trajanje novostvorenih obveza. Trajanje je u minutama, tj. 60 za 1 sat
 defines the size in minutes of the lines in the day view.	calendar	hr	Definira veličinu u minutama linija u dnevnom pregledu.
 delete a single entry by passing the id.	calendar	hr	Obriši jedan unos proslijeđujući polja
-delete an entire users calendar.	calendar	hr	Obriši korisnikov cijelokupni kalendar.
+delete an entire users bcalendar.	calendar	hr	Obriši korisnikov cijelokupni kalendar.
 delete selected contacts	calendar	hr	Obriši izabrane kontakte
 delete series	calendar	hr	Obriši serije
 delete single	calendar	hr	Obriši jedan
@@ -116,12 +116,12 @@ description	calendar	hr	Opis
 disable	calendar	hr	Onesposobi
 disabled	calendar	hr	Onesposobljeno
 display interval in day view	calendar	hr	Prikaži interval u dnevnom izgledu
-display mini calendars when printing	calendar	hr	Prikaži smanjene kalendare prilikom ispisa
+display mini bcalendars when printing	calendar	hr	Prikaži smanjene kalendare prilikom ispisa
 display status of events	calendar	hr	Prikaži status obveza
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	hr	Prikazuje vaš početno postavljen izgled kalendara na početnoj stranici (stranica koja se učita kada otvorite eGroupware ili kliknete na ikonu za početnu stranicu)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	hr	Prikazuje vaš početno postavljen izgled kalendara na početnoj stranici (stranica koja se učita kada otvorite eGroupware ili kliknete na ikonu za početnu stranicu)?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	hr	Da li želite biti obaviješteni o novim ili promijenjenim obvezama? Biti će te obaviješteni o promijenama kada ih sami napravite.<br>Obavijesti možete ograničiti na samo o određene promjene. Svaka obavijest uključuje događaje nabrojene gore. Sve promjene uključuju promjene naslova, opisa, sudionika, ali ne i odgovor sudionika. Ukoliko je vlasnik obveze zahtijevao neku obavijest, uvijek će dobiti sudionikov odgovor poput prihvata ali i odbijanja.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	hr	Da li želite primati redoviti sažetak vaših obveza na vaš e-mail?<br>Sažetak će biti poslan na vašu e-mail adresu ujutro toga dana ili u ponedjeljak za tjedne sažetke.<br>Sažetak će biti poslan samo ako imate obvezu taj dan ili tjedan.
-do you wish to autoload calendar holidays files dynamically?	admin	hr	Da li želite dinamičko automatizirano punjenje datoteka za praznike?
+do you wish to autoload bcalendar holidays files dynamically?	admin	hr	Da li želite dinamičko automatizirano punjenje datoteka za praznike?
 domestic	admin	hr	Domaći
 download	calendar	hr	Preuzmi sa poslužitelja
 download export file (uncheck to debug output in browser)	admin	hr	Preuzmi sa poslužitelja izvezenu datoteku (Odznači za prikaz poruka o izlaznim greškama unutar pretraživača)
@@ -148,7 +148,7 @@ export contacts	admin	hr	Izvezi Kontakte
 export file name	admin	hr	Izvezi Datoteku
 export from addressbook	admin	hr	Izvezi iz Adresara
 extended	calendar	hr	Produži
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	hr	Prošireni updates uvijek uključuju potpune detalje o obvezama. iCal-ove datoteke mogu uvezesti i određene kalendarske aplikacije.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	hr	Prošireni updates uvijek uključuju potpune detalje o obvezama. iCal-ove datoteke mogu uvezesti i određene kalendarske aplikacije.
 external participants	calendar	hr	Vanjski sudionici
 extra	admin	hr	Ekstra
 failed sending message to '%1' #%2 subject='%3', sender='%4' !!!	calendar	hr	Nisam uspio poslati poruku za '%1' #%2 subject='%3', sender='%4' !!!
@@ -176,7 +176,7 @@ global public and group public	calendar	hr	Global Public and group public
 global public only	calendar	hr	Samo javno globalno
 go!	calendar	hr	Kreni!
 grant addressbook access	common	hr	Dozvole Pristupa Adresaru
-grant calendar access	common	hr	Dozvoli pristup kalendaru
+grant bcalendar access	common	hr	Dozvoli pristup kalendaru
 group planner	calendar	hr	Grupni planer
 group public only	calendar	hr	Samo javna grupa
 here is your requested alarm.	calendar	hr	Ovo je vaš zahtijevani alarm
@@ -292,15 +292,15 @@ phone numbers	common	hr	Brojevi Telefona
 planner	calendar	hr	Planer
 planner by category	calendar	hr	Planer po kategoriji
 planner by user	calendar	hr	Planer po korisniku
-please confirm,accept,reject or examine changes in the corresponding entry in your calendar	calendar	hr	Molimo vas potvrdite, prihvatite, odbijte ili pregledajte promjene u odgovarajućem unosu u vašem kalendaru
+please confirm,accept,reject or examine changes in the corresponding entry in your bcalendar	calendar	hr	Molimo vas potvrdite, prihvatite, odbijte ili pregledajte promjene u odgovarajućem unosu u vašem kalendaru
 please enter a filename !!!	calendar	hr	Molimo vas unesite ime datoteke!!!
 please enter a name for that field !	admin	hr	Molim vas unesite naziv za to polje !
 postal	common	hr	Poštanski
 pref	admin	hr	pref
 prefix	admin	hr	Prefiks
 preselected group for entering the planner	calendar	hr	Predizabrana grupa za unos planera
-print calendars in black & white	calendar	hr	Ispis crno bijelog kalendara
-print the mini calendars	calendar	hr	Ispis smanjenih kalendara
+print bcalendars in black & white	calendar	hr	Ispis crno bijelog kalendara
+print the mini bcalendars	calendar	hr	Ispis smanjenih kalendara
 printer friendly	calendar	hr	Verzija za ispis
 privat	calendar	hr	Privatno
 private and global public	calendar	hr	Private and Global Public
@@ -342,10 +342,10 @@ send updates via email	common	hr	Send updates via EMail
 send/receive updates via email	calendar	hr	Send/Receive updates via EMail
 set a year only for one-time / non-regular holidays.	calendar	hr	Set a Year only for one-time / non-regular holidays.
 set new events to private	calendar	hr	Postavi nove događaju u privatno
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	hr	Da li će pozivi koje ste odbili i dalje biti prikazani u vašem kalendaru?<br>Možete ih prihvatiti kasnije (tj. kada su sukobi u rasporedu riješeni), ako su još uvijek prikazani u vašem kalendaru!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	hr	Da li će pozivi koje ste odbili i dalje biti prikazani u vašem kalendaru?<br>Možete ih prihvatiti kasnije (tj. kada su sukobi u rasporedu riješeni), ako su još uvijek prikazani u vašem kalendaru!
 should new events created as private by default ?	calendar	hr	Trebaju li se nove obvezei postaviti kao privatne?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	hr	Da li želite da neprijavljenji korisnici vide informacije o vašim obvezama? Možete dodati još jednu dodatnu zaporku, različitu od vaše uobičajne zaporke, radi zaštite vaših informacija. Informacije o vašim obvezama su u iCal formatu i uključuju samo vremena kada ste zauzeti. Ne uključuje ime događaja, opis ili lokaciju. URL informacija o vašim obvezama je: %1.
-should the mini calendars by printed / displayed in the printer friendly views ?	calendar	hr	Da li će se smanjeni kalendari ispisati / prikazati u verziji za ispis?
+should the mini bcalendars by printed / displayed in the printer friendly views ?	calendar	hr	Da li će se smanjeni kalendari ispisati / prikazati u verziji za ispis?
 should the printer friendly view be in black & white or in color (as in normal view)?	calendar	hr	Da li će se verzija za ispis prikazati crno-bijelo ili u boji?
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	hr	Da li bi se status sudionika obveze (prihvaćen, odbijen, ...) trebao prikazati nakon imena sudionika u zagradama?
 show birthday reminders on main screen	admin	hr	Pokaži rođendanske podsjetnike na glavnom ekranu
@@ -426,8 +426,8 @@ weekday starts on	calendar	hr	Početak radnog tjedna
 weekly	calendar	hr	Tjedno
 weekview	calendar	hr	Tjedni pregled
 when creating new events default set to private	calendar	hr	Prilikom stvaranja novih obveza početno postavi na privatno
-which events do you want to see when you enter the calendar.	calendar	hr	Koje obveze želite vidjeti kada otvorite kalendar.
-which of calendar view do you want to see, when you start calendar ?	calendar	hr	Koji kalendarski pregled želite imati kada pokrenete kalendar ?
+which events do you want to see when you enter the bcalendar.	calendar	hr	Koje obveze želite vidjeti kada otvorite kalendar.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	hr	Koji kalendarski pregled želite imati kada pokrenete kalendar ?
 work day ends on	calendar	hr	Radni dan završava u
 work day starts on	calendar	hr	Radni dan počinje u
 work phone	admin	hr	Telefon na poslu
@@ -440,8 +440,8 @@ you do not have permission to add alarms to this event !!!	calendar	hr	Nemate do
 you do not have permission to delete this alarm !!!	calendar	hr	Nemate dozvolu za brisanje ovog alarma !!!
 you do not have permission to enable/disable this alarm !!!	calendar	hr	Nemate dozvolu za aktiviranje/deaktiviranje ovog alarma!!!!
 you do not have permission to read this record!	calendar	hr	Nemate dozvolu čitanja ovog zapisa
-you have %1 high priority events on your calendar today.	common	hr	Danas imate %1 obveza visokog prioriteta.
-you have 1 high priority event on your calendar today.	common	hr	Danas imate 1 obvezu visokog proioriteta.
+you have %1 high priority events on your bcalendar today.	common	hr	Danas imate %1 obveza visokog prioriteta.
+you have 1 high priority event on your bcalendar today.	common	hr	Danas imate 1 obvezu visokog proioriteta.
 you have a meeting scheduled for %1	calendar	hr	Imate sastanak na rasporedu za %1
 you have not entered a title	calendar	hr	Nist unijeli ime
 you have not entered a valid date	calendar	hr	Niste unijeli važeći datum
@@ -454,7 +454,7 @@ you must select at least 1 column to display	admin	hr	Morate izabrati bar 1 kolu
 you need to set either a day or a occurence !!!	calendar	hr	You need to set either a day or a occurence !!!
 your meeting scheduled for %1 has been canceled	calendar	hr	Vaš sastanak na rasporedu za %1 je otkazan
 your meeting that had been scheduled for %1 has been rescheduled to %2	calendar	hr	Vaš sastanak zakazan za %1 je premiješten na %2
-your suggested time of <b> %1 - %2 </b> conflicts with the following existing calendar entries:	calendar	hr	Vaše predloženo vrijeme od<B> %1 - %2 </B> je u sukobu sa postojećim obvezama u kalendaru
+your suggested time of <b> %1 - %2 </b> conflicts with the following existing bcalendar entries:	calendar	hr	Vaše predloženo vrijeme od<B> %1 - %2 </B> je u sukobu sa postojećim obvezama u kalendaru
 zip code	common	hr	Poštanski Broj
 zip_note	admin	hr	<p><b>Obavijest:</b> Datoteka može biti zip kolekcija .csv, .vcf, ili .ldif datoteka.  Ipak, nemojte miješati vrste datoteka po uvozu.
 deleted	calendar	hr	Obrisano

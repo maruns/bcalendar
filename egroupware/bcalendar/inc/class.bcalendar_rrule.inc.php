@@ -3,12 +3,12 @@
  * eGroupWare - Calendar recurrence rules
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @copyright (c) 2009 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_rrule.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
+ * @version $Id: class.bcalendar_rrule.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
  */
 
 /**
@@ -17,12 +17,12 @@
  * The constructor accepts times only as DateTime (or decendents like egw_date) to work timezone-correct.
  * The timezone of the event is determined by timezone of the startime, other times get converted to that timezone.
  *
- * There's a static factory method calendar_rrule::event2rrule(array $event,$usertime=true), which converts an
- * event read by calendar_bo::read() or calendar_bo::search() to a rrule iterator.
+ * There's a static factory method bcalendar_rrule::event2rrule(array $event,$usertime=true), which converts an
+ * event read by bcalendar_bo::read() or bcalendar_bo::search() to a rrule iterator.
  *
  * The rrule iterator object can be casted to string, to get a human readable description of the rrule.
  *
- * There's an interactive test-form, if the class get's called directly: http://localhost/egroupware/calendar/inc/class.calendar_rrule.inc.php
+ * There's an interactive test-form, if the class get's called directly: http://localhost/egroupware/calendar/inc/class.bcalendar_rrule.inc.php
  *
  * @todo Integrate iCal import and export, so all recurrence code resides just in this class
  * @todo Implement COUNT, can be stored in enddate assuming counts are far smaller then timestamps (eg. < 1000 is a count)
@@ -272,7 +272,7 @@ class bcalendar_rrule implements Iterator
 
 		if ((int)$interval < 1)
 		{
-			$interval = 1;	// calendar stores no (extra) interval as null, so using default 1 here
+			$interval = 1;	// bcalendar stores no (extra) interval as null, so using default 1 here
 		}
 		$this->interval = (int)$interval;
 
@@ -632,10 +632,10 @@ class bcalendar_rrule implements Iterator
 	 * Get instance for a given event array
 	 *
 	 * @param array $event
-	 * @param boolean $usertime=true true: event timestamps are usertime (default for calendar_bo::(read|search), false: servertime
+	 * @param boolean $usertime=true true: event timestamps are usertime (default for bcalendar_bo::(read|search), false: servertime
 	 * @param string $to_tz			timezone for exports (null for event's timezone)
 	 *
-	 * @return calendar_rrule		false on error
+	 * @return bcalendar_rrule		false on error
 	 */
 	public static function event2rrule(array $event,$usertime=true,$to_tz=null)
 	{
@@ -646,7 +646,7 @@ class bcalendar_rrule implements Iterator
 
 		if (!isset(self::$tz_cache[$to_tz]))
 		{
-			self::$tz_cache[$to_tz] = calendar_timezones::DateTimeZone($to_tz);
+			self::$tz_cache[$to_tz] = bcalendar_timezones::DateTimeZone($to_tz);
 		}
 
 		self::rrule2tz($event, $time, $to_tz);
@@ -704,11 +704,11 @@ class bcalendar_rrule implements Iterator
 
 		if (!isset(self::$tz_cache[$event['tzid']]))
 		{
-			self::$tz_cache[$event['tzid']] = calendar_timezones::DateTimeZone($event['tzid']);
+			self::$tz_cache[$event['tzid']] = bcalendar_timezones::DateTimeZone($event['tzid']);
 		}
 		if (!isset(self::$tz_cache[$to_tz]))
 		{
-			self::$tz_cache[$to_tz] = calendar_timezones::DateTimeZone($to_tz);
+			self::$tz_cache[$to_tz] = bcalendar_timezones::DateTimeZone($to_tz);
 		}
 
 		$time = is_a($starttime,'DateTime') ?
@@ -756,13 +756,13 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && $_SERVER['SCRIPT_FILENAME'] == __FILE_
 	{
 		$now = new egw_time('now',new DateTimeZone($_REQUEST['tz'] = 'UTC'));
 		$_REQUEST['time'] = $now->format();
-		$_REQUEST['type'] = calendar_rrule::WEEKLY;
+		$_REQUEST['type'] = bcalendar_rrule::WEEKLY;
 		$_REQUEST['interval'] = 2;
 		$now->modify('2 month');
 		$_REQUEST['enddate'] = $now->format('Y-m-d');
 		$_REQUEST['user-tz'] = 'Europe/Berlin';
 	}
-	echo "<html>\n<head>\n\t<title>Test calendar_rrule class</title>\n</head>\n<body>\n<form method='GET'>\n";
+	echo "<html>\n<head>\n\t<title>Test bcalendar_rrule class</title>\n</head>\n<body>\n<form method='GET'>\n";
 	echo "<p>Date+Time: ".html::input('time',$_REQUEST['time']).
 		html::select('tz',$_REQUEST['tz'],egw_time::getTimezones())."</p>\n";
 	echo "<p>Type: ".html::select('type',$_REQUEST['type'],calendar_rrule::$types)."\n".

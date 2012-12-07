@@ -3,7 +3,7 @@
  * EGroupware - Calendar
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: setup.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
@@ -13,13 +13,13 @@ $setup_info['calendar']['name']    = 'calendar';
 $setup_info['calendar']['version'] = '1.9.004';
 $setup_info['calendar']['app_order'] = 3;
 $setup_info['calendar']['enable']  = 1;
-$setup_info['calendar']['index']   = 'calendar.calendar_uiviews.index';
+$setup_info['calendar']['index']   = 'bcalendar.bcalendar_uiviews.index';
 
 $setup_info['calendar']['license']  = 'GPL';
 $setup_info['calendar']['description'] =
-	'Powerful group calendar with meeting request system and ACL security.';
+	'Powerful group bcalendar with meeting request system and ACL security.';
 $setup_info['calendar']['note'] =
-	'The calendar has been completly rewritten for eGroupWare 1.2.';
+	'The bcalendar has been completly rewritten for eGroupWare 1.2.';
 $setup_info['calendar']['author'] = $setup_info['calendar']['maintainer'] = array(
 	'name'  => 'Ralf Becker',
 	'email' => 'RalfBecker@outdoor-training.de'
@@ -35,14 +35,14 @@ $setup_info['calendar']['tables'][] = 'egw_cal_timezones';
 
 /* The hooks this app includes, needed for hooks registration */
 $setup_info['calendar']['hooks']['admin'] = 'calendar_hooks::admin';
-$setup_info['calendar']['hooks']['deleteaccount'] = 'calendar.calendar_so.deleteaccount';
+$setup_info['calendar']['hooks']['deleteaccount'] = 'bcalendar.bcalendar_so.deleteaccount';
 $setup_info['calendar']['hooks']['home'] = 'calendar_hooks::home';
 $setup_info['calendar']['hooks']['preferences'] = 'calendar_hooks::preferences';
 $setup_info['calendar']['hooks']['settings'] = 'calendar_hooks::settings';
-$setup_info['calendar']['hooks']['sidebox_menu'] = 'calendar.calendar_ui.sidebox_menu';
+$setup_info['calendar']['hooks']['sidebox_menu'] = 'bcalendar.bcalendar_ui.sidebox_menu';
 $setup_info['calendar']['hooks']['search_link'] = 'calendar_hooks::search_link';
 $setup_info['calendar']['hooks']['config_validate'] = 'calendar_hooks::config_validate';
-$setup_info['calendar']['hooks']['timesheet_set'] = 'calendar.calendar_bo.timesheet_set';
+$setup_info['calendar']['hooks']['timesheet_set'] = 'bcalendar.bcalendar_bo.timesheet_set';
 $setup_info['calendar']['hooks']['export_limit'] = 'calendar_hooks::getAppExportLimit';
 
 /* Dependencies for this app to work */
@@ -55,7 +55,7 @@ $setup_info['calendar']['depends'][] = array(
 	 'versions' => Array('1.7','1.8','1.9')
 );
 
-// installation checks for calendar
+// installation checks for bcalendar
 $setup_info['calendar']['check_install'] = array(
 	// check if PEAR is availible
 	'' => array(

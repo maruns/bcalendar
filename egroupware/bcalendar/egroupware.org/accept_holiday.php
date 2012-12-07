@@ -4,7 +4,7 @@
  *
  * @link http://www.egroupware.org
  * @author Mark Peters <skeeter@phpgroupware.org>
- * @package calendar
+ * @package bcalendar
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: accept_holiday.php 27877 2009-09-21 07:56:45Z ralfbecker $
  */

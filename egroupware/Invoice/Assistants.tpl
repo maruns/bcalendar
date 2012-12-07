@@ -3,13 +3,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Raport dla {$company}</title>
+  <title>Raport asystentki {$company}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style type="text/css">
 /*<![CDATA[*/
 body {
-    width: 41cm;
-    padding: 0.5cm;
+    width: 18.2cm;
+    padding: 1.4cm;
     font-family: Arial,Helvetica,Garuda,sans-serif;
 }
 h1 {
@@ -101,7 +101,7 @@ th {
     clear: both;
 }
 #rt {
-    width: 14.5cm;
+    width: 11cm;
     border: 0;
 }
 #rt td, #rt th {
@@ -166,10 +166,10 @@ th {
     <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
-     cols="Data, Pacjent, Nazwa wizyty, Opis, Kategoria, Kwota zapłacona, Technik, Koszt technika, Materiały, Koszt asystenta, Suma kosztów, Wartość netto, VAT, Wielkość brutto"}
+     cols="Nazwa wizyty, Data, Dentysta, Kwota dla asystenta"}
     <div>
         {html_table table_attr='id="rt"' loop=$RateTable
-                    cols="technik, koszt technika, materiały, koszt asystentów, suma kosztów, wartość netto, kwota VAT, wartość brutto"}
+                    cols="dentysta, kwota dla asystenta"}
         <table id="sst">
             <tr><th>Razem do zapłaty:</th><th>{$sum}</th></tr>
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>

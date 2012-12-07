@@ -3,13 +3,13 @@
  * EGroupware - Calendar setup
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: tables_update.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
  */
 
-function calendar_v0_9_2to0_9_3update_owner($table, $field)
+function bcalendar_v0_9_2to0_9_3update_owner($table, $field)
 {
 	$GLOBALS['egw_setup']->oProc->query("select distinct($field) from $table");
 	if ($GLOBALS['egw_setup']->oProc->num_rows())
@@ -37,7 +37,7 @@ function calendar_v0_9_2to0_9_3update_owner($table, $field)
 }
 
 
-function calendar_upgrade0_9_3pre1()
+function bcalendar_upgrade0_9_3pre1()
 {
 	calendar_v0_9_2to0_9_3update_owner('webcal_entry','cal_create_by');
 	calendar_v0_9_2to0_9_3update_owner('webcal_entry_user','cal_login');
@@ -46,84 +46,84 @@ function calendar_upgrade0_9_3pre1()
 }
 
 
-function calendar_upgrade0_9_3pre2()
+function bcalendar_upgrade0_9_3pre2()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre3';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre3()
+function bcalendar_upgrade0_9_3pre3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre4';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre4()
+function bcalendar_upgrade0_9_3pre4()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre5';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre5()
+function bcalendar_upgrade0_9_3pre5()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre6';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre6()
+function bcalendar_upgrade0_9_3pre6()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre7';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre7()
+function bcalendar_upgrade0_9_3pre7()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre8';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre8()
+function bcalendar_upgrade0_9_3pre8()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre9';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre9()
+function bcalendar_upgrade0_9_3pre9()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3pre10';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3pre10()
+function bcalendar_upgrade0_9_3pre10()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.3';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_3()
+function bcalendar_upgrade0_9_3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.4pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_4pre1()
+function bcalendar_upgrade0_9_4pre1()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.4pre2';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_4pre2()
+function bcalendar_upgrade0_9_4pre2()
 {
 	$GLOBALS['egw_setup']->oProc->RenameColumn('webcal_entry', 'cal_create_by', 'cal_owner');
 	$GLOBALS['egw_setup']->oProc->AlterColumn('webcal_entry', 'cal_owner', array('type' => 'int', 'precision' => 4, 'nullable' => false));
@@ -132,56 +132,56 @@ function calendar_upgrade0_9_4pre2()
 }
 
 
-function calendar_upgrade0_9_4pre3()
+function bcalendar_upgrade0_9_4pre3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.4pre4';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_4pre4()
+function bcalendar_upgrade0_9_4pre4()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.4pre5';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_4pre5()
+function bcalendar_upgrade0_9_4pre5()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.4';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_4()
+function bcalendar_upgrade0_9_4()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.5pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_5pre1()
+function bcalendar_upgrade0_9_5pre1()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.5pre2';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_5pre2()
+function bcalendar_upgrade0_9_5pre2()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.5pre3';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_5()
+function bcalendar_upgrade0_9_5()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.6';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_6()
+function bcalendar_upgrade0_9_6()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.7pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_7pre1()
+function bcalendar_upgrade0_9_7pre1()
 {
 	$db2 = clone($GLOBALS['egw_setup']->db);
 
@@ -227,7 +227,7 @@ function calendar_upgrade0_9_7pre1()
 			$db2->query('SELECT groups FROM webcal_entry_groups WHERE cal_id='.$cal_id,__LINE__,__FILE__);
 			$db2->next_record();
 			$cal_group = $db2->f('groups');
-			$db2->query('INSERT INTO calendar_entry(cal_id,cal_owner,cal_group,cal_datetime,cal_mdatetime,cal_duration,cal_priority,cal_type,cal_access,cal_name,cal_description) '
+			$db2->query('INSERT INTO bcalendar_entry(cal_id,cal_owner,cal_group,cal_datetime,cal_mdatetime,cal_duration,cal_priority,cal_type,cal_access,cal_name,cal_description) '
 				.'VALUES('.$cal_id.",'".$cal_owner."','".$cal_group."',".$datetime.",".$moddatetime.",".$cal_duration.",".$cal_priority.",'".$cal_type."','".$cal_access."','".$cal_name."','".$cal_description."')",__LINE__,__FILE__);
 		}
 	}
@@ -259,7 +259,7 @@ function calendar_upgrade0_9_7pre1()
 			$cal_id = $GLOBALS['egw_setup']->oProc->f('cal_id');
 			$cal_login = $GLOBALS['egw_setup']->oProc->f('cal_login');
 			$cal_status = $GLOBALS['egw_setup']->oProc->f('cal_status');
-			$db2->query('INSERT INTO calendar_entry_user(cal_id,cal_login,cal_status) VALUES('.$cal_id.','.$cal_login.",'".$cal_status."')",__LINE__,__FILE__);
+			$db2->query('INSERT INTO bcalendar_entry_user(cal_id,cal_login,cal_status) VALUES('.$cal_id.','.$cal_login.",'".$cal_status."')",__LINE__,__FILE__);
 		}
 	}
 
@@ -303,7 +303,7 @@ function calendar_upgrade0_9_7pre1()
 			}
 			$cal_frequency = $GLOBALS['egw_setup']->oProc->f('cal_frequency');
 			$cal_days = $GLOBALS['egw_setup']->oProc->f('cal_days');
-			$db2->query('INSERT INTO calendar_entry_repeats(cal_id,cal_type,cal_use_end,cal_end,cal_frequency,cal_days) VALUES('.$cal_id.",'".$cal_type."',".$useend.",".$enddate.",".$cal_frequency.",'".$cal_days."')",__LINE__,__FILE__);
+			$db2->query('INSERT INTO bcalendar_entry_repeats(cal_id,cal_type,cal_use_end,cal_end,cal_frequency,cal_days) VALUES('.$cal_id.",'".$cal_type."',".$useend.",".$enddate.",".$cal_frequency.",'".$cal_days."')",__LINE__,__FILE__);
 		}
 	}
 
@@ -315,12 +315,12 @@ function calendar_upgrade0_9_7pre1()
 }
 
 
-function calendar_upgrade0_9_7pre2()
+function bcalendar_upgrade0_9_7pre2()
 {
 	$db2 = $GLOBALS['egw_setup']->db;
 
 	$GLOBALS['egw_setup']->oProc->RenameColumn('calendar_entry', 'cal_duration', 'cal_edatetime');
-	$GLOBALS['egw_setup']->oProc->query('SELECT cal_id,cal_datetime,cal_owner,cal_edatetime,cal_mdatetime FROM calendar_entry ORDER BY cal_id',__LINE__,__FILE__);
+	$GLOBALS['egw_setup']->oProc->query('SELECT cal_id,cal_datetime,cal_owner,cal_edatetime,cal_mdatetime FROM bcalendar_entry ORDER BY cal_id',__LINE__,__FILE__);
 	if($GLOBALS['egw_setup']->oProc->num_rows())
 	{
 		while($GLOBALS['egw_setup']->oProc->next_record())
@@ -332,7 +332,7 @@ function calendar_upgrade0_9_7pre2()
 			$datetime = $GLOBALS['egw_setup']->oProc->f('cal_datetime') - ((60 * 60) * $tz);
 			$mdatetime = $GLOBALS['egw_setup']->oProc->f('cal_mdatetime') - ((60 * 60) * $tz);
 			$edatetime = $datetime + (60 * $GLOBALS['egw_setup']->oProc->f('cal_edatetime'));
-			$db2->query('UPDATE calendar_entry SET cal_datetime='.$datetime.', cal_edatetime='.$edatetime.', cal_mdatetime='.$mdatetime.' WHERE cal_id='.$cal_id,__LINE__,__FILE__);
+			$db2->query('UPDATE bcalendar_entry SET cal_datetime='.$datetime.', cal_edatetime='.$edatetime.', cal_mdatetime='.$mdatetime.' WHERE cal_id='.$cal_id,__LINE__,__FILE__);
 		}
 	}
 
@@ -341,242 +341,242 @@ function calendar_upgrade0_9_7pre2()
 }
 
 
-function calendar_upgrade0_9_7pre3()
+function bcalendar_upgrade0_9_7pre3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.7';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_7()
+function bcalendar_upgrade0_9_7()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.8pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_8pre1()
+function bcalendar_upgrade0_9_8pre1()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.8pre2';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_8pre2()
+function bcalendar_upgrade0_9_8pre2()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.8pre3';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_8pre3()
+function bcalendar_upgrade0_9_8pre3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.8pre4';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_8pre4()
+function bcalendar_upgrade0_9_8pre4()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.8pre5';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_8pre5()
+function bcalendar_upgrade0_9_8pre5()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.9pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_9pre1()
+function bcalendar_upgrade0_9_9pre1()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.9';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_9()
+function bcalendar_upgrade0_9_9()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre1';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre1()
+function bcalendar_upgrade0_9_10pre1()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre2';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre2()
+function bcalendar_upgrade0_9_10pre2()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre3';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre3()
+function bcalendar_upgrade0_9_10pre3()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre4';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre4()
+function bcalendar_upgrade0_9_10pre4()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre5';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre5()
+function bcalendar_upgrade0_9_10pre5()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre6';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre6()
+function bcalendar_upgrade0_9_10pre6()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre7';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre7()
+function bcalendar_upgrade0_9_10pre7()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre8';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre8()
+function bcalendar_upgrade0_9_10pre8()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre9';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre9()
+function bcalendar_upgrade0_9_10pre9()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre10';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre10()
+function bcalendar_upgrade0_9_10pre10()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre11';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre11()
+function bcalendar_upgrade0_9_10pre11()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre12';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre12()
+function bcalendar_upgrade0_9_10pre12()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre13';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre13()
+function bcalendar_upgrade0_9_10pre13()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre14';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre14()
+function bcalendar_upgrade0_9_10pre14()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre15';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre15()
+function bcalendar_upgrade0_9_10pre15()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre16';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre16()
+function bcalendar_upgrade0_9_10pre16()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre17';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre17()
+function bcalendar_upgrade0_9_10pre17()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre18';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre18()
+function bcalendar_upgrade0_9_10pre18()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre19';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre19()
+function bcalendar_upgrade0_9_10pre19()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre20';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre20()
+function bcalendar_upgrade0_9_10pre20()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre21';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre21()
+function bcalendar_upgrade0_9_10pre21()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre22';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre22()
+function bcalendar_upgrade0_9_10pre22()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre23';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre23()
+function bcalendar_upgrade0_9_10pre23()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre24';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre24()
+function bcalendar_upgrade0_9_10pre24()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre25';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre25()
+function bcalendar_upgrade0_9_10pre25()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre26';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre26()
+function bcalendar_upgrade0_9_10pre26()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre27';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre27()
+function bcalendar_upgrade0_9_10pre27()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10pre28';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10pre28()
+function bcalendar_upgrade0_9_10pre28()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.10';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_10()
+function bcalendar_upgrade0_9_10()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.001';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_11()
+function bcalendar_upgrade0_9_11()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.001';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_001()
+function bcalendar_upgrade0_9_11_001()
 {
 	$db2 = $GLOBALS['egw_setup']->db;
 
@@ -598,7 +598,7 @@ function calendar_upgrade0_9_11_001()
 		define(M_SATURDAY,64);
 	}
 
-// calendar_entry => phpgw_cal
+// bcalendar_entry => phpgw_cal
 	$GLOBALS['egw_setup']->oProc->CreateTable('phpgw_cal',
 		Array(
 			'fd' => array(
@@ -622,7 +622,7 @@ function calendar_upgrade0_9_11_001()
 		)
 	);
 
-	$GLOBALS['egw_setup']->oProc->query('SELECT * FROM calendar_entry',__LINE__,__FILE__);
+	$GLOBALS['egw_setup']->oProc->query('SELECT * FROM bcalendar_entry',__LINE__,__FILE__);
 	while($GLOBALS['egw_setup']->oProc->next_record())
 	{
 		$id = $GLOBALS['egw_setup']->oProc->f('cal_id');
@@ -654,7 +654,7 @@ function calendar_upgrade0_9_11_001()
 	}
 	$GLOBALS['egw_setup']->oProc->DropTable('calendar_entry');
 
-// calendar_entry_repeats => phpgw_cal_repeats
+// bcalendar_entry_repeats => phpgw_cal_repeats
 	$GLOBALS['egw_setup']->oProc->CreateTable('phpgw_cal_repeats',
 		Array(
 			'fd' => array(
@@ -671,7 +671,7 @@ function calendar_upgrade0_9_11_001()
 			'uc' => array()
 		)
 	);
-	$GLOBALS['egw_setup']->oProc->query('SELECT * FROM calendar_entry_repeats',__LINE__,__FILE__);
+	$GLOBALS['egw_setup']->oProc->query('SELECT * FROM bcalendar_entry_repeats',__LINE__,__FILE__);
 	while($GLOBALS['egw_setup']->oProc->next_record())
 	{
 		$id = $GLOBALS['egw_setup']->oProc->f('cal_id');
@@ -711,7 +711,7 @@ function calendar_upgrade0_9_11_001()
 	}
 	$GLOBALS['egw_setup']->oProc->DropTable('calendar_entry_repeats');
 
-// calendar_entry_user => phpgw_cal_user
+// bcalendar_entry_user => phpgw_cal_user
 	$GLOBALS['egw_setup']->oProc->RenameTable('calendar_entry_user','phpgw_cal_user');
 
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.002';
@@ -719,14 +719,14 @@ function calendar_upgrade0_9_11_001()
 }
 
 
-function calendar_upgrade0_9_11_002()
+function bcalendar_upgrade0_9_11_002()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.003';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_003()
+function bcalendar_upgrade0_9_11_003()
 {
 	$GLOBALS['egw_setup']->oProc->CreateTable('phpgw_cal_holidays',
 		Array(
@@ -747,21 +747,21 @@ function calendar_upgrade0_9_11_003()
 }
 
 
-function calendar_upgrade0_9_11_004()
+function bcalendar_upgrade0_9_11_004()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.005';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_005()
+function bcalendar_upgrade0_9_11_005()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.006';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_006()
+function bcalendar_upgrade0_9_11_006()
 {
 	$GLOBALS['egw_setup']->oProc->DropTable('phpgw_cal_holidays');
 	$GLOBALS['egw_setup']->oProc->CreateTable('phpgw_cal_holidays',
@@ -784,7 +784,7 @@ function calendar_upgrade0_9_11_006()
 }
 
 
-function calendar_upgrade0_9_11_007()
+function bcalendar_upgrade0_9_11_007()
 {
 	$GLOBALS['egw_setup']->oProc->query('DELETE FROM phpgw_cal_holidays');
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal_holidays','mday',array('type' => 'int', 'precision' => 8,'nullable' => False, 'default' => '0'));
@@ -797,14 +797,14 @@ function calendar_upgrade0_9_11_007()
 }
 
 
-function calendar_upgrade0_9_11_008()
+function bcalendar_upgrade0_9_11_008()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.009';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_009()
+function bcalendar_upgrade0_9_11_009()
 {
 	$GLOBALS['egw_setup']->oProc->query('DELETE FROM phpgw_cal_holidays');
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal_holidays','observance_rule',array('type' => 'int', 'precision' => 8,'nullable' => False, 'default' => '0'));
@@ -814,33 +814,33 @@ function calendar_upgrade0_9_11_009()
 }
 
 
-function calendar_upgrade0_9_11_010()
+function bcalendar_upgrade0_9_11_010()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.11.011';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_11_011()
+function bcalendar_upgrade0_9_11_011()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.13.001';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_12()
+function bcalendar_upgrade0_9_12()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.13.001';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
-function calendar_upgrade0_9_13_001()
+function bcalendar_upgrade0_9_13_001()
 {
 	$GLOBALS['setup_info']['calendar']['currentver'] = '0.9.13.002';
 	return $GLOBALS['setup_info']['calendar']['currentver'];
 }
 
 
-function calendar_upgrade0_9_13_002()
+function bcalendar_upgrade0_9_13_002()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal','reference',array('type' => 'int', 'precision' => 8,'nullable' => False, 'default' => '0'));
 
@@ -849,7 +849,7 @@ function calendar_upgrade0_9_13_002()
 }
 
 
-function calendar_upgrade0_9_13_003()
+function bcalendar_upgrade0_9_13_003()
 {
 	$GLOBALS['egw_setup']->oProc->CreateTable('phpgw_cal_alarm',
 		Array(
@@ -875,7 +875,7 @@ function calendar_upgrade0_9_13_003()
 }
 
 
-function calendar_upgrade0_9_13_004()
+function bcalendar_upgrade0_9_13_004()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal_alarm','alarm_enabled',array('type' => 'int', 'precision' => 4,'nullable' => False, 'default' => '1'));
 
@@ -884,7 +884,7 @@ function calendar_upgrade0_9_13_004()
 }
 
 
-function calendar_upgrade0_9_13_005()
+function bcalendar_upgrade0_9_13_005()
 {
 	$calendar_data = Array();
 	$GLOBALS['egw_setup']->oProc->query('SELECT cal_id, category FROM phpgw_cal',__LINE__,__FILE__);
@@ -905,7 +905,7 @@ function calendar_upgrade0_9_13_005()
 }
 
 
-function calendar_upgrade0_9_13_006()
+function bcalendar_upgrade0_9_13_006()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal_repeats','recur_exception',array('type' => 'varchar', 'precision' => 255, 'nullable' => True, 'default' => ''));
 
@@ -915,7 +915,7 @@ function calendar_upgrade0_9_13_006()
 
 
 
-function calendar_upgrade0_9_13_007()
+function bcalendar_upgrade0_9_13_007()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('phpgw_cal_user','cal_type',array(
 		'type' => 'varchar',
@@ -944,7 +944,7 @@ function calendar_upgrade0_9_13_007()
 
 
 
-function calendar_upgrade0_9_16_001()
+function bcalendar_upgrade0_9_16_001()
 {
 	// this is to set the default as schema_proc was not setting an empty default
 	$GLOBALS['egw_setup']->oProc->AlterColumn('phpgw_cal_user','cal_type',array(
@@ -962,7 +962,7 @@ function calendar_upgrade0_9_16_001()
 // the following series of updates add some indices, to speedup the selects
 
 
-function calendar_upgrade0_9_16_002()
+function bcalendar_upgrade0_9_16_002()
 {
 	$GLOBALS['egw_setup']->oProc->RefreshTable('phpgw_cal_repeats',array(
 		'fd' => array(
@@ -986,7 +986,7 @@ function calendar_upgrade0_9_16_002()
 
 
 
-function calendar_upgrade0_9_16_003()
+function bcalendar_upgrade0_9_16_003()
 {
 	$GLOBALS['egw_setup']->oProc->RefreshTable('phpgw_cal_user',array(
 		'fd' => array(
@@ -1007,7 +1007,7 @@ function calendar_upgrade0_9_16_003()
 
 
 
-function calendar_upgrade0_9_16_004()
+function bcalendar_upgrade0_9_16_004()
 {
 	$GLOBALS['egw_setup']->oProc->RefreshTable('phpgw_cal_holidays',array(
 		'fd' => array(
@@ -1032,7 +1032,7 @@ function calendar_upgrade0_9_16_004()
 
 
 
-function calendar_upgrade0_9_16_005()
+function bcalendar_upgrade0_9_16_005()
 {
 	// creates uid's for all entries which do not have unique ones, they are '-@domain.com'
 	// very old entries even have an empty uid, see 0.9.16.006 update
@@ -1054,15 +1054,15 @@ function calendar_upgrade0_9_16_005()
 
 
 
-function calendar_upgrade0_9_16_006()
+function bcalendar_upgrade0_9_16_006()
 {
 	// re-run the update as very old entries only have an empty uid
-	return calendar_upgrade0_9_16_005();
+	return bcalendar_upgrade0_9_16_005();
 }
 
 
 
-function calendar_upgrade0_9_16_007()
+function bcalendar_upgrade0_9_16_007()
 {
 	// update the sequenzes for refreshed tables (postgres only)
 	$GLOBALS['egw_setup']->oProc->UpdateSequence('phpgw_cal_holidays','hol_id');
@@ -1073,7 +1073,7 @@ function calendar_upgrade0_9_16_007()
 
 
 
-function calendar_upgrade1_0_0()
+function bcalendar_upgrade1_0_0()
 {
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal','uid','cal_uid');
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal','owner','cal_owner');
@@ -1095,7 +1095,7 @@ function calendar_upgrade1_0_0()
 
 
 
-function calendar_upgrade1_0_0_001()
+function bcalendar_upgrade1_0_0_001()
 {
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal_holidays','locale','hol_locale');
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal_holidays','name','hol_name');
@@ -1111,7 +1111,7 @@ function calendar_upgrade1_0_0_001()
 
 
 
-function calendar_upgrade1_0_0_002()
+function bcalendar_upgrade1_0_0_002()
 {
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal_user','cal_login','cal_user_id');
 	$GLOBALS['egw_setup']->oProc->RenameColumn('phpgw_cal_user','cal_type','cal_user_type');
@@ -1122,7 +1122,7 @@ function calendar_upgrade1_0_0_002()
 
 
 
-function calendar_upgrade1_0_0_003()
+function bcalendar_upgrade1_0_0_003()
 {
 	$GLOBALS['egw_setup']->oProc->AlterColumn('phpgw_cal','cal_title',array(
 		'type' => 'varchar',
@@ -1137,7 +1137,7 @@ function calendar_upgrade1_0_0_003()
 
 
 
-function calendar_upgrade1_0_0_004()
+function bcalendar_upgrade1_0_0_004()
 {
 	$GLOBALS['egw_setup']->oProc->RefreshTable('phpgw_cal_repeats',array(
 		'fd' => array(
@@ -1161,9 +1161,9 @@ function calendar_upgrade1_0_0_004()
 
 
 
-function calendar_upgrade1_0_0_005()
+function bcalendar_upgrade1_0_0_005()
 {
-	// change prefix of all calendar tables to egw_
+	// change prefix of all bcalendar tables to egw_
 	foreach(array('cal_user','cal_repeats','cal_extra','cal_holidays','cal') as $name)
 	{
 		$GLOBALS['egw_setup']->oProc->RenameTable('phpgw_'.$name,'egw_'.$name);
@@ -1234,7 +1234,7 @@ function calendar_upgrade1_0_0_005()
 
 
 
-function calendar_upgrade1_0_1_001()
+function bcalendar_upgrade1_0_1_001()
 {
 	/* done by RefreshTable() anyway
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal_user','cal_recur_date',array(
@@ -1262,7 +1262,7 @@ function calendar_upgrade1_0_1_001()
 
 
 
-function calendar_upgrade1_0_1_002()
+function bcalendar_upgrade1_0_1_002()
 {
 	$GLOBALS['egw_setup']->oProc->DropColumn('egw_cal',array(
 		'fd' => array(
@@ -1318,7 +1318,7 @@ function calendar_upgrade1_0_1_002()
 
 
 
-function calendar_upgrade1_0_1_003()
+function bcalendar_upgrade1_0_1_003()
 {
 	$GLOBALS['egw_setup']->oProc->DropColumn('egw_cal_repeats',array(
 		'fd' => array(
@@ -1361,7 +1361,7 @@ function calendar_upgrade1_0_1_003()
 
 
 
-function calendar_upgrade1_0_1_004()
+function bcalendar_upgrade1_0_1_004()
 {
 	$GLOBALS['egw_setup']->oProc->AlterColumn('egw_cal_user','cal_id',array(
 		'type' => 'int',
@@ -1382,7 +1382,7 @@ function calendar_upgrade1_0_1_004()
 
 
 
-function calendar_upgrade1_0_1_005()
+function bcalendar_upgrade1_0_1_005()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal_user','cal_quantity',array(
 		'type' => 'int',
@@ -1396,7 +1396,7 @@ function calendar_upgrade1_0_1_005()
 
 
 
-function calendar_upgrade1_0_1_006()
+function bcalendar_upgrade1_0_1_006()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','cal_non_blocking',array(
 		'type' => 'int',
@@ -1410,7 +1410,7 @@ function calendar_upgrade1_0_1_006()
 
 
 
-function calendar_upgrade1_0_1_007()
+function bcalendar_upgrade1_0_1_007()
 {
 	$GLOBALS['egw_setup']->db->update('egw_cal_repeats',array('recur_exception' => null),array('recur_exception' => ''),__LINE__,__FILE__,'calendar');
 
@@ -1424,7 +1424,7 @@ function calendar_upgrade1_0_1_007()
 
 
 
-function calendar_upgrade1_0_1_008()
+function bcalendar_upgrade1_0_1_008()
 {
 	$config =& CreateObject('phpgwapi.config','calendar');
 	$config_data = $config->read_repository();
@@ -1457,7 +1457,7 @@ function calendar_upgrade1_0_1_008()
 
 
 
-function calendar_upgrade1_0_1_009()
+function bcalendar_upgrade1_0_1_009()
 {
 	$db2 = clone($GLOBALS['egw_setup']->db);
 	$add_groups = array();
@@ -1499,16 +1499,16 @@ function calendar_upgrade1_0_1_009()
 
 
 
-function calendar_upgrade1_2()
+function bcalendar_upgrade1_2()
 {
 	// get old alarms (saved before 1.2) working again
-	$GLOBALS['egw_setup']->db->query("UPDATE egw_async SET async_method ='calendar.bocalupdate.send_alarm' WHERE async_method ='calendar.bocalendar.send_alarm'",__LINE__,__FILE__);
+	$GLOBALS['egw_setup']->db->query("UPDATE egw_async SET async_method ='bcalendar.bocalupdate.send_alarm' WHERE async_method ='bcalendar.bocalendar.send_alarm'",__LINE__,__FILE__);
 
 	return $GLOBALS['setup_info']['calendar']['currentver'] = '1.2.001';
 }
 
 
-function calendar_upgrade1_2_001()
+function bcalendar_upgrade1_2_001()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','cal_special',array(
 		'type' => 'int',
@@ -1520,13 +1520,13 @@ function calendar_upgrade1_2_001()
 }
 
 
-function calendar_upgrade1_3_001()
+function bcalendar_upgrade1_3_001()
 {
 	return $GLOBALS['setup_info']['calendar']['currentver'] = '1.4';
 }
 
 
-function calendar_upgrade1_4()
+function bcalendar_upgrade1_4()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','cal_etag',array(
 		'type' => 'int',
@@ -1538,7 +1538,7 @@ function calendar_upgrade1_4()
 }
 
 
-function calendar_upgrade1_5()
+function bcalendar_upgrade1_5()
 {
 	$GLOBALS['egw_setup']->oProc->DropColumn('egw_cal',array(
 		'fd' => array(
@@ -1598,7 +1598,7 @@ function calendar_upgrade1_5()
 }
 
 
-function calendar_upgrade1_5_001()
+function bcalendar_upgrade1_5_001()
 {
 	$GLOBALS['egw_setup']->oProc->AlterColumn('egw_cal_user','cal_id',array(
 		'type' => 'int',
@@ -1615,15 +1615,15 @@ function calendar_upgrade1_5_001()
 }
 
 
-function calendar_upgrade1_5_002()
+function bcalendar_upgrade1_5_002()
 {
 	// update the alarm methods
 	$async = new asyncservice();
 	foreach((array)$async->read('cal:%') as $id => $job)
 	{
-		if ($job['method'] == 'calendar.bocalupdate.send_alarm')
+		if ($job['method'] == 'bcalendar.bocalupdate.send_alarm')
 		{
-			$job['method'] = 'calendar.calendar_boupdate.send_alarm';
+			$job['method'] = 'bcalendar.bcalendar_boupdate.send_alarm';
 			$async->write($job,true);
 		}
 	}
@@ -1637,7 +1637,7 @@ function calendar_upgrade1_5_002()
  *
  * @return string
  */
-function calendar_upgrade1_6()
+function bcalendar_upgrade1_6()
 {
 	// Set UID of series exception to UID of series master
 	// update cal_etag, cal_modified and cal_modifier to distribute changes on GroupDAV devices
@@ -1694,7 +1694,7 @@ function calendar_upgrade1_6()
  *
  * @return string
  */
-function calendar_upgrade1_6_003()
+function bcalendar_upgrade1_6_003()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','cal_creator',array(
 		'type' => 'int',
@@ -1755,7 +1755,7 @@ function calendar_upgrade1_6_003()
  *
  * @return string
  */
-function calendar_upgrade1_7_001()
+function bcalendar_upgrade1_7_001()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal_user','cal_role',array(
 		'type' => 'varchar',
@@ -1771,7 +1771,7 @@ function calendar_upgrade1_7_001()
  *
  * @return string
  */
-function calendar_upgrade1_7_002()
+function bcalendar_upgrade1_7_002()
 {
 	$GLOBALS['egw_setup']->oProc->CreateTable('egw_cal_timezones',array(
 		'fd' => array(
@@ -1798,7 +1798,7 @@ function calendar_upgrade1_7_002()
  *
  * @return string
  */
-function calendar_upgrade1_7_003()
+function bcalendar_upgrade1_7_003()
 {
 	$GLOBALS['egw_setup']->oProc->AlterColumn('egw_cal_user','cal_user_type',array(
 		'type' => 'varchar',
@@ -1841,11 +1841,11 @@ function calendar_upgrade1_7_003()
 }
 
 /**
- * Adding timezone id column, to fully support timezones in calendar
+ * Adding timezone id column, to fully support timezones in bcalendar
  *
  * @return string
  */
-function calendar_upgrade1_7_004()
+function bcalendar_upgrade1_7_004()
 {
 	$GLOBALS['egw_setup']->oProc->AlterColumn('egw_cal_dates','cal_start',array(
 		'type' => 'int',
@@ -1866,7 +1866,7 @@ function calendar_upgrade1_7_004()
 	));
 
 	// set id of server timezone for existing events, as that's the timezone their recurrences are using
-	if (($tzid = date_default_timezone_get()) && ($tz_id = calendar_timezones::tz2id($tzid)))
+	if (($tzid = date_default_timezone_get()) && ($tz_id = bcalendar_timezones::tz2id($tzid)))
 	{
 		$GLOBALS['egw_setup']->db->query('UPDATE egw_cal SET tz_id='.(int)$tz_id,__LINE__,__FILE__);
 	}
@@ -1880,7 +1880,7 @@ function calendar_upgrade1_7_004()
  *
  * @return string
  */
-function calendar_upgrade1_7_005()
+function bcalendar_upgrade1_7_005()
 {
 	calendar_timezones::import_tz_aliases();
 
@@ -1893,7 +1893,7 @@ function calendar_upgrade1_7_005()
  *
  * @return string
  */
-function calendar_upgrade1_7_006()
+function bcalendar_upgrade1_7_006()
 {
 	foreach($GLOBALS['egw_setup']->db->query('SELECT * FROM egw_cal_dates
 		WHERE (cal_end-cal_start)%86400=86340',__LINE__,__FILE__) as $row)
@@ -1922,7 +1922,7 @@ function calendar_upgrade1_7_006()
  *
  * @return string
  */
-function calendar_upgrade1_7_007()
+function bcalendar_upgrade1_7_007()
 {
 	// Set UID of series exception to UID of series master
 	// update cal_etag,cal_modified and cal_modifier to distribute changes on GroupDAV devices
@@ -1943,11 +1943,11 @@ function calendar_upgrade1_7_007()
 }
 
 /**
- * Create an index over egw_cal_user.cal_user_type and cal_user_id, to speed up calendar queries
+ * Create an index over egw_cal_user.cal_user_type and cal_user_id, to speed up bcalendar queries
  *
  * @return string
  */
-function calendar_upgrade1_7_008()
+function bcalendar_upgrade1_7_008()
 {
 	$GLOBALS['egw_setup']->oProc->CreateIndex('egw_cal_user',array('cal_user_type','cal_user_id'));
 
@@ -1955,11 +1955,11 @@ function calendar_upgrade1_7_008()
 }
 
 /**
- * Create an index over egw_cal.cal_uid and cal_owner, to speed up calendar queries specially sync
+ * Create an index over egw_cal.cal_uid and cal_owner, to speed up bcalendar queries specially sync
  *
  * @return string
  */
-function calendar_upgrade1_7_009()
+function bcalendar_upgrade1_7_009()
 {
 	$GLOBALS['egw_setup']->oProc->CreateIndex('egw_cal','cal_uid');
 	$GLOBALS['egw_setup']->oProc->CreateIndex('egw_cal','cal_owner');
@@ -1967,7 +1967,7 @@ function calendar_upgrade1_7_009()
 	return $GLOBALS['setup_info']['calendar']['currentver'] = '1.7.010';
 }
 
-function calendar_upgrade1_7_010()
+function bcalendar_upgrade1_7_010()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','cal_deleted',array(
 		'type' => 'bool',
@@ -1979,12 +1979,12 @@ function calendar_upgrade1_7_010()
 	return $GLOBALS['setup_info']['calendar']['currentver'] = '1.9.001';	// was 1.7.011
 }
 
-function calendar_upgrade1_7_011()
+function bcalendar_upgrade1_7_011()
 {
 	return $GLOBALS['setup_info']['calendar']['currentver'] = '1.9.001';
 }
 
-function calendar_upgrade1_8()
+function bcalendar_upgrade1_8()
 {
 	calendar_upgrade1_7_010();
 
@@ -1998,7 +1998,7 @@ function calendar_upgrade1_8()
  *
  * @return string
  */
-function calendar_upgrade1_9_001()
+function bcalendar_upgrade1_9_001()
 {
 	// delete in the past wrongly created entries for a single recurrence, which mess up the update, beside being wrong anyway
 	$GLOBALS['egw_setup']->db->delete('egw_api_content_history',array(
@@ -2016,7 +2016,7 @@ function calendar_upgrade1_9_001()
 		'fd' => array(
 			'cal_id' => array('type' => 'auto','nullable' => False),
 			'cal_uid' => array('type' => 'varchar','precision' => '255','nullable' => False,'comment' => 'unique id of event(-series)'),
-			'cal_owner' => array('type' => 'int','precision' => '4','nullable' => False,'comment' => 'event owner / calendar'),
+			'cal_owner' => array('type' => 'int','precision' => '4','nullable' => False,'comment' => 'event owner / bcalendar'),
 			'cal_category' => array('type' => 'varchar','precision' => '30','comment' => 'category id'),
 			'cal_modified' => array('type' => 'int','precision' => '8','comment' => 'ts of last modification'),
 			'cal_priority' => array('type' => 'int','precision' => '2','nullable' => False,'default' => '2'),
@@ -2051,7 +2051,7 @@ function calendar_upgrade1_9_001()
 /**
  * Add column to store CalDAV name given by client
  */
-function calendar_upgrade1_9_002()
+function bcalendar_upgrade1_9_002()
 {
 	$GLOBALS['egw_setup']->oProc->AddColumn('egw_cal','caldav_name',array(
 		'type' => 'varchar',
@@ -2071,7 +2071,7 @@ function calendar_upgrade1_9_002()
 /**
  * Add index for cal_modified and cal_user_modified to improve ctag and etag generation on big installtions
  */
-function calendar_upgrade1_9_003()
+function bcalendar_upgrade1_9_003()
 {
 	$GLOBALS['egw_setup']->oProc->CreateIndex('egw_cal','cal_modified');
 	$GLOBALS['egw_setup']->oProc->CreateIndex('egw_cal_user','cal_user_modified');

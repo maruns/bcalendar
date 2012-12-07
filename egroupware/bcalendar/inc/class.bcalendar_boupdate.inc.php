@@ -3,15 +3,15 @@
  * EGroupware - Calendar's buisness-object - access + update
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @copyright (c) 2005-11 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_boupdate.inc.php 40145 2012-08-14 17:04:50Z ralfbecker $
+ * @version $Id: class.bcalendar_boupdate.inc.php 40145 2012-08-14 17:04:50Z ralfbecker $
  */
 
-// types of messsages send by calendar_boupdate::send_update
+// types of messsages send by bcalendar_boupdate::send_update
 define('MSG_DELETED',0);
 define('MSG_MODIFIED',1);
 define('MSG_ADDED',2);
@@ -23,7 +23,7 @@ define('MSG_DISINVITE',7);
 define('MSG_DELEGATED',8);
 
 /**
- * Class to access AND manipulate all calendar data (business object)
+ * Class to access AND manipulate all bcalendar data (business object)
  *
  * The new UI, BO and SO classes have a strikt definition, in which time-zone they operate:
  *  UI only operates in user-time, so there have to be no conversation at all !!!
@@ -36,10 +36,10 @@ define('MSG_DELEGATED',8);
  * All new BO code (should be true for eGW in general) NEVER use any $_REQUEST ($_POST or $_GET) vars itself.
  * Nor does it store the state of any UI-elements (eg. cat-id selectbox). All this is the task of the UI class(es) !!!
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of the bocal class !!!
  */
 
-class bcalendar_boupdate extends calendar_bo
+class bcalendar_boupdate extends bcalendar_bo
 {
 	/**
 	 * Category ACL allowing to add a given category
@@ -140,7 +140,7 @@ class bcalendar_boupdate extends calendar_bo
 			if (!is_array($event['participants']) || !count($event['participants']))
 			{
 				$status = $event['owner'] == $this->user ? 'A' : 'U';
-				$status = calendar_so::combine_status($status, 1, 'CHAIR');
+				$status = bcalendar_so::combine_status($status, 1, 'CHAIR');
 				$event['participants'] = array($event['owner'] => $status);
 			}
 		}
@@ -205,7 +205,7 @@ class bcalendar_boupdate extends calendar_bo
 						calendar_so::split_status($status,$q,$r);
 						if ($status != 'U')
 						{
-							$event['participants'][$uid] = calendar_so::combine_status('U',$q,$r);
+							$event['participants'][$uid] = bcalendar_so::combine_status('U',$q,$r);
 							// todo: report reset status to user
 						}
 					}
@@ -918,7 +918,7 @@ class bcalendar_boupdate extends calendar_bo
 		{
 			return False;	// no rights
 		}
-		// need to load calendar translations and set currentapp, so calendar can reload a different lang
+		// need to load bcalendar translations and set currentapp, so bcalendar can reload a different lang
 		translation::add_app('calendar');
 		$GLOBALS['egw_info']['flags']['currentapp'] = 'calendar';
 
@@ -935,7 +935,7 @@ class bcalendar_boupdate extends calendar_bo
 	}
 
 	/**
-	 * saves an event to the database, does NOT do any notifications, see calendar_boupdate::update for that
+	 * saves an event to the database, does NOT do any notifications, see bcalendar_boupdate::update for that
 	 *
 	 * This methode converts from user to server time and handles the insertion of users and dates of repeating events
 	 *
@@ -1014,9 +1014,9 @@ class bcalendar_boupdate extends calendar_bo
 			if (isset($event[$ts])) $event[$ts] = $event[$ts] ? $this->date2ts($event[$ts],true) : 0;
 		}
 		// convert tzid name to integer tz_id, of set user default
-		if (empty($event['tzid']) || !($event['tz_id'] = calendar_timezones::tz2id($event['tzid'])))
+		if (empty($event['tzid']) || !($event['tz_id'] = bcalendar_timezones::tz2id($event['tzid'])))
 		{
-			$event['tz_id'] = calendar_timezones::tz2id($event['tzid'] = egw_time::$user_timezone->getName());
+			$event['tz_id'] = bcalendar_timezones::tz2id($event['tzid'] = egw_time::$user_timezone->getName());
 		}
 		// same with the recur exceptions
 		if (isset($event['recur_exception']) && is_array($event['recur_exception']))
@@ -1436,7 +1436,7 @@ class bcalendar_boupdate extends calendar_bo
 
 		$event_arr['link']['field'] = lang('URL');
 		$eventStart_arr = $this->date2array($event['start']); // give this as 'date' to the link to pick the right recurrence for the participants state
-		$link = $GLOBALS['egw_info']['server']['webserver_url'].'/index.php?menuaction=calendar.calendar_uiforms.edit&cal_id='.$event['id'].'&date='.$eventStart_arr['full'].'&no_popup=1';
+		$link = $GLOBALS['egw_info']['server']['webserver_url'].'/index.php?menuaction=bcalendar.bcalendar_uiforms.edit&cal_id='.$event['id'].'&date='.$eventStart_arr['full'].'&no_popup=1';
 		// if url is only a path, try guessing the rest ;-)
 		if ($link[0] == '/')
 		{
@@ -1449,11 +1449,11 @@ class bcalendar_boupdate extends calendar_bo
 		/* this is needed for notification-app
 		 * notification-app creates the link individual for
 		 * every user, so we must provide a neutral link-style
-		 * if calendar implements tracking in near future, this part can be deleted
+		 * if bcalendar implements tracking in near future, this part can be deleted
 		 */
 		$link_arr = array();
 		$link_arr['text'] = $event['title'];
-		$link_arr['view'] = array(	'menuaction' => 'calendar.calendar_uiforms.edit',
+		$link_arr['view'] = array(	'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
 									'cal_id' => $event['id'],
 									'date' => $eventStart_arr['full'],
 									);
@@ -1596,7 +1596,7 @@ class bcalendar_boupdate extends calendar_bo
 	/**
 	 * saves a new or updated alarm
 	 *
-	 * @param int $cal_id Id of the calendar-entry
+	 * @param int $cal_id Id of the bcalendar-entry
 	 * @param array $alarm array with fields: text, owner, enabled, ..
 	 * @return string id of the alarm, or false on error (eg. no perms)
 	 */
@@ -1726,7 +1726,7 @@ class bcalendar_boupdate extends calendar_bo
 	 * 								check	-> check (consitency) for identical matches
 	 * 							    relax	-> be more tolerant
 	 *                              master	-> try to find a releated series master
-	 * @return array calendar_ids of matching entries
+	 * @return array bcalendar_ids of matching entries
 	 */
 	function find_event($event, $filter='exact')
 	{
@@ -1807,7 +1807,7 @@ class bcalendar_boupdate extends calendar_bo
 		// No chance to find a master without [U]ID
 		if ($filter == 'master' && empty($event['uid'])) return $matchingEvents;
 
-		// only query calendars of users, we have READ-grants from
+		// only query bcalendars of users, we have READ-grants from
 		$users = array();
 		foreach(array_keys($this->grants) as $user)
 		{
@@ -1947,13 +1947,13 @@ class bcalendar_boupdate extends calendar_bo
 			if (in_array($egwEvent['id'], $matchingEvents)) continue;
 
 			// convert timezone id of event to tzid (iCal id like 'Europe/Berlin')
-			if (!$egwEvent['tz_id'] || !($egwEvent['tzid'] = calendar_timezones::id2tz($egwEvent['tz_id'])))
+			if (!$egwEvent['tz_id'] || !($egwEvent['tzid'] = bcalendar_timezones::id2tz($egwEvent['tz_id'])))
 			{
 				$egwEvent['tzid'] = egw_time::$server_timezone->getName();
 			}
 			if (!isset(self::$tz_cache[$egwEvent['tzid']]))
 			{
-				self::$tz_cache[$egwEvent['tzid']] = calendar_timezones::DateTimeZone($egwEvent['tzid']);
+				self::$tz_cache[$egwEvent['tzid']] = bcalendar_timezones::DateTimeZone($egwEvent['tzid']);
 			}
 			if (!$event['tzid'])
 			{
@@ -1961,7 +1961,7 @@ class bcalendar_boupdate extends calendar_bo
 			}
 			if (!isset(self::$tz_cache[$event['tzid']]))
 			{
-				self::$tz_cache[$event['tzid']] = calendar_timezones::DateTimeZone($event['tzid']);
+				self::$tz_cache[$event['tzid']] = bcalendar_timezones::DateTimeZone($event['tzid']);
 			}
 
 			if (!empty($event['uid']))
@@ -2237,7 +2237,7 @@ class bcalendar_boupdate extends calendar_bo
 	/**
 	 * classifies an incoming event from the eGW point-of-view
 	 *
-     * exceptions: unlike other calendar apps eGW does not create an event exception
+     * exceptions: unlike other bcalendar apps eGW does not create an event exception
      * if just the participant state changes - therefore we have to distinguish between
      * real exceptions and status only exceptions
      *
@@ -2332,7 +2332,7 @@ class bcalendar_boupdate extends calendar_bo
 					else
 					{
 						// try to find a suitable pseudo exception date
-						$egw_rrule = calendar_rrule::event2rrule($master_event, false);
+						$egw_rrule = bcalendar_rrule::event2rrule($master_event, false);
 						$egw_rrule->current = clone $egw_rrule->time;
 						while ($egw_rrule->valid())
 						{

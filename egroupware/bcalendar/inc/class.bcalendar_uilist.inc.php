@@ -3,15 +3,15 @@
  * eGroupWare - Calendar's Listview and Search
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2005-9 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_uilist.inc.php 40127 2012-08-14 07:56:49Z ralfbecker $
+ * @version $Id: class.bcalendar_uilist.inc.php 40127 2012-08-14 07:56:49Z ralfbecker $
  */
 
 /**
- * Class to generate the calendar listview and the search
+ * Class to generate the bcalendar listview and the search
  *
  * The new UI, BO and SO classes have a strikt definition, in which time-zone they operate:
  *  UI only operates in user-time, so there have to be no conversation at all !!!
@@ -20,7 +20,7 @@
  *
  * The state of the UI elements is managed in the uical class, which all UI classes extend.
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of the bocal class !!!
  */
 class bcalendar_uilist extends bcalendar_ui
 {
@@ -67,7 +67,7 @@ class bcalendar_uilist extends bcalendar_ui
 	}
 
 	/**
-	 * Show the calendar on the home page
+	 * Show the bcalendar on the home page
 	 *
 	 * @return string with content
 	 */
@@ -95,7 +95,7 @@ class bcalendar_uilist extends bcalendar_ui
 		if ($_GET['msg']) $msg .= $_GET['msg'];
 		if ($this->group_warning) $msg .= $this->group_warning;
 
-		$etpl = new etemplate('calendar.list');
+		$etpl = new etemplate('bcalendar.list');
 
 		if (is_array($content) && $content['nm']['rows']['delete'])
 		{
@@ -126,7 +126,7 @@ class bcalendar_uilist extends bcalendar_ui
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'calendar.calendar_uilist.get_rows',
+				'get_rows'       =>	'bcalendar.bcalendar_uilist.get_rows',
 	 			'filter_no_lang' => True,	// I  set no_lang for filter (=dont translate the options)
 				'no_filter2'     => True,	// I  disable the 2. filter (params are the same as for filter)
 				'no_cat'         => True,	// I  disable the cat-selectbox
@@ -136,14 +136,14 @@ class bcalendar_uilist extends bcalendar_ui
 				'sort'           =>	'ASC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!week,weekday,cal_title,cal_description,recure,cal_location,cal_owner,cat_id,pm_id',
 				'filter_onchange' => "set_style_by_class('table','custom_hide','visibility',this.value == 'custom' ? 'visible' : 'hidden'); if (this.value != 'custom') this.form.submit();",
-				'header_left'    => 'calendar.list.dates',
+				'header_left'    => 'bcalendar.list.dates',
 			);
 		}
 		if (isset($_REQUEST['keywords']))	// new search => set filters so every match is shown
 		{
 			$this->adjust_for_search($_REQUEST['keywords'],$content['nm']);
 		}
-		return $etpl->exec('calendar.calendar_uilist.listview',$content,array(
+		return $etpl->exec('bcalendar.bcalendar_uilist.listview',$content,array(
 			'filter' => &$this->date_filters,
 		),$readonlys,'',$home ? -1 : 0);
 	}
@@ -170,7 +170,7 @@ class bcalendar_uilist extends bcalendar_ui
 	}
 
 	/**
-	 * query calendar for nextmatch in the listview
+	 * query bcalendar for nextmatch in the listview
 	 *
 	 * @internal
 	 * @param array &$params parameters

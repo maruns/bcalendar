@@ -3,7 +3,7 @@
  * eGroupWare - Calendar setup
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: default_records.inc.php 36856 2011-10-07 05:10:01Z ralfbecker $

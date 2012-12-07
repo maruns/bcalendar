@@ -16,10 +16,20 @@ $smarty->assign('d_NAZWA_BANKU', d_NAZWA_BANKU);
 $smarty->assign('d_NUMER_KONTA', d_NUMER_KONTA);
 $smarty->assign('d_NIP', d_NIP);
 $smarty->assign('SaleDate', $_GET['to']);
-$result = SendQuery("SELECT DISTINCT `contact_name`, `contact_value` FROM `egw_addressbook_extra` WHERE `contact_name` = 'NIP' and `contact_id` = ".$cid);
+$result = SendQuery("SELECT DISTINCT `contact_name`, `contact_value` FROM `egw_addressbook_extra` WHERE `contact_name` = 'NIP' or `contact_name` = 'franczyza' and `contact_id` = ".$cid);
 while($row = GetNextRow($result))
 {
-    $smarty->assign('NIP', $row['contact_value']);
+    switch ($row['contact_name'])
+    {
+    case 'NIP':
+        $smarty->assign('NIP', $row['contact_value']);
+        break;
+    case 'franczyza':
+        $percent = $row['contact_value']*0.01;
+        break;
+        case 'stawka':
+            $sr = $row['contact_value']/3600;
+    }
 }
 $result = SendQuery("SELECT DISTINCT `org_name`,`adr_one_street`,`adr_one_street2`,`adr_one_postalcode`,`adr_one_locality` FROM `egw_addressbook` WHERE `contact_id` = ".$cid);
 while($row = GetNextRow($result))
@@ -30,38 +40,62 @@ while($row = GetNextRow($result))
     $smarty->assign('PostalCode', $row['adr_one_postalcode']);
     $smarty->assign('place', $row['adr_one_locality']);
 }
-if ($_GET['type'] == 'report')
+$nbsp = utf8_encode("\xA0");
+$gprn = array();
+$netto = 0;
+switch ($_GET['type'])
 {
-    $result= SendQuery("SELECT `egw_cal`.`cal_title` , `egw_cal`.`cal_description` , `egw_categories`.`cat_name` , ( SELECT DISTINCT `egw_addressbook`.`n_fn` FROM `egw_addressbook` JOIN `egw_cal_user` ON ( `egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_user_id` ) WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `patient` , ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `vs`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `mc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_technika' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'nazwa_pracowni_protetycznej' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tn` FROM `egw_cal` left JOIN ( `egw_categories` ) ON ( `egw_categories`.`cat_id` = CAST( `egw_cal`.`cal_category` AS UNSIGNED ) ) WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
-}
- else
-{
+    case 'report':
+        $result= SendQuery("SELECT `egw_cal`.`cal_title` , `egw_cal`.`cal_description` , `egw_categories`.`cat_name` , ( SELECT DISTINCT `egw_addressbook`.`n_fn` FROM `egw_addressbook` JOIN `egw_cal_user` ON ( `egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_user_id` ) WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `patient` , (SELECT DISTINCT `egw_addressbook_extra`.`contact_value` FROM `egw_addressbook_extra` JOIN (`egw_addressbook`, `egw_cal_user`) ON ( `egw_addressbook_extra`.`contact_id` = `egw_addressbook`.`contact_id` and `egw_addressbook`.`account_id` = `egw_cal_user`.`cal_user_id` ) where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' and `egw_addressbook_extra`.`contact_name` = 'stawka'  limit 1) as ac, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `vs`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `mc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_technika' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'nazwa_pracowni_protetycznej' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tn` FROM `egw_cal` left JOIN ( `egw_categories` ) ON ( `egw_categories`.`cat_id` = CAST( `egw_cal`.`cal_category` AS UNSIGNED ) ) WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+    break;
+    case 'ar':
+        $brutto = 0;
+        $result = SendQuery("select `egw_cal`.`cal_title`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, 'egw_addressbook'.'n_fn' join 'egw_addressbook' on ('egw_addressbook'.'account_id' = `egw_cal`.`cal_owner`) where ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+        while($row = GetNextRow($result))
+        {
+            $DentistTable[] = $result['cal_title'];
+            $DentistTable[] = date('d.m.Y',$row['date']). ' r. '.date('G:i',$row['date']) . '&nbsp;-&nbsp;' . date('G:i',$row['end']);
+            $DentistTable[] = $result['n_fn'];
+            $amount = $sr*($row['end'] - $row['date']);
+            $DentistTable[] = str_replace(" ", $nbsp, number_format($amount, 2, ',', ' '));
+            $brutto += $amount;
+            $gprn[$result['n_fn']] += $amount;
+        }
+        $dn = array();
+        break;
+    case 'invoice':
+    $result= SendQuery("select (SELECT DISTINCT `egw_addressbook_extra`.`contact_value` FROM `egw_addressbook_extra` JOIN (`egw_addressbook`, `egw_cal_user`) ON ( `egw_addressbook_extra`.`contact_id` = `egw_addressbook`.`contact_id` and `egw_addressbook`.`account_id` = `egw_cal_user`.`cal_user_id` ) where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' and `egw_addressbook_extra`.`contact_name` = 'stawka'  limit 1) as `ac`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end` FROM `egw_cal` WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+    $dn = array();
+    while($row = GetNextRow($result))
+    {
+        $iac = $row['ac'] * ($row['end'] - $row['date']) / 3600;
+        $dn[date('d.m.Y', $row['date'])] -= $iac;
+        $netto -= $iac;
+    }
     $result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date` from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_technika') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ') order by `date`');
 }
-$netto = 0;
-$gprn = array();
-$nbsp = utf8_encode("\xA0");
-$percent = $_GET['percent']*0.01;
 $VAT = 0.01*$_GET['vat'];
-$dn = array();
+
 if ($_GET['type'] == 'report')
 {
     $sum = 0;
     $ts = 0;
     $ms = 0;
+    $as = 0;
     $cs = 0;
     $VATVS = 0;
     $tns = array();
-    $tbs = array();
-    $tts = array();
+    $tbs = array();                                         
     $tms = array();
+    $tas = array();
     $tcs = array();
     $TVATVS = array();
 }
 while($row = GetNextRow($result))
 {
-    if ($_GET['type'] == 'report')
+    switch ($_GET['type'])
     {
+    case 'report':
         $DentistTable[] = date('d.m.Y',$row['date']). ' r. '.date('G:i',$row['date']) . '&nbsp;-&nbsp;' . date('G:i',$row['end']);
         $DentistTable[] = $row['patient'];
         $DentistTable[] = $row['cal_title'];
@@ -71,7 +105,9 @@ while($row = GetNextRow($result))
         $DentistTable[] = $row['tn'];
         $DentistTable[] = str_replace(" ", $nbsp, number_format($row['tc'], 2, ',', ' '));
         $DentistTable[] = str_replace(" ", $nbsp, number_format($row['mc'], 2, ',', ' '));
-        $costs = $row['mc'] + $row['tc'];
+        $ac = $row['ac']*($row['end'] - $row['date'])/3600;
+        $DentistTable[] = str_replace(" ", $nbsp, number_format($ac, 2, ',', ' '));
+        $costs = $row['mc'] + $row['tc'] + $ac;
         $DentistTable[] = str_replace(" ", $nbsp, number_format($costs, 2, ',', ' '));
         $vnv = $percent * ($row['vs'] - $costs);
         $DentistTable[] = str_replace(" ", $nbsp, number_format($vnv, 2, ',', ' '));
@@ -83,17 +119,19 @@ while($row = GetNextRow($result))
         $sum += $vbv;
         $ts += $row['tc'];
         $ms += $row['mc'];
+        $as += $ac;
         $cs += $costs;
         $netto += $vnv;
         $VATVS += $VVAT;
         $tns[$row['tn']] += $vnv;
         $tbs[$row['tn']] += $vbv;
         $tms[$row['tn']] += $row['mc'];
+        $tas[$row['tn']] += $ac;
         $tcs[$row['tn']] += $costs;
         $TVATVS[$row['tn']] += $VVAT;
-    }
-    else
-    {
+        $dn = array();
+        break;
+    case 'invoice':
         switch($row['cal_extra_name'])
         {
             case 'suma_na_wizycie':
@@ -102,7 +140,7 @@ while($row = GetNextRow($result))
                 break;
             case 'koszty_łącznie':
                 $netto -= $row['cal_extra_value'];
-                $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];;
+                $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
                 break;
             case 'koszty_technika':
                 $netto -= $row['cal_extra_value'];
@@ -320,14 +358,16 @@ function slownie($int){
   }
   return trim($out);
 }
-if ($_GET['type'] == 'report')
+switch ($_GET['type'])
 {
+    case 'report':
     $trt = array();
     foreach($gprn as $key=>$value)
     {
         $trt[] = $key;
         $trt[] = str_replace(" ", $nbsp, number_format(round($value, 2), 2, ',', ' '));
         $trt[] = str_replace(" ", $nbsp, number_format(round($tms[$key], 2), 2, ',', ' '));
+        $trt[] = str_replace(" ", $nbsp, number_format(round($tas[$key], 2), 2, ',', ' '));
         $trt[] = str_replace(" ", $nbsp, number_format(round($tcs[$key], 2), 2, ',', ' '));
         $trt[] = str_replace(" ", $nbsp, number_format(round($tns[$key], 2), 2, ',', ' '));
         $trt[] = str_replace(" ", $nbsp, number_format(round($TVATVS[$key], 2), 2, ',', ' '));
@@ -336,6 +376,7 @@ if ($_GET['type'] == 'report')
     $trt[] = 'Razem:';
     $trt[] = str_replace(" ", $nbsp, number_format(round($ts, 2), 2, ',', ' '));
     $trt[] = str_replace(" ", $nbsp, number_format(round($ms, 2), 2, ',', ' '));
+    $trt[] = str_replace(" ", $nbsp, number_format(round($as, 2), 2, ',', ' '));
     $trt[] = str_replace(" ", $nbsp, number_format(round($cs, 2), 2, ',', ' '));
     $trt[] = str_replace(" ", $nbsp, number_format(round($netto, 2), 2, ',', ' '));
     $trt[] = str_replace(" ", $nbsp, number_format(round($VATVS, 2), 2, ',', ' '));
@@ -343,10 +384,19 @@ if ($_GET['type'] == 'report')
     $sum = str_replace(" ", $nbsp, number_format($brutto, 2, ',', ' '));
     $trt[] = str_replace(" ", $nbsp, $sum);
     $smarty->assign('RateTable', $trt);
-    
-}
-else
-{
+    break;
+    case 'ar':
+        foreach($gprn as $key=>$value)
+        {
+            $trt[] = $key;
+            $trt[] = str_replace(" ", $nbsp, number_format(round($value, 2), 2, ',', ' '));
+        }
+        $trt[] = 'Razem:';
+        $sum = str_replace(" ", $nbsp, number_format($brutto, 2, ',', ' '));
+        $trt[] = str_replace(" ", $nbsp, $sum);
+        $smarty->assign('RateTable', $trt);
+        break;  
+  case 'invoice':
     $netto = $netto*$percent;
     $TVAT = $netto*$VAT;
     $brutto = round($netto + $TVAT, 2);
@@ -358,19 +408,22 @@ else
                                        str_replace(" ", $nbsp, number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
 }
 $smarty->assign('sum', $sum);
-$SumParts = explode('.', $brutto);
+$SumParts = explode(',', $sum);
 $smarty->assign('InWords', slownie($SumParts[0]));
 if ($SumParts[1] == '' || $SumParts[1] == null)
 {
     $SumParts[1] = 0;
 }
 $smarty->assign('FractionalPart', $SumParts[1]);
-if ($_GET['type'] == 'report')
+switch ($_GET['type'])
 {
+  case 'report':
     $smarty->display('Report.tpl');
-}
- else
-{
+    break;
+  case 'ar':
+      $smarty->display('Assistants.tpl');
+      break;
+  case 'invoice':
     $smarty->display('Invoice.tpl');
 }
 ?>

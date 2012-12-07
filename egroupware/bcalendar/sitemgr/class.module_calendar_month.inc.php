@@ -14,19 +14,19 @@
 class module_calendar_month extends Module
 {
 	/**
-	 * Instance of the business object of calendar
+	 * Instance of the business object of bcalendar
 	 *
 	 * @var bo
 	 */
 	var $bo;
 	/**
-	 * Instance of the user interface object of calendar
+	 * Instance of the user interface object of bcalendar
 	 *
 	 * @var ui
 	 */
 	var $ui;
 	/**
-	 * Instance of the user interface object of calendar
+	 * Instance of the user interface object of bcalendar
 	 *
 	 * @var ui
 	 */
@@ -46,7 +46,7 @@ class module_calendar_month extends Module
 
 	function module_calendar_month()
 	{
-		$this->bo = new calendar_bo();
+		$this->bo = new bcalendar_bo();
 		$this->arguments = array(
 			'category' => array(
 				'type' => 'select',
@@ -62,12 +62,12 @@ class module_calendar_month extends Module
 			),
 			'showWeeks' => array(
 				'type' => 'checkbox',
-				'label' => lang('Should the number of weeks be shown on top of the calendar'),
+				'label' => lang('Should the number of weeks be shown on top of the bcalendar'),
 				'default' => false,
 			),
 			'showTitle' => array(
 				'type' => 'checkbox',
-				'label' => lang('Show a calendar title'),
+				'label' => lang('Show a bcalendar title'),
 				'default' => false,
 			),
 			'search' => array(
@@ -77,27 +77,27 @@ class module_calendar_month extends Module
 			'users' => array(
 				'type' => 'select',
 				'options' => array(),
-				'label' => lang('Group(s) or user(s) whose calendars to show (if ACL exists)'),
+				'label' => lang('Group(s) or user(s) whose bcalendars to show (if ACL exists)'),
 				// 'multiple' => true, is set in the get_user_interface function.
 			),
 			'grid' => array(
 				'type' => 'checkbox',
-				'label' => lang('Should the grid be shown in the calendar'),
+				'label' => lang('Should the grid be shown in the bcalendar'),
 				'default' => false,
 			),
 			'css' => array(
 				'type' => 'textfield',
-				'label' => lang('User selectable CSS file for the calendar setup'),
+				'label' => lang('User selectable CSS file for the bcalendar setup'),
 				'default' => $this->default_css,
 			),
 			'acceptDateParam' => array(
 				'type' => 'checkbox',
-				'label' => lang('Shall the date parameter be accepted (e.g. from calendar module)?'),
+				'label' => lang('Shall the date parameter be accepted (e.g. from bcalendar module)?'),
 				'default' => false,
 			),
 		);
 		$this->title = lang('Calendar - Multi-Weekly');
-		$this->description = lang("This module displays a user's calendar as multiple weeks. Don't give calendar application access to the anon user!");
+		$this->description = lang("This module displays a user's bcalendar as multiple weeks. Don't give bcalendar application access to the anon user!");
 	}
 
 	function get_user_interface()
@@ -170,7 +170,7 @@ class module_calendar_month extends Module
 			$acl->read_repository();
 			// get the rights for each account to check whether the anon user has read permissions.
 			$rights = $acl->get_rights($anon_user,'calendar');
-			// also add the anon user if it's his own calendar.
+			// also add the anon user if it's his own bcalendar.
 			if (($rights & EGW_ACL_READ) || ($entry['account_id'] == $anon_user))
 			{
 				$has_read_permissions = true;
@@ -178,7 +178,7 @@ class module_calendar_month extends Module
 			else
 			{
 				// scan the groups which pass on permissions to the anon user group member
-				// or ass permissions if this is the anon group's calendar.
+				// or ass permissions if this is the anon group's bcalendar.
 				foreach ($anon_groups as $parent_group)
 				{
 					$rights = $acl->get_rights($parent_group,'calendar');
@@ -222,7 +222,7 @@ class module_calendar_month extends Module
 	{
 		$html = "";
 		$GLOBALS['egw']->translation->add_app('calendar');
-		$this->ui = new calendar_uiviews();
+		$this->ui = new bcalendar_uiviews();
 		$this->ui->allowEdit = false;
 		$this->ui->use_time_grid = isset($arguments['grid']) ? $arguments['grid'] : false;
 

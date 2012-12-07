@@ -3,11 +3,11 @@
  * DataSource for the Calendar
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author RalfBecker-AT-outdoor-training.de
  * @copyright (c) 2005-8 by RalfBecker-AT-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_datasource.inc.php 25583 2008-06-07 17:45:33Z ralfbecker $
+ * @version $Id: class.bcalendar_datasource.inc.php 25583 2008-06-07 17:45:33Z ralfbecker $
  */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');

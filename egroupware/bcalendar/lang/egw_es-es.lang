@@ -3,11 +3,11 @@
 %1 records imported	calendar	es-es	%1 registros importados
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	es-es	%1 registros leídos (todavía sin importar, puede volver atrás y desmarcar Probar Importar)
 %1 weeks	calendar	es-es	%1 semanas
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	es-es	<b>Por favor, tenga en cuenta lo siguiente</b>: El calendario usa las fiestas de su país, que es %1. Puede cambiarlo en su %2.<br />Las vacaciones %3 se instalan automáticamente desde %4. Lo puede cambiar en %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	es-es	<b>Por favor, tenga en cuenta lo siguiente</b>: El bcalendario usa las fiestas de su país, que es %1. Puede cambiarlo en su %2.<br />Las vacaciones %3 se instalan automáticamente desde %4. Lo puede cambiar en %5.
 a non blocking event will not conflict with other events	calendar	es-es	Un evento que no bloquea no entrará en conflicto con otros eventos
 accept or reject an invitation	calendar	es-es	Aceptar o rechazar una invitación
 accepted	calendar	es-es	Aceptado
-access denied to the calendar of %1 !!!	calendar	es-es	¡Acceso denegado al calendario de %1!
+access denied to the bcalendar of %1 !!!	calendar	es-es	¡Acceso denegado al bcalendario de %1!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	es-es	Acción que causó la notificación: Añadido, Cancelado, Aceptado, Rechazado, ...
 actions	calendar	es-es	Acciones
 add alarm	calendar	es-es	Añadir alarma
@@ -41,12 +41,12 @@ birthday	calendar	es-es	Cumpleaños
 birthdays	admin	es-es	Cumpleaños
 busy	calendar	es-es	ocupado
 by	calendar	es-es	por
-calendar csv export	calendar	es-es	Exportar el calendario a CSV
-calendar event	calendar	es-es	Evento de calendario
+calendar csv export	calendar	es-es	Exportar el bcalendario a CSV
+calendar event	calendar	es-es	Evento de bcalendario
 calendar holiday management	admin	es-es	Gestión de días festivos
-calendar menu	calendar	es-es	Menú de calendario
+calendar menu	calendar	es-es	Menú de bcalendario
 calendar preferences	calendar	es-es	Preferencias - Calendario
-calendar settings	admin	es-es	Preferencias del calendario
+calendar settings	admin	es-es	Preferencias del bcalendario
 calendar-fieldname	calendar	es-es	Calendario - Nombre de campo
 can't add alarms in the past !!!	calendar	es-es	¡¡No se pueden añadir alarmas en el pasado!!
 can't aquire lock!	calendar	es-es	¡No se ha podido obtener un bloqueo!
@@ -81,10 +81,10 @@ days of the week for a weekly repeated event	calendar	es-es	Días de la semana p
 days repeated	calendar	es-es	días repetidos
 dayview	calendar	es-es	Vista diaria
 default appointment length (in minutes)	calendar	es-es	duración por defecto de los eventos (en minutos)
-default calendar filter	calendar	es-es	Filtro por defecto del calendario
-default calendar view	calendar	es-es	Vista por defecto del calendario
+default bcalendar filter	calendar	es-es	Filtro por defecto del bcalendario
+default bcalendar view	calendar	es-es	Vista por defecto del bcalendario
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	es-es	Longitud predeterminada de los eventos nuevos. La longitud es en minutos, ej. 60 = 1 hora.
-default type of resources application selected in the calendar particpants research form.	calendar	es-es	Tipo predeterminado para la aplicación de recursos seleccionada en el formulario de búsqueda de participantes en el calendario.
+default type of resources application selected in the bcalendar particpants research form.	calendar	es-es	Tipo predeterminado para la aplicación de recursos seleccionada en el formulario de búsqueda de participantes en el bcalendario.
 default type of resources selection	calendar	es-es	Tipo predeterminado de selección de recursos
 default week view	calendar	es-es	Vista semanal predeterminada
 delete selected events	calendar	es-es	Borrar los eventos seleccionados
@@ -97,13 +97,13 @@ deny ressources reservation for private events	calendar	es-es	Denegar la reserva
 disinvited	calendar	es-es	Ya no está invitado
 display status of events	calendar	es-es	Mostrar estado de los eventos
 displayed view	calendar	es-es	vista mostrada
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	es-es	¿Mostrar la vista predeterminada en la página de inicio (la página que se ve al entrar en eGroupWare o pulsar en el icono de inicio)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	es-es	¿Mostrar la vista predeterminada en la página de inicio (la página que se ve al entrar en eGroupWare o pulsar en el icono de inicio)?
 do not include events of group members	calendar	es-es	No incluir los eventos de los miembros del grupo
 do you want a weekview with or without weekend?	calendar	es-es	¿Desea una vista de la semana con o sin fin de semana?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	es-es	¿Desea que se le notifiquen citas nuevas o modificadas? Se le notificará de los cambios que haga usted mismo.<br>Puede limitar las notificaciones para sólo ciertos cambios. Cada elemento incluye toda la notificación listada encima. Todas las modificaciones incluyen cambios de título, participantes, pero no las respuestas de los participantes. Si el dueño de un evento solicitó alguna notificación, siempre obtendrá las respuestas de aceptación o rechazo del participante.
 do you want to edit this event as an exception or the whole series?	calendar	es-es	¿Desea editar este evento como una excepción o la serie completa?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	es-es	¿Desea recibir regularmente por correo un resumen de sus citas?<br>El resumen se le enviará a su correo electrónico habitual el mismo día por la mañana o el lunes para resúmenes semanales.<br>Sólo se envía si hay citas en ese día o esa semana.
-do you wish to autoload calendar holidays files dynamically?	admin	es-es	¿Desea cargar automáticamente en el calendario los ficheros de fiestas?
+do you wish to autoload bcalendar holidays files dynamically?	admin	es-es	¿Desea cargar automáticamente en el bcalendario los ficheros de fiestas?
 download	calendar	es-es	Descargar
 download this event as ical	calendar	es-es	Descargar este evento como iCal
 duration of the meeting	calendar	es-es	Duración de la reunión
@@ -139,14 +139,14 @@ execute a further action for this entry	calendar	es-es	Ejecutar una acción más
 existing links	calendar	es-es	Enlaces existentes
 export	calendar	es-es	Exportar
 extended	calendar	es-es	Extendido
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	es-es	Las actualizaciones extendidas incluyen todos los detalles de los eventos. Los de tipo iCal pueden importarse mediante otras aplicaciones de tipo calendario.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	es-es	Las actualizaciones extendidas incluyen todos los detalles de los eventos. Los de tipo iCal pueden importarse mediante otras aplicaciones de tipo bcalendario.
 fieldseparator	calendar	es-es	Separador de campos
 filename	calendar	es-es	Nombre de fichero
 filename of the download	calendar	es-es	Nombre de fichero de la descarga
 find free timeslots where the selected participants are availible for the given timespan	calendar	es-es	Buscar márgenes de tiempo libres donde los participantes seleccionados estén disponibles para las horas indicadas
 firstname of person to notify	calendar	es-es	Nombre de pila de la persona a notificar
 for	calendar	es-es	para
-for which views should calendar show distinct lines with a fixed time interval.	calendar	es-es	Para qué vistas debe mostrar el calendario distintas líneas con un intervalo fijo de tiempo.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	es-es	Para qué vistas debe mostrar el bcalendario distintas líneas con un intervalo fijo de tiempo.
 format of event updates	calendar	es-es	Formato de las actualizaciones de eventos
 forward half a month	calendar	es-es	medio mes hacia adelante
 forward one month	calendar	es-es	un mes hacia adelante
@@ -189,7 +189,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	es-es	Ignorar conflicto
 import	calendar	es-es	Importar
 import csv-file	common	es-es	Importar fichero CSV
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	es-es	Importa eventos en su calendario desde un fichero CSV. CSV significa 'Valores Separados por Comas'. Sin embargo, en la pestaña de opciones también puede elegir otros separadores.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	es-es	Importa eventos en su bcalendario desde un fichero CSV. CSV significa 'Valores Separados por Comas'. Sin embargo, en la pestaña de opciones también puede elegir otros separadores.
 interval	calendar	es-es	Intervalo
 invalid email-address "%1" for user %2	calendar	es-es	La dirección de correo "%1" no es válida para el usuario %2
 invitations	calendar	es-es	Invitaciones
@@ -295,7 +295,7 @@ sat	calendar	es-es	Sáb
 save event as exception - delete single occurrence - edit status or alarms for this particular day	calendar	es-es	Guardar el evento como excepción - Borrar ocurrencia única - Editar el estado o alarmas para este día en particular
 saves the changes made	calendar	es-es	guarda los cambios realizados
 saves the event ignoring the conflict	calendar	es-es	Guarda el evento ignorando el conflicto
-scheduling conflict	calendar	es-es	Conflicto de calendario
+scheduling conflict	calendar	es-es	Conflicto de bcalendario
 select a %1	calendar	es-es	Seleccionar un %1
 select a time	calendar	es-es	seleccionar una hora
 select an action	calendar	es-es	Seleccionar una acción
@@ -305,7 +305,7 @@ select who should get the alarm	calendar	es-es	Seleccionar quién debe obtener l
 selected range	calendar	es-es	Rango seleccionado
 set a year only for one-time / non-regular holidays.	calendar	es-es	Establecer un año para los festivos únicos y no regulares.
 set new events to private	calendar	es-es	Poner los eventos nuevos como privados
-setting lock time calender	admin	es-es	Estableciendo el tiempo de bloqueo para el calendario (predeterminado: 1 segundo)
+setting lock time calender	admin	es-es	Estableciendo el tiempo de bloqueo para el bcalendario (predeterminado: 1 segundo)
 should new events created as private by default ?	calendar	es-es	¿Crear nuevos eventos como privados?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	es-es	¿Deben ver las personas que no inicien sesión la información de ocupación? Se puede poner una contraseña extra, distinta a la normal, para proteger esta información. La información de ocupación está en formato iCal y sólo incluye las horas en las que está ocupado. No incluye el nombre del evento, descripción o sitios. La URL para su información de ocupación es %1.
 should the planner display an empty row for users or categories without any appointment.	calendar	es-es	¿Debe mostrarse en el planificador una fila vacía para los usuarios o categorías sin ninguna cita?
@@ -378,7 +378,7 @@ update timezones	calendar	es-es	Actualizar zonas horarias
 updated	calendar	es-es	Actualizado
 use end date	calendar	es-es	Usar fecha final
 use the selected time and close the popup	calendar	es-es	usar la hora seleccionada y cerrar la ventana
-use this timezone to export calendar data.	calendar	es-es	Usar esta zona horaria para exportar datos de calendario.
+use this timezone to export bcalendar data.	calendar	es-es	Usar esta zona horaria para exportar datos de bcalendario.
 user or group	calendar	es-es	Usuario o grupo
 users + groups: inviting both allways requires an invite grant	admin	es-es	Usuarios y grupos: invitar a ambos siempre requiere un permiso para invitar
 view exception	calendar	es-es	Ver excepción
@@ -396,8 +396,8 @@ weeks in multiple week view	calendar	es-es	Semanas en la vista de múltiples sem
 weekview	calendar	es-es	Vista semanal
 weekview with weekend	calendar	es-es	vista semanal con fin de semana
 weekview without weekend	calendar	es-es	Vista semanal sin fin de semana
-which events do you want to see when you enter the calendar.	calendar	es-es	¿Qué eventos quiere ver al entrar al calendario?
-which of calendar view do you want to see, when you start calendar ?	calendar	es-es	¿Qué vista del calendario quiere ver cuando entra al calendario?
+which events do you want to see when you enter the bcalendar.	calendar	es-es	¿Qué eventos quiere ver al entrar al bcalendario?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	es-es	¿Qué vista del bcalendario quiere ver cuando entra al bcalendario?
 whole day	calendar	es-es	todo el día
 whole query	calendar	es-es	toda la consulta
 wk	calendar	es-es	Semana

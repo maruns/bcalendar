@@ -3,15 +3,15 @@
  * eGroupWare - Calendar's forms of the UserInterface
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2004-12 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_uiforms.inc.php 39202 2012-05-15 11:20:50Z ralfbecker $
+ * @version $Id: class.bcalendar_uiforms.inc.php 39202 2012-05-15 11:20:50Z ralfbecker $
  */
 
 /**
- * calendar UserInterface forms: view and edit events, freetime search
+ * bcalendar UserInterface forms: view and edit events, freetime search
  *
  * The new UI, BO and SO classes have a strikt definition, in which time-zone they operate:
  *  UI only operates in user-time, so there have to be no conversation at all !!!
@@ -20,9 +20,9 @@
  *
  * The state of the UI elements is managed in the uical class, which all UI classes extend.
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of the bocal class !!!
  */
-class bcalendar_uiforms extends calendar_ui
+class bcalendar_uiforms extends bcalendar_ui
 {
 	var $public_functions = array(
 		'freetimesearch'  => True,
@@ -91,7 +91,7 @@ class bcalendar_uiforms extends calendar_ui
 		{
 			if ($owner)	// make an owner who is no user or we have no add-rights a participant
 			{
-				// if we come from ressources we don't need any users selected in calendar
+				// if we come from ressources we don't need any users selected in bcalendar
 				if (!isset($_GET['participants']) || $_GET['participants'][0] != 'r')
 				{
 					foreach(explode(',',$owner) as $uid)
@@ -144,7 +144,7 @@ class bcalendar_uiforms extends calendar_ui
 		}
 		if (!$participants)	// if all participants got removed, include current user
 		{
-			$participants[$this->user] = $participant_types['u'][$this->user] = calendar_so::combine_status('A',1,'CHAIR');
+			$participants[$this->user] = $participant_types['u'][$this->user] = bcalendar_so::combine_status('A',1,'CHAIR');
 		}
 		return array(
 			'participant_types' => $participant_types,
@@ -277,7 +277,7 @@ class bcalendar_uiforms extends calendar_ui
 						if (($email = $_POST['exec']['participants']['resource']['query']) &&
 							(preg_match('/^(.*<)?([a-z0-9_.-]+@[a-z0-9_.-]{5,})>?$/i',$email,$matches)))
 						{
-							$status = calendar_so::combine_status('U',$content['participants']['quantity'],$content['participants']['role']);
+							$status = bcalendar_so::combine_status('U',$content['participants']['quantity'],$content['participants']['role']);
 							// check if email belongs to account or contact --> prefer them over just emails (if we are allowed to invite him)
 							if (($data = $GLOBALS['egw']->accounts->name2id($matches[2],'account_email')) && $this->bo->check_acl_invite($data))
 							{
@@ -388,10 +388,10 @@ class bcalendar_uiforms extends calendar_ui
 							if ($data['old_status'] != $status && !(!$data['old_status'] && $status == 'G'))
 							{
 								//echo "<p>$uid: status changed '$data[old_status]' --> '$status<'/p>\n";
-								$new_status = calendar_so::combine_status($status, $quantity, $role);
+								$new_status = bcalendar_so::combine_status($status, $quantity, $role);
 								if ($this->bo->set_status($event['id'],$uid,$new_status,isset($content['edit_single']) ? $content['participants']['status_date'] : 0))
 								{
-									// refreshing the calendar-view with the changed participant-status
+									// refreshing the bcalendar-view with the changed participant-status
 									if($event['recur_type'] != MCAL_RECUR_NONE)
 									{
 										//$msg = lang('Status for all future scheduled days changed');
@@ -471,7 +471,7 @@ class bcalendar_uiforms extends calendar_ui
 					calendar_so::split_status($status, $quantity, $role);
 					// if resource defines callback for status of new status (eg. Resources app acknowledges direct booking acl), call it
 					$status = isset($this->bo->resources[$type]['new_status']) ? ExecMethod($this->bo->resources[$type]['new_status'],$id) : 'U';
-					$response = calendar_so::combine_status($status,$quantity,$role);
+					$response = bcalendar_so::combine_status($status,$quantity,$role);
 				}
 			}
 			$preserv['view'] = $preserv['edit_single'] = false;
@@ -590,7 +590,7 @@ class bcalendar_uiforms extends calendar_ui
 				/*$msg .= ($msg ? ', ' : '') .lang('Error: the entry has been updated since you opened it for editing!').'<br />'.
 							lang('Copy your changes to the clipboard, %1reload the entry%2 and merge them.','<a href="'.
 								htmlspecialchars(egw::link('/index.php',array(
-								'menuaction' => 'calendar.calendar_uiforms.edit',
+								'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
 								'cal_id'    => $content['id'],
 								'referer'    => $referer,
 							))).'">','</a>');*/
@@ -599,7 +599,7 @@ class bcalendar_uiforms extends calendar_ui
 							lang('Copy your changes to the clipboard, %1reload the entry%2 and merge them.',
                                                                 ') <a href="'.
 								htmlspecialchars(egw::link('/index.php',array(
-								'menuaction' => 'calendar.calendar_uiforms.edit',
+								'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
 								'cal_id'    => $content['id'],
 								'referer'    => $referer,
 							))).'">','</a>');
@@ -861,7 +861,7 @@ class bcalendar_uiforms extends calendar_ui
 	function custom_print($event,$added)
 	{
 			$vars = array(
-			'menuaction'      => 'calendar.calendar_uiforms.edit',
+			'menuaction'      => 'bcalendar.bcalendar_uiforms.edit',
 			'cal_id'      => $event['id'],
 			'print' => true,
 			);
@@ -870,7 +870,7 @@ class bcalendar_uiforms extends calendar_ui
 
 
 	/**
-	 * Edit a calendar event
+	 * Edit a bcalendar event
 	 *
 	 * @param array $event=null Event to edit, if not $_GET['cal_id'] contains the event-id
 	 * @param array $perserv=null following keys:
@@ -984,7 +984,7 @@ class bcalendar_uiforms extends calendar_ui
 			elseif(egw_vfs::lock($lock_path,$preserv['lock_token'],$locktime,$lock_owner,$scope='shared',$type='write',false,false))
 			{
 				// install ajax handler to unlock the entry again, if the window get's closed by the user (X of window or our [Close] button)
-				$GLOBALS['egw']->js->set_onunload("if (do_onunload) xajax_doXMLHTTPsync('calendar.calendar_uiforms.ajax_unlock',$event[id],'$preserv[lock_token]');");
+				$GLOBALS['egw']->js->set_onunload("if (do_onunload) xajax_doXMLHTTPsync('bcalendar.bcalendar_uiforms.ajax_unlock',$event[id],'$preserv[lock_token]');");
 				$GLOBALS['egw']->js->set_onload("replace_eTemplate_onsubmit();");
 
 				// overwrite submit method of eTemplate form AND onSubmit event, to switch off onUnload handler for regular form submits
@@ -1141,7 +1141,7 @@ function replace_eTemplate_onsubmit()
 			{
 				if (!$alarm['all'] && !$this->bo->check_perms(EGW_ACL_READ,0,$alarm['owner']))
 				{
-					continue;	// no read rights to the calendar of the alarm-owner, dont show the alarm
+					continue;	// no read rights to the bcalendar of the alarm-owner, dont show the alarm
 				}
 				$alarm['all'] = (int) $alarm['all'];
 				$days = (int) ($alarm['offset'] / DAY_s);
@@ -1303,7 +1303,7 @@ function replace_eTemplate_onsubmit()
 	 */
 	function conflicts($event,$conflicts,$preserv)
 	{
-		$etpl = CreateObject('etemplate.etemplate','calendar.conflicts');
+		$etpl = CreateObject('etemplate.etemplate','bcalendar.conflicts');
 
 		foreach($conflicts as $k => $conflict)
 		{
@@ -1391,9 +1391,9 @@ function replace_eTemplate_onsubmit()
 		// store content in session
 		egw_cache::setSession('calendar','freetimesearch_args_'.(int)$edit_content['id'],$content);
 
-		//menuaction=calendar.calendar_uiforms.freetimesearch&values2url('start,end,duration,participants,recur_type,whole_day'),ft_search,700,500
+		//menuaction=bcalendar.bcalendar_uiforms.freetimesearch&values2url('start,end,duration,participants,recur_type,whole_day'),ft_search,700,500
 		$link = egw::link('/index.php',array(
-			'menuaction' => 'calendar.calendar_uiforms.freetimesearch',
+			'menuaction' => 'bcalendar.bcalendar_uiforms.freetimesearch',
 			'cal_id'     => $edit_content['id'],
 		));
 
@@ -1417,7 +1417,7 @@ function replace_eTemplate_onsubmit()
 	 */
 	function freetimesearch($content = null)
 	{
-		$etpl = new etemplate('calendar.freetimesearch');
+		$etpl = new etemplate('bcalendar.freetimesearch');
 
 		$sel_options['search_window'] = array(
 			7*DAY_s		=> lang('one week'),
@@ -1521,7 +1521,7 @@ function replace_eTemplate_onsubmit()
 		// the call to set_style_by_class has to be in onload, to make sure the function and the element is already created
 		$GLOBALS['egw']->js->set_onload("set_style_by_class('table','end_hide','visibility','".($content['duration'] && isset($sel_options['duration'][$content['duration']]) ? 'hidden' : 'visible')."');");
 
-		$etpl->exec('calendar.calendar_uiforms.freetimesearch',$content,$sel_options,'',array(
+		$etpl->exec('bcalendar.bcalendar_uiforms.freetimesearch',$content,$sel_options,'',array(
 				'participants'	=> $content['participants'],
 				'cal_id'		=> $content['cal_id'],
 				'recur_type'	=> $content['recur_type'],
@@ -1741,8 +1741,8 @@ function replace_eTemplate_onsubmit()
 		$content['msg'] = $msg;
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('calendar') . ' - ' . lang('iCal Export');
-		$etpl = new etemplate('calendar.export');
-		$etpl->exec('calendar.calendar_uiforms.export',$content);
+		$etpl = new etemplate('bcalendar.export');
+		$etpl->exec('bcalendar.bcalendar_uiforms.export',$content);
 	}
 
 	/**
@@ -1780,9 +1780,9 @@ function replace_eTemplate_onsubmit()
 			'msg' => $msg,
 		);
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('calendar') . ' - ' . lang('iCal Import');
-		$etpl = new etemplate('calendar.import');
+		$etpl = new etemplate('bcalendar.import');
 
-		$etpl->exec('calendar.calendar_uiforms.import',$content);
+		$etpl->exec('bcalendar.bcalendar_uiforms.import',$content);
 	}
 
 	/**
@@ -1808,8 +1808,8 @@ function replace_eTemplate_onsubmit()
 					foreach(array_merge((array)$data['add'],(array)$data['status'],array_keys((array)$data['old'])) as $account_id)
 					{
 						$rights = 0;
-						if (in_array($account_id,(array)$data['add'])) $rights |= calendar_boupdate::CAT_ACL_ADD;
-						if (in_array($account_id,(array)$data['status'])) $rights |= calendar_boupdate::CAT_ACL_STATUS;
+						if (in_array($account_id,(array)$data['add'])) $rights |= bcalendar_boupdate::CAT_ACL_ADD;
+						if (in_array($account_id,(array)$data['status'])) $rights |= bcalendar_boupdate::CAT_ACL_STATUS;
 						if ($account_id) $this->bo->set_cat_rights($cat_id,$account_id,$rights);
 					}
 				}
@@ -1831,8 +1831,8 @@ function replace_eTemplate_onsubmit()
 			);
 			foreach($data as $account_id => $rights)
 			{
-				if ($rights & calendar_boupdate::CAT_ACL_ADD) $row['add'][] = $account_id;
-				if ($rights & calendar_boupdate::CAT_ACL_STATUS) $row['status'][] = $account_id;
+				if ($rights & bcalendar_boupdate::CAT_ACL_ADD) $row['add'][] = $account_id;
+				if ($rights & bcalendar_boupdate::CAT_ACL_STATUS) $row['status'][] = $account_id;
 			}
 			$content['rows'][$n] = $row;
 			$preserv['rows'][$n] = array(
@@ -1846,7 +1846,7 @@ function replace_eTemplate_onsubmit()
 		$content['rows'][] = array('cat_id' => '');
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('Calendar').' - '.lang('Category ACL');
-		$tmp = new etemplate('calendar.cat_acl');
-		$tmp->exec('calendar.calendar_uiforms.cat_acl',$content,null,$readonlys,$preserv);
+		$tmp = new etemplate('bcalendar.cat_acl');
+		$tmp->exec('bcalendar.bcalendar_uiforms.cat_acl',$content,null,$readonlys,$preserv);
 	}
 }

@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	it	%1 %2 in %3
 %1 records imported	calendar	it	%1 record importato/i
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	it	%1 record letto/i (non ancora importato/i, torna indietro e deseleziona Test Import)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	it	<b>Attenzione</b>: l'agenda usa le festività della tua nazione, che è impostata a %1. Puoi cambiarla in %2.<br />Le festività sono %3 automaticamente installate da %4. Puoi cambiarle  in %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	it	<b>Attenzione</b>: l'agenda usa le festività della tua nazione, che è impostata a %1. Puoi cambiarla in %2.<br />Le festività sono %3 automaticamente installate da %4. Puoi cambiarle  in %5.
 a non blocking event will not conflict with other events	calendar	it	Un evento non bloccante non sarà in conflitto con altri eventi
 accept or reject an invitation	calendar	it	Accetta o o rifiuta un invito
 accepted	calendar	it	Accettato
-access denied to the calendar of %1 !!!	calendar	it	Accesso negato all'agenda di %1 !!!
+access denied to the bcalendar of %1 !!!	calendar	it	Accesso negato all'agenda di %1 !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	it	Azione che ha causato la notifica: Aggiunto, Cancellato, Accettato, Rifiutato, ...
 actions	calendar	it	Azioni
 add alarm	calendar	it	Aggiungi Allarme
@@ -59,8 +59,8 @@ days of the week for a weekly repeated event	calendar	it	Giorni della settimana 
 days repeated	calendar	it	giorni ripetuti
 dayview	calendar	it	Vista Giornaliera
 default appointment length (in minutes)	calendar	it	lunghezza predefinita degli appuntamenti (in minuti)
-default calendar filter	calendar	it	Filtro agenda predefinito
-default calendar view	calendar	it	Vista agenda predefinita
+default bcalendar filter	calendar	it	Filtro agenda predefinito
+default bcalendar view	calendar	it	Vista agenda predefinita
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	it	Lunghezza predefinita dei nuovi eventi. La lunghezza è in minuti, es. 60 per 1 ora.
 default week view	calendar	it	Vista settimanale predefinita
 delete series	calendar	it	Cancella serie
@@ -71,11 +71,11 @@ delete this series of recuring events	calendar	it	Cancella questa serie di event
 disinvited	calendar	it	Disinvitato
 display status of events	calendar	it	Visualizza lo stato per gli Eventi
 displayed view	calendar	it	vista mostrata
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	it	Visualizzare la tua vista agenda predefinita sulla pagina iniziale (la pagina che appare quando entri in eGroupWare o clicchi sull'icona HOME) ?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	it	Visualizzare la tua vista agenda predefinita sulla pagina iniziale (la pagina che appare quando entri in eGroupWare o clicchi sull'icona HOME) ?
 do you want a weekview with or without weekend?	calendar	it	Vuoi una vista settimanale con o senza weekend?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	it	Vuoi una notifica per i nuovi appuntamenti o per quelli cambiati? Sarai avvertito dei cambiamenti da te effettuati.<br>Puoi limitare la notifica su alcuni cambiamenti. TUTTE LE VOCI include tutte le notifiche elencate sopra di esso. TUTTE LE MODIFICHE include il cambiamento del titolo, della descrizione, dei partecipanti, ma non delle risposte dei partecipanti. Se il creatore dell'evento richiede ogni notifica, avrà sempre le risposte dei partecipanti sia gli accetti che i rifiuti.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	it	Vuoi ricevere regolarmente il resoconto dei tuoi appuntamenti via e-mail?<br>Il resoconto sarà mandato al tuo indirizzo e-mail standard ogni mattina o ogni Lunedì per il resoconto settimanale.<br>Sarà mandato solo se avrai un appuntamento per quel giorno o per quella settimana.
-do you wish to autoload calendar holidays files dynamically?	admin	it	Vuoi caricare automaticamente nell'agenda i file con l'elenco delle festività?
+do you wish to autoload bcalendar holidays files dynamically?	admin	it	Vuoi caricare automaticamente nell'agenda i file con l'elenco delle festività?
 download	calendar	it	Download
 download this event as ical	calendar	it	Scarica questo evento come iCal
 duration of the meeting	calendar	it	Durata della riunione
@@ -105,14 +105,14 @@ exceptions	calendar	it	Eccezioni
 existing links	calendar	it	Collegamenti esistenti
 export	calendar	it	Esporta
 extended	calendar	it	Esteso
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	it	Gli update estesi contengono tutti i dettagli degli eventi. Gli iCal possono essere importanti da certe applicazioni.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	it	Gli update estesi contengono tutti i dettagli degli eventi. Gli iCal possono essere importanti da certe applicazioni.
 fieldseparator	calendar	it	Separatore
 filename	calendar	it	Nome file
 filename of the download	calendar	it	Nome file del download
 find free timeslots where the selected participants are availible for the given timespan	calendar	it	Trova spazi di tempo libero in cui tutti i partecipanti sono disponibili per il periodo stabilito
 firstname of person to notify	calendar	it	Nome della persona da avvisare
 for	calendar	it	per
-for which views should calendar show distinct lines with a fixed time interval.	calendar	it	Per quali viste Agenda deve mostrare linee distinte con un intervallo fisso.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	it	Per quali viste Agenda deve mostrare linee distinte con un intervallo fisso.
 format of event updates	calendar	it	Formato degli aggiornamenti degli eventi
 forward half a month	calendar	it	avanti metà mese
 forward one month	calendar	it	avanti un mese
@@ -240,7 +240,7 @@ select resources	calendar	it	Seleziona risorse
 select who should get the alarm	calendar	it	Seleziona chi dovrà avere la sveglia
 set a year only for one-time / non-regular holidays.	calendar	it	Imposta un Anno solo per festività occasionali / non regolari.
 set new events to private	calendar	it	Imposta il nuovo evento come privato
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	it	Gli inviti non accettati compaiono nel tuo calendario?<br>Potrai accettarli più tardi (es. quando l'appuntamento in conflitto sarà rimosso), se li lascierai visibili nell'agenda!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	it	Gli inviti non accettati compaiono nel tuo bcalendario?<br>Potrai accettarli più tardi (es. quando l'appuntamento in conflitto sarà rimosso), se li lascierai visibili nell'agenda!
 should new events created as private by default ?	calendar	it	I nuovi eventi sono creati come privati normalmente ?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	it	Le persone non loggate possono vedere le tue informazioni di disponibilità? Puoi impostare una password extra, diversa dalla tua normale password, per proteggere queste imformazioni. Le informazioni di disponibilità sono nel formato iCal e includono solo i tempi in cui sei occupato. Non includono i nomi degli eventi, descrizioni o luoghi. L'URL delle informazioni di disponibilità è %1.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	it	Lo stato dei partecipanti agli eventi (accettato, rifiutato, ...) sarà visualizzato tra parentesi dopo il nome?
@@ -295,8 +295,8 @@ weekly	calendar	it	Settimanale
 weekview	calendar	it	Vista Settimanale
 weekview with weekend	calendar	it	Vista settimanale con weekend
 weekview without weekend	calendar	it	Vista settimanale senza weekend
-which events do you want to see when you enter the calendar.	calendar	it	Quali eventi vuoi vedere quando entri nell'agenda.
-which of calendar view do you want to see, when you start calendar ?	calendar	it	Quale vista dell'agenda vuoi vedere quanto apri l'agenda?
+which events do you want to see when you enter the bcalendar.	calendar	it	Quali eventi vuoi vedere quando entri nell'agenda.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	it	Quale vista dell'agenda vuoi vedere quanto apri l'agenda?
 whole day	calendar	it	giornata intera
 wk	calendar	it	Sett
 work day ends on	calendar	it	La giornata lavorativa termina alle

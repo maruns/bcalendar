@@ -70,13 +70,13 @@
 class module_calendar_list extends Module
 {
 	/**
-	 * Instance of the business object of calendar
+	 * Instance of the business object of bcalendar
 	 *
 	 * @var bo
 	 */
 	var $bo;
 	/**
-	 * Instance of the user interface object of calendar
+	 * Instance of the user interface object of bcalendar
 	 *
 	 * @var ui
 	 */
@@ -99,7 +99,7 @@ class module_calendar_list extends Module
 			),
 			'showTitle' => array(
 				'type' => 'checkbox',
-				'label' => lang('Show a calendar title'),
+				'label' => lang('Show a bcalendar title'),
 				'default' => false,
 			),
 			'offset' => array(
@@ -127,12 +127,12 @@ class module_calendar_list extends Module
 			'users' => array(
 				'type' => 'select',
 				'options' => array(),
-				'label' => lang('Group(s) or user(s) whose calendars to show (if ACL exists)'),
+				'label' => lang('Group(s) or user(s) whose bcalendars to show (if ACL exists)'),
 				// 'multiple' => true, is set in the get_user_interface function.
 			),
 			'showWeeks' => array(
 				'type' => 'checkbox',
-				'label' => lang('Should the number of weeks be shown on top of the calendar (only if offset = 0)'),
+				'label' => lang('Should the number of weeks be shown on top of the bcalendar (only if offset = 0)'),
 				'default' => false,
 			),
 			'useWeekStart' => array(
@@ -142,12 +142,12 @@ class module_calendar_list extends Module
 			),
 			'acceptDateParam' => array(
 				'type' => 'checkbox',
-				'label' => lang('Shall the date parameter be accepted (e.g. from calendar module)?'),
+				'label' => lang('Shall the date parameter be accepted (e.g. from bcalendar module)?'),
 				'default' => false,
 			),
 		);
 		$this->title = lang('Calendar - List');
-		$this->description = lang("This module displays calendar events as a list.");
+		$this->description = lang("This module displays bcalendar events as a list.");
 	}
 
 	function get_user_interface()
@@ -220,7 +220,7 @@ class module_calendar_list extends Module
 			$acl->read_repository();
 			// get the rights for each account to check whether the anon user has read permissions.
 			$rights = $acl->get_rights($anon_user,'calendar');
-			// also add the anon user if it's his own calendar.
+			// also add the anon user if it's his own bcalendar.
 			if (($rights & EGW_ACL_READ) || ($entry['account_id'] == $anon_user))
 			{
 				$has_read_permissions = true;
@@ -228,7 +228,7 @@ class module_calendar_list extends Module
 			else
 			{
 				// scan the groups which pass on permissions to the anon user group member
-				// or ass permissions if this is the anon group's calendar.
+				// or ass permissions if this is the anon group's bcalendar.
 				foreach ($anon_groups as $parent_group)
 				{
 					$rights = $acl->get_rights($parent_group,'calendar');
@@ -272,8 +272,8 @@ class module_calendar_list extends Module
 	{
 		$html = "";
 		$GLOBALS['egw']->translation->add_app('calendar');
-		$this->bo = new calendar_bo();
-		$this->ui = new calendar_uiviews();
+		$this->bo = new bcalendar_bo();
+		$this->ui = new bcalendar_uiviews();
 		$this->ui->allowEdit = false;
 		$this->ui->use_time_grid = isset($arguments['grid']) ? $arguments['grid'] : false;
 

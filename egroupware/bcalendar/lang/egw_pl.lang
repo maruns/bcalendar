@@ -5,11 +5,11 @@
 %1 weeks	calendar	pl	%1 tygodni
 (%1 events in %2 seconds)	calendar	pl	(%1 zdarzeń w %2 sekund)
 , exceptions preserved	calendar	pl	, wyjątków zachowano
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	pl	<b>Zauważ</b>: Kalendarz używa listy dni świątecznych dla Twojego kraju, tj. dla %1. Możesz zmienić to zachowanie w Twoim %2.<br />Dni świąteczne są %3 automatycznie instalowane z %4. Możesz zmienić to w %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	pl	<b>Zauważ</b>: Kalendarz używa listy dni świątecznych dla Twojego kraju, tj. dla %1. Możesz zmienić to zachowanie w Twoim %2.<br />Dni świąteczne są %3 automatycznie instalowane z %4. Możesz zmienić to w %5.
 a non blocking event will not conflict with other events	calendar	pl	Termin nie blokujący nie będzie w konflikcie z innymi terminami kalendarza
 accept or reject an invitation	calendar	pl	Zaakeptuj lub odrzuć zaproszenie
 accepted	calendar	pl	Zaakceptowano
-access denied to the calendar of %1 !!!	calendar	pl	Brak dostępu do kalendarza użytkownika %1
+access denied to the bcalendar of %1 !!!	calendar	pl	Brak dostępu do kalendarza użytkownika %1
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	pl	Akcja która spowodowała powiadomienie: Dodano, Anulowano, Zakceptowano, Odrzucono...
 actions	calendar	pl	Operacje
 add alarm	calendar	pl	Dodaj alarm
@@ -87,10 +87,10 @@ days of the week for a weekly repeated event	calendar	pl	Dni tygodnia dla tygodn
 days repeated	calendar	pl	Dni powtórzeń
 dayview	calendar	pl	Widok Dzienny
 default appointment length (in minutes)	calendar	pl	domyślna długość spotkania (w minutach)
-default calendar filter	calendar	pl	Domyślny filtr kalendarza
-default calendar view	calendar	pl	Domyślny układ kalendarza
+default bcalendar filter	calendar	pl	Domyślny filtr kalendarza
+default bcalendar view	calendar	pl	Domyślny układ kalendarza
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	pl	Domyślna długość nowo dodawanych zdarzeń. Długość podaj w minutach.
-default type of resources application selected in the calendar particpants research form.	calendar	pl	Domyślny typ aplikacji zasobów wybrany w formularzu uczestników kalendarza
+default type of resources application selected in the bcalendar particpants research form.	calendar	pl	Domyślny typ aplikacji zasobów wybrany w formularzu uczestników kalendarza
 default type of resources selection	calendar	pl	Domyślny wybrany typ zasobu
 default week view	calendar	pl	domyślny widok tygodnia
 delegated	calendar	pl	Oddelegowane
@@ -104,7 +104,7 @@ deny ressources reservation for private events	calendar	pl	Odmów rezerwacji zas
 disinvited	calendar	pl	Zaproszenie cofnięto
 display status of events	calendar	pl	Wyświetl status zdarzeń
 displayed view	calendar	pl	bieżący widok
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	pl	Pokazywać Twój kalendarz na stronie głównej (stronie, którą widzisz po zalogowaniu się do eGroupWare lub po kliknięciu na ikonę strony domowej)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	pl	Pokazywać Twój kalendarz na stronie głównej (stronie, którą widzisz po zalogowaniu się do eGroupWare lub po kliknięciu na ikonę strony domowej)?
 do not include events of group members	calendar	pl	Nie dołączaj zdarzeń członków grup
 do you want a weekview with or without weekend?	calendar	pl	Czy widok tygodniowy powinien zawierać weekend?
 do you want to be notified about changes of appointments you modified?	calendar	pl	Czy chcesz być powiadomiony o zmianach spotkań które modyfikowałeś?
@@ -112,7 +112,7 @@ do you want to be notified about new or changed appointments? you are not notifi
 do you want to be notified about new or changed appointments? you be notified about changes you make yourself.<br>you can limit the notifications to certain changes only. each item includes all the notification listed above it. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get the participant responses like acceptions and rejections too.	calendar	pl	Czy chcesz być powiadamiany o nowych lub zmienionych spotkaniach? Będziesz powiadamiany o zmianach które sam zrobisz.<br>Możesz ograniczyć powiadomienia tylko do niektórych zmian. Każda pozycja zawiera wszystkie powiadomienia wymienione powyżej. <i>Wszystkie zmiany</i> zawierają zmiany nazwy, opisu, uczestników, ale nie same odpowiedzi uczestników. Jeżeli właściciel zdarzenia wybierze powiadomienia dowolne, będzie otrzymywał również odpowiedzi uczestników, takie jak akceptacje czy odrzucenia.
 do you want to edit this event as an exception or the whole series?	calendar	pl	Czy chcesz edytować to zdarzenie jako wyjątek czy całą serię?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	pl	Czy chcesz otrzymywać mailem regularne podsumowania swoich spotkań?<br>Podsumowanie jest wysyłane na Twój adres e-mail codziennie rano, lub w poniedziałki dla podsumowań tygodniowych.<br>Podsumowanie jest wysyłane tylko jeżeli masz zaplanowane jakieś spotkania w danym dniu lub tygodniu.
-do you wish to autoload calendar holidays files dynamically?	admin	pl	Czy chcesz automatycznie ładować do kalendarza listę świąt?
+do you wish to autoload bcalendar holidays files dynamically?	admin	pl	Czy chcesz automatycznie ładować do kalendarza listę świąt?
 download	calendar	pl	Ściągnij
 download this event as ical	calendar	pl	Ściągnij zdarzenia w formacie iCal
 duration of the meeting	calendar	pl	Czas trwania spotkania
@@ -148,14 +148,14 @@ execute a further action for this entry	calendar	pl	Wykonaj dalszą akcję dla t
 existing links	calendar	pl	Istniejące odnośniki
 export	calendar	pl	Eksport
 extended	calendar	pl	Rozszerzone
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	pl	Rozszerzone uaktualnienia zawsze zawierają kompletne dane o wpisach. iCal-e mogą być importowane przez różne inne programy - kalendarze.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	pl	Rozszerzone uaktualnienia zawsze zawierają kompletne dane o wpisach. iCal-e mogą być importowane przez różne inne programy - kalendarze.
 fieldseparator	calendar	pl	Odzielnik pola
 filename	calendar	pl	Nazwa pliku
 filename of the download	calendar	pl	Nazwa pliku do ściągnięcia
 find free timeslots where the selected participants are availible for the given timespan	calendar	pl	Wyszukaj wolne przedziały czasu, dla których wybrani uczestnicy są dostępni przez określony okres
 firstname of person to notify	calendar	pl	Imię osoby do powiadomienia
 for	calendar	pl	dla
-for which views should calendar show distinct lines with a fixed time interval.	calendar	pl	Które widoki kalendarza powinny zawierać poziomie linie, reprezentujące siatkę godzin?
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	pl	Które widoki kalendarza powinny zawierać poziomie linie, reprezentujące siatkę godzin?
 format of event updates	calendar	pl	Format uaktualnień wydarzeń
 forward half a month	calendar	pl	naprzód o pół miesiąca
 forward one month	calendar	pl	naprzód o jeden miesiąc
@@ -173,7 +173,7 @@ global public only	calendar	pl	Tylko globalnie publiczne
 group invitation	calendar	pl	Zaproszenie grupowe
 group planner	calendar	pl	Planowanie grupowe
 group public only	calendar	pl	Tylko grupowo publiczne
-group(s) or user(s) whose calendars to show (if acl exists)	calendar	pl	Grupy i użytkownicy których kalendarze pokazać (jeśli ACL istnieje)
+group(s) or user(s) whose bcalendars to show (if acl exists)	calendar	pl	Grupy i użytkownicy których kalendarze pokazać (jeśli ACL istnieje)
 groupmember(s) %1 not included, because you have no access.	calendar	pl	Następujący członkowie wybranych grup nie zostali uwzględnieni ze względu na brak dostępu: %1
 groups: other users can allways be invited, only groups require an invite grant	admin	pl	Grupy: inni użytkownicy zawsze mogą być zaproszeni, tylko grupy wymagają zezwolenia.
 h	calendar	pl	g
@@ -201,7 +201,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	pl	Ignoruj konflikt
 import	calendar	pl	Import
 import csv-file	common	pl	Importuj plik CSV
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	pl	Importuj zdarzenia do kalendarza z pliku CSV.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	pl	Importuj zdarzenia do kalendarza z pliku CSV.
 interval	calendar	pl	Przedział
 invalid email-address "%1" for user %2	calendar	pl	Nieprawidłowy adres e-mail "%1" dla użytkownika "%2"
 invitations	calendar	pl	Zaproszenia
@@ -323,16 +323,16 @@ series deleted	calendar	pl	Seria usunięta
 set a year only for one-time / non-regular holidays.	calendar	pl	Wybierz rok tylko dla jednorazowych lub nieregularnych dni świątecznych
 set new events to private	calendar	pl	Oznaczaj nowe terminy jako prywatne
 setting lock time calender	admin	pl	Ustawienie blokady czasu dla kalendarza (domyslnie 1 sekunda)
-shall the date parameter be accepted (e.g. from calendar module)?	calendar	pl	Czy parametr dany ma zostać zaakceptowany (np. z modułu kalendarza)?
+shall the date parameter be accepted (e.g. from bcalendar module)?	calendar	pl	Czy parametr dany ma zostać zaakceptowany (np. z modułu kalendarza)?
 should new events created as private by default ?	calendar	pl	Czy nowe zdarzenia maja być oznaczane domyślnie jako prywatne?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	pl	Czy osoba nie zalogowana (gość) powinna mieć dostęp do informacji wolny-zajęty? Można ustawić specjalne hasło, inne niż hasło do eGroupWare, aby chronić te informacje. Informacja wolny-zajęty jest w formacie iCal i zawiera jedynie przedziały czasu, w których jesteś zajęty. Nie ma tam innych informacji - np. nazwy terminu, opisu czy lokalizacji. Odnośnik do informacji wolny-zajęty to %1.
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is <a href="http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no" target="_blank">http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no</a>.	calendar	pl	Czy osoba nie zalogowana (gość) powinna mieć dostęp do informacji wolny-zajęty? Można ustawić specjalne hasło, inne niż hasło do eGroupWare, aby chronić te informacje. Informacja wolny-zajęty jest w formacie iCal i zawiera jedynie przedziały czasu, w których jesteś zajęty. Nie ma tam innych informacji - np. nazwy terminu, opisu czy lokalizacji. Odnośnik do informacji wolny-zajęty to <a href="http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no" target="_blank">http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no</a>.
-should the grid be shown in the calendar	calendar	pl	Czy pokazywać siatkę w kalendarzu
-should the number of weeks be shown on top of the calendar	calendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza
-should the number of weeks be shown on top of the calendar (only if offset = 0)	calendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza (tylko jeśli offset = 0)
+should the grid be shown in the bcalendar	calendar	pl	Czy pokazywać siatkę w kalendarzu
+should the number of weeks be shown on top of the bcalendar	calendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza
+should the number of weeks be shown on top of the bcalendar (only if offset = 0)	calendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza (tylko jeśli offset = 0)
 should the planner display an empty row for users or categories without any appointment.	calendar	pl	Czy widok planowania grupowego powinien zawierać puste wiersze dla użytkowników lub kategorii bez jakichkolwiek terminów?
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	pl	Czy pokazywać w nawiasach status (zaakceptowane, odrzucone...) uczestników zdarzenia obok ich nazwiska?
-show a calendar title	calendar	pl	Pokaż tytuł kalendarza
+show a bcalendar title	calendar	pl	Pokaż tytuł kalendarza
 show all events, as if they were private	calendar	pl	Pokaż wszystkie zdarzenia tak jakby były pyrwatne
 show all status incl. rejected events	calendar	pl	Pokaż wszystkie statusy, łącznie z odrzuconymi
 show all status, but rejected	calendar	pl	Pokaż wszystkie statusy oprócz odrzuconych
@@ -381,8 +381,8 @@ this message is sent to disinvited participants.	calendar	pl	Ta wiadomość jest
 this message is sent to every participant of events you own, who has requested notifcations about new events.<br>you can use certain variables which get substituted with the data of the event. the first line is the subject of the email.	calendar	pl	Ta wiadomość jest wysyłana do wszystkich uczestników spotkania, którego jesteś właścicielem, którzy zażyczyli sobie otrzymywania powiadomień o nowych terminach.<br />Możesz użyć pewnych zmiennych, które ulegną podstawieniu danymi konkretnego terminu. Pierwsza linia jest tematem wiadomości e-mail.
 this message is sent when you accept, tentative accept or reject an event.	calendar	pl	Ta wiadomość jest wysyłana kiedy akceptujesz, akceptujesz próbnie lub odrzucasz zdarzenie.
 this message is sent when you set an alarm for a certain event. include all information you might need.	calendar	pl	Ta wiadomość jest wysyłana, kiedy ustawiasz Alarm dla jakiegoś zdarzenia. Dołącz wszystkie informacje, których możesz potrzebować.
-this module displays a user's calendar as multiple weeks. don't give calendar application access to the anon user!	calendar	pl	Ten moduł wyświetla kalendarz użytkownika jako wiele tygodni. Nie dawaj dostępu do kalendarza użytkownikom anonimowym!
-this module displays calendar events as a list.	calendar	pl	Ten moduł wyświetla zdarzenia kalendarza jako listę.
+this module displays a user's bcalendar as multiple weeks. don't give bcalendar application access to the anon user!	calendar	pl	Ten moduł wyświetla kalendarz użytkownika jako wiele tygodni. Nie dawaj dostępu do kalendarza użytkownikom anonimowym!
+this module displays bcalendar events as a list.	calendar	pl	Ten moduł wyświetla zdarzenia kalendarza jako listę.
 this module displays the current month	calendar	pl	Ten moduł wyświetla aktualny miesiąc
 three month	calendar	pl	trzy miesiące
 thu	calendar	pl	Czw
@@ -407,11 +407,11 @@ update timezones	calendar	pl	Aktualizuj strefy czasowe
 updated	calendar	pl	Uaktualniony
 use end date	calendar	pl	Użyj daty zakończenia
 use the selected time and close the popup	calendar	pl	wybierz zaznaczony czas i zamknij okno
-use this timezone to export calendar data.	calendar	pl	Użyj tej strefy czasowej do eksportu danych kalendarza.
-use this timezone to import/export calendar data.	calendar	pl	Użyj tej strefy czasowej do importu/eksportu danych kalendarza.
+use this timezone to export bcalendar data.	calendar	pl	Użyj tej strefy czasowej do eksportu danych kalendarza.
+use this timezone to import/export bcalendar data.	calendar	pl	Użyj tej strefy czasowej do importu/eksportu danych kalendarza.
 use weekday start	calendar	pl	Użyj początku dnia tygodnia
 user or group	calendar	pl	Użytkownik lub grupa
-user selectable css file for the calendar setup	calendar	pl	Plik CSS użytkownika dla kalendarza
+user selectable css file for the bcalendar setup	calendar	pl	Plik CSS użytkownika dla kalendarza
 users + groups: inviting both allways requires an invite grant	admin	pl	Użytkownicy + grupy: zaproszenie obydwu zawsze wymaga zezwolenia
 view exception	calendar	pl	Wyświetl wyjątek
 view series	calendar	pl	Wyświetl serię
@@ -429,8 +429,8 @@ weeks offset (for multi-column display)	calendar	pl	Offset tygodni (dla widoku w
 weekview	calendar	pl	Widok tygodniowy
 weekview with weekend	calendar	pl	Widok tygodniowy z weekendem
 weekview without weekend	calendar	pl	Widok tygodniowy bez weekendu
-which events do you want to see when you enter the calendar.	calendar	pl	Które terminy chcesz widzieć, gdy uruchamiasz kalendarz?
-which of calendar view do you want to see, when you start calendar ?	calendar	pl	Który widok kalendarza chcesz widzieć, gdy uruchamiasz kalendarz?
+which events do you want to see when you enter the bcalendar.	calendar	pl	Które terminy chcesz widzieć, gdy uruchamiasz kalendarz?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	pl	Który widok kalendarza chcesz widzieć, gdy uruchamiasz kalendarz?
 whole day	calendar	pl	cały dzień
 whole query	calendar	pl	całe zapytanie
 wk	calendar	pl	Tydź.
@@ -460,11 +460,11 @@ your php extension pdo_sqlite is broken!	calendar	pl	Twoje rozszerzenie pdo_sqli
 %1 weeks	bcalendar	pl	%1 tygodni
 (%1 events in %2 seconds)	bcalendar	pl	(%1 zdarzeń w %2 sekund)
 , exceptions preserved	bcalendar	pl	, wyjątków zachowano
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	bcalendar	pl	<b>Zauważ</b>: Kalendarz używa listy dni świątecznych dla Twojego kraju, tj. dla %1. Możesz zmienić to zachowanie w Twoim %2.<br />Dni świąteczne są %3 automatycznie instalowane z %4. Możesz zmienić to w %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	bcalendar	pl	<b>Zauważ</b>: Kalendarz używa listy dni świątecznych dla Twojego kraju, tj. dla %1. Możesz zmienić to zachowanie w Twoim %2.<br />Dni świąteczne są %3 automatycznie instalowane z %4. Możesz zmienić to w %5.
 a non blocking event will not conflict with other events	bcalendar	pl	Termin nie blokujący nie będzie w konflikcie z innymi terminami kalendarza
 accept or reject an invitation	bcalendar	pl	Zaakeptuj lub odrzuć zaproszenie
 accepted	bcalendar	pl	Zaakceptowano
-access denied to the calendar of %1 !!!	bcalendar	pl	Brak dostępu do kalendarza użytkownika %1
+access denied to the bcalendar of %1 !!!	bcalendar	pl	Brak dostępu do kalendarza użytkownika %1
 action that caused the notify: added, canceled, accepted, rejected, ...	bcalendar	pl	Akcja która spowodowała powiadomienie: Dodano, Anulowano, Zakceptowano, Odrzucono...
 actions	bcalendar	pl	Operacje
 add alarm	bcalendar	pl	Dodaj alarm
@@ -542,10 +542,10 @@ days of the week for a weekly repeated event	bcalendar	pl	Dni tygodnia dla tygod
 days repeated	bcalendar	pl	Dni powtórzeń
 dayview	bcalendar	pl	Widok Dzienny
 default appointment length (in minutes)	bcalendar	pl	domyślna długość spotkania (w minutach)
-default calendar filter	bcalendar	pl	Domyślny filtr kalendarza
-default calendar view	bcalendar	pl	Domyślny układ kalendarza
+default bcalendar filter	bcalendar	pl	Domyślny filtr kalendarza
+default bcalendar view	bcalendar	pl	Domyślny układ kalendarza
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	bcalendar	pl	Domyślna długość nowo dodawanych zdarzeń. Długość podaj w minutach.
-default type of resources application selected in the calendar particpants research form.	bcalendar	pl	Domyślny typ aplikacji zasobów wybrany w formularzu uczestników kalendarza
+default type of resources application selected in the bcalendar particpants research form.	bcalendar	pl	Domyślny typ aplikacji zasobów wybrany w formularzu uczestników kalendarza
 default type of resources selection	bcalendar	pl	Domyślny wybrany typ zasobu
 default week view	bcalendar	pl	domyślny widok tygodnia
 delegated	bcalendar	pl	Oddelegowane
@@ -559,7 +559,7 @@ deny ressources reservation for private events	bcalendar	pl	Odmów rezerwacji za
 disinvited	bcalendar	pl	Zaproszenie cofnięto
 display status of events	bcalendar	pl	Wyświetl status zdarzeń
 displayed view	bcalendar	pl	bieżący widok
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	bcalendar	pl	Pokazywać Twój kalendarz na stronie głównej (stronie, którą widzisz po zalogowaniu się do eGroupWare lub po kliknięciu na ikonę strony domowej)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	bcalendar	pl	Pokazywać Twój kalendarz na stronie głównej (stronie, którą widzisz po zalogowaniu się do eGroupWare lub po kliknięciu na ikonę strony domowej)?
 do not include events of group members	bcalendar	pl	Nie dołączaj zdarzeń członków grup
 do you want a weekview with or without weekend?	bcalendar	pl	Czy widok tygodniowy powinien zawierać weekend?
 do you want to be notified about changes of appointments you modified?	bcalendar	pl	Czy chcesz być powiadomiony o zmianach spotkań które modyfikowałeś?
@@ -567,7 +567,7 @@ do you want to be notified about new or changed appointments? you are not notifi
 do you want to be notified about new or changed appointments? you be notified about changes you make yourself.<br>you can limit the notifications to certain changes only. each item includes all the notification listed above it. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get the participant responses like acceptions and rejections too.	bcalendar	pl	Czy chcesz być powiadamiany o nowych lub zmienionych spotkaniach? Będziesz powiadamiany o zmianach które sam zrobisz.<br>Możesz ograniczyć powiadomienia tylko do niektórych zmian. Każda pozycja zawiera wszystkie powiadomienia wymienione powyżej. <i>Wszystkie zmiany</i> zawierają zmiany nazwy, opisu, uczestników, ale nie same odpowiedzi uczestników. Jeżeli właściciel zdarzenia wybierze powiadomienia dowolne, będzie otrzymywał również odpowiedzi uczestników, takie jak akceptacje czy odrzucenia.
 do you want to edit this event as an exception or the whole series?	bcalendar	pl	Czy chcesz edytować to zdarzenie jako wyjątek czy całą serię?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	bcalendar	pl	Czy chcesz otrzymywać mailem regularne podsumowania swoich spotkań?<br>Podsumowanie jest wysyłane na Twój adres e-mail codziennie rano, lub w poniedziałki dla podsumowań tygodniowych.<br>Podsumowanie jest wysyłane tylko jeżeli masz zaplanowane jakieś spotkania w danym dniu lub tygodniu.
-do you wish to autoload calendar holidays files dynamically?	admin	pl	Czy chcesz automatycznie ładować do kalendarza listę świąt?
+do you wish to autoload bcalendar holidays files dynamically?	admin	pl	Czy chcesz automatycznie ładować do kalendarza listę świąt?
 download	bcalendar	pl	Ściągnij
 download this event as ical	bcalendar	pl	Ściągnij zdarzenia w formacie iCal
 duration of the meeting	bcalendar	pl	Czas trwania spotkania
@@ -603,14 +603,14 @@ execute a further action for this entry	bcalendar	pl	Wykonaj dalszą akcję dla 
 existing links	bcalendar	pl	Istniejące odnośniki
 export	bcalendar	pl	Eksport
 extended	bcalendar	pl	Rozszerzone
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	bcalendar	pl	Rozszerzone uaktualnienia zawsze zawierają kompletne dane o wpisach. iCal-e mogą być importowane przez różne inne programy - kalendarze.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	bcalendar	pl	Rozszerzone uaktualnienia zawsze zawierają kompletne dane o wpisach. iCal-e mogą być importowane przez różne inne programy - kalendarze.
 fieldseparator	bcalendar	pl	Odzielnik pola
 filename	bcalendar	pl	Nazwa pliku
 filename of the download	bcalendar	pl	Nazwa pliku do ściągnięcia
 find free timeslots where the selected participants are availible for the given timespan	bcalendar	pl	Wyszukaj wolne przedziały czasu, dla których wybrani uczestnicy są dostępni przez określony okres
 firstname of person to notify	bcalendar	pl	Imię osoby do powiadomienia
 for	bcalendar	pl	dla
-for which views should calendar show distinct lines with a fixed time interval.	bcalendar	pl	Które widoki kalendarza powinny zawierać poziomie linie, reprezentujące siatkę godzin?
+for which views should bcalendar show distinct lines with a fixed time interval.	bcalendar	pl	Które widoki kalendarza powinny zawierać poziomie linie, reprezentujące siatkę godzin?
 format of event updates	bcalendar	pl	Format uaktualnień wydarzeń
 forward half a month	bcalendar	pl	naprzód o pół miesiąca
 forward one month	bcalendar	pl	naprzód o jeden miesiąc
@@ -628,7 +628,7 @@ global public only	bcalendar	pl	Tylko globalnie publiczne
 group invitation	bcalendar	pl	Zaproszenie grupowe
 group planner	bcalendar	pl	Planowanie grupowe
 group public only	bcalendar	pl	Tylko grupowo publiczne
-group(s) or user(s) whose calendars to show (if acl exists)	bcalendar	pl	Grupy i użytkownicy których kalendarze pokazać (jeśli ACL istnieje)
+group(s) or user(s) whose bcalendars to show (if acl exists)	bcalendar	pl	Grupy i użytkownicy których kalendarze pokazać (jeśli ACL istnieje)
 groupmember(s) %1 not included, because you have no access.	bcalendar	pl	Następujący członkowie wybranych grup nie zostali uwzględnieni ze względu na brak dostępu: %1
 groups: other users can allways be invited, only groups require an invite grant	admin	pl	Grupy: inni użytkownicy zawsze mogą być zaproszeni, tylko grupy wymagają zezwolenia.
 h	bcalendar	pl	g
@@ -656,7 +656,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	bcalendar	pl	Ignoruj konflikt
 import	bcalendar	pl	Import
 import csv-file	common	pl	Importuj plik CSV
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	bcalendar	pl	Importuj zdarzenia do kalendarza z pliku CSV.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	bcalendar	pl	Importuj zdarzenia do kalendarza z pliku CSV.
 interval	bcalendar	pl	Przedział
 invalid email-address "%1" for user %2	bcalendar	pl	Nieprawidłowy adres e-mail "%1" dla użytkownika "%2"
 invitations	bcalendar	pl	Zaproszenia
@@ -778,16 +778,16 @@ series deleted	bcalendar	pl	Seria usunięta
 set a year only for one-time / non-regular holidays.	bcalendar	pl	Wybierz rok tylko dla jednorazowych lub nieregularnych dni świątecznych
 set new events to private	bcalendar	pl	Oznaczaj nowe terminy jako prywatne
 setting lock time calender	admin	pl	Ustawienie blokady czasu dla kalendarza (domyslnie 1 sekunda)
-shall the date parameter be accepted (e.g. from calendar module)?	bcalendar	pl	Czy parametr dany ma zostać zaakceptowany (np. z modułu kalendarza)?
+shall the date parameter be accepted (e.g. from bcalendar module)?	bcalendar	pl	Czy parametr dany ma zostać zaakceptowany (np. z modułu kalendarza)?
 should new events created as private by default ?	bcalendar	pl	Czy nowe zdarzenia maja być oznaczane domyślnie jako prywatne?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	bcalendar	pl	Czy osoba nie zalogowana (gość) powinna mieć dostęp do informacji wolny-zajęty? Można ustawić specjalne hasło, inne niż hasło do eGroupWare, aby chronić te informacje. Informacja wolny-zajęty jest w formacie iCal i zawiera jedynie przedziały czasu, w których jesteś zajęty. Nie ma tam innych informacji - np. nazwy terminu, opisu czy lokalizacji. Odnośnik do informacji wolny-zajęty to %1.
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is <a href="http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no" target="_blank">http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no</a>.	bcalendar	pl	Czy osoba nie zalogowana (gość) powinna mieć dostęp do informacji wolny-zajęty? Można ustawić specjalne hasło, inne niż hasło do eGroupWare, aby chronić te informacje. Informacja wolny-zajęty jest w formacie iCal i zawiera jedynie przedziały czasu, w których jesteś zajęty. Nie ma tam innych informacji - np. nazwy terminu, opisu czy lokalizacji. Odnośnik do informacji wolny-zajęty to <a href="http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no" target="_blank">http://demo.jns.pl/calendar/freebusy.php?user=admin&password=no</a>.
-should the grid be shown in the calendar	bcalendar	pl	Czy pokazywać siatkę w kalendarzu
-should the number of weeks be shown on top of the calendar	bcalendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza
-should the number of weeks be shown on top of the calendar (only if offset = 0)	bcalendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza (tylko jeśli offset = 0)
+should the grid be shown in the bcalendar	bcalendar	pl	Czy pokazywać siatkę w kalendarzu
+should the number of weeks be shown on top of the bcalendar	bcalendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza
+should the number of weeks be shown on top of the bcalendar (only if offset = 0)	bcalendar	pl	Czy wyświetlać liczbę tygodni na górze kalendarza (tylko jeśli offset = 0)
 should the planner display an empty row for users or categories without any appointment.	bcalendar	pl	Czy widok planowania grupowego powinien zawierać puste wiersze dla użytkowników lub kategorii bez jakichkolwiek terminów?
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	bcalendar	pl	Czy pokazywać w nawiasach status (zaakceptowane, odrzucone...) uczestników zdarzenia obok ich nazwiska?
-show a calendar title	bcalendar	pl	Pokaż tytuł kalendarza
+show a bcalendar title	bcalendar	pl	Pokaż tytuł kalendarza
 show all events, as if they were private	bcalendar	pl	Pokaż wszystkie zdarzenia tak jakby były pyrwatne
 show all status incl. rejected events	bcalendar	pl	Pokaż wszystkie statusy, łącznie z odrzuconymi
 show all status, but rejected	bcalendar	pl	Pokaż wszystkie statusy oprócz odrzuconych
@@ -836,8 +836,8 @@ this message is sent to disinvited participants.	bcalendar	pl	Ta wiadomość jes
 this message is sent to every participant of events you own, who has requested notifcations about new events.<br>you can use certain variables which get substituted with the data of the event. the first line is the subject of the email.	bcalendar	pl	Ta wiadomość jest wysyłana do wszystkich uczestników spotkania, którego jesteś właścicielem, którzy zażyczyli sobie otrzymywania powiadomień o nowych terminach.<br />Możesz użyć pewnych zmiennych, które ulegną podstawieniu danymi konkretnego terminu. Pierwsza linia jest tematem wiadomości e-mail.
 this message is sent when you accept, tentative accept or reject an event.	bcalendar	pl	Ta wiadomość jest wysyłana kiedy akceptujesz, akceptujesz próbnie lub odrzucasz zdarzenie.
 this message is sent when you set an alarm for a certain event. include all information you might need.	bcalendar	pl	Ta wiadomość jest wysyłana, kiedy ustawiasz Alarm dla jakiegoś zdarzenia. Dołącz wszystkie informacje, których możesz potrzebować.
-this module displays a user's calendar as multiple weeks. don't give calendar application access to the anon user!	bcalendar	pl	Ten moduł wyświetla kalendarz użytkownika jako wiele tygodni. Nie dawaj dostępu do kalendarza użytkownikom anonimowym!
-this module displays calendar events as a list.	bcalendar	pl	Ten moduł wyświetla zdarzenia kalendarza jako listę.
+this module displays a user's bcalendar as multiple weeks. don't give bcalendar application access to the anon user!	bcalendar	pl	Ten moduł wyświetla kalendarz użytkownika jako wiele tygodni. Nie dawaj dostępu do kalendarza użytkownikom anonimowym!
+this module displays bcalendar events as a list.	bcalendar	pl	Ten moduł wyświetla zdarzenia kalendarza jako listę.
 this module displays the current month	bcalendar	pl	Ten moduł wyświetla aktualny miesiąc
 three month	bcalendar	pl	trzy miesiące
 thu	bcalendar	pl	Czw
@@ -862,11 +862,11 @@ update timezones	bcalendar	pl	Aktualizuj strefy czasowe
 updated	bcalendar	pl	Uaktualniony
 use end date	bcalendar	pl	Użyj daty zakończenia
 use the selected time and close the popup	bcalendar	pl	wybierz zaznaczony czas i zamknij okno
-use this timezone to export calendar data.	bcalendar	pl	Użyj tej strefy czasowej do eksportu danych kalendarza.
-use this timezone to import/export calendar data.	bcalendar	pl	Użyj tej strefy czasowej do importu/eksportu danych kalendarza.
+use this timezone to export bcalendar data.	bcalendar	pl	Użyj tej strefy czasowej do eksportu danych kalendarza.
+use this timezone to import/export bcalendar data.	bcalendar	pl	Użyj tej strefy czasowej do importu/eksportu danych kalendarza.
 use weekday start	bcalendar	pl	Użyj początku dnia tygodnia
 user or group	bcalendar	pl	Użytkownik lub grupa
-user selectable css file for the calendar setup	bcalendar	pl	Plik CSS użytkownika dla kalendarza
+user selectable css file for the bcalendar setup	bcalendar	pl	Plik CSS użytkownika dla kalendarza
 users + groups: inviting both allways requires an invite grant	admin	pl	Użytkownicy + grupy: zaproszenie obydwu zawsze wymaga zezwolenia
 view exception	bcalendar	pl	Wyświetl wyjątek
 view series	bcalendar	pl	Wyświetl serię
@@ -884,8 +884,8 @@ weeks offset (for multi-column display)	bcalendar	pl	Offset tygodni (dla widoku 
 weekview	bcalendar	pl	Widok tygodniowy
 weekview with weekend	bcalendar	pl	Widok tygodniowy z weekendem
 weekview without weekend	bcalendar	pl	Widok tygodniowy bez weekendu
-which events do you want to see when you enter the calendar.	bcalendar	pl	Które terminy chcesz widzieć, gdy uruchamiasz kalendarz?
-which of calendar view do you want to see, when you start calendar ?	bcalendar	pl	Który widok kalendarza chcesz widzieć, gdy uruchamiasz kalendarz?
+which events do you want to see when you enter the bcalendar.	bcalendar	pl	Które terminy chcesz widzieć, gdy uruchamiasz kalendarz?
+which of bcalendar view do you want to see, when you start bcalendar ?	bcalendar	pl	Który widok kalendarza chcesz widzieć, gdy uruchamiasz kalendarz?
 whole day	bcalendar	pl	cały dzień
 whole query	bcalendar	pl	całe zapytanie
 wk	bcalendar	pl	Tydź.

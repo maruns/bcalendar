@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	fr	%1 %2 in %3
 %1 records imported	calendar	fr	%1 enregistrement(s) importé(s)
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	fr	%1 enregistrements lus (pas encore importés, vous pouvez revenir en arrière et décocher Tester l'import)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	fr	<b> Note : </b> Le calendrier utilise les vacances de votre pays (%1). Vous pouvez le changer dans votre %2. <br/> Les vacances sont %3 positionnées automatiquement à partir de %4. Vous pouvez les modifier dans %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	fr	<b> Note : </b> Le calendrier utilise les vacances de votre pays (%1). Vous pouvez le changer dans votre %2. <br/> Les vacances sont %3 positionnées automatiquement à partir de %4. Vous pouvez les modifier dans %5.
 a non blocking event will not conflict with other events	calendar	fr	Un événement non bloquant n'entrera pas en conflit avec d'autres événements.
 accept or reject an invitation	calendar	fr	Accepter ou rejeter une invitation
 accepted	calendar	fr	Accepté
-access denied to the calendar of %1 !!!	calendar	fr	Accès au calendrier de %1 refusé !!!
+access denied to the bcalendar of %1 !!!	calendar	fr	Accès au calendrier de %1 refusé !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	fr	L'action qui a causé la notification: Ajouté, Annulé, Accepté, Rejeté, ...
 actions	calendar	fr	Actions
 actions...	calendar	fr	Actions...
@@ -63,10 +63,10 @@ days of the week for a weekly repeated event	calendar	fr	Jours de la semaine pou
 days repeated	calendar	fr	jours répétés
 dayview	calendar	fr	Vue journalière
 default appointment length (in minutes)	calendar	fr	Durée du rendez-vous par défaut (en minutes)
-default calendar filter	calendar	fr	Filtre de calendrier par défaut
-default calendar view	calendar	fr	vue du calendrier par défaut
+default bcalendar filter	calendar	fr	Filtre de calendrier par défaut
+default bcalendar view	calendar	fr	vue du calendrier par défaut
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	fr	Durée par défaut des nouveaux événements. La durée est en minutes, c'est-à-dire 60 vaut 1 heure.
-default type of resources application selected in the calendar particpants research form.	calendar	fr	Type d'application de ressource sélectionnée par défaut dans le formulaire de recherche des participants.
+default type of resources application selected in the bcalendar particpants research form.	calendar	fr	Type d'application de ressource sélectionnée par défaut dans le formulaire de recherche des participants.
 default type of resources selection	calendar	fr	Type de sélection  de ressource par défaut
 default week view	calendar	fr	vue par défaut
 delete series	calendar	fr	Supprimer des occurences
@@ -77,11 +77,11 @@ delete this series of recuring events	calendar	fr	Supprimer ces occurences d'év
 disinvited	calendar	fr	Invitation annulée
 display status of events	calendar	fr	Afficher le statut des événements
 displayed view	calendar	fr	vue affichée
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	fr	Affiche votre vue de calendrier par défaut sur la page d'accueil (page que vous obtenez quand vous entrez dans eGroupWare ou cliquez sur l'icône page accueil)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	fr	Affiche votre vue de calendrier par défaut sur la page d'accueil (page que vous obtenez quand vous entrez dans eGroupWare ou cliquez sur l'icône page accueil)?
 do you want a weekview with or without weekend?	calendar	fr	Voulez-vous voir les semaines avec ou sans week-end ?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	fr	Voulez-vous être prévenu des rendez-vous nouveaux ou modifiés? Vous serez prévenu des modifications que vous faites vous-même.<br>Vous pouvez limiter les notifications à certains changements seulement. Chaque objet inclut toutes les notifications listées au-dessus de lui. Toutes les modifications incluent les modifications de titre, description, participants, mais pas les réponses des participants. Si le propriétaire d'un événement a demandé une notification, il aura toujours les réponses des participants comme les acceptations et les rejets aussi.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	fr	Voulez-vous recevoir un résumé régulier de vos rendez-vous par EMail?<br>Le résumé est envoyé à votre adresse EMail standard le matin ou le lundi pour les résumés hebdomadaires.<br>Il est envoyé seulement quand vous avez des rendez-vous ce jour-là ou cette semaine-là.
-do you wish to autoload calendar holidays files dynamically?	admin	fr	Voulez-vous charger automatiquement les fichiers de vacances du calendrier dynamiquement?
+do you wish to autoload bcalendar holidays files dynamically?	admin	fr	Voulez-vous charger automatiquement les fichiers de vacances du calendrier dynamiquement?
 download	calendar	fr	Télécharger
 download this event as ical	calendar	fr	Télécharger cet événément en iCal
 duration of the meeting	calendar	fr	Durée de la réunion
@@ -113,14 +113,14 @@ execute a further action for this entry	calendar	fr	Exécuter une action supplé
 existing links	calendar	fr	Liens existants
 export	calendar	fr	Exportation
 extended	calendar	fr	Etendu
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	fr	Les mises à jour étendues incluent toujours les détails complets de l'événement. Les iCals peuvent être importés par certaines autres applications de calendrier.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	fr	Les mises à jour étendues incluent toujours les détails complets de l'événement. Les iCals peuvent être importés par certaines autres applications de calendrier.
 fieldseparator	calendar	fr	Séparateur de champs
 filename	calendar	fr	Nom du fichier
 filename of the download	calendar	fr	Nom du fichier téléchargé
 find free timeslots where the selected participants are availible for the given timespan	calendar	fr	Trouver des plages de temps libres sur lesquelles les participants sélectionnés sont disponibles
 firstname of person to notify	calendar	fr	Prénom de la personne à prévenir
 for	calendar	fr	pour
-for which views should calendar show distinct lines with a fixed time interval.	calendar	fr	Vues pour lesquelles le calendrier doit afficher des lignes distinctes pour un intervalle de temps fixe.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	fr	Vues pour lesquelles le calendrier doit afficher des lignes distinctes pour un intervalle de temps fixe.
 format of event updates	calendar	fr	Format des mises à jour d'événements
 forward half a month	calendar	fr	avancer de 15 jours
 forward one month	calendar	fr	avancer d'un mois
@@ -307,8 +307,8 @@ weekly	calendar	fr	Hebdomadaire
 weekview	calendar	fr	Vue hebdomadaire
 weekview with weekend	calendar	fr	Vue hebdomadaire avec weekend
 weekview without weekend	calendar	fr	Vue hebdomadaire sans weekend
-which events do you want to see when you enter the calendar.	calendar	fr	Quels événements voulez-vous voir quand vous entrez dans le calendrier.
-which of calendar view do you want to see, when you start calendar ?	calendar	fr	Quelle vue du calendrier voulez-vous voir quand vous démarrez le calendrier ?
+which events do you want to see when you enter the bcalendar.	calendar	fr	Quels événements voulez-vous voir quand vous entrez dans le calendrier.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	fr	Quelle vue du calendrier voulez-vous voir quand vous démarrez le calendrier ?
 whole day	calendar	fr	Journée entière
 wk	calendar	fr	Sem.
 work day ends on	calendar	fr	Journée de travail finit à

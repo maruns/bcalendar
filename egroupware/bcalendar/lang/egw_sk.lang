@@ -2,11 +2,11 @@
 %1 records imported	calendar	sk	Naimportovaných bolo %1 záznamov
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	sk	načítalo sa %1 záznamov (zatiaľ neboli naimportované, vraťte sa a ODznačte Test importu)
 %1 weeks	calendar	sk	%1 týždňov
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	sk	<b>Upozornenie:</b>V Kalendári sa používajú sviatky, ktoré platia vo Vašej krajine. Tá je nastavená na %1. Môžete ju zmeniť vo vašom %2.<br />Sviatky sa %3 automaticky inštalujú z %4. Môžete to zmeniť v %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	sk	<b>Upozornenie:</b>V Kalendári sa používajú sviatky, ktoré platia vo Vašej krajine. Tá je nastavená na %1. Môžete ju zmeniť vo vašom %2.<br />Sviatky sa %3 automaticky inštalujú z %4. Môžete to zmeniť v %5.
 a non blocking event will not conflict with other events	calendar	sk	Neblokujúca udalosť nebude v konflikte s ostatnými udalosťami
 accept or reject an invitation	calendar	sk	Prijať alebo odmietnuť pozvanie
 accepted	calendar	sk	Prijal
-access denied to the calendar of %1 !!!	calendar	sk	Prístup bol ODMIETNUTÝ, kalendár patrí používateľovi %1 !!!
+access denied to the bcalendar of %1 !!!	calendar	sk	Prístup bol ODMIETNUTÝ, kalendár patrí používateľovi %1 !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	sk	Zmena, ktorá vyvolala upozornenie: Nové, Zrušené, Prijaté, Odmietnuté, ...
 actions	calendar	sk	Akcie
 actions...	calendar	sk	Akcie...
@@ -72,10 +72,10 @@ days of the week for a weekly repeated event	calendar	sk	Dni v týždni pre tý�
 days repeated	calendar	sk	dní sa opakuje
 dayview	calendar	sk	Denný pohľad
 default appointment length (in minutes)	calendar	sk	Predvolená dĺžka udalostí (v minútach)
-default calendar filter	calendar	sk	Predvolený filter kalendára
-default calendar view	calendar	sk	Predvolený pohľad na kalendár
+default bcalendar filter	calendar	sk	Predvolený filter kalendára
+default bcalendar view	calendar	sk	Predvolený pohľad na kalendár
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	sk	Predvolená dĺžka novovytvorených udalostí, v minútach.
-default type of resources application selected in the calendar particpants research form.	calendar	sk	Predvolený typ aplikácie zdrojov vybraný vo vyhľadávacom okne účastníkov.
+default type of resources application selected in the bcalendar particpants research form.	calendar	sk	Predvolený typ aplikácie zdrojov vybraný vo vyhľadávacom okne účastníkov.
 default type of resources selection	calendar	sk	Predvolený typ výberu zdrojov
 default week view	calendar	sk	Predvolený týždenný pohľad
 delete series	calendar	sk	Odstrániť sériu
@@ -87,11 +87,11 @@ deny ressources reservation for private events	calendar	sk	Zakázať rezerváciu
 disinvited	calendar	sk	Zrušená pozvánka
 display status of events	calendar	sk	Zobraziť stav udalostí
 displayed view	calendar	sk	zobrazený pohľad
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	sk	Zobraziť predvolený kalendár na úvodnej stránke (tej, ktorá sa zobrazuje hneď po prihlásení do eGroupWare)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	sk	Zobraziť predvolený kalendár na úvodnej stránke (tej, ktorá sa zobrazuje hneď po prihlásení do eGroupWare)?
 do you want a weekview with or without weekend?	calendar	sk	Želáte si týždenný pohľad s víkendom alebo bez?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	sk	Chcete dostávať správy, ktoré Vás upovedomia o nových alebo zmenených udalostiach? Budete informovaní aj o zmenách ktoré sami urobíte.<br>Upovedomenia sa dajú aj obmedziť na určité typy zmien. Každý prvok obsahuje zároveň všetky predošlé upovedomenia. Všetky zmeny zahŕňajú zmeny titulku, opisu, účastníkov, ale nie odpovede účastníkov. Ak vlastník udalosti žiada akékoľvek správy o zmenách, dostane vždy aj odozvy účastníkov, napríklad prijatia a odmietnutia.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	sk	Chcete dostávať E-mailom pravidelný súhrn vašich schôdzok?<br>Súhrn sa bude posielať na vašu bežnú adresu každé ráno, prípadne v pondelok pre týždenný súhrn.<br>Posiela sa len vtedy, ak máte plánované nejaké schôdzky na daný deň alebo týždeň.
-do you wish to autoload calendar holidays files dynamically?	admin	sk	Mám automaticky načítavať súbory sviatkov?
+do you wish to autoload bcalendar holidays files dynamically?	admin	sk	Mám automaticky načítavať súbory sviatkov?
 download	calendar	sk	Stiahnuť
 download this event as ical	calendar	sk	Stiahnuť túto udalosť ako iCal
 duration of the meeting	calendar	sk	Dĺžka trvania stretnutia
@@ -125,14 +125,14 @@ execute a further action for this entry	calendar	sk	Vykonať ďalšiu akciu pre 
 existing links	calendar	sk	Existujúce odkazy
 export	calendar	sk	Export
 extended	calendar	sk	Rozšírené
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	sk	Rozšírený formát obsahuje všetky podrobnosti o udalosti. Formát iCal sa dá importovať do niektorých ďalších kalendárnych aplikácií.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	sk	Rozšírený formát obsahuje všetky podrobnosti o udalosti. Formát iCal sa dá importovať do niektorých ďalších kalendárnych aplikácií.
 fieldseparator	calendar	sk	Oddeľovač polí
 filename	calendar	sk	Názov súboru
 filename of the download	calendar	sk	Názov súboru na stiahnutie
 find free timeslots where the selected participants are availible for the given timespan	calendar	sk	Nájsť voľné časové úseky, kde sú všetci uvedení účastníci voľní
 firstname of person to notify	calendar	sk	Krstné meno upozorňovanej osoby
 for	calendar	sk	pre
-for which views should calendar show distinct lines with a fixed time interval.	calendar	sk	Pre ktoré pohľady má kalendár zobrazovať rozlišovacie čiary v pevných časových intervaloch.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	sk	Pre ktoré pohľady má kalendár zobrazovať rozlišovacie čiary v pevných časových intervaloch.
 format of event updates	calendar	sk	Formát správy o zmenách
 forward half a month	calendar	sk	dopredu o polovicu mesiaca
 forward one month	calendar	sk	dopredu o mesiac
@@ -173,7 +173,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	sk	Ignorovať konflikt
 import	calendar	sk	Import
 import csv-file	common	sk	Importovať CSV súbor
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	sk	Importuje udalosti do vášho Kalendára zo súboru CSV. CSV znamená 'Comma Separated Values' čiže čiarkami oddelené hodnoty. Avšak v karte možností si môžete vybrať aj iné oddeľovače.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	sk	Importuje udalosti do vášho Kalendára zo súboru CSV. CSV znamená 'Comma Separated Values' čiže čiarkami oddelené hodnoty. Avšak v karte možností si môžete vybrať aj iné oddeľovače.
 interval	calendar	sk	Interval
 invalid email-address "%1" for user %2	calendar	sk	Chybná E-mailová adresa "%1" pre používateľa %2
 last	calendar	sk	Posledné
@@ -270,7 +270,7 @@ selected range	calendar	sk	Vybraný rozsah
 set a year only for one-time / non-regular holidays.	calendar	sk	Rok nastavte iba pre jednorázové a nepravidelné udalosti.
 set new events to private	calendar	sk	Nastaviť nové udalosti ako súkromné
 setting lock time calender	admin	sk	Nastavenie Datalock času pre Kalendár (predvolené: 1 sek.)
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	sk	Chcete, aby sa odmietnuté pozvánky stále zobrazovali v kalendári?<br>Môžete ich prijať neskôr (napríklad keď sa vyrieši konflikt plánovania), ale len ak sú stále zobrazené vo vašom kalendári!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	sk	Chcete, aby sa odmietnuté pozvánky stále zobrazovali v kalendári?<br>Môžete ich prijať neskôr (napríklad keď sa vyrieši konflikt plánovania), ale len ak sú stále zobrazené vo vašom kalendári!
 should new events created as private by default ?	calendar	sk	Majú sa nové udalosti štandardne vytvárať ako súkromné?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	sk	Chcete, aby informácie o Vašom zaneprázdnení či voľnom čase boli dostupné aj pre neprihlásené osoby? Ak chcete tieto údaje chrániť, môžete si nastaviť aj dodatočné heslo, odlišné od Vašeho bežného hesla. Údaje sú vo formáte iCal a obsahujú iba časy vašej zaneprázdnenosti, bez zbytočných podrobností ako napr. názvov udalostí, opisov alebo miest. Odkaz na tieto informácie je %1.
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is <a href="http://localhost/egroupware/calendar/freebusy.php?user=stivi" target="_blank">http://localhost/egroupware/calendar/freebusy.php?user=stivi</a>.	calendar	sk	Chcete, aby neprihlásené osoby videli informáciu o tom, či ste zaneprázdnení? Ak chcete tieto informácie chrániť, môžete nastaviť samostatné heslo, odlišné od normálneho hesla. Informácie o zaneprázdnenosti sú vo formáte iCal a zahŕňajú iba čas, kedy ste zaneprázdnení. Neobsahuje názov udalosti, opis alebo miesto konania. URL pre vašu informáciu o zaneprázdnenosti je v tvare <a href="http://localhost/egroupware/calendar/freebusy.php?user=stivi" target="_blank">http://localhost/egroupware/calendar/freebusy.php?user=stivi</a>.
@@ -337,8 +337,8 @@ weeks in multiple week view	calendar	sk	Počet týždňov v pohľade viacerých 
 weekview	calendar	sk	Týždenný pohľad
 weekview with weekend	calendar	sk	Týždenný pohľad s víkendom
 weekview without weekend	calendar	sk	Týždenný pohľad bez víkendu
-which events do you want to see when you enter the calendar.	calendar	sk	Aké udalosti chcete vidieť pri spustení kalendára?
-which of calendar view do you want to see, when you start calendar ?	calendar	sk	Aký pohľad chcete vidieť pri spustení kalendára?
+which events do you want to see when you enter the bcalendar.	calendar	sk	Aké udalosti chcete vidieť pri spustení kalendára?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	sk	Aký pohľad chcete vidieť pri spustení kalendára?
 whole day	calendar	sk	celý deň
 wk	calendar	sk	Týž
 work day ends on	calendar	sk	Pracovný deň končí o

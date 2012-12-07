@@ -46,8 +46,8 @@ days	calendar	et	päeva
 days of the week for a weekly repeated event	calendar	et	Päevad nädalas haaratud nädala sündmuste repordis
 days repeated	calendar	et	päevi korratakse
 dayview	calendar	et	Päevavaade
-default calendar filter	calendar	et	Vaikimisi kalendri filter
-default calendar view	calendar	et	vaikimisi kalendri vaade
+default bcalendar filter	calendar	et	Vaikimisi kalendri filter
+default bcalendar view	calendar	et	vaikimisi kalendri vaade
 default week view	calendar	et	vaikimisi nädala vaade
 delete series	calendar	et	Kustuta seeria
 delete this alarm	calendar	et	Kustuta see alarm
@@ -55,9 +55,9 @@ delete this event	calendar	et	Kustuta see sündmus
 delete this exception	calendar	et	Kustuta see erand
 display status of events	calendar	et	Näita sündmuste staatust
 displayed view	calendar	et	näita vaade
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	et	Näitab sinu vaikimisi kalendrit alguslehel (lehel kui sa sisened eGroupWare või vajutad kodu lingil)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	et	Näitab sinu vaikimisi kalendrit alguslehel (lehel kui sa sisened eGroupWare või vajutad kodu lingil)?
 do you want a weekview with or without weekend?	calendar	et	Soovid nädalavaadet koos või ilma nädalavahetuseta?
-do you wish to autoload calendar holidays files dynamically?	admin	et	Kas tahad autolaadida kalendrisse pühad dünaamiliselt?
+do you wish to autoload bcalendar holidays files dynamically?	admin	et	Kas tahad autolaadida kalendrisse pühad dünaamiliselt?
 download	calendar	et	Lae alla
 download this event as ical	calendar	et	Lae alla see sündmus kui iCal
 edit exception	calendar	et	Muuda erandit
@@ -190,8 +190,8 @@ weekly	calendar	et	Nädalati
 weekview	calendar	et	Nädalavaade
 weekview with weekend	calendar	et	Nädalavaade koos nädalavahetusega
 weekview without weekend	calendar	et	Nädalavaade ilma nädalavahetuseta
-which events do you want to see when you enter the calendar.	calendar	et	Milliseid sündmusi tahad näha kui sisened kalendrisse.
-which of calendar view do you want to see, when you start calendar ?	calendar	et	Millist kalendri vaadet tahad näha kui avad kalendri?
+which events do you want to see when you enter the bcalendar.	calendar	et	Milliseid sündmusi tahad näha kui sisened kalendrisse.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	et	Millist kalendri vaadet tahad näha kui avad kalendri?
 whole day	calendar	et	terve päev
 wk	calendar	et	Nd
 work day ends on	calendar	et	tööpäeva lõpp

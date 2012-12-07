@@ -3,11 +3,11 @@
 %1 records imported	calendar	en	%1 records imported
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	en	%1 records read (not yet imported, you may go back and uncheck Test Import)
 %1 weeks	calendar	en	%1 weeks
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	en	<b>Please note</b>: The calendar use the holidays of your country, which is set to %1. You can change it in your %2.<br />Holidays are %3 automatic installed from %4. You can change it in %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	en	<b>Please note</b>: The bcalendar use the holidays of your country, which is set to %1. You can change it in your %2.<br />Holidays are %3 automatic installed from %4. You can change it in %5.
 a non blocking event will not conflict with other events	calendar	en	A non blocking event will not conflict with other events
 accept or reject an invitation	calendar	en	Accept or reject an invitation
 accepted	calendar	en	Accepted
-access denied to the calendar of %1 !!!	calendar	en	Access denied to the calendar of %1 !!!
+access denied to the bcalendar of %1 !!!	calendar	en	Access denied to the bcalendar of %1 !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	en	Action that caused the notify: Added, Canceled, Accepted, Rejected, ...
 actions	calendar	en	Actions
 add alarm	calendar	en	Add alarm
@@ -81,10 +81,10 @@ days of the week for a weekly repeated event	calendar	en	Days of the week for a 
 days repeated	calendar	en	days repeated
 dayview	calendar	en	Day view
 default appointment length (in minutes)	calendar	en	Default appointment length (in minutes)
-default calendar filter	calendar	en	Default calendar filter
-default calendar view	calendar	en	Default calendar view
+default bcalendar filter	calendar	en	Default bcalendar filter
+default bcalendar view	calendar	en	Default bcalendar view
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	en	Default length of newly created events. The length is in minutes, e.g. 60 for 1 hour.
-default type of resources application selected in the calendar particpants research form.	calendar	en	Default type of resources application selected in the calendar participants research form.
+default type of resources application selected in the bcalendar particpants research form.	calendar	en	Default type of resources application selected in the bcalendar participants research form.
 default type of resources selection	calendar	en	Default type of resources selection
 default week view	calendar	en	Default week view
 delete selected events	calendar	en	Delete selected events
@@ -97,13 +97,13 @@ deny ressources reservation for private events	calendar	en	Deny Resources reserv
 disinvited	calendar	en	Disinvited
 display status of events	calendar	en	Display status of events
 displayed view	calendar	en	Displayed view
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	en	Displays your default calendar view on the start page (page you get when you enter eGroupWare or click on the homepage icon)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	en	Displays your default bcalendar view on the start page (page you get when you enter eGroupWare or click on the homepage icon)?
 do not include events of group members	calendar	en	Do not include events of group members
 do you want a weekview with or without weekend?	calendar	en	Do you want a weekview with or without weekend?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	en	Do you want to be notified about new or changed appointments? You are NOT notified about changes you made yourself.<br>You can limit the notifications to certain changes only. Each item includes all notifications listed above. All modifications include changes of title, description, participants, but no participant responses. If the owner of an event requested any notifications, he will always get participant responses like acceptions or rejections too.
 do you want to edit this event as an exception or the whole series?	calendar	en	Do you want to edit this event as an exception or the whole series?
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	en	Do you want to receive regularly a summary of your appointments via email?<br>The summary is sent to your standard email-address on the morning of that day or on Monday for weekly summaries.<br>It is only sent when you have any appointments on that day or week.
-do you wish to autoload calendar holidays files dynamically?	admin	en	Do you wish to auto-load calendar holidays files dynamically?
+do you wish to autoload bcalendar holidays files dynamically?	admin	en	Do you wish to auto-load bcalendar holidays files dynamically?
 download	calendar	en	Download
 download this event as ical	calendar	en	Download this event as iCal
 duration of the meeting	calendar	en	Duration of the meeting
@@ -139,14 +139,14 @@ execute a further action for this entry	calendar	en	Execute a further action for
 existing links	calendar	en	Existing links
 export	calendar	en	Export
 extended	calendar	en	Extended
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	en	Extended updates always include the complete event-details. iCal's can be imported by certain other calendar-applications.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	en	Extended updates always include the complete event-details. iCal's can be imported by certain other bcalendar-applications.
 fieldseparator	calendar	en	Field separator
 filename	calendar	en	File name
 filename of the download	calendar	en	File name of the download
 find free timeslots where the selected participants are availible for the given timespan	calendar	en	Find free time slots where the selected participants are available for the given time span
 firstname of person to notify	calendar	en	First name of a person to notify
 for	calendar	en	for
-for which views should calendar show distinct lines with a fixed time interval.	calendar	en	For which views should calendar show distinct lines with a fixed time interval.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	en	For which views should bcalendar show distinct lines with a fixed time interval.
 format of event updates	calendar	en	Format of event updates
 forward half a month	calendar	en	forward half a month
 forward one month	calendar	en	forward one month
@@ -189,7 +189,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	en	Ignore conflict
 import	calendar	en	Import
 import csv-file	common	en	Import CSV-File
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	en	Imports events into your Calendar from a CSV File. CSV means 'Comma Separated Values'. However in the options Tab you can also choose other separators.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	en	Imports events into your Calendar from a CSV File. CSV means 'Comma Separated Values'. However in the options Tab you can also choose other separators.
 interval	calendar	en	Interval
 invalid email-address "%1" for user %2	calendar	en	Invalid email-address "%1" for user %2
 invitations	calendar	en	Invitations
@@ -378,7 +378,7 @@ update timezones	calendar	en	Update timezones
 updated	calendar	en	Updated
 use end date	calendar	en	Use End date
 use the selected time and close the popup	calendar	en	Use the selected time and close the popup
-use this timezone to export calendar data.	calendar	en	Use this timezone to export calendar data.
+use this timezone to export bcalendar data.	calendar	en	Use this timezone to export bcalendar data.
 user or group	calendar	en	User or group
 users + groups: inviting both allways requires an invite grant	admin	en	Users + groups: inviting both always requires an invite grant
 view exception	calendar	en	View exception
@@ -396,8 +396,8 @@ weeks in multiple week view	calendar	en	Weeks in multiple week view
 weekview	calendar	en	Weekview
 weekview with weekend	calendar	en	Weekview with weekend
 weekview without weekend	calendar	en	Weekview without weekend
-which events do you want to see when you enter the calendar.	calendar	en	Which events do you want to see when you enter the calendar.
-which of calendar view do you want to see, when you start calendar ?	calendar	en	Which of calendar views do you want to see, when you start calendar ?
+which events do you want to see when you enter the bcalendar.	calendar	en	Which events do you want to see when you enter the bcalendar.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	en	Which of bcalendar views do you want to see, when you start bcalendar ?
 whole day	calendar	en	Whole day
 whole query	calendar	en	whole query
 wk	calendar	en	Wk

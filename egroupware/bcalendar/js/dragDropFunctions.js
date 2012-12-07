@@ -3,7 +3,7 @@
  *
  * @link http://www.egroupware.org
  * @author Christian Binder <christian.binder@freakmail.de>
- * @package calendar
+ * @package bcalendar
  * @copyright (c) 2006 by Christian Binder <christian.binder@freakmail.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: dragDropFunctions.js 29735 2010-04-08 11:48:27Z leithoff $
@@ -27,8 +27,8 @@ function dragEvent()
 			var datetime = dropTarget.my_datetime;
 		}
 
-		// we just allow to drop within the users own calendar
-		// and not crossing into another calendar ATM
+		// we just allow to drop within the users own bcalendar
+		// and not crossing into another bcalendar ATM
 		if(datetime && (dd.obj.my_calendarOwner == dropTarget.my_owner ))
 		{
 			dd.obj.div.innerHTML = '<div style="font-size: 1.1em; font-weight: bold; text-align: center;">' + datetime.substr(9,2) + ":" + datetime.substr(11,2) + '</div>';
@@ -51,7 +51,7 @@ function dropEvent()
 		dd.obj.div.innerHTML = '<div style="height: 100%; width: 100%; text-align: center;">' + dd.obj.my_loaderImage + '</div>';
 
 		xajax_doXMLHTTP(
-			'calendar.calendar_ajax.moveEvent',
+			'bcalendar.bcalendar_ajax.moveEvent',
 			dd.obj.my_eventId,
 			dd.obj.my_calendarOwner,
 			dropTarget.my_datetime,

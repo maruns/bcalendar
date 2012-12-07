@@ -4,16 +4,16 @@
  * eGroupWare - Calendar's views and widgets
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2004-9 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_uiviews.inc.php 37859 2012-01-31 21:05:25Z hjtappe $
+ * @version $Id: class.bcalendar_uiviews.inc.php 37859 2012-01-31 21:05:25Z hjtappe $
  * poprawki ziwązane z kalendarzem
  */
 
 /**
- * Class to generate the calendar views and the necesary widgets
+ * Class to generate the bcalendar views and the necesary widgets
  *
  * The listview is in a separate class uilist!
  *
@@ -24,9 +24,9 @@
  *
  * The state of the UI elements is managed in the uical class, which all UI classes extend.
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of the bocal class !!!
  */
-class calendar_uiviews extends calendar_ui {
+class bcalendar_uiviews extends bcalendar_ui {
 
   var $public_functions = array(
       'day' => True,
@@ -209,7 +209,7 @@ class calendar_uiviews extends calendar_ui {
   }
 
   /**
-   * Show the calendar on the home page
+   * Show the bcalendar on the home page
    *
    * @return string with content
    */
@@ -378,7 +378,7 @@ class calendar_uiviews extends calendar_ui {
                 ));
         $content .= '</span>' . "\n";
       }
-      $content .= "\t\t\t\t" . '<a href="' . $GLOBALS['egw']->link('/index.php', array('menuaction' => 'calendar.calendar_uiviews.month',
+      $content .= "\t\t\t\t" . '<a href="' . $GLOBALS['egw']->link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiviews.month',
                   'date' => $this->year . ($month < 10 ? '0' : '') . $month . '01')) .
               '" title="' . lang('Monthview') . '">' . lang(adodb_date('F', strtotime("+1 week", $month_start))) . '</a>' . "\n";
       if ($month == self::YEARVIEW_COLS) {
@@ -422,7 +422,7 @@ class calendar_uiviews extends calendar_ui {
                 ' style="text-align: center;position: absolute; width: 11.5%; height: 16px; left: 0.5%;" ' .
                 'title="' . lang('Wk') . ' ' . adodb_date('W', $week_start) . '/' . adodb_date('Y', $week_start) . '">' . "\n";
         $content .= "\t\t\t\t\t" .
-                '<a href="' . $GLOBALS['egw']->link('/index.php', array('menuaction' => 'calendar.calendar_uiviews.week',
+                '<a href="' . $GLOBALS['egw']->link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiviews.week',
                     'date' => $this->bo->date2string($week_start)));
         $content .= '">' . adodb_date('W', $week_start) . "</a>\n";
         $content .= "\t\t\t\t" . '</div>' . "\n";
@@ -556,7 +556,7 @@ class calendar_uiviews extends calendar_ui {
         $week[$day_ymd] = array_shift($days);
       }
       $week_view = array(
-          'menuaction' => 'calendar.calendar_uiviews.week',
+          'menuaction' => 'bcalendar.bcalendar_uiviews.week',
           'date' => $this->bo->date2string($week_start),
       );
       $title = lang('Wk') . ' ' . $this->week_number($week_start);
@@ -810,21 +810,21 @@ class calendar_uiviews extends calendar_ui {
   /**
    * Return HTML and Javascript to query user about editing an event series or create an exception
    *
-   * Layout is defined in eTemplate 'calendar.edit_series'
+   * Layout is defined in eTemplate 'bcalendar.edit_series'
    *
-   * @param string $link=null url without cal_id and date GET parameters, default calendar.calendar_uiforms.edit
+   * @param string $link=null url without cal_id and date GET parameters, default bcalendar.bcalendar_uiforms.edit
    * @param string $target='_blank' target
    * @return string
    */
   function edit_series($link = null, $target = '_blank') {
     if (is_null($link))
-      $link = egw::link('/index.php', array('menuaction' => 'calendar.calendar_uiforms.edit'));
+      $link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit'));
 
-    $tpl = new etemplate('calendar.edit_series');
+    $tpl = new etemplate('bcalendar.edit_series');
 
     return $tpl->show(array()) . '<script type="text/javascript">
-var calendar_edit_id;
-var calendar_edit_date;
+var bcalendar_edit_id;
+var bcalendar_edit_date;
 function edit_series(id,date)
 {
 	calendar_edit_id = id;
@@ -968,7 +968,7 @@ function open_edit(series)
    * @param int $height=400 height of the widget
    * @param string $indent='' string for correct indention
    * @param string $title='' title of the time-grid
-   * @param int/array $owner=0 owner of the calendar (default 0 = $this->owner) or array with owner for each column
+   * @param int/array $owner=0 owner of the bcalendar (default 0 = $this->owner) or array with owner for each column
    * @param boolean $last=true last timeGrid displayed, default true
    */
   function &timeGridWidget($daysEvents, $granularity_m = 15, $height = 400, $indent = '', $title = '', $owner = 0, $last = true) {
@@ -977,7 +977,7 @@ function open_edit(series)
       $this->bo->debug_message('uiviews::timeGridWidget(events=%1,granularity_m=%2,height=%3,,title=%4)', True, $daysEvents, $granularity_m, $height, $title);
     $html = <<<SCRIPT
    <script type="text/javascript">
-       var calendarExt = {
+       var bcalendarExt = {
          scroll : function(div) {
            var attr = ["altKey", "altLeft", "clientX", "clientY", "ctrlLeft", "offsetX", "offsetY", "screenX", "screenY", "shiftLeft", "srcElement", "type", "x", "y"];
            //alert('left:'+div.scrollLeft+'\\ntop: '+div.scrollTop);
@@ -1169,7 +1169,7 @@ SCRIPT;
 
       $html .= $indent . "\t</div>\n"; // calDayCols
     }
-    $html .= $indent . "\t</div>\n"; // calendar_data_container
+    $html .= $indent . "\t</div>\n"; // bcalendar_data_container
     $html .= $indent . "</div>\n"; // calTimeGrid
 
     if ($this->scroll_to_wdstart) {
@@ -1231,7 +1231,7 @@ SCRIPT;
             ($short_title ? lang(adodb_date('l', $ts)) . ' ' . adodb_date('d.', $ts) : $this->bo->long_date($ts, 0, false, true));
 
     $day_view = array(
-        'menuaction' => 'calendar.calendar_uiviews.day',
+        'menuaction' => 'bcalendar.bcalendar_uiviews.day',
         'date' => $day_ymd,
     );
     $this->_day_class_holiday($day_ymd, $class, $holidays);
@@ -1309,7 +1309,7 @@ SCRIPT;
       // adding divs to click on for each row / time-span
       for ($t = $this->scroll_to_wdstart ? 0 : $this->wd_start, $i = 0; $t <= $this->wd_end || $this->scroll_to_wdstart && $t < 24 * 60; $t += $this->granularity_m, ++$i, $input_cnt++) {
         $linkData = array(
-            'menuaction' => 'calendar.calendar_uiforms.edit',
+            'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
             'date' => $day_ymd,
             'hour' => sprintf("%02d", floor($t / 60)),
             'minute' => sprintf("%02d", floor($t % 60)),
@@ -1447,7 +1447,7 @@ SCRIPT;
    * @param $event array with the data of event to show
    * @param $width int width of the widget
    * @param string $indent string for correct indention
-   * @param int $owner owner of the calendar the event is in
+   * @param int $owner owner of the bcalendar the event is in
    * @param boolean $return_array=false should an array with keys(tooltip,popup,html) be returned or the complete widget as string
    * @param string $block='event_widget' template used the render the widget
    * @param int $z_index is the z-index of the drag-drobable outer box of the event.
@@ -1506,7 +1506,7 @@ SCRIPT;
     // get status class of event: calEventAllAccepted, calEventAllAnswered or calEventSomeUnknown
     $status_class = 'calEventAllAccepted';
     foreach ($event['participants'] as $id => $status) {
-      calendar_so::split_status($status, $quantity, $role);
+      bcalendar_so::split_status($status, $quantity, $role);
 
       switch ($status) {
         case 'A':
@@ -1608,7 +1608,7 @@ SCRIPT;
       if ($event['recur_type'] != MCAL_RECUR_NONE) {
         $popup = ' onclick="edit_series(' . $event['id'] . ',' . $this->bo->date2string($event['start']) . ');"';
       } else {
-        $view_link = egw::link('/index.php', array('menuaction' => 'calendar.calendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
+        $view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
 
         $popup = ' onclick="' . $this->popup($view_link) . '; return false;"';
       }
@@ -1674,7 +1674,7 @@ SCRIPT;
             'calendarOwner' => $owner,
             'errorImage' => addslashes(html::image('phpgwapi', 'dialog_error', false, 'style="width: 16px;"')),
             'loaderImage' => addslashes(html::image('phpgwapi', 'ajax-loader')),
-                ), 'calendar.dragDropFunctions.dragEvent', 'calendar.dragDropFunctions.dropEvent', 'top center 2'
+                ), 'bcalendar.dragDropFunctions.dragEvent', 'bcalendar.dragDropFunctions.dropEvent', 'top center 2'
         );
       } else {
         // If a event isn't drag-dropable, the drag drop event handling has to be fully disabled
@@ -1831,7 +1831,7 @@ SCRIPT;
     foreach ($events as $key => $event) {
       if ($by_cat === false) { // planner by user
         foreach ($event['participants'] as $sort => $status) {
-          calendar_so::split_status($status, $nul, $nul);
+          bcalendar_so::split_status($status, $nul, $nul);
           // only show if participant with status visible with current filter
           if (isset($sort2label[$sort]) && (in_array($status, $status_to_show) ||
                   $this->filter == 'owner' && $event['owner'] == $sort)) { // owner too additionally uses owner
@@ -2027,7 +2027,7 @@ SCRIPT;
       $title = lang('Week') . ' ' . $this->week_number($t);
       if ($days > 7) {
         $title = html::a_href($title, array(
-                    'menuaction' => 'calendar.calendar_uiviews.planner',
+                    'menuaction' => 'bcalendar.bcalendar_uiviews.planner',
                     'planner_days' => 7,
                     'date' => date('Ymd', $t),
                         ), false, ' title="' . html::htmlspecialchars(lang('Weekview')) . '"');
@@ -2075,7 +2075,7 @@ SCRIPT;
       }
       if ($days > 1) {
         $title = html::a_href($title, array(
-                    'menuaction' => 'calendar.calendar_uiviews.planner',
+                    'menuaction' => 'bcalendar.bcalendar_uiviews.planner',
                     'planner_days' => 1,
                     'date' => date('Ymd', $t),
                         ), false, strpos($class, 'calHoliday') !== false || strpos($class, 'calBirthday') !== false ? '' : ' title="' . html::htmlspecialchars(lang('Dayview')) . '"');

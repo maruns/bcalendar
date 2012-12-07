@@ -102,8 +102,8 @@ class import_events_csv implements iface_import_plugin  {
 		// dry run?
 		$this->dry_run = isset( $_definition->plugin_options['dry_run'] ) ? $_definition->plugin_options['dry_run'] :  false;
 
-		// fetch the calendar bo
-		$this->bocalupdate = new calendar_boupdate();
+		// fetch the bcalendar bo
+		$this->bocalupdate = new bcalendar_boupdate();
 
 		// set FieldMapping.
 		$import_csv->mapping = $_definition->plugin_options['field_mapping'];
@@ -123,7 +123,7 @@ class import_events_csv implements iface_import_plugin  {
 		// trash_users_records ?
 		if ( $_definition->plugin_options['trash_users_records'] === true ) {
 			if ( !$_definition->plugin_options['dry_run'] ) {
-				$socal = new calendar_socal();
+				$socal = new bcalendar_socal();
 				$this->bocalupdate->so->deleteaccount( $_definition->plugin_options['events_owner']);
 				unset( $socal );
 			} else {

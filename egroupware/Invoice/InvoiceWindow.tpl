@@ -14,11 +14,7 @@
     <h1>Tworzenie faktury</h1>
     <form target="_blank" action="Invoice.php">
         <p><label for="dentist">Dentysta: </label></p>
-        <p>{html_options onchange="document.getElementById('submit').disabled = false;" options=$dentists id=dentist size="4" name=dentist}</p>
-        <p>
-            <label for="percent">Procent franczyzny: </label>
-            <input id="percent" size="3" maxlength="3" value="{$d_FRANCZYZA}" name="percent" type="text" />%
-        </p>
+        <p>{html_options onchange="document.getElementById('submit').disabled = false;" options=$dentists id=dentist size="4" name=dentist}</p> 
         <p><label for="from">Od dnia: </label></p>
         <p><input type="text" id="from" name="from" class="date-pick" /></p>
         <p>&nbsp;</p>
@@ -28,6 +24,7 @@
         <p><label for="vat">Podatek VAT: </label><input type="text" id="vat" name="vat" value="{$d_VAT}" size="2" maxlength="2" />%</p>
         <p id="nbm"><input type="radio" name="type" checked="checked" value="invoice">Faktura</input></p>
         <p><input type="radio" name="type" value="report">Raport</input></p>
+        <p><input type="radio" name="type" value="ar">Raport asystentów</input></p>
         <p><input type="submit" id="submit" value="Utwórz fakturę" disabled="disabled"/></p>
     </form>
 </body>

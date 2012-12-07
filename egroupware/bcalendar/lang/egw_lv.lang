@@ -51,11 +51,11 @@ daily matrix view	calendar	lv	Ikdienas matricas skatījums
 days	calendar	lv	dienas
 days repeated	calendar	lv	atkārtotas dienas
 dayview	calendar	lv	Dienas skats
-default calendar filter	calendar	lv	Noklusētais kalendāra filtrs
-default calendar view	calendar	lv	Noklusētais kalendāra skats
+default bcalendar filter	calendar	lv	Noklusētais kalendāra filtrs
+default bcalendar view	calendar	lv	Noklusētais kalendāra skats
 defines the size in minutes of the lines in the day view.	calendar	lv	Definē līniju izmēru minūtēs dienas skatā
 delete a single entry by passing the id.	calendar	lv	Izdzēst atsevišķu ierakstu apejot id
-delete an entire users calendar.	calendar	lv	Dzēst visu lietotāju kalendāru
+delete an entire users bcalendar.	calendar	lv	Dzēst visu lietotāju kalendāru
 delete selected contacts	calendar	lv	Dzēst atzīmētos kontaktus
 delete series	calendar	lv	Dzēš sērijas
 delete single	calendar	lv	Dzēš atsevišķu ierakstu
@@ -64,10 +64,10 @@ description	calendar	lv	Apraksts
 disable	calendar	lv	Deaktivizēt
 disabled	calendar	lv	deaktivizēts
 display interval in day view	calendar	lv	Parādīt intervālu dienas skatā
-display mini calendars when printing	calendar	lv	Parādīt mazo kalendāru, kad drukā
+display mini bcalendars when printing	calendar	lv	Parādīt mazo kalendāru, kad drukā
 display status of events	calendar	lv	Parādīt notikumu statusu
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	lv	Parāda noklusēto kalendāra skatu starta lapā(lapā, kas parādās, kad ieej eGroupWare vai noklikšķini uz mājaslapas ikonas)
-do you wish to autoload calendar holidays files dynamically?	admin	lv	Vai vēlies dinamisku kalendāra brīvdienu automātisku ielādi?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	lv	Parāda noklusēto kalendāra skatu starta lapā(lapā, kas parādās, kad ieej eGroupWare vai noklikšķini uz mājaslapas ikonas)
+do you wish to autoload bcalendar holidays files dynamically?	admin	lv	Vai vēlies dinamisku kalendāra brīvdienu automātisku ielādi?
 download	calendar	lv	Lejupielādēt
 duration	calendar	lv	Izpildes laiks
 edit series	calendar	lv	Rediģēt sērijas
@@ -170,8 +170,8 @@ planner by category	calendar	lv	Plānptājs pēc kategorijas
 planner by user	calendar	lv	Plānotājs pēc lietotāja
 please enter a filename !!!	calendar	lv	lūdzu ievadi datnes nosaukumu!!!
 preselected group for entering the planner	calendar	lv	Iepriekšizvēlētā grupa iekļūsanai plānotājā
-print calendars in black & white	calendar	lv	Izdrukāt kelendārus melnbaltus
-print the mini calendars	calendar	lv	Izdrukāt mini kalendārus
+print bcalendars in black & white	calendar	lv	Izdrukāt kelendārus melnbaltus
+print the mini bcalendars	calendar	lv	Izdrukāt mini kalendārus
 printer friendly	calendar	lv	Printerim draudzīgs
 privat	calendar	lv	Privāts
 private and global public	calendar	lv	Privāts un Vispārēji publisks
@@ -259,8 +259,8 @@ weekday starts on	calendar	lv	Nedēļas diena sākas
 weekly	calendar	lv	Iknedēļas
 weekview	calendar	lv	Nedēļas skats
 when creating new events default set to private	calendar	lv	Kad veido jaunus notikumus, noklusējumu uzstādīt kā privātu
-which events do you want to see when you enter the calendar.	calendar	lv	Kurus notikumus vēlies redzēt, kad ieej kalendārā?
-which of calendar view do you want to see, when you start calendar ?	calendar	lv	Kādu kalendāra skatu vēlies redžet, kad ieej kalendārā?
+which events do you want to see when you enter the bcalendar.	calendar	lv	Kurus notikumus vēlies redzēt, kad ieej kalendārā?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	lv	Kādu kalendāra skatu vēlies redžet, kad ieej kalendārā?
 work day ends on	calendar	lv	Darba diena beidzas
 work day starts on	calendar	lv	Darba diena sākas
 workdayends	calendar	lv	darbadienabeidzas
@@ -272,8 +272,8 @@ you do not have permission to add alarms to this event !!!	calendar	lv	Tev nav a
 you do not have permission to delete this alarm !!!	calendar	lv	Tev nav tiesību dzēst šo trauksmi!!!
 you do not have permission to enable/disable this alarm !!!	calendar	lv	Tev nav tiesību aktivizēt/deaktivizēt šo trauksmi!!!
 you do not have permission to read this record!	calendar	lv	Tev nav tiesību lasīt šo ierakstu!
-you have %1 high priority events on your calendar today.	common	lv	Šodien kalendārā tev ir %1 augstas prioritātes notikumi
-you have 1 high priority event on your calendar today.	common	lv	Šodien kalendārā tev ir 1 augstas prioritātes notikums
+you have %1 high priority events on your bcalendar today.	common	lv	Šodien kalendārā tev ir %1 augstas prioritātes notikumi
+you have 1 high priority event on your bcalendar today.	common	lv	Šodien kalendārā tev ir 1 augstas prioritātes notikums
 you have a meeting scheduled for %1	calendar	lv	Tev ir ieplānota tikšanās %1
 you have not entered a title	calendar	lv	Tu neesi ievadījis virsrakstu
 you have not entered a valid date	calendar	lv	Tu neesi ievadījis derīgu datumu
@@ -284,6 +284,6 @@ you must select a [iv]cal. (*.[iv]cs)	calendar	lv	Tev jāatzīmē  [iv]Cal. (*.[
 you need to set either a day or a occurence !!!	calendar	lv	Tev jāuzstāda diena vai atgadījums!!!
 your meeting scheduled for %1 has been canceled	calendar	lv	Tava ieplānotā tikšanās %1 ir atcelta
 your meeting that had been scheduled for %1 has been rescheduled to %2	calendar	lv	Tava ieplānotā tikšanās %1 tika pārcelta uz %2
-your suggested time of <b> %1 - %2 </b> conflicts with the following existing calendar entries:	calendar	lv	Tavs ieteiktais  <B> %1 - %2 </B> laiks nonāķ pretrunā ar sekojošīem kalendāra ierakstiem:
+your suggested time of <b> %1 - %2 </b> conflicts with the following existing bcalendar entries:	calendar	lv	Tavs ieteiktais  <B> %1 - %2 </B> laiks nonāķ pretrunā ar sekojošīem kalendāra ierakstiem:
 h	calendar	lv	h
 deleted	calendar	lv	Izdzēsts

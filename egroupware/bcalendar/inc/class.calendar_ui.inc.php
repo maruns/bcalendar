@@ -3,26 +3,26 @@
  * eGroupWare - Calendar's shared base-class of all UI classes
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2004-9 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_ui.inc.php 38786 2012-04-04 13:58:16Z ralfbecker $
+ * @version $Id: class.bcalendar_ui.inc.php 38786 2012-04-04 13:58:16Z ralfbecker $
  */
 
 /**
- * Shared base-class of all calendar UserInterface classes
+ * Shared base-class of all bcalendar UserInterface classes
  *
- * It manages eg. the state of the controls in the UI and generated the calendar navigation (sidebox-menu)
+ * It manages eg. the state of the controls in the UI and generated the bcalendar navigation (sidebox-menu)
  *
  * The new UI, BO and SO classes have a strikt definition, in which time-zone they operate:
  *  UI only operates in user-time, so there have to be no conversation at all !!!
  *  BO's functions take and return user-time only (!), they convert internaly everything to servertime, because
  *  SO operates only on server-time
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of the bocal class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of the bocal class !!!
  */
-class calendar_ui
+class bcalendar_ui
 {
 	/**
 	 * @var $debug mixed integer level or string function-name
@@ -31,7 +31,7 @@ class calendar_ui
 	/**
 	 * instance of the bocal or bocalupdate class
 	 *
-	 * @var calendar_boupdate
+	 * @var bcalendar_boupdate
 	 */
 	var $bo;
 	/**
@@ -95,7 +95,7 @@ class calendar_ui
 	 */
 	var $filter;
 	/**
-	 * @var int/array $owner session-state: selected owner(s) of shown calendar(s)
+	 * @var int/array $owner session-state: selected owner(s) of shown bcalendar(s)
 	 */
 	var $owner;
 	/**
@@ -135,11 +135,11 @@ class calendar_ui
 	{
 		if ($use_boupdate)
 		{
-			$this->bo = new calendar_boupdate();
+			$this->bo = new bcalendar_boupdate();
 		}
 		else
 		{
-			$this->bo = new calendar_bo();
+			$this->bo = new bcalendar_bo();
 		}
 		$this->jscal = $GLOBALS['egw']->jscalendar;
 		$this->datetime = $GLOBALS['egw']->datetime;
@@ -161,7 +161,7 @@ class calendar_ui
 
 		$GLOBALS['uical'] = &$this;	// make us available for ExecMethod, else it creates a new instance
 
-		// calendar does not work with hidden sidebox atm.
+		// bcalendar does not work with hidden sidebox atm.
 		unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
 	}
 
@@ -196,7 +196,7 @@ class calendar_ui
 		}
 		if (count($no_access))
 		{
-			$msg = '<p class="redItalic" align="center">'.lang('Access denied to the calendar of %1 !!!',implode(', ',$no_access))."</p>\n";
+			$msg = '<p class="redItalic" align="center">'.lang('Access denied to the bcalendar of %1 !!!',implode(', ',$no_access))."</p>\n";
 
 			if ($GLOBALS['egw_info']['flags']['currentapp'] == 'home')
 			{
@@ -239,7 +239,7 @@ class calendar_ui
 	 * The following states are used:
 	 *	- date or year, month, day: the actual date of the period displayed
 	 *	- cat_id: the selected category
-	 *	- owner: the owner of the displayed calendar
+	 *	- owner: the owner of the displayed bcalendar
 	 *	- save_owner: the overriden owner of the planner
 	 *	- filter: the used filter: all or hideprivate
 	 *	- sortby: category or user of planner
@@ -255,10 +255,10 @@ class calendar_ui
 		{
 			$states = unserialize($this->bo->cal_prefs['saved_states']);
 		}
-		// only look at _REQUEST, if we are in the calendar (prefs and admin show our sidebox menu too!)
+		// only look at _REQUEST, if we are in the bcalendar (prefs and admin show our sidebox menu too!)
 		if (is_null($set_states))
 		{
-			$set_states = substr($_GET['menuaction'],0,9) == 'calendar.' ? $_REQUEST : array();
+			$set_states = substr($_GET['menuaction'],0,9) == 'bcalendar.' ? $_REQUEST : array();
 		}
 		if (!$states['date'] && $states['year'] && $states['month'] && $states['day'])
 		{
@@ -306,7 +306,7 @@ class calendar_ui
 					}
 				}
 				// for the uiforms class (eg. edit), dont store the (new) owner, as it might change the view
-				if (substr($_GET['menuaction'],0,25) == 'calendar.calendar_uiforms')
+				if (substr($_GET['menuaction'],0,25) == 'bcalendar.bcalendar_uiforms')
 				{
 					$this->owner = $set_states[$state];
 					continue;
@@ -341,7 +341,7 @@ class calendar_ui
 				$func = $this->view; $this->view = 'index';	// switch to the default view
 			}
 		}
-		else	// eg. calendar/index.php
+		else	// eg. bcalendar/index.php
 		{
 			$func = $this->view;
 			$class = $this->view == 'listview' ? 'calendar_uilist' : 'calendar_uiviews';
@@ -353,7 +353,7 @@ class calendar_ui
 			{
 				if ($this->cal_prefs['planner_start_with_group'] > 0) $this->cal_prefs['planner_start_with_group'] *= -1;	// fix old 1.0 pref
 
-				if (!$states_session && !$_GET['menuaction']) $this->view = '';		// first call to calendar
+				if (!$states_session && !$_GET['menuaction']) $this->view = '';		// first call to bcalendar
 
 				if ($func == 'planner' && $this->view != 'planner' && $this->owner == $this->user)
 				{
@@ -370,10 +370,10 @@ class calendar_ui
 			}
 			$this->view = $states['view'] = $func;
 		}
-		$this->view_menuaction = $this->view == 'listview' ? 'calendar.calendar_uilist.listview' : 'calendar.calendar_uiviews.'.$this->view;
+		$this->view_menuaction = $this->view == 'listview' ? 'bcalendar.bcalendar_uilist.listview' : 'bcalendar.bcalendar_uiviews.'.$this->view;
 
 		if ($this->debug > 0 || $this->debug == 'manage_states') $this->bo->debug_message('uical::manage_states(%1) session was %2, states now %3',True,$set_states,$states_session,$states);
-		// save the states in the session only when we are in calendar
+		// save the states in the session only when we are in bcalendar
 		if ($GLOBALS['egw_info']['flags']['currentapp']=='calendar')
 		{
 			$GLOBALS['egw']->session->appsession('session_data','calendar',$states);
@@ -529,7 +529,7 @@ class calendar_ui
 	 */
 	function add_link($content,$date=null,$hour=null,$minute=0,array $vars=null)
 	{
-		$vars['menuaction'] = 'calendar.calendar_uiforms.edit';
+		$vars['menuaction'] = 'bcalendar.bcalendar_uiforms.edit';
 		$vars['date'] =  $date ? $date : $this->date;
 
 		if (!is_null($hour))
@@ -580,13 +580,13 @@ class calendar_ui
 		$views = '<table style="width: 100%;"><tr>'."\n";
 		foreach(array(
 			'add' => array('icon'=>'new','text'=>'add'),
-			'day' => array('icon'=>'today','text'=>'Today','menuaction' => 'calendar.calendar_uiviews.day','date' => $this->bo->date2string($this->bo->now_su)),
-			'week' => array('icon'=>'week','text'=>'Weekview','menuaction' => 'calendar.calendar_uiviews.week'),
-			'weekN' => array('icon'=>'multiweek','text'=>'Multiple week view','menuaction' => 'calendar.calendar_uiviews.weekN'),
-			'month' => array('icon'=>'month','text'=>'Monthview','menuaction' => 'calendar.calendar_uiviews.month'),
-			//'year' => array('icon'=>'year','text'=>'yearview','menuaction' => 'calendar.calendar_uiviews.year'),
-			'planner' => array('icon'=>'planner','text'=>'Group planner','menuaction' => 'calendar.calendar_uiviews.planner','sortby' => $this->sortby),
-			'list' => array('icon'=>'list','text'=>'Listview','menuaction'=>'calendar.calendar_uilist.listview'),
+			'day' => array('icon'=>'today','text'=>'Today','menuaction' => 'bcalendar.bcalendar_uiviews.day','date' => $this->bo->date2string($this->bo->now_su)),
+			'week' => array('icon'=>'week','text'=>'Weekview','menuaction' => 'bcalendar.bcalendar_uiviews.week'),
+			'weekN' => array('icon'=>'multiweek','text'=>'Multiple week view','menuaction' => 'bcalendar.bcalendar_uiviews.weekN'),
+			'month' => array('icon'=>'month','text'=>'Monthview','menuaction' => 'bcalendar.bcalendar_uiviews.month'),
+			//'year' => array('icon'=>'year','text'=>'yearview','menuaction' => 'bcalendar.bcalendar_uiviews.year'),
+			'planner' => array('icon'=>'planner','text'=>'Group planner','menuaction' => 'bcalendar.bcalendar_uiviews.planner','sortby' => $this->sortby),
+			'list' => array('icon'=>'list','text'=>'Listview','menuaction'=>'bcalendar.bcalendar_uilist.listview'),
 		) as $view => $data)
 		{
 			$icon = array_shift($data);
@@ -614,54 +614,54 @@ class calendar_ui
 		foreach(array(
 			array(
 				'text' => lang('dayview'),
-				'value' => 'menuaction=calendar.calendar_uiviews.day',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.day',
 				'selected' => $this->view == 'day',
 			),
 			array(
 				'text' => lang('four days view'),
-				'value' => 'menuaction=calendar.calendar_uiviews.day4',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.day4',
 				'selected' => $this->view == 'day4',
 			),
 			array(
 				'text' => lang('weekview with weekend'),
-				'value' => 'menuaction=calendar.calendar_uiviews.week&days=7',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.week&days=7',
 				'selected' => $this->view == 'week' && $this->cal_prefs['days_in_weekview'] != 5,
 			),
 			array(
 				'text' => lang('weekview without weekend'),
-				'value' => 'menuaction=calendar.calendar_uiviews.week&days=5',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.week&days=5',
 				'selected' => $this->view == 'week' && $this->cal_prefs['days_in_weekview'] == 5,
 			),
 			array(
 				'text' => lang('Multiple week view'),
-				'value' => 'menuaction=calendar.calendar_uiviews.weekN',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.weekN',
 				'selected' => $this->view == 'weekN',
 			),
 			array(
 				'text' => lang('monthview'),
-				'value' => 'menuaction=calendar.calendar_uiviews.month',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.month',
 				'selected' => $this->view == 'month',
 			),
 			array(
 				'text' => lang('yearview'),
-				'value' => 'menuaction=calendar.calendar_uiviews.year',
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.year',
 				'selected' => $this->view == 'year',
 			),
 			array(
 				'text' => lang('planner by category'),
-				'value' => 'menuaction=calendar.calendar_uiviews.planner&sortby=category'.
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.planner&sortby=category'.
 					($planner_days_for_view !== false ? '&planner_days='.$planner_days_for_view : ''),
 				'selected' => $this->view == 'planner' && $this->sortby != 'user',
 			),
 			array(
 				'text' => lang('planner by user'),
-				'value' => 'menuaction=calendar.calendar_uiviews.planner&sortby=user'.
+				'value' => 'menuaction=bcalendar.bcalendar_uiviews.planner&sortby=user'.
 					($planner_days_for_view !== false ? '&planner_days='.$planner_days_for_view : ''),
 				'selected' => $this->view == 'planner' && $this->sortby == 'user',
 			),
 			array(
 				'text' => lang('listview'),
-				'value' => 'menuaction=calendar.calendar_uilist.listview',
+				'value' => 'menuaction=bcalendar.bcalendar_uilist.listview',
 				'selected' => $this->view == 'listview',
 			),
 		) as $data)
@@ -677,16 +677,16 @@ class calendar_ui
 			'text' => html::form('<input name="keywords" value="'.$value.'" style="width: 97.5%;"'.
 				' onFocus="if(this.value==\''.$blur.'\') this.value=\'\';"'.
 				' onBlur="if(this.value==\'\') this.value=\''.$blur.'\';" title="'.lang('Search').'">',
-				'','/index.php',array('menuaction'=>'calendar.calendar_uilist.listview')),
+				'','/index.php',array('menuaction'=>'bcalendar.bcalendar_uilist.listview')),
 			'no_lang' => True,
 			'link' => False,
 		);
 		// Minicalendar
 		$link = array();
 		foreach(array(
-			'day'   => 'calendar.calendar_uiviews.day',
-			'week'  => 'calendar.calendar_uiviews.week',
-			'month' => 'calendar.calendar_uiviews.month') as $view => $menuaction)
+			'day'   => 'bcalendar.bcalendar_uiviews.day',
+			'week'  => 'bcalendar.bcalendar_uiviews.week',
+			'month' => 'bcalendar.bcalendar_uiviews.month') as $view => $menuaction)
 		{
 			if ($this->view == 'planner' || $this->view == 'listview')
 			{
@@ -717,10 +717,10 @@ class calendar_ui
 			$link['week'],lang('show this week'),$link['month'],lang('show this month'));
 		$file[++$n] = array('text' => $jscalendar,'no_lang' => True,'link' => False,'icon' => False);
 
-		// set a baseurl for selectboxes, if we are not running inside calendar (eg. prefs or admin)
-		if (substr($_GET['menuaction'],0,9) != 'calendar.')
+		// set a baseurl for selectboxes, if we are not running inside bcalendar (eg. prefs or admin)
+		if (substr($_GET['menuaction'],0,9) != 'bcalendar.')
 		{
-			$baseurl = egw::link('/index.php',array('menuaction'=>'calendar.calendar_uiviews.index'));
+			$baseurl = egw::link('/index.php',array('menuaction'=>'bcalendar.bcalendar_uiviews.index'));
 		}
 		// Category Selection
 		$file[++$n] = $this->_select_box('Category','cat_id',
@@ -794,7 +794,7 @@ function load_cal(url,id) {
 		}
 		// Import & Export
 /*		$file[] = array(
-			'text' => lang('Export').': '.html::a_href(lang('iCal'),'calendar.calendar_uiforms.export',$this->first ? array(
+			'text' => lang('Export').': '.html::a_href(lang('iCal'),'bcalendar.bcalendar_uiforms.export',$this->first ? array(
 				'start' => $this->bo->date2string($this->first),
 				'end'   => $this->bo->date2string($this->last),
 			) : false),
@@ -802,15 +802,15 @@ function load_cal(url,id) {
 			'link' => False,
 		);
 		$file[] = array(
-			'text' => lang('Import').': '.html::a_href(lang('iCal'),'calendar.calendar_uiforms.import').
+			'text' => lang('Import').': '.html::a_href(lang('iCal'),'bcalendar.bcalendar_uiforms.import').
 				' &amp; '.html::a_href(lang('CSV'),'/calendar/csv_import.php'),
 			'no_lang' => True,
 			'link' => False,
 		);*/
 /*
 		$print_functions = array(
-			'calendar.calendar_uiviews.day'	=> 'calendar.pdfcal.day',
-			'calendar.calendar_uiviews.week'	=> 'calendar.pdfcal.week',
+			'bcalendar.bcalendar_uiviews.day'	=> 'bcalendar.pdfcal.day',
+			'bcalendar.bcalendar_uiviews.week'	=> 'bcalendar.pdfcal.week',
 		);
 		if (isset($print_functions[$_GET['menuaction']]))
 		{
@@ -844,9 +844,9 @@ function load_cal(url,id) {
 		{
 			$menu_title = lang('Preferences');
 			$file = Array(
-				'Calendar preferences'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname=calendar'),
-				'Grant Access'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app=calendar'),
-				'Edit Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=calendar&cats_level=True&global_cats=True'),
+				'Calendar preferences'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname=bcalendar'),
+				'Grant Access'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app=bcalendar'),
+				'Edit Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=bcalendar&cats_level=True&global_cats=True'),
 			);
 			display_sidebox($appname,$menu_title,$file);
 		}
@@ -855,10 +855,10 @@ function load_cal(url,id) {
 		{
 			$menu_title = lang('Administration');
 			$file = Array(
-				'Configuration'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.uiconfig.index&appname=calendar'),
-				'Custom Fields'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.customfields.edit&appname=calendar'),
-				'Holiday Management'=>$GLOBALS['egw']->link('/index.php','menuaction=calendar.uiholiday.admin'),
-				'Global Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=admin.uicategories.index&appname=calendar'),
+				'Configuration'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.uiconfig.index&appname=bcalendar'),
+				'Custom Fields'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.customfields.edit&appname=bcalendar'),
+				'Holiday Management'=>$GLOBALS['egw']->link('/index.php','menuaction=bcalendar.uiholiday.admin'),
+				'Global Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=admin.uicategories.index&appname=bcalendar'),
 			);
 			display_sidebox($appname,$menu_title,$file);
 		}

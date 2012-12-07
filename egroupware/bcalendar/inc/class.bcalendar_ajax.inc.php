@@ -4,21 +4,21 @@
  *
  * @link http://www.egroupware.org
  * @author Christian Binder <christian.binder@freakmail.de>
- * @package calendar
+ * @package bcalendar
  * @copyright (c) 2006 by Christian Binder <christian.binder@freakmail.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_ajax.inc.php 27222 2009-06-08 16:21:14Z ralfbecker $
+ * @version $Id: class.bcalendar_ajax.inc.php 27222 2009-06-08 16:21:14Z ralfbecker $
  */
 
 /**
- * General object of the calendar ajax class
+ * General object of the bcalendar ajax class
  */
 class bcalendar_ajax {
 
 	/**
-	 * calendar object to handle events
+	 * bcalendar object to handle events
 	 *
-	 * @var calendar_boupdate
+	 * @var bcalendar_boupdate
 	 */
 	var $calendar;
 
@@ -31,14 +31,14 @@ class bcalendar_ajax {
 	 * moves an event to another date/time
 	 *
 	 * @param string $eventID id of the event which has to be moved
-	 * @param string $calendarOwner the owner of the calendar the event is in
+	 * @param string $calendarOwner the owner of the bcalendar the event is in
 	 * @param string $targetDateTime the datetime where the event should be moved to, format: YYYYMMDD
-	 * @param string $targetOwner the owner of the target calendar
+	 * @param string $targetOwner the owner of the target bcalendar
 	 * @return string XML response if no error occurs
 	 */
 	function moveEvent($eventId,$calendarOwner,$targetDateTime,$targetOwner)
 	{
-		// we do not allow dragging into another users calendar ATM
+		// we do not allow dragging into another users bcalendar ATM
 		if(!$calendarOwner == $targetOwner)
 		{
 			return false;
@@ -61,7 +61,7 @@ class bcalendar_ajax {
 		{
 			$response->addScriptCall(
 				'egw_openWindowCentered2',
-				$GLOBALS['egw_info']['server']['webserver_url'].'/index.php?menuaction=calendar.calendar_uiforms.edit
+				$GLOBALS['egw_info']['server']['webserver_url'].'/index.php?menuaction=bcalendar.bcalendar_uiforms.edit
 					&cal_id='.$event['id']
 					.'&start='.$event['start']
 					.'&end='.$event['end']

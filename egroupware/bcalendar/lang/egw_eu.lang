@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	eu	%1 %2 %3an
 %1 records imported	calendar	eu	%1 errenkada inportatuta
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	eu	%1 errenkadak irakurriak (oraindik inportatu gabe ordea. Inportatu nahi izanez gero bueltatu atzera eta "inportazio testa" aukera kendu)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	eu	<b>Kontutan izatekoa</b>: Egutegiak zure herrialdeko jaiegunak erabiltzen ditu, berau %1 bezala definiturik dagoelarik. Zure %2 atalean alda dezakezu berau. <br> Jaiegunak automatikoki instalatzen dira %4 tik. Berauek %5 ean alda ditzazkezu.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	eu	<b>Kontutan izatekoa</b>: Egutegiak zure herrialdeko jaiegunak erabiltzen ditu, berau %1 bezala definiturik dagoelarik. Zure %2 atalean alda dezakezu berau. <br> Jaiegunak automatikoki instalatzen dira %4 tik. Berauek %5 ean alda ditzazkezu.
 a non blocking event will not conflict with other events	calendar	eu	blokeatzen ez duen gertakari batek beste gertakari batzuekin ez du inoiz oztopatuko
 accept or reject an invitation	calendar	eu	Gonbidapena onartu edo ezetsi
 accepted	calendar	eu	Onartuta
-access denied to the calendar of %1 !!!	calendar	eu	%1ti egutegira sarrera ukatu!
+access denied to the bcalendar of %1 !!!	calendar	eu	%1ti egutegira sarrera ukatu!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	eu	Abisua eragin duen ekintza: gehitua, ezeztatuta, onartua, ukatua...
 actions	calendar	eu	Ekintzak
 add alarm	calendar	eu	Alarma gehitu
@@ -59,8 +59,8 @@ days of the week for a weekly repeated event	calendar	eu	Astero errepikatzen den
 days repeated	calendar	eu	errepikatutako egunak
 dayview	calendar	eu	Egunaren ikuspegia
 default appointment length (in minutes)	calendar	eu	bileren luzera lehenetsia (minututan)
-default calendar filter	calendar	eu	Egutegiko iragazki lehenetsia
-default calendar view	calendar	eu	Egutegia aurkezteko modu lehenetsia
+default bcalendar filter	calendar	eu	Egutegiko iragazki lehenetsia
+default bcalendar view	calendar	eu	Egutegia aurkezteko modu lehenetsia
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	eu	Gertaera berri bat sortzean duen iraupen lehenetsia (minututan).
 default week view	calendar	eu	Asteko ikuspegia lehenetsita
 delete series	calendar	eu	Serieak ezabatu
@@ -71,11 +71,11 @@ delete this series of recuring events	calendar	eu	Gertakari serie hau ezabatu
 disinvited	calendar	eu	Ez zaude gonbidatuta
 display status of events	calendar	eu	Gertakarien egoera erakutsi
 displayed view	calendar	eu	Ikuspegia erakutsita
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	eu	Zure egutegi ikuspegi lehenetsia haserako orri bezala definitu (sistemara sartzean edota ikono nagusian klikatutakoan ikusiko duzun atala).
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	eu	Zure egutegi ikuspegi lehenetsia haserako orri bezala definitu (sistemara sartzean edota ikono nagusian klikatutakoan ikusiko duzun atala).
 do you want a weekview with or without weekend?	calendar	eu	Asteko ikuspegia, astebukaerekin edo gabe nahiago duzu?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	eu	Gertakari berrien edo gertakarien aldaketen berri izan nahi duzu? Zuk zeuk egindako aldaketez ere jakin araziko zaizu.<br> Abisuak mugatu egin ditzazkezu gertakariaren arabera. Aldaketa guztiak hautatuz gero abisuak datak, titulua, deskribapena edo partehartzaileak aldatzerakoan bidaliko ditu baina ez partehartzaileen erantzunak jasotzean. Gertakariaren jabeak abisu eskaera hautatu badu, beti jasoko ditu partehartzaileen onarpenak edo gaitzezpenak gertakariarekiko.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	eu	Zure egutegiko gertakarien laburpena posta bidez jaso nahi duzu? Laburpena zure posta helbidera bidaliko da goizero baldin eta zure eguneko egutegian gertakaririk baldin badaukazu.
-do you wish to autoload calendar holidays files dynamically?	admin	eu	Jai egutegia dinamikoki internetetik kargatu nahi duzu?
+do you wish to autoload bcalendar holidays files dynamically?	admin	eu	Jai egutegia dinamikoki internetetik kargatu nahi duzu?
 download	calendar	eu	Deskargatu
 download this event as ical	calendar	eu	Gertakari hau deskargatu ¡Cal moduan
 duration of the meeting	calendar	eu	Bileraren iraupena
@@ -105,13 +105,13 @@ exceptions	calendar	eu	Salbuespenak
 existing links	calendar	eu	Loturak existitzen dira
 export	calendar	eu	Esportatu
 extended	calendar	eu	Luzatua
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	eu	Eguneratzen zabalak gertakariaren datu guztiak eguneratzen ditu. iCal egutegiak beste egutegi aplikazio batzuek inportatu ditzazkete (Microsoft Outlook, etab.).
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	eu	Eguneratzen zabalak gertakariaren datu guztiak eguneratzen ditu. iCal egutegiak beste egutegi aplikazio batzuek inportatu ditzazkete (Microsoft Outlook, etab.).
 fieldseparator	calendar	eu	Eremu banatzailea
 filename	calendar	eu	Fitxategiaren izena
 filename of the download	calendar	eu	Deskargatu den fitxategiaren izena
 find free timeslots where the selected participants are availible for the given timespan	calendar	eu	Bilera modaltzeko hutsune libreak aurkitu partehartzaileen egutegietan
 firstname of person to notify	calendar	eu	Abisua eman behar zaion pertsonaren izena
-for which views should calendar show distinct lines with a fixed time interval.	calendar	eu	Zein egutegi ikuspegitan erakutsi beharko litzatezke denbora lerroak?
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	eu	Zein egutegi ikuspegitan erakutsi beharko litzatezke denbora lerroak?
 format of event updates	calendar	eu	Gertakarien eguneratze formatua
 forward half a month	calendar	eu	hilabete erdia aurreratu
 forward one month	calendar	eu	hilabete bat aurreratu
@@ -237,7 +237,7 @@ select resources	calendar	eu	Baliabide guztiak
 select who should get the alarm	calendar	eu	Aukeratu nork jaso behar duen alarma
 set a year only for one-time / non-regular holidays.	calendar	eu	Urtero errepikatzen ez diren oporretan ez ezarri urterik.
 set new events to private	calendar	eu	Gertakari berriak pribatu moduan jarri
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	eu	Zuk gaitzetsitako gertaerak zure egutegian agertu beharko lirateke? <br> Ondoren iritzia aldatzeko aukera izango duzu, bakarrik zure egutegian agertzen baldin bada!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	eu	Zuk gaitzetsitako gertaerak zure egutegian agertu beharko lirateke? <br> Ondoren iritzia aldatzeko aukera izango duzu, bakarrik zure egutegian agertzen baldin bada!
 should new events created as private by default ?	calendar	eu	Pribatu moduan sortu gertakariak?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	eu	Sisteman sartuta dauden erabiltzaileak zure libre/lanpetu egutegia ikusteko aukera eman nahi duzu?<br> Beste pasahitz bat ezar dezakezu informazio hau babesteko.<br>iCal formatuan dago eta ez da gertakarien informaziorik erakusten, bakarrik libre/lanpetu egutegia.<br> Zuren libre/lanpetu egutegirako esteka %1 da.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	eu	Gertakari-patehartzaile baten egoera izenarekin batera agertu beharko litzateke edo partehartzaile izenaren ondoren?
@@ -292,8 +292,8 @@ weekly	calendar	eu	Astero
 weekview	calendar	eu	Astearen ikuspegia
 weekview with weekend	calendar	eu	Asteko ikuspegia asteburuarekin
 weekview without weekend	calendar	eu	Asteko ikuspegia astebukaerarik gabe
-which events do you want to see when you enter the calendar.	calendar	eu	Zein gertakari nahi dituzu ikusi egutegian sartzerakoan?
-which of calendar view do you want to see, when you start calendar ?	calendar	eu	Egutegiko zein ikuspegi nahi duzu ikusi egutegira sartzerakoan?
+which events do you want to see when you enter the bcalendar.	calendar	eu	Zein gertakari nahi dituzu ikusi egutegian sartzerakoan?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	eu	Egutegiko zein ikuspegi nahi duzu ikusi egutegira sartzerakoan?
 whole day	calendar	eu	egun osoa
 wk	calendar	eu	Astea
 work day ends on	calendar	eu	Lan egunak bukatzen dira

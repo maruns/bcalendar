@@ -1,14 +1,14 @@
 <?php
 /**
- * eGroupWare calendar - SIF Parser for SyncML
+ * eGroupWare bcalendar - SIF Parser for SyncML
  *
  * @link http://www.egroupware.org
  * @author Lars Kneschke <lkneschke@egroupware.org>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package calendar
+ * @package bcalendar
  * @subpackage export
- * @version $Id: class.calendar_sif.inc.php 31411 2010-07-13 13:43:17Z leithoff $
+ * @version $Id: class.bcalendar_sif.inc.php 31411 2010-07-13 13:43:17Z leithoff $
  */
 
 require_once EGW_SERVER_ROOT.'/phpgwapi/inc/horde/lib/core.php';
@@ -16,7 +16,7 @@ require_once EGW_SERVER_ROOT.'/phpgwapi/inc/horde/lib/core.php';
 /**
  * SIF Parser for SyncML
  */
-class bcalendar_sif extends calendar_boupdate
+class bcalendar_sif extends bcalendar_boupdate
 {
 	var $sifMapping = array(
 		'Start'				=> 'start',
@@ -56,7 +56,7 @@ class bcalendar_sif extends calendar_boupdate
 	);
 
 	/**
-	 *  the calendar event array for the XML Parser
+	 *  the bcalendar event array for the XML Parser
 	 */
 	var $event;
 
@@ -83,7 +83,7 @@ class bcalendar_sif extends calendar_boupdate
 	var $uidExtension = false;
 
 	/**
-	 * user preference: calendar to synchronize with
+	 * user preference: bcalendar to synchronize with
 	 *
 	 * @var int
 	 */
@@ -184,7 +184,7 @@ class bcalendar_sif extends calendar_boupdate
 	/**
 	 * Get DateTime value for a given time and timezone
 	 *
-	 * @param int|string|DateTime $time in server-time as returned by calendar_bo for $data_format='server'
+	 * @param int|string|DateTime $time in server-time as returned by bcalendar_bo for $data_format='server'
 	 * @param string $tzid TZID of event or 'UTC' or NULL for palmos timestamps in usertime
 	 * @return mixed attribute value to set: integer timestamp if $tzid == 'UTC' otherwise Ymd\THis string IN $tzid
 	 */
@@ -200,7 +200,7 @@ class bcalendar_sif extends calendar_boupdate
 		}
 		if (!isset(self::$tz_cache[$tzid]))
 		{
-			self::$tz_cache[$tzid] = calendar_timezones::DateTimeZone($tzid);
+			self::$tz_cache[$tzid] = bcalendar_timezones::DateTimeZone($tzid);
 		}
 		$time->setTimezone(self::$tz_cache[$tzid]);
 
@@ -413,7 +413,7 @@ class bcalendar_sif extends calendar_boupdate
 	* @param boolean $merge=false	merge data with existing entry
 	* @param int $recur_date=0 if set, import the recurrence at this timestamp,
 	*                          default 0 => import whole series (or events, if not recurring)
-	* @desc import a SIFE into the calendar
+	* @desc import a SIFE into the bcalendar
 	*/
 	function addSIF($_sifdata, $_calID=-1, $merge=false, $recur_date=0)
 	{
@@ -432,7 +432,7 @@ class bcalendar_sif extends calendar_boupdate
 		{
 			// Adjust the event start -- no exceptions before and at the start
 			$length = $event['end'] - $event['start'];
-			$rriter = calendar_rrule::event2rrule($event, false);
+			$rriter = bcalendar_rrule::event2rrule($event, false);
 			$rriter->rewind();
 			if (!$rriter->valid()) continue; // completely disolved into exceptions
 
@@ -530,7 +530,7 @@ class bcalendar_sif extends calendar_boupdate
 			}
 
 			// check if an owner is set and the current user has add rights
-			// for that owners calendar; if not set the current user
+			// for that owners bcalendar; if not set the current user
 			if (!isset($event['owner'])
 					|| !$this->check_perms(EGW_ACL_ADD, 0, $event['owner']))
 			{
@@ -538,7 +538,7 @@ class bcalendar_sif extends calendar_boupdate
 			}
 
 			$status = $event['owner'] == $this->user ? 'A' : 'U';
-			$status = calendar_so::combine_status($status, 1, 'CHAIR');
+			$status = bcalendar_so::combine_status($status, 1, 'CHAIR');
 			$event['participants'] = array($event['owner'] => $status);
 		}
 
@@ -687,7 +687,7 @@ class bcalendar_sif extends calendar_boupdate
 						/*
 						// Adjust the event start -- must not be an exception
 						$length = $event_info['master_event']['end'] - $event_info['master_event']['start'];
-						$rriter = calendar_rrule::event2rrule($event_info['master_event'], false);
+						$rriter = bcalendar_rrule::event2rrule($event_info['master_event'], false);
 						$rriter->rewind();
 						if ($rriter->valid())
 						{
@@ -866,12 +866,12 @@ class bcalendar_sif extends calendar_boupdate
 		{
 			if (!isset(self::$tz_cache[$tzid]))
 			{
-				self::$tz_cache[$tzid] = calendar_timezones::DateTimeZone($tzid);
+				self::$tz_cache[$tzid] = bcalendar_timezones::DateTimeZone($tzid);
 			}
 		}
 		if (!isset(self::$tz_cache[$event['tzid']]))
 		{
-			self::$tz_cache[$event['tzid']] = calendar_timezones::DateTimeZone($event['tzid']);
+			self::$tz_cache[$event['tzid']] = bcalendar_timezones::DateTimeZone($event['tzid']);
 		}
 
 		if ($recur_date && ($master = $this->read($_id, 0, true, 'server')))
@@ -917,7 +917,7 @@ class bcalendar_sif extends calendar_boupdate
 			/*
 			// Adjust the event start -- must not be an exception
 			$length = $event['end'] - $event['start'];
-			$rriter = calendar_rrule::event2rrule($event, false, $tzid);
+			$rriter = bcalendar_rrule::event2rrule($event, false, $tzid);
 			$rriter->rewind();
 			if (!$rriter->valid()) return false; // completely disolved into exceptions
 
@@ -975,7 +975,7 @@ class bcalendar_sif extends calendar_boupdate
 					}
 					else
 					{
-						$rriter = calendar_rrule::event2rrule($event, false, $tzid);
+						$rriter = bcalendar_rrule::event2rrule($event, false, $tzid);
 						$rriter->rewind();
 
 						while ($rriter->valid())

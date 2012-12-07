@@ -2,11 +2,11 @@
 %1 records imported	calendar	zh	已导入%1个记录
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	zh	已读取%1个记录 (尚未导入, 您可以返回并取消导入测试)
 %1 weeks	calendar	zh	%1 星期
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	zh	<b>请注意</b>：日历使用您的国家的法定假日，目前设置为 %1；您可以将其修改为适合您的 %2。<br />假日信息 %3 是自动从 %4 安装的，可以在 %5 修改。
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	zh	<b>请注意</b>：日历使用您的国家的法定假日，目前设置为 %1；您可以将其修改为适合您的 %2。<br />假日信息 %3 是自动从 %4 安装的，可以在 %5 修改。
 a non blocking event will not conflict with other events	calendar	zh	一个未锁定事件将不会与其它事件冲突
 accept or reject an invitation	calendar	zh	接受或拒绝邀请
 accepted	calendar	zh	已接受
-access denied to the calendar of %1 !!!	calendar	zh	对 %1 的日历的访问被拒绝！
+access denied to the bcalendar of %1 !!!	calendar	zh	对 %1 的日历的访问被拒绝！
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	zh	执行下列操作将发出通知：添加, 取消, 接受, 拒绝...
 actions	calendar	zh	操作
 actions...	calendar	zh	操作...
@@ -69,8 +69,8 @@ days of the week for a weekly repeated event	calendar	zh	一个每周重复事�
 days repeated	calendar	zh	重复日
 dayview	calendar	zh	日视图
 default appointment length (in minutes)	calendar	zh	默认约会时间长度 (单位：分钟)
-default calendar filter	calendar	zh	默认查看范围
-default calendar view	calendar	zh	默认日历视图
+default bcalendar filter	calendar	zh	默认查看范围
+default bcalendar view	calendar	zh	默认日历视图
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	zh	新建事件默认时间长度。长度单位是分钟，例如：60 为一小时。
 default week view	calendar	zh	默认周视图
 delete series	calendar	zh	删除相关项
@@ -81,11 +81,11 @@ delete this series of recuring events	calendar	zh	删除此系列循环事件
 disinvited	calendar	zh	不邀请
 display status of events	calendar	zh	显示事件状态
 displayed view	calendar	zh	显示视图
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	zh	在首页显示您的默认日历视图 (您登录 egroupWare 的第一个页面或点击'首页图标'时显示的页面)？
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	zh	在首页显示您的默认日历视图 (您登录 egroupWare 的第一个页面或点击'首页图标'时显示的页面)？
 do you want a weekview with or without weekend?	calendar	zh	您想在周视图上包含或不包含周末？
 do you want to be notified about new or changed appointments? you be notified about changes you make yourself. <br>you can limit the notifications to certain changes only. each item includes all the notification listed above it. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get the participant responses like acceptions and rejections too.	calendar	zh	您希望通知管理系统在新增或改变约会时通知您吗？同样您也通知您自己您所做的更改。<br>您可以限制通知管理系统只提醒确定的改变。每个项目包含了所有关于它的通知列表。所有的修改包括标题、描述、参与者的改变，但不包括参与者回复。如果事件发起人要求任何通知，他会随时收到参与者接受或是拒绝的回复。
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	zh	您希望通过邮件接收您的约会的规则概要吗？<br>该概要是在当天早上或者在每个周一的每周概要发到您的标准信箱。<br>它只会在当您有约会的那一天或是那一周发出。
-do you wish to autoload calendar holidays files dynamically?	admin	zh	您希望动态地自动加载日历的假期文件吗？
+do you wish to autoload bcalendar holidays files dynamically?	admin	zh	您希望动态地自动加载日历的假期文件吗？
 download	calendar	zh	下载
 download this event as ical	calendar	zh	下载这一事件的 iCal 格式
 duration of the meeting	calendar	zh	会议期间
@@ -118,14 +118,14 @@ execute a further action for this entry	calendar	zh	为这一输入执行进一�
 existing links	calendar	zh	已存在链接
 export	calendar	zh	导出
 extended	calendar	zh	扩展
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	zh	扩展更新总是含完整的事件细节，iCal 格式可以被其它日历应用软件读取。
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	zh	扩展更新总是含完整的事件细节，iCal 格式可以被其它日历应用软件读取。
 fieldseparator	calendar	zh	字段分隔符
 filename	calendar	zh	字段名
 filename of the download	calendar	zh	需下载的字段名
 find free timeslots where the selected participants are availible for the given timespan	calendar	zh	找出在指定的期间所选择的参与者都有空的最佳时间段
 firstname of person to notify	calendar	zh	被通知人的 名
 for	calendar	zh	为了
-for which views should calendar show distinct lines with a fixed time interval.	calendar	zh	对于哪种日历视图将在日历上显示固定的时间分隔线。
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	zh	对于哪种日历视图将在日历上显示固定的时间分隔线。
 format of event updates	calendar	zh	事件更新格式
 forward half a month	calendar	zh	下半月
 forward one month	calendar	zh	下个月
@@ -164,7 +164,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	zh	忽略冲突
 import	calendar	zh	导入
 import csv-file	common	zh	导入CSV文件
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	zh	从CSV文件导入事件到日历中。CSV方法'以逗号分隔的值'。不过在选项选项卡，你仍可以选择其他分隔符。
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	zh	从CSV文件导入事件到日历中。CSV方法'以逗号分隔的值'。不过在选项选项卡，你仍可以选择其他分隔符。
 interval	calendar	zh	间隔
 invalid email-address "%1" for user %2	calendar	zh	用户 %2 错误的邮箱 "%1"
 last	calendar	zh	最后的
@@ -258,7 +258,7 @@ selected range	calendar	zh	选择的范围
 set a year only for one-time / non-regular holidays.	calendar	zh	设置一年仅一次/非规则假日。
 set new events to private	calendar	zh	设置新事件为私有
 setting lock time calender	admin	zh	设定日历的数据锁定时间为(默认为1秒)
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	zh	您已经拒绝的邀请仍要显示在您的日历中吗？<br>如果它仍然显示在您的日历中，您只有以后接受他们(例如：在去除了您的时间表冲突时)。
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	zh	您已经拒绝的邀请仍要显示在您的日历中吗？<br>如果它仍然显示在您的日历中，您只有以后接受他们(例如：在去除了您的时间表冲突时)。
 should new events created as private by default ?	calendar	zh	默认新增的事件为私有？
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	zh	没有登录的人能否看到您现在的空闲/繁忙信息？您可以设置一个与正常密码不同的附加密码来保护此信息。该空闲/繁忙信息是在iCal格式里和只包括你处于忙状态的时间，它不包括事件的名称、描述或地点。您的空闲/繁忙信息的网址是 %1。
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is <a href="http://demo.mzc.cn/calendar/freebusy.php?user=michel" target="_blank">http://demo.mzc.cn/calendar/freebusy.php?user=michel</a>.	calendar	zh	没有登录的人能否看到您现在的空闲/繁忙信息？您可以设置一个与正常密码不同的附加密码来保护此信息。该空闲/繁忙信息是在iCal格式里和只包括你处于忙状态的时间，它不包括事件的名称、描述或地点。您的空闲/繁忙信息的网址是 <a href="http://demo.mzc.cn/calendar/freebusy.php?user=michel" target="_blank">http://demo.mzc.cn/calendar/freebusy.php?user=michel</a>。
@@ -323,8 +323,8 @@ weeks in multiple week view	calendar	zh	几星期在多重周视图中
 weekview	calendar	zh	周视图
 weekview with weekend	calendar	zh	周视图 (有周末)
 weekview without weekend	calendar	zh	周视图 (无周末)
-which events do you want to see when you enter the calendar.	calendar	zh	当您进入日历时您希望看到哪一个事件。
-which of calendar view do you want to see, when you start calendar ?	calendar	zh	当您开始一个日历时，您希望看到哪一个日历视图？
+which events do you want to see when you enter the bcalendar.	calendar	zh	当您进入日历时您希望看到哪一个事件。
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	zh	当您开始一个日历时，您希望看到哪一个日历视图？
 whole day	calendar	zh	整天
 wk	calendar	zh	周
 work day ends on	calendar	zh	工作日结束时间

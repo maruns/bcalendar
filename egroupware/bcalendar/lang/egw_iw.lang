@@ -41,7 +41,7 @@ canceled	calendar	iw	מבוטל
 change all events for $params['old_owner'] to $params['new_owner'].	calendar	iw	.שנה את כל האירועים של  $params['old_owner'] ל-$params['new_owner']
 change status	calendar	iw	שינוי סטטוס
 charset of file	calendar	iw	סוג התווים בקובץ
-click %1here%2 to return to the calendar.	calendar	iw	.הקלק %1כאן%2 כדי לחזור ללוח השנה
+click %1here%2 to return to the bcalendar.	calendar	iw	.הקלק %1כאן%2 כדי לחזור ללוח השנה
 configuration	calendar	iw	קונפיגורציה
 countries	calendar	iw	ארצות
 country	calendar	iw	ארץ
@@ -56,12 +56,12 @@ days	calendar	iw	ימים
 days repeated	calendar	iw	חוזר בימים
 dayview	calendar	iw	תצוגת יומית
 default appointment length (in minutes)	calendar	iw	(אורךהמחדלי של פגישה (בדקות
-default calendar filter	calendar	iw	מסנן מחדלי לוח שנה
-default calendar view	calendar	iw	תצוגה מחדלית של לוח שנה
+default bcalendar filter	calendar	iw	מסנן מחדלי לוח שנה
+default bcalendar view	calendar	iw	תצוגה מחדלית של לוח שנה
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	iw	.אורך המחדלי של ארועים חדשים. האורך בדות, למשל 60 דקות במקום שעה 1
 defines the size in minutes of the lines in the day view.	calendar	iw	.מגדיר את אורך השורה בדקות בתצוגה היומית
 delete a single entry by passing the id.	calendar	iw	מחיקת רשומה יחידה ע"י העברת זיהויו.
-delete an entire users calendar.	calendar	iw	.מוחק לוח שנה שלם של משתמש
+delete an entire users bcalendar.	calendar	iw	.מוחק לוח שנה שלם של משתמש
 delete selected contacts	calendar	iw	.מחק אנשי קשר מובחרים
 delete series	calendar	iw	מחק סדרה
 delete single	calendar	iw	מחק יחיד
@@ -70,12 +70,12 @@ description	calendar	iw	תיאור
 disable	calendar	iw	הפוך ללא פעיל
 disabled	calendar	iw	מבוטל
 display interval in day view	calendar	iw	הצג מרווק בתצוגה יומית
-display mini calendars when printing	calendar	iw	הצג לוח שנה מיני כשמדפיסים
+display mini bcalendars when printing	calendar	iw	הצג לוח שנה מיני כשמדפיסים
 display status of events	calendar	iw	הצג סטוטס של אירועים
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	iw	להציג את לוח השנה המחדלית שלך בעמוד התחלה?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	iw	להציג את לוח השנה המחדלית שלך בעמוד התחלה?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	iw	ברצונך לקבל הודעות בדבר פגישות חדשות או שינוים בפגישות קימות? תקבל הודעה על שינוים אתה מבצע
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	iw	?ברצונך לקבל סיכום הפגישות שלך בדוא"ל בקביעות
-do you wish to autoload calendar holidays files dynamically?	admin	iw	?ברצונך להטעין קבצי חגים של לוח השנה אוטומטית באופו דינמי
+do you wish to autoload bcalendar holidays files dynamically?	admin	iw	?ברצונך להטעין קבצי חגים של לוח השנה אוטומטית באופו דינמי
 download	calendar	iw	הורדה
 duration	calendar	iw	משך
 edit series	calendar	iw	ערוך סדרה
@@ -94,7 +94,7 @@ exceptions	calendar	iw	יוצאים מהכלל
 export	calendar	iw	ייצוא
 export a list of entries in ical format.	calendar	iw	iCal ייצא רשימה של רשומות בפורמט
 extended	calendar	iw	מורחב
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	iw	.עדכונים מורחבים תמיד כוללים פרטי אירוע שלמים
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	iw	.עדכונים מורחבים תמיד כוללים פרטי אירוע שלמים
 external participants	calendar	iw	משתתפים חיצוניים
 failed sending message to '%1' #%2 subject='%3', sender='%4' !!!	calendar	iw	!'נכשל ניסון לשלוח הודעה אל '%1' #%2% נושא='%3', השולח='%4
 fieldseparator	calendar	iw	מפריד שדות
@@ -112,7 +112,7 @@ global categories	calendar	iw	קטגוריות גובליות
 global public and group public	calendar	iw	ציבור גלובלי וציבור הקבוצה
 global public only	calendar	iw	ציבור גלובלי בלבד
 go!	calendar	iw	!סע
-grant calendar access	common	iw	העניק גישה ללוח השנה
+grant bcalendar access	common	iw	העניק גישה ללוח השנה
 group planner	calendar	iw	תכנון קבוצתי
 group public only	calendar	iw	ציבור הקבוצה בלבד
 here is your requested alarm.	calendar	iw	.הרי לך התזכורת המבוקשת
@@ -189,11 +189,11 @@ permission denied	calendar	iw	הגישה אסורה
 planner	calendar	iw	מתכנן
 planner by category	calendar	iw	מכנן לפי קטגוריה
 planner by user	calendar	iw	מכנן לפי משתמש
-please confirm,accept,reject or examine changes in the corresponding entry in your calendar	calendar	iw	נא לאשר, לקבל, לדחות או לצפות בשינוים ברשומה המתאימה בלוח השנה שלך
+please confirm,accept,reject or examine changes in the corresponding entry in your bcalendar	calendar	iw	נא לאשר, לקבל, לדחות או לצפות בשינוים ברשומה המתאימה בלוח השנה שלך
 please enter a filename !!!	calendar	iw	!נא לציין שם קובץ
 preselected group for entering the planner	calendar	iw	קבוצה שנקבעה מראש לכניסה למתכנן
-print calendars in black & white	calendar	iw	תדפיס לוח שנה בשחור/לבן
-print the mini calendars	calendar	iw	תתדפיס לוחות שנה מיני
+print bcalendars in black & white	calendar	iw	תדפיס לוח שנה בשחור/לבן
+print the mini bcalendars	calendar	iw	תתדפיס לוחות שנה מיני
 printer friendly	calendar	iw	ידידותי למדפסת
 privat	calendar	iw	פרטי
 private and global public	calendar	iw	פרטי וציבור גלובלי
@@ -227,10 +227,10 @@ send updates via email	common	iw	שלך עעדכונים בדוא"ל
 send/receive updates via email	calendar	iw	שלח/קבל עדכונים בדוא"ל
 set a year only for one-time / non-regular holidays.	calendar	iw	.קבע שנה רק בעבור חגים חד-פעמיים או לא רגילים
 set new events to private	calendar	iw	קבע אירועים חדשים כפרטיים
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	iw	?להציג אירועים שדחית בלוח השנה שלך
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	iw	?להציג אירועים שדחית בלוח השנה שלך
 should new events created as private by default ?	calendar	iw	?האם ליצור אירועים חדשים כפרטיים כברירת מחדל
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	iw	האם לאפשר לאנשים שלא נכנסו למערכת לצפות במידע הפנוי/תפוס שלך? אפשר לקבוע סיסמא שונה
-should the mini calendars by printed / displayed in the printer friendly views ?	calendar	iw	?האם לדפיס/להציג את לוח השנהמיני בתצוגה ידידותית למדפסת
+should the mini bcalendars by printed / displayed in the printer friendly views ?	calendar	iw	?האם לדפיס/להציג את לוח השנהמיני בתצוגה ידידותית למדפסת
 should the printer friendly view be in black & white or in color (as in normal view)?	calendar	iw	(האם התצוגה הידידותית למדפסת צריכה להיות בשחור/לבן או צבעונית (כמו בתצוגה הרגילה
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	iw	?האם להציג את סטטוס של משתתפי האירוע (קיבל, דחה, ...) בסוגריים אחרי השם של כל משתתף
 show day view on main screen	calendar	iw	הצג את תצוגה הימית במסך הראשי
@@ -294,8 +294,8 @@ weekday starts on	calendar	iw	-שבוע עבודה מתחיל ב
 weekly	calendar	iw	שבועי
 weekview	calendar	iw	תצוגה שבועית
 when creating new events default set to private	calendar	iw	כאשר יוצרים אירוע חדש ברירת מחדל מוגדר כפרטי
-which events do you want to see when you enter the calendar.	calendar	iw	?איזה אירועים ברצונך לראות בכניסתך ללוח השנה
-which of calendar view do you want to see, when you start calendar ?	calendar	iw	?איזה תצוגת לוח שנה ברצונך להציג בכניסתך ללוח שנה
+which events do you want to see when you enter the bcalendar.	calendar	iw	?איזה אירועים ברצונך לראות בכניסתך ללוח השנה
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	iw	?איזה תצוגת לוח שנה ברצונך להציג בכניסתך ללוח שנה
 work day ends on	calendar	iw	-שבוע עבודה מסתיים ב
 work day starts on	calendar	iw	-שבוע עבודה מתחיל ב
 workdayends	calendar	iw	יום העבודה מסתיים
@@ -307,8 +307,8 @@ you do not have permission to add alarms to this event !!!	calendar	iw	!אין �
 you do not have permission to delete this alarm !!!	calendar	iw	!אין לך הרשאה למחוק תזכורת זו
 you do not have permission to enable/disable this alarm !!!	calendar	iw	!אין לך הרשאה להפול תזכורת זו לפעילה/לא פעילה
 you do not have permission to read this record!	calendar	iw	!אין לך הרשאה לקרוא רשומה זו
-you have %1 high priority events on your calendar today.	common	iw	.יש לך %1 אירועים בעדיפות גבוהה היום
-you have 1 high priority event on your calendar today.	common	iw	.יש לך אירוע אחד בעדיפות גבוהה היום
+you have %1 high priority events on your bcalendar today.	common	iw	.יש לך %1 אירועים בעדיפות גבוהה היום
+you have 1 high priority event on your bcalendar today.	common	iw	.יש לך אירוע אחד בעדיפות גבוהה היום
 you have a meeting scheduled for %1	calendar	iw	יש לך פגישה המזומת ב-%1
 you have not entered a title	calendar	iw	לא ציינת כותרת
 you have not entered a valid date	calendar	iw	לא ציינת תאריך חוקי
@@ -319,5 +319,5 @@ you must select a [iv]cal. (*.[iv]cs)	calendar	iw	[iv]Cal. (*.[iv]cs) עליך �
 you need to set either a day or a occurence !!!	calendar	iw	!עליך לקבוע יום או מופע
 your meeting scheduled for %1 has been canceled	calendar	iw	הפגישה שלך לשעה %1 התבטלה
 your meeting that had been scheduled for %1 has been rescheduled to %2	calendar	iw	הפגישה שלך שנקבע ך-%1 נקבע מחדש ל-%2
-your suggested time of <b> %1 - %2 </b> conflicts with the following existing calendar entries:	calendar	iw	:השעה המבוקשת שלך %1 - %2 מתנגשת ברשומות לוח שנה קיימות אלו
+your suggested time of <b> %1 - %2 </b> conflicts with the following existing bcalendar entries:	calendar	iw	:השעה המבוקשת שלך %1 - %2 מתנגשת ברשומות לוח שנה קיימות אלו
 deleted	calendar	iw	נמחקו

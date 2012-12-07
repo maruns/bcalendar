@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	da	%1 %2 i %3
 %1 records imported	calendar	da	%1 posteringer importeret
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	da	%1 posteringer læst (ikke importeret endnu, du skal gå tilbage og fravælge Test Import)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	da	<b>Bemærk venligst</b>: Kalenderen benytter dit lands helligdage. Dit land er er sat til %1. Du kan ændre det i din %2.<br/> Helligdage er %3 automatisk installeret fra %4. Du kan ændre dette i %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	da	<b>Bemærk venligst</b>: Kalenderen benytter dit lands helligdage. Dit land er er sat til %1. Du kan ændre det i din %2.<br/> Helligdage er %3 automatisk installeret fra %4. Du kan ændre dette i %5.
 a non blocking event will not conflict with other events	calendar	da	En 'ikke-optaget' aftale vil ikke være i konflikt med andre aftaler
 accept or reject an invitation	calendar	da	Acceptér eller forkast en invitation
 accepted	calendar	da	Accepteret
-access denied to the calendar of %1 !!!	calendar	da	Adgang nægtet til %1's kalender !!!
+access denied to the bcalendar of %1 !!!	calendar	da	Adgang nægtet til %1's kalender !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	da	Handlingen der forårsagede påmindelsen: Tilføjet, Annulleret, Accepteret, Forkastet, ...
 actions	calendar	da	Handlinger
 add alarm	calendar	da	Tilføj alarm
@@ -59,8 +59,8 @@ days of the week for a weekly repeated event	calendar	da	Ugedage for en ugentlig
 days repeated	calendar	da	Gentagne dage
 dayview	calendar	da	Vis en dag
 default appointment length (in minutes)	calendar	da	standard hændelses længde (i minutter)
-default calendar filter	calendar	da	Standard kalender filter
-default calendar view	calendar	da	Standard kalender fremvisning
+default bcalendar filter	calendar	da	Standard kalender filter
+default bcalendar view	calendar	da	Standard kalender fremvisning
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	da	Standard længde af nyoprettede hændelser. Længden er i minutter, f.eks. 60 for en time.
 default week view	calendar	da	Standard uge view
 delete series	calendar	da	Slet rækker
@@ -71,11 +71,11 @@ delete this series of recuring events	calendar	da	Slet denne række af gentagne 
 disinvited	calendar	da	Uinviteret
 display status of events	calendar	da	Vis status på aftaler
 displayed view	calendar	da	øjeblikkeligt view
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	da	Viser din standard kalender på startsiden (den side du får, når du logger på eGroupware eller trykker på hjem ikonen)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	da	Viser din standard kalender på startsiden (den side du får, når du logger på eGroupware eller trykker på hjem ikonen)?
 do you want a weekview with or without weekend?	calendar	da	Ønsker du uge-view med eller uden week-end?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	da	Vil du påmindes om nye eller ændrede aftaler? Vil du påmindes omkring ændringer du selv har lavet.<br>Du kan begrænse påmindelser til bestemte ændringer. Hvert punkt indeholder alle påmindelser listet ovenfor. Alle ændringer inkluderer ændringer af titel, beskrivelse, deltagere, men ikke deltagernes svar. Hvis ejeren af en hændelse har anmodet om påmindelse, vil han også altid modtage deltagerens svar, såsom accepteret og ikke accepteret.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	da	Vil du modtage en reglmæssig opsummering af dine aftaler via e-mail?<br>Opsummeringen bliver sendt til din standard e-mail addresse om morgenen på dagen eller mandag for ugenligt opsummering.<br>Den bliver kun sendt hvis du har aftaler på dagen eller ugen.
-do you wish to autoload calendar holidays files dynamically?	admin	da	Ønsker du automatisk at få hentet helligdagsfiler?
+do you wish to autoload bcalendar holidays files dynamically?	admin	da	Ønsker du automatisk at få hentet helligdagsfiler?
 download	calendar	da	Hent
 download this event as ical	calendar	da	Download denne aftale som iCal
 duration of the meeting	calendar	da	Længde af møde
@@ -105,14 +105,14 @@ exceptions	calendar	da	Undtagelser
 existing links	calendar	da	Eksisterende links
 export	calendar	da	Exporter
 extended	calendar	da	Udvidet
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	da	Udvidet updateringer indeholder alle hændelses detaljerne. iCal's kan importeres af visse andre kalendersystemer.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	da	Udvidet updateringer indeholder alle hændelses detaljerne. iCal's kan importeres af visse andre kalendersystemer.
 fieldseparator	calendar	da	Felt separator
 filename	calendar	da	Filnavn
 filename of the download	calendar	da	Downloaden's filnavn
 find free timeslots where the selected participants are availible for the given timespan	calendar	da	Find 'frie' tidspunkter, hvor de valgte deltagere kan deltage
 firstname of person to notify	calendar	da	Fornavn på personen som skal have besked
 for	calendar	da	for
-for which views should calendar show distinct lines with a fixed time interval.	calendar	da	For hvilke views skal der i kalenderen vises adskilte linier med fast tids interval.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	da	For hvilke views skal der i kalenderen vises adskilte linier med fast tids interval.
 format of event updates	calendar	da	Formatet på hændelses opdateringer
 forward half a month	calendar	da	halv måned fremad
 forward one month	calendar	da	hel måned fremad
@@ -238,7 +238,7 @@ select resources	calendar	da	Vælg ressourcer
 select who should get the alarm	calendar	da	Vælg hvem der skal have sat alarm
 set a year only for one-time / non-regular holidays.	calendar	da	Sæt et årstal, kun for engangs /ikke standard helligedage
 set new events to private	calendar	da	Marker nye aftaler som private
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	da	Skal invitationer du har forkastet stadig vises i din kalender?<br>Du kan kun acceptere dem senere (f.eks når din aftalekonflikt er fjernet), hvis de stadig vises i din kalender!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	da	Skal invitationer du har forkastet stadig vises i din kalender?<br>Du kan kun acceptere dem senere (f.eks når din aftalekonflikt er fjernet), hvis de stadig vises i din kalender!
 should new events created as private by default ?	calendar	da	Skal nye aftaler markeres private som standard?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	da	Skal personer der ikke er logget ind have mulighed for at se din fri/optaget information? Du kan sætte en ekstra adgangskode, forskellig fra din standard adgangskode, for at skjule denne information. Fri/Optager informationen er i iCal formatet og inkludere tiderne hvor du er fri eller optaget. Det inkluderer ikke navnet på aftalen, beskrivelse eller stedet. Stien til din Fri/Optaget information er %1.
 should the status of the event-participants (accept, reject, ...) be shown in brakets after each participants name ?	calendar	da	Skal status for deltagere (accepteret, forkastet...) vises i parentes efter hver deltagers navn?
@@ -293,8 +293,8 @@ weekly	calendar	da	Ugentlig kalender
 weekview	calendar	da	Ugentlig visning
 weekview with weekend	calendar	da	Uge view med week-end
 weekview without weekend	calendar	da	Uge view uden wek-end
-which events do you want to see when you enter the calendar.	calendar	da	Hvilke hændelser vil du se når du går ind i kalenderen.
-which of calendar view do you want to see, when you start calendar ?	calendar	da	Hvilken måde vil du se kalenderen på når den startes?
+which events do you want to see when you enter the bcalendar.	calendar	da	Hvilke hændelser vil du se når du går ind i kalenderen.
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	da	Hvilken måde vil du se kalenderen på når den startes?
 whole day	calendar	da	hele dagen
 wk	calendar	da	Uge
 work day ends on	calendar	da	arbejdsdage slutter om

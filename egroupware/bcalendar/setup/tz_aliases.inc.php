@@ -4,7 +4,7 @@
  *
  * @link http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/windows_tzid.html
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @version $Id: tz_aliases.inc.php 38733 2012-03-31 14:12:25Z ralfbecker $
  */
 

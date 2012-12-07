@@ -27,7 +27,7 @@
 					</row>
 					<row>
 						<description/>
-						<buttononly label="Freetime search" onclick="ajax_submit(this.form,'calendar.calendar_uiforms.ajax_freetimesearch'); return false;" width="0" id="freetime" statustext="Find free timeslots where the selected participants are availible for the given timespan"/>
+						<buttononly label="Freetime search" onclick="ajax_submit(this.form,'bcalendar.bcalendar_uiforms.ajax_freetimesearch'); return false;" width="0" id="freetime" statustext="Find free timeslots where the selected participants are availible for the given timespan"/>
 					</row>
 					<row class="row">
 						<description options=",,,location" value="Location" width="0"/>

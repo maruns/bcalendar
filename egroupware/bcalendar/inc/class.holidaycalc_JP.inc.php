@@ -14,9 +14,9 @@
 	/* $Id: class.holidaycalc_JP.inc.php 22709 2006-10-23 05:01:06Z ralfbecker $ */
 
 	/**
-	 * Calculations for calendar JP holidays
+	 * Calculations for bcalendar JP holidays
 	 *
-	 * @package calendar
+	 * @package bcalendar
 	 * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
 	 */
 	class holidaycalc

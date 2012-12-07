@@ -7,9 +7,9 @@
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package calendar
+ * @package bcalendar
  * @subpackage export
- * @version $Id: class.calendar_ical.inc.php 40093 2012-08-09 09:53:34Z ralfbecker $
+ * @version $Id: class.bcalendar_ical.inc.php 40093 2012-08-09 09:53:34Z ralfbecker $
  */
 
 require_once EGW_SERVER_ROOT.'/phpgwapi/inc/horde/lib/core.php';
@@ -17,7 +17,7 @@ require_once EGW_SERVER_ROOT.'/phpgwapi/inc/horde/lib/core.php';
 /**
  * iCal import and export via Horde iCalendar classes
  */
-class bcalendar_ical extends calendar_boupdate
+class bcalendar_ical extends bcalendar_boupdate
 {
 	/**
 	 * @var array $supportedFields array containing the supported fields of the importing device
@@ -118,7 +118,7 @@ class bcalendar_ical extends calendar_boupdate
 	var $uidExtension = false;
 
 	/**
-	 * user preference: calendar to synchronize with
+	 * user preference: bcalendar to synchronize with
 	 *
 	 * @var int
 	 */
@@ -181,7 +181,7 @@ class bcalendar_ical extends calendar_boupdate
 
 
 	/**
-	 * Exports one calendar event to an iCalendar item
+	 * Exports one bcalendar event to an iCalendar item
 	 *
 	 * @param int|array $events (array of) cal_id or array of the events with timestamps in server time
 	 * @param string $version='1.0' could be '2.0' too
@@ -297,7 +297,7 @@ class bcalendar_ical extends calendar_boupdate
 
 			if (!isset(self::$tz_cache[$event['tzid']]))
 			{
-				self::$tz_cache[$event['tzid']] = calendar_timezones::DateTimeZone($event['tzid']);
+				self::$tz_cache[$event['tzid']] = bcalendar_timezones::DateTimeZone($event['tzid']);
 			}
 
 			if ($this->so->isWholeDay($event)) $event['whole_day'] = true;
@@ -361,7 +361,7 @@ class bcalendar_ical extends calendar_boupdate
 					$vtimezones_added[] = $tzid;
 					if (!isset(self::$tz_cache[$tzid]))
 					{
-						self::$tz_cache[$tzid] = calendar_timezones::DateTimeZone($tzid);
+						self::$tz_cache[$tzid] = bcalendar_timezones::DateTimeZone($tzid);
 					}
 				}
 			}
@@ -426,7 +426,7 @@ class bcalendar_ical extends calendar_boupdate
 						foreach ((array)$event['participants'] as $uid => $status)
 						{
 							calendar_so::split_status($status, $quantity, $role);
-							// do not include event owner/ORGANIZER as participant in his own calendar, if he is only participant
+							// do not include event owner/ORGANIZER as participant in his own bcalendar, if he is only participant
 							if (count($event['participants']) == 1 && $event['owner'] == $uid) continue;
 
 							if (!($info = $this->resource_info($uid))) continue;
@@ -599,7 +599,7 @@ class bcalendar_ical extends calendar_boupdate
 
 					case 'RRULE':
 						if ($event['recur_type'] == MCAL_RECUR_NONE) break;		// no recuring event
-						$rriter = calendar_rrule::event2rrule($event, false, $tzid);
+						$rriter = bcalendar_rrule::event2rrule($event, false, $tzid);
 						$rrule = $rriter->generate_rrule($version);
 						if ($event['recur_enddate'])
 						{
@@ -620,7 +620,7 @@ class bcalendar_ical extends calendar_boupdate
 							{
 								if (!isset(self::$tz_cache['UTC']))
 								{
-									self::$tz_cache['UTC'] = calendar_timezones::DateTimeZone('UTC');
+									self::$tz_cache['UTC'] = bcalendar_timezones::DateTimeZone('UTC');
 								}
 								$rrule['UNTIL']->setTimezone(self::$tz_cache['UTC']);
 								$rrule['UNTIL'] = $rrule['UNTIL']->format('Ymd\THis\Z');
@@ -760,7 +760,7 @@ class bcalendar_ical extends calendar_boupdate
 						}
 						elseif ($event['recurrence'] && $event['reference'])
 						{
-							// $event['reference'] is a calendar_id, not a timestamp
+							// $event['reference'] is a bcalendar_id, not a timestamp
 							if (!($revent = $this->read($event['reference']))) break;	// referenced event does not exist
 
 							if (empty($revent['whole_day']))
@@ -1022,7 +1022,7 @@ class bcalendar_ical extends calendar_boupdate
 	/**
 	 * Get DateTime value for a given time and timezone
 	 *
-	 * @param int|string|DateTime $time in server-time as returned by calendar_bo for $data_format='server'
+	 * @param int|string|DateTime $time in server-time as returned by bcalendar_bo for $data_format='server'
 	 * @param string $tzid TZID of event or 'UTC' or NULL for palmos timestamps in usertime
 	 * @param array &$params=null parameter array to set TZID
 	 * @return mixed attribute value to set: integer timestamp if $tzid == 'UTC' otherwise Ymd\THis string IN $tzid
@@ -1039,7 +1039,7 @@ class bcalendar_ical extends calendar_boupdate
 		}
 		if (!isset(self::$tz_cache[$tzid]))
 		{
-			self::$tz_cache[$tzid] = calendar_timezones::DateTimeZone($tzid);
+			self::$tz_cache[$tzid] = bcalendar_timezones::DateTimeZone($tzid);
 		}
 		$time->setTimezone(self::$tz_cache[$tzid]);
 		$params['TZID'] = $tzid;
@@ -1216,7 +1216,7 @@ class bcalendar_ical extends calendar_boupdate
 							}
 							else
 							{
-								$event['participants'][$uid] = calendar_so::combine_status('U');
+								$event['participants'][$uid] = bcalendar_so::combine_status('U');
 							}
 						}
 					}
@@ -1371,13 +1371,13 @@ class bcalendar_ical extends calendar_boupdate
 						$event['owner'] = $this->user;
 						if (!isset($event['participants'][$this->user]))
 						{
-							$event['participants'][$this->user] = calendar_so::combine_status('A', 1, 'CHAIR');
+							$event['participants'][$this->user] = bcalendar_so::combine_status('A', 1, 'CHAIR');
 						}
-						$event['participants'][$user] = calendar_so::combine_status('U');
+						$event['participants'][$user] = bcalendar_so::combine_status('U');
 					}
 				}
 				// check if an owner is set and the current user has add rights
-				// for that owners calendar; if not set the current user
+				// for that owners bcalendar; if not set the current user
 				elseif (!isset($event['owner'])
 					|| !$this->check_perms(EGW_ACL_ADD, 0, $event['owner']))
 				{
@@ -1392,7 +1392,7 @@ class bcalendar_ical extends calendar_boupdate
 					|| !isset($event['participants'][$event['owner']]))
 				{
 					$status = $event['owner'] == $this->user ? 'A' : 'U';
-					$status = calendar_so::combine_status($status, 1, 'CHAIR');
+					$status = bcalendar_so::combine_status($status, 1, 'CHAIR');
 					if (!is_array($event['participants'])) $event['participants'] = array();
 					$event['participants'][$event['owner']] = $status;
 				}
@@ -1405,11 +1405,11 @@ class bcalendar_ical extends calendar_boupdate
 						{
 							if ($uid == $event['owner'])
 							{
-								$event['participants'][$uid] = calendar_so::combine_status('A', 1, 'CHAIR');
+								$event['participants'][$uid] = bcalendar_so::combine_status('A', 1, 'CHAIR');
 							}
 							else
 							{
-								$event['participants'][$uid] = calendar_so::combine_status('U');
+								$event['participants'][$uid] = bcalendar_so::combine_status('U');
 							}
 						}
 					}
@@ -2075,7 +2075,7 @@ class bcalendar_ical extends calendar_boupdate
 				$this->supportedFields = $defaultFields['evolution'];
 				break;
 
-			case 'file':	// used outside of SyncML, eg. by the calendar itself ==> all possible fields
+			case 'file':	// used outside of SyncML, eg. by the bcalendar itself ==> all possible fields
 				if ($this->cal_prefs['export_timezone'])
 				{
 					$this->tzid = $this->cal_prefs['export_timezone'];
@@ -2103,7 +2103,7 @@ class bcalendar_ical extends calendar_boupdate
 
 			// the fallback for SyncML
 			default:
-				error_log("Unknown calendar SyncML client: manufacturer='$this->productManufacturer'  product='$this->productName'");
+				error_log("Unknown bcalendar SyncML client: manufacturer='$this->productManufacturer'  product='$this->productName'");
 				$this->supportedFields = $defaultFields['synthesis'];
 		}
 
@@ -2315,7 +2315,7 @@ class bcalendar_ical extends calendar_boupdate
 							// as we store only a TZID for the whole event)
 							try
 							{
-								$tz = calendar_timezones::DateTimeZone($attributes['params']['TZID']);
+								$tz = bcalendar_timezones::DateTimeZone($attributes['params']['TZID']);
 								// sometimes we do not get an egw_time object but no exception is thrown
 								// may be php 5.2.x related. occurs when a NokiaE72 tries to open Outlook invitations
 								if ($tz instanceof DateTimeZone)
@@ -2985,7 +2985,7 @@ class bcalendar_ical extends calendar_boupdate
 		if (!empty($event['recur_enddate']))
 		{
 			// reset recure_enddate to 00:00:00 on the last day
-			$rriter = calendar_rrule::event2rrule($event, false);
+			$rriter = bcalendar_rrule::event2rrule($event, false);
 			$rriter->rewind();
 			$last = clone $rriter->time;
 			while ($rriter->current <= $rriter->enddate)
@@ -3008,7 +3008,7 @@ class bcalendar_ical extends calendar_boupdate
 		//error_log(__METHOD__."() X-CALENDARSERVER-ACCESS=".array2string($x_calendarserver_access).' --> public='.array2string($event['public']));
 
 		// if no end is given in iCal we use the default lenght from user prefs
-		// whole day events get one day in calendar_boupdate::save()
+		// whole day events get one day in bcalendar_boupdate::save()
 		if (!isset($event['end']))
 		{
 			$event['end'] = $event['start'] + 60 * $this->cal_prefs['defaultlength'];

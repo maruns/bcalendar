@@ -3,20 +3,20 @@
  * eGroupWare - Calendar hooks
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @copyright (c) 2004-9 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_hooks.inc.php 32045 2010-09-12 14:04:16Z hjtappe $
+ * @version $Id: class.bcalendar_hooks.inc.php 32045 2010-09-12 14:04:16Z hjtappe $
  */
 
 /**
- * diverse static calendar hooks
+ * diverse static bcalendar hooks
  */
 class bcalendar_hooks
 {
 	/**
-	 * Hook called by link-class to include calendar in the appregistry of the linkage
+	 * Hook called by link-class to include bcalendar in the appregistry of the linkage
 	 *
 	 * @param array/string $location location and other parameters (not used)
 	 * @return array with method-names
@@ -24,25 +24,25 @@ class bcalendar_hooks
 	static function search_link($location)
 	{
 		return array(
-			'query' => 'calendar.calendar_bo.link_query',
-			'title' => 'calendar.calendar_bo.link_title',
+			'query' => 'bcalendar.bcalendar_bo.link_query',
+			'title' => 'bcalendar.bcalendar_bo.link_title',
 			'view'  => array(
-				'menuaction' => 'calendar.calendar_uiforms.edit',
+				'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
 			),
 			'view_id'    => 'cal_id',
 			'view_popup' => '750x400',
 			'add'        => array(
-				'menuaction' => 'calendar.calendar_uiforms.edit',
+				'menuaction' => 'bcalendar.bcalendar_uiforms.edit',
 			),
 			'add_app'    => 'link_app',
 			'add_id'     => 'link_id',
 			'add_popup'  => '750x400',
-			'file_access' => 'calendar.calendar_bo.file_access',
+			'file_access' => 'bcalendar.bcalendar_bo.file_access',
 		);
 	}
 
 	/**
-	 * Draw calendar part of home
+	 * Draw bcalendar part of home
 	 */
 	static function home()
 	{
@@ -58,12 +58,12 @@ class bcalendar_hooks
 				{
 					$et_css_file = '/etemplate/templates/default/app.css';
 				}
-				$content =& ExecMethod('calendar.calendar_uilist.home');
+				$content =& ExecMethod('bcalendar.bcalendar_uilist.home');
 			}
 			else
 			{
 				unset($et_css_file);
-				$content =& ExecMethod('calendar.calendar_uiviews.home');
+				$content =& ExecMethod('bcalendar.bcalendar_uiviews.home');
 			}
 			$portalbox =& CreateObject('phpgwapi.listbox',array(
 				'title'	=> $GLOBALS['egw_info']['flags']['app_header'],
@@ -106,30 +106,30 @@ class bcalendar_hooks
 	}
 
 	/**
-	 * Entries for calendar's admin menu
+	 * Entries for bcalendar's admin menu
 	 */
 	static function admin()
 	{
 		$file = Array(
-			'Site Configuration' => egw::link('/index.php','menuaction=admin.uiconfig.index&appname=calendar'),
-			'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=calendar'),
-			'Calendar Holiday Management' => egw::link('/index.php','menuaction=calendar.uiholiday.admin'),
-			'Global Categories' => egw::link('/index.php','menuaction=admin.uicategories.index&appname=calendar'),
-			'Category ACL' => egw::link('/index.php','menuaction=calendar.calendar_uiforms.cat_acl'),
-			'Update timezones' => egw::link('/index.php','menuaction=calendar.calendar_timezones.update'),
+			'Site Configuration' => egw::link('/index.php','menuaction=admin.uiconfig.index&appname=bcalendar'),
+			'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=bcalendar'),
+			'Calendar Holiday Management' => egw::link('/index.php','menuaction=bcalendar.uiholiday.admin'),
+			'Global Categories' => egw::link('/index.php','menuaction=admin.uicategories.index&appname=bcalendar'),
+			'Category ACL' => egw::link('/index.php','menuaction=bcalendar.bcalendar_uiforms.cat_acl'),
+			'Update timezones' => egw::link('/index.php','menuaction=bcalendar.bcalendar_timezones.update'),
 		);
 		display_section('calendar','calendar',$file);
 	}
 
 	/**
-	 * Entries for calendar's preferences menu
+	 * Entries for bcalendar's preferences menu
 	 */
 	static function preferences()
 	{
 		$file = array(
-			'Preferences'     => egw::link('/index.php','menuaction=preferences.uisettings.index&appname=calendar'),
-			'Grant Access'    => egw::link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app=calendar'),
-			'Edit Categories' => egw::link('/index.php','menuaction=preferences.uicategories.index&cats_app=calendar&cats_level=True&global_cats=True'),
+			'Preferences'     => egw::link('/index.php','menuaction=preferences.uisettings.index&appname=bcalendar'),
+			'Grant Access'    => egw::link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app=bcalendar'),
+			'Edit Categories' => egw::link('/index.php','menuaction=preferences.uicategories.index&cats_app=bcalendar&cats_level=True&global_cats=True'),
 			'Import CSV-File' => egw::link('/calendar/csv_import.php'),
 		);
 		display_section('calendar','calendar',$file);
@@ -144,7 +144,7 @@ class bcalendar_hooks
 	{
 		if (!$hook_data['setup'])	// does not work on setup time
 		{
-			ExecMethod('calendar.calendar_bo.check_set_default_prefs');
+			ExecMethod('bcalendar.bcalendar_bo.check_set_default_prefs');
 		}
 		$default = array(
 			'day'          => lang('Dayview'),
@@ -242,7 +242,7 @@ class bcalendar_hooks
 			{
 				$options[$group['account_id']] = common::grab_owner_name($group['account_id']);
 			}
-			$freebusy_url = calendar_bo::freebusy_url($GLOBALS['egw_info']['user']['account_lid'],$GLOBALS['egw_info']['user']['preferences']['calendar']['freebusy_pw']);
+			$freebusy_url = bcalendar_bo::freebusy_url($GLOBALS['egw_info']['user']['account_lid'],$GLOBALS['egw_info']['user']['preferences']['calendar']['freebusy_pw']);
 			$freebusy_help = lang('Should not loged in persons be able to see your freebusy information? You can set an extra password, different from your normal password, to protect this informations. The freebusy information is in iCal format and only include the times when you are busy. It does not include the event-name, description or locations. The URL to your freebusy information is %1.','<a href="'.$freebusy_url.'" target="_blank">'.$freebusy_url.'</a>');
 
 			// Timezone for file exports
@@ -253,10 +253,10 @@ class bcalendar_hooks
 		return array(
 			'defaultcalendar' => array(
 				'type'   => 'select',
-				'label'  => 'default calendar view',
+				'label'  => 'default bcalendar view',
 				'name'   => 'defaultcalendar',
 				'values' => $default,
-				'help'   => 'Which of calendar view do you want to see, when you start calendar ?',
+				'help'   => 'Which of bcalendar view do you want to see, when you start bcalendar ?',
 				'xmlrpc' => True,
 				'admin'  => False,
 				'default'=> 'week',
@@ -286,7 +286,7 @@ class bcalendar_hooks
 				'label'  => 'show default view on main screen',
 				'name'   => 'mainscreen_showevents',
 				'values' => $mainpage,
-				'help'   => 'Displays your default calendar view on the startpage (page you get when you enter eGroupWare or click on the homepage icon)?',
+				'help'   => 'Displays your default bcalendar view on the startpage (page you get when you enter eGroupWare or click on the homepage icon)?',
 				'xmlrpc' => True,
 				'admin'  => False,
 				'default'=> '1',
@@ -326,7 +326,7 @@ class bcalendar_hooks
 				'label'  => 'Views with fixed time intervals',
 				'name'   => 'use_time_grid',
 				'values' => $grid_views,
-				'help'   => 'For which views should calendar show distinct lines with a fixed time interval.',
+				'help'   => 'For which views should bcalendar show distinct lines with a fixed time interval.',
 				'xmlrpc' => True,
 				'admin'  => False,
 				'forced' => 'all',
@@ -357,7 +357,7 @@ class bcalendar_hooks
 				'label'		=> 'default type of resources selection',
 				'name'		=> 'defaultresource_sel',
 				'values'	=> $defaultresource_sel,
-				'help'		=> 'Default type of resources application selected in the calendar particpants research form.',
+				'help'		=> 'Default type of resources application selected in the bcalendar particpants research form.',
 				'xmlrpc'	=> True,
 				'admin'		=> False,
 				'forced'    => 'addressbook',
@@ -420,7 +420,7 @@ class bcalendar_hooks
 				'label'  => 'Format of event updates',
 				'name'   => 'update_format',
 				'values' => $update_formats,
-				'help'   => 'Extended updates always include the complete event-details. iCal\'s can be imported by certain other calendar-applications.',
+				'help'   => 'Extended updates always include the complete event-details. iCal\'s can be imported by certain other bcalendar-applications.',
 				'xmlrpc' => True,
 				'admin'  => False,
 				'forced' => 'ical',
@@ -430,7 +430,7 @@ class bcalendar_hooks
 				'label'  => 'Timezone of event iCal file import/export',
 				'name'   => 'export_timezone',
 				'values' => $export_tzs,
-				'help'   => 'Use this timezone to import/export calendar data.',
+				'help'   => 'Use this timezone to import/export bcalendar data.',
 				'xmlrpc' => True,
 				'admin'  => False,
 				'default' => '0', // Use event's TZ

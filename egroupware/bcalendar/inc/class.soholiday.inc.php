@@ -3,7 +3,7 @@
  * eGroupWare - Calendar Holidays
  *
  * @link http://www.egroupware.org
- * @package bcalendar
+ * @package calendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Mark Peters <skeeter@phpgroupware.org>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
@@ -11,12 +11,12 @@
  */
 
 /**
- * Storage layer for bcalendar holidays
+ * Storage layer for calendar holidays
  *
  * Maintained and further developed by RalfBecker@outdoor-training.de
  * Originaly written by Mark Peters <skeeter@phpgroupware.org>
  */
-class bsoholiday
+class soholiday
 {
 	var $debug = False;
 	/**

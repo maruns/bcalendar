@@ -3,12 +3,12 @@
  * EGroupware - Calendar's buisness-object - access only
  *
  * @link http://www.egroupware.org
- * @package calendar
+ * @package bcalendar
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @author Joerg Lehrke <jlehrke@noc.de>
  * @copyright (c) 2004-11 by RalfBecker-At-outdoor-training.de
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.calendar_bo.inc.php 39299 2012-05-22 17:08:36Z ralfbecker $
+ * @version $Id: class.bcalendar_bo.inc.php 39299 2012-05-22 17:08:36Z ralfbecker $
  */
 
 if (!defined('ACL_TYPE_IDENTIFER'))	// used to mark ACL-values for the debug_message methode
@@ -21,7 +21,7 @@ define('DAY_s',24*HOUR_s);
 define('WEEK_s',7*DAY_s);
 
 /**
- * Gives read access to the calendar, but all events the user is not participating are private!
+ * Gives read access to the bcalendar, but all events the user is not participating are private!
  * Used by addressbook.
  */
 define('EGW_ACL_READ_FOR_PARTICIPANTS',EGW_ACL_CUSTOM_1);
@@ -34,12 +34,12 @@ define('EGW_ACL_INVITE',EGW_ACL_CUSTOM_3);
 /**
  * Required (!) include, as we use the MCAL_* constants, BEFORE instanciating (and therefore autoloading) the class
  */
-require_once(EGW_INCLUDE_ROOT.'/calendar/inc/class.calendar_so.inc.php');
+require_once(EGW_INCLUDE_ROOT.'/calendar/inc/class.bcalendar_so.inc.php');
 
 /**
- * Class to access all calendar data
+ * Class to access all bcalendar data
  *
- * For updating calendar data look at the bocalupdate class, which extends this class.
+ * For updating bcalendar data look at the bocalupdate class, which extends this class.
  *
  * The new UI, BO and SO classes have a strikt definition, in which time-zone they operate:
  *  UI only operates in user-time, so there have to be no conversation at all !!!
@@ -52,9 +52,9 @@ require_once(EGW_INCLUDE_ROOT.'/calendar/inc/class.calendar_so.inc.php');
  * All new BO code (should be true for eGW in general) NEVER use any $_REQUEST ($_POST or $_GET) vars itself.
  * Nor does it store the state of any UI-elements (eg. cat-id selectbox). All this is the task of the UI class(es) !!!
  *
- * All permanent debug messages of the calendar-code should done via the debug-message method of this class !!!
+ * All permanent debug messages of the bcalendar-code should done via the debug-message method of this class !!!
  */
-class calendar_bo
+class bcalendar_bo
 {
 	/**
 	 * @var int $debug name of method to debug or level of debug-messages:
@@ -77,7 +77,7 @@ class calendar_bo
 	var $now_su;
 
 	/**
-	 * @var array $cal_prefs calendar-specific prefs
+	 * @var array $cal_prefs bcalendar-specific prefs
 	 */
 	var $cal_prefs;
 
@@ -95,7 +95,6 @@ class calendar_bo
 	 * @var array $grants grants of the current user, array with user-id / ored-ACL-rights pairs
 	 */
 	var $grants=array();
-
 	/**
 	 * @var array $verbose_status translated 1-char status values to a verbose name, run through lang() by the constructor
 	 */
@@ -137,12 +136,13 @@ class calendar_bo
 	 */
 	var $roles = array(
 		'REQ-PARTICIPANT' => 'Requested',
+                'assistant' => 'Asystent',
 		'CHAIR'           => 'Chair',
 		'OPT-PARTICIPANT' => 'Optional',
 		'NON-PARTICIPANT' => 'None',
 	);
 	/**
-	 * @var array $resources registered scheduling resources of the calendar (gets cached in the session for performance reasons)
+	 * @var array $resources registered scheduling resources of the bcalendar (gets cached in the session for performance reasons)
 	 */
 	var $resources;
 	/**
@@ -162,7 +162,7 @@ class calendar_bo
 	/**
 	 * Instance of the socal class
 	 *
-	 * @var calendar_so
+	 * @var bcalendar_so
 	 */
 	var $so;
 	/**
@@ -205,7 +205,7 @@ class calendar_bo
 	{
 		if ($this->debug > 0) $this->debug_message('calendar_bo::bocal() started',True,$param);
 
-		$this->so = new calendar_so();
+		$this->so = new bcalendar_so();
 		$this->datetime = $GLOBALS['egw']->datetime;
 
 		$this->common_prefs =& $GLOBALS['egw_info']['user']['preferences']['common'];
@@ -241,7 +241,7 @@ class calendar_bo
 		}
 		//echo "registered resources="; _debug_array($this->resources);
 
-		$this->config = config::read('calendar');	// only used for horizont, regular calendar config is under phpgwapi
+		$this->config = config::read('calendar');	// only used for horizont, regular bcalendar config is under phpgwapi
 		$this->calview_no_consolidate = ($GLOBALS['egw_info']['server']['calview_no_consolidate']?$GLOBALS['egw_info']['server']['calview_no_consolidate']:5);
 		$this->require_acl_invite = $GLOBALS['egw_info']['server']['require_acl_invite'];
 
@@ -322,7 +322,7 @@ class calendar_bo
 		{
 			$_users = $_users ? array($_users) : array();
 		}
-		// only query calendars of users, we have READ-grants from
+		// only query bcalendars of users, we have READ-grants from
 		$users = array();
 		foreach($_users as $user)
 		{
@@ -379,7 +379,7 @@ class calendar_bo
 	}
 
 	/**
-	 * Searches / lists calendar entries, including repeating ones
+	 * Searches / lists bcalendar entries, including repeating ones
 	 *
 	 * @param array $params array with the following keys
 	 *	start date startdate of the search/list, defaults to today
@@ -571,7 +571,7 @@ class calendar_bo
 
 		if (!isset($integration_data))
 		{
-			$integration_data = calendar_so::get_integration_data();
+			$integration_data = bcalendar_so::get_integration_data();
 		}
 
 		if (!isset($integration_data[$app])) return null;
@@ -617,7 +617,7 @@ class calendar_bo
 	 * That function only returns the infos allowed to be viewed by people without EGW_ACL_PRIVATE grants
 	 *
 	 * @param array &$event
-	 * @param array $allowed_participants ids of the allowed participants, eg. the ones the search is over or eg. the owner of the calendar
+	 * @param array $allowed_participants ids of the allowed participants, eg. the ones the search is over or eg. the owner of the bcalendar
 	 */
 	function clear_private_infos(&$event,$allowed_participants = array())
 	{
@@ -772,7 +772,7 @@ class calendar_bo
 		foreach ($events as &$event)
 		{
 			// convert timezone id of event to tzid (iCal id like 'Europe/Berlin')
-			if (empty($event['tzid']) && (!$event['tz_id'] || !($event['tzid'] = calendar_timezones::id2tz($event['tz_id']))))
+			if (empty($event['tzid']) && (!$event['tz_id'] || !($event['tzid'] = bcalendar_timezones::id2tz($event['tz_id']))))
 			{
 				$event['tzid'] = egw_time::$server_timezone->getName();
 			}
@@ -863,7 +863,7 @@ class calendar_bo
 	}
 
 	/**
-	 * Reads a calendar-entry
+	 * Reads a bcalendar-entry
 	 *
 	 * @param int|array|string $ids id or array of id's of the entries to read, or string with a single uid
 	 * @param mixed $date=null date to specify a single event of a series
@@ -928,7 +928,7 @@ class calendar_bo
 	 *
 	 * The new entries are just appended to $events, so $events is no longer sorted by startdate !!!
 	 *
-	 * Recurrences get calculated by rrule iterator implemented in calendar_rrule class.
+	 * Recurrences get calculated by rrule iterator implemented in bcalendar_rrule class.
 	 *
 	 * @param array $event repeating event whos repetions should be inserted
 	 * @param mixed $start start-date
@@ -956,7 +956,7 @@ class calendar_bo
 			$event['recur_enddate'] = $this->date2ts($end) < $this->date2ts($event['end']) ? $event['end'] : $end;
 		}
 		// loop over all recurrences and insert them, if they are after $start
-		$rrule = calendar_rrule::event2rrule($event, true);	// true = we operate in usertime, like the rest of calendar_bo
+		$rrule = bcalendar_rrule::event2rrule($event, true);	// true = we operate in usertime, like the rest of bcalendar_bo
 		foreach($rrule as $time)
 		{
 			$time->setUser();	// $time is in timezone of event, convert it to usertime used here
@@ -1250,7 +1250,7 @@ class calendar_bo
 	/**
 	 * Gives out a debug-message with certain parameters
 	 *
-	 * All permanent debug-messages in the calendar should be done by this function !!!
+	 * All permanent debug-messages in the bcalendar should be done by this function !!!
 	 *	(In future they may be logged or sent as xmlrpc-faults back.)
 	 *
 	 * Permanent debug-message need to make sure NOT to give secret information like passwords !!!
@@ -1705,7 +1705,7 @@ class calendar_bo
 		{
 			if (!is_object($this->holidays))
 			{
-				$this->holidays = CreateObject('calendar.boholiday');
+				$this->holidays = CreateObject('bcalendar.boholiday');
 			}
 			$this->holidays->prepare_read_holidays($year);
 			$this->cached_holidays[$year] = $this->holidays->read_holiday();
@@ -1789,7 +1789,7 @@ class calendar_bo
 	}
 
 	/**
-	 * query calendar for events matching $pattern
+	 * query bcalendar for events matching $pattern
 	 *
 	 * Is called as hook to participate in the linking
 	 *
@@ -1820,7 +1820,7 @@ class calendar_bo
 	 *
 	 * @param int $id id of entry
 	 * @param int $check EGW_ACL_READ for read and EGW_ACL_EDIT for write or delete access
-	 * @param string $rel_path=null currently not used in calendar
+	 * @param string $rel_path=null currently not used in bcalendar
 	 * @param int $user=null for which user to check, default current user
 	 * @return boolean true if access is granted or false otherwise
 	 */
@@ -1986,7 +1986,7 @@ class calendar_bo
 	}
 
 	/**
-	 * Query ctag for calendar
+	 * Query ctag for bcalendar
 	 *
 	 * @param int|array $user integer user-id or array of user-id's to use, defaults to the current user
 	 * @param string $filter='owner' all (not rejected), accepted, unknown, tentative, rejected or hideprivate

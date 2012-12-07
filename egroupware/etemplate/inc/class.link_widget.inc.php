@@ -689,7 +689,7 @@ class link_widget
 		if($type) {
 			$options['type'] = $type;
 		}
-                if($id_input == 'exec[participants][resource][query]')
+                if($id_input == 'exec[participants][resource][query]' && $app == 'addressbook')
                 {
                     $found = $GLOBALS['egw']->db->select('egw_addressbook',"`contact_id`,concat_ws(', ', `n_family`, `n_given`) as 'label'",
                                                      "concat_ws(', ', `n_family`, `n_given`) = '" . $search . "' or `n_fileas` like '%" . 

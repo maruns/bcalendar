@@ -1,11 +1,11 @@
 %1 %2 in %3	calendar	ca	%1 %2 en %3
 %1 records imported	calendar	ca	%1 registres importats
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	ca	%1 registres llegits (encara sense importar, podeu tornar enrere i desmarcar Prova d'Importació)
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	ca	<b>Atenció</b>: El calendari utilitza els festius del teu país, que és %1. Ho pots canviar al %2.<br />Els festius són %3 automàtic instal·lat de %4. Ho pots canviar a %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	ca	<b>Atenció</b>: El bcalendari utilitza els festius del teu país, que és %1. Ho pots canviar al %2.<br />Els festius són %3 automàtic instal·lat de %4. Ho pots canviar a %5.
 a non blocking event will not conflict with other events	calendar	ca	Una cita no blocant no entrarà en conflicte amb altres cites
 accept or reject an invitation	calendar	ca	Accepta o rebutja una invitació
 accepted	calendar	ca	Acceptat
-access denied to the calendar of %1 !!!	calendar	ca	Accés denegat al calendari de %1 !!!
+access denied to the bcalendar of %1 !!!	calendar	ca	Accés denegat al bcalendari de %1 !!!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	ca	Acció que causà la notificació: Afegit, Cancel·lat, Acceptat, Rebutjat, ...
 actions	calendar	ca	Accions
 actions...	calendar	ca	Accions...
@@ -37,7 +37,7 @@ before the event	calendar	ca	abans de la cita
 birthday	calendar	ca	Data de Naixement
 busy	calendar	ca	ocupat
 by	calendar	ca	per
-calendar event	calendar	ca	Cita de calendari
+calendar event	calendar	ca	Cita de bcalendari
 calendar holiday management	admin	ca	Gestió de festius
 calendar menu	calendar	ca	Menú del Calendari
 calendar preferences	calendar	ca	Preferències - Calendari
@@ -65,8 +65,8 @@ days of the week for a weekly repeated event	calendar	ca	Dies de la setmana per 
 days repeated	calendar	ca	dies repetits
 dayview	calendar	ca	Vista diària
 default appointment length (in minutes)	calendar	ca	Duració per defecte de les cites (en minuts)
-default calendar filter	calendar	ca	Filtre per defecte del calendari
-default calendar view	calendar	ca	Vista per defecte del calendari
+default bcalendar filter	calendar	ca	Filtre per defecte del bcalendari
+default bcalendar view	calendar	ca	Vista per defecte del bcalendari
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	ca	Duració per defecte de les noves cites creades. La duració és en minuts, ex. 60 = 1 hora.
 default week view	calendar	ca	Vista setmanal per defecte
 delete series	calendar	ca	Esborrar sèries
@@ -77,11 +77,11 @@ delete this series of recuring events	calendar	ca	Esborra aquesta sèrie de cite
 disinvited	calendar	ca	Desinvitat
 display status of events	calendar	ca	Mostrar estat de les cites
 displayed view	calendar	ca	vista mostrada
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	ca	Mostra la vista predeterminada del calendari a la pàgina d'inici d'eGroupWare
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	ca	Mostra la vista predeterminada del bcalendari a la pàgina d'inici d'eGroupWare
 do you want a weekview with or without weekend?	calendar	ca	Vols una vista setmanal amb o sense cap de setmana?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	ca	Voleu que us notifiquin les cites noves o modificades? Se us notificarà dels vostres propis canvis.<br>Podeu limitar les notificacions a només certs canvis. Cada element inclou tota la notificació llistada anteriorment. Totes les modificacions inclouen canvis de títol, participants, pero no les respostes dels participants. Si l'amo d'una cita demanà qualsevol notificació, sempre tindrà les respostes del participant, com les acceptacions o rebuigs.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	ca	Voleu rebre regularment per correu un resum de les vostres cites?<br>El resum s'enviarà al vostre correu electrònic habitual el mateix dia al matí o el dilluns per a resums setmanals.<br>Només s'envia si hi ha cites en aquest dia o setmana.
-do you wish to autoload calendar holidays files dynamically?	admin	ca	Voleu carregar automàticament al calendari els arxius de festes?
+do you wish to autoload bcalendar holidays files dynamically?	admin	ca	Voleu carregar automàticament al bcalendari els arxius de festes?
 download	calendar	ca	Descarregar
 download this event as ical	calendar	ca	Descarrega aquesta cita com a iCal
 duration of the meeting	calendar	ca	Durada de la trobada
@@ -113,14 +113,14 @@ execute a further action for this entry	calendar	ca	Executa una nova acció per 
 existing links	calendar	ca	Enllaços existents
 export	calendar	ca	Exportar
 extended	calendar	ca	Estès
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	ca	Les actualizacions esteses sempre inclouen tots els detalls de les cites. Els de tipus iCal poden importar-se mitjançant altres aplicacions de tipus calendari.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	ca	Les actualizacions esteses sempre inclouen tots els detalls de les cites. Els de tipus iCal poden importar-se mitjançant altres aplicacions de tipus bcalendari.
 fieldseparator	calendar	ca	Separador de camps
 filename	calendar	ca	nom del fitxer
 filename of the download	calendar	ca	Nom del fitxer descarregat
 find free timeslots where the selected participants are availible for the given timespan	calendar	ca	Cerca intérvals de temps lliure en què els participants seleccionats estiguin disponibles per a la franja de temps donada
 firstname of person to notify	calendar	ca	Nom de pila de la persona a notificar
 for	calendar	ca	per
-for which views should calendar show distinct lines with a fixed time interval.	calendar	ca	Per quines vistes el calendari hauria de mostrar línies distintives per a intervals de temps fixats.
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	ca	Per quines vistes el bcalendari hauria de mostrar línies distintives per a intervals de temps fixats.
 format of event updates	calendar	ca	Format de les actualitzacions de cites
 forward half a month	calendar	ca	endavant mig mes
 forward one month	calendar	ca	endavant un mes
@@ -241,7 +241,7 @@ rule	calendar	ca	Regla
 sat	calendar	ca	Ds
 saves the changes made	calendar	ca	guarda els canvis fets
 saves the event ignoring the conflict	calendar	ca	Guarda la cita ignorant el conflicte
-scheduling conflict	calendar	ca	Conflicte de calendari
+scheduling conflict	calendar	ca	Conflicte de bcalendari
 select a %1	calendar	ca	Selecciona un %1
 select a time	calendar	ca	tria una hora
 select resources	calendar	ca	Selecciona recursos
@@ -249,7 +249,7 @@ select who should get the alarm	calendar	ca	Selecciona qui hauria d'obtenir l'al
 selected range	calendar	ca	Gamma seleccionada
 set a year only for one-time / non-regular holidays.	calendar	ca	Establir l'any per als festius únics / no regulars.
 set new events to private	calendar	ca	Establir noves cites com a privades
-should invitations you rejected still be shown in your calendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your calendar!	calendar	ca	S'han de mostrar les invitacions que heu rebutjat al calendari?<br>Només podeu acceptar-les després (per exemple, quan s'elimini el conflicte de planificació), si encara es veuen al vostre calendari!
+should invitations you rejected still be shown in your bcalendar ?<br>you can only accept them later (eg. when your scheduling conflict is removed), if they are still shown in your bcalendar!	calendar	ca	S'han de mostrar les invitacions que heu rebutjat al bcalendari?<br>Només podeu acceptar-les després (per exemple, quan s'elimini el conflicte de planificació), si encara es veuen al vostre bcalendari!
 should new events created as private by default ?	calendar	ca	Establir noves cites com a privades per defecte?
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is %1.	calendar	ca	Les persones no registrades harien de poder veure la teva informació lliure/ocupat? Pots establir una contrasenya extra, diferent de la teva contrasenya habitual, per a protegir aquesta informació. La informació lliure/ocupat està en format iCal i només inclou els moments en que estàs ocupat. No inclou el nom de la cita, descripció o localitzacions. La URL a la teva informació lliure/ocupat és %1.
 should not loged in persons be able to see your freebusy information? you can set an extra password, different from your normal password, to protect this informations. the freebusy information is in ical format and only include the times when you are busy. it does not include the event-name, description or locations. the url to your freebusy information is <a href="http://zikzakmedia.homelinux.com/secretaria/calendar/freebusy.php?user=marina" target="_blank">http://zikzakmedia.homelinux.com/secretaria/calendar/freebusy.php?user=marina</a>.	calendar	ca	Les persones no registrades haurien de poder veure la vostra informació de disponibilitat? Podeu establir una nova contrasenya, diferent de la normal, per protegir aquestes informacions. La informació de disponibilitat està en format iCal i només inclou les hores en les que esteu ocupat. No inclou el nom de la cita, la descripció ni la ubicació. El URL per la teva informació és <a href="http://zikzakmedia.homelinux.com/secretaria/calendar/freebusy.php?user=marina" target="_blank">http://zikzakmedia.homelinux.com/secretaria/calendar/freebusy.php?user=marina</a>.
@@ -309,8 +309,8 @@ weekly	calendar	ca	Setmanal
 weekview	calendar	ca	Vista setmanal
 weekview with weekend	calendar	ca	Vista setmanal amb cap de setmana
 weekview without weekend	calendar	ca	vista setmanal sense incloure caps de setmana
-which events do you want to see when you enter the calendar.	calendar	ca	Quines cites voleu veure en entrar al calendari?
-which of calendar view do you want to see, when you start calendar ?	calendar	ca	Quina vista del calendari voleu veure quan entreu al calendari?
+which events do you want to see when you enter the bcalendar.	calendar	ca	Quines cites voleu veure en entrar al bcalendari?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	ca	Quina vista del bcalendari voleu veure quan entreu al bcalendari?
 whole day	calendar	ca	dia sencer
 wk	calendar	ca	Stm
 work day ends on	calendar	ca	La jornada laboral acaba a les

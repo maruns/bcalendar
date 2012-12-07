@@ -36,14 +36,14 @@ daily	calendar	ja	日単位
 daily matrix view	calendar	ja	日程表示
 days repeated	calendar	ja	曜日
 dayview	calendar	ja	日表示
-default calendar filter	calendar	ja	カレンダーの初期選択
-default calendar view	calendar	ja	カレンダーの初期表示
+default bcalendar filter	calendar	ja	カレンダーの初期選択
+default bcalendar view	calendar	ja	カレンダーの初期表示
 delete series	calendar	ja	連続削除
 delete single	calendar	ja	単独削除
 display interval in day view	calendar	ja	日表示時の時間間隔
-display mini calendars when printing	calendar	ja	印刷用の時、小カレンダを表示
+display mini bcalendars when printing	calendar	ja	印刷用の時、小カレンダを表示
 display status of events	calendar	ja	イベント状況表示
-do you wish to autoload calendar holidays files dynamically?	admin	ja	休日ファイルを自動ロードする
+do you wish to autoload bcalendar holidays files dynamically?	admin	ja	休日ファイルを自動ロードする
 download	calendar	ja	ダウンロード
 duration	calendar	ja	継続時間
 edit series	calendar	ja	連続訂正
@@ -60,7 +60,7 @@ generate printer-friendly version	calendar	ja	印刷用
 global public and group public	calendar	ja	パブリックと所属グループ
 global public only	calendar	ja	パブリック
 go!	calendar	ja	Go!
-grant calendar access	common	ja	利用許可設定
+grant bcalendar access	common	ja	利用許可設定
 group planner	calendar	ja	グループ予定表
 group public only	calendar	ja	所属グループ
 holiday	calendar	ja	休日
@@ -99,7 +99,7 @@ people holiday	calendar	ja	国民の休日
 planner	calendar	ja	プランナー
 please enter a filename !!!	calendar	ja	ファイル名を入力してください!!!
 pm	calendar	ja	午後
-print calendars in black & white	calendar	ja	印刷用の時、白黒表示にする
+print bcalendars in black & white	calendar	ja	印刷用の時、白黒表示にする
 printer friendly	calendar	ja	印刷用へ
 private and global public	calendar	ja	プライベートと共有
 private and group public	calendar	ja	プライベートと所属グループ
@@ -153,12 +153,12 @@ work day starts on	calendar	ja	就業時間（開始）
 year	calendar	ja	年
 yearly	calendar	ja	年単位
 yearview	calendar	ja	年表示
-you have %1 high priority events on your calendar today.	common	ja	優先度の高い予定が %1 つあります。
-you have 1 high priority event on your calendar today.	common	ja	優先度の高い予定が１つあります。
+you have %1 high priority events on your bcalendar today.	common	ja	優先度の高い予定が %1 つあります。
+you have 1 high priority event on your bcalendar today.	common	ja	優先度の高い予定が１つあります。
 you have not entered a brief description	calendar	ja	概要を入力してください。
 you have not entered a title	calendar	ja	タイトルを入力して下さい
 you have not entered a valid date	calendar	ja	日付が正しくありません
 you have not entered a\nbrief description	calendar	ja	概要を入力してください。
 you have not entered a\nvalid time of day.	calendar	ja	時刻が誤っています。
 you must enter one or more search keywords	calendar	ja	検索キーワードを入力して下さい。
-your suggested time of <b> %1 - %2 </b> conflicts with the following existing calendar entries:	calendar	ja	<B> %1 - %2 </B> には、別の予定があります。
+your suggested time of <b> %1 - %2 </b> conflicts with the following existing bcalendar entries:	calendar	ja	<B> %1 - %2 </B> には、別の予定があります。

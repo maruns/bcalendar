@@ -2,11 +2,11 @@
 %1 records imported	calendar	hu	%1 bejegyzés importálva
 %1 records read (not yet imported, you may go back and uncheck test import)	calendar	hu	%1 bejegyzés beolvasva (importálás nem történt, az előző lépésben a Test Import kikapcsolása után élesben történik a beolvasás)
 %1 weeks	calendar	hu	%1 hét
-<b>please note</b>: the calendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	hu	<b>Megjegyzés</b>: A naptár az ön országának ünnepeit használja, ami a jelenlegi beállítás szerint: %1. Megváltoztathatja itt: %2.<br/> A(z) %3 ünnepek automatikusan telepítődnek innen: %4. Megváltoztathatja itt: %5.
+<b>please note</b>: the bcalendar use the holidays of your country, which is set to %1. you can change it in your %2.<br />holidays are %3 automatic installed from %4. you can changed it in %5.	calendar	hu	<b>Megjegyzés</b>: A naptár az ön országának ünnepeit használja, ami a jelenlegi beállítás szerint: %1. Megváltoztathatja itt: %2.<br/> A(z) %3 ünnepek automatikusan telepítődnek innen: %4. Megváltoztathatja itt: %5.
 a non blocking event will not conflict with other events	calendar	hu	Egy Értesítés esemény nem fog ütközni más eseményekkel.
 accept or reject an invitation	calendar	hu	Elfogad vagy elutasít egy meghívást
 accepted	calendar	hu	Elfogadva
-access denied to the calendar of %1 !!!	calendar	hu	%1 naptárhoz a hozzáférés megtagadva!
+access denied to the bcalendar of %1 !!!	calendar	hu	%1 naptárhoz a hozzáférés megtagadva!
 action that caused the notify: added, canceled, accepted, rejected, ...	calendar	hu	Értesítés a következők miatt: Hozzáadva, Mégsem, Elfogadva, Elutasítva, ...
 actions	calendar	hu	Műveletek
 actions...	calendar	hu	Műveletek...
@@ -73,10 +73,10 @@ days of the week for a weekly repeated event	calendar	hu	A hét napjai a heti is
 days repeated	calendar	hu	mely napokon ismétlődik
 dayview	calendar	hu	Napi nézet
 default appointment length (in minutes)	calendar	hu	alapértelmezett megbeszélés hossz (percben)
-default calendar filter	calendar	hu	Alapértelmezett naptár szűrő
-default calendar view	calendar	hu	Alapértelmezett naptár nézet
+default bcalendar filter	calendar	hu	Alapértelmezett naptár szűrő
+default bcalendar view	calendar	hu	Alapértelmezett naptár nézet
 default length of newly created events. the length is in minutes, eg. 60 for 1 hour.	calendar	hu	Az újonnan létrehozott események alapértelmezett hossza. Ez percben van megadva, pl. 60 az egy órának felel meg.
-default type of resources application selected in the calendar particpants research form.	calendar	hu	Az eszközök alkalmazás alapértelmezett értéke a naptári események részvevői által kitöltött űrlapon.
+default type of resources application selected in the bcalendar particpants research form.	calendar	hu	Az eszközök alkalmazás alapértelmezett értéke a naptári események részvevői által kitöltött űrlapon.
 default type of resources selection	calendar	hu	Erőforráskiválasztés alapértelmezett típusa
 default week view	calendar	hu	alapértelmezett hét nézet
 delete series	calendar	hu	Sorozat törlése
@@ -88,11 +88,11 @@ deny ressources reservation for private events	calendar	hu	Erőforrás foglalás
 disinvited	calendar	hu	Nem meghívott
 display status of events	calendar	hu	Események státuszának megjelenítése
 displayed view	calendar	hu	megjelenített nézet
-displays your default calendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	hu	Alapértelmezett naptár nézet kijelzése a kezdő lapon (a lap amit kapsz az eGroupWare belépésnél vagy a kezdőlap ikonra kattintáskor)?
+displays your default bcalendar view on the startpage (page you get when you enter egroupware or click on the homepage icon)?	calendar	hu	Alapértelmezett naptár nézet kijelzése a kezdő lapon (a lap amit kapsz az eGroupWare belépésnél vagy a kezdőlap ikonra kattintáskor)?
 do you want a weekview with or without weekend?	calendar	hu	A heti nézet tartalmazza a hétvégét vagy nem?
 do you want to be notified about new or changed appointments? you are not notified about changes you made yourself.<br>you can limit the notifications to certain changes only. each item includes all notifications listed above. all modifications include changes of title, description, participants, but no participant responses. if the owner of an event requested any notifcations, he will always get participant responses like acceptions or rejections too.	calendar	hu	Szeretne kapni értesítést az új vagy megváltozott találkozókról? Értesítést kap arról is amin változtatott. <br>Az értesítéseket limitálhatja meghatározott változásokra is. Az értesítési listán minden szerepel. Minden módosítás tartalmazza a változás címét, leírását, résztvevőket, de a résztvevők válaszait nem. Ha az esemény tulajdonosa kér valamilyen értesítést, mindig megkapja a résztvevő válaszát hogy elfogadták vagy elutasították azt.
 do you want to receive a regulary summary of your appointsments via email?<br>the summary is sent to your standard email-address on the morning of that day or on monday for weekly summarys.<br>it is only sent when you have any appointments on that day or week.	calendar	hu	Akar kapni egyszerű összesítést az Ön találkozóiról emailben? <br>Az összesítő az email címére lesz küldve aznap reggel, vagy hétfőn a heti összesítés. <br>Csak akkor lesz elküldve amikor Önnek találkozója van azon a napon vagy héten.
-do you wish to autoload calendar holidays files dynamically?	admin	hu	Akarja dinamikusan betölteni a naptár szabadság állományait?
+do you wish to autoload bcalendar holidays files dynamically?	admin	hu	Akarja dinamikusan betölteni a naptár szabadság állományait?
 download	calendar	hu	Letölt
 download this event as ical	calendar	hu	Esemény letöltése iCal formátumban
 duration of the meeting	calendar	hu	Megbeszélés hossza
@@ -126,14 +126,14 @@ execute a further action for this entry	calendar	hu	További művelet végrehajt
 existing links	calendar	hu	Meglévő hivatkozások
 export	calendar	hu	Export
 extended	calendar	hu	Kibővített
-extended updates always include the complete event-details. ical's can be imported by certain other calendar-applications.	calendar	hu	Kibővített frissítések mindig tartalmazzák a komplett esemény-jellemzőket.
+extended updates always include the complete event-details. ical's can be imported by certain other bcalendar-applications.	calendar	hu	Kibővített frissítések mindig tartalmazzák a komplett esemény-jellemzőket.
 fieldseparator	calendar	hu	Mező elválasztó
 filename	calendar	hu	Állománynév
 filename of the download	calendar	hu	Letöltés fájlneve
 find free timeslots where the selected participants are availible for the given timespan	calendar	hu	Üres időpont keresése, ahol a kiválasztott résztvevők szabadok a megadott időintervallumban.
 firstname of person to notify	calendar	hu	A személy vezetékneve az értesítéshez
 for	calendar	hu	nak
-for which views should calendar show distinct lines with a fixed time interval.	calendar	hu	Melyik nézetben mutassa a Naptár a beállított időintervallumokat egyértelműen jelölt sorokkal?
+for which views should bcalendar show distinct lines with a fixed time interval.	calendar	hu	Melyik nézetben mutassa a Naptár a beállított időintervallumokat egyértelműen jelölt sorokkal?
 format of event updates	calendar	hu	Esemény frissítés formája
 forward half a month	calendar	hu	fél hónappal később
 forward one month	calendar	hu	egy hónappal később
@@ -174,7 +174,7 @@ if you dont set a password here, the information is available to everyone, who k
 ignore conflict	calendar	hu	Átfedés figyelmen kivül hagyása
 import	calendar	hu	Import
 import csv-file	common	hu	CSV-Állomány Import
-imports events into your calendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	hu	Naptárbejegyzések importálása egy CSV állományból. CSB jelntése 'Comma Separated Values'. Lehetősége lesz kiválasztani egyéb elválasztó karaktert is az Opciókban.
+imports events into your bcalendar from a csv file. csv means 'comma seperated values'. however in the options tab you can also choose other seperators.	calendar	hu	Naptárbejegyzések importálása egy CSV állományból. CSB jelntése 'Comma Separated Values'. Lehetősége lesz kiválasztani egyéb elválasztó karaktert is az Opciókban.
 interval	calendar	hu	Időtartam
 invalid email-address "%1" for user %2	calendar	hu	%2 felhasználó %1 email címe érvénytelen
 invitations	calendar	hu	Meghívók
@@ -339,8 +339,8 @@ weeks in multiple week view	calendar	hu	Hetek száma a többheti nézeten
 weekview	calendar	hu	Heti Nézet
 weekview with weekend	calendar	hu	Heti nézet hétvégével
 weekview without weekend	calendar	hu	Heti nézet hétköznapokkal
-which events do you want to see when you enter the calendar.	calendar	hu	Naptárba lépéskor mely eseményeket szeretné látni?
-which of calendar view do you want to see, when you start calendar ?	calendar	hu	Melyik naptár nézetet akarja látni amikor elindítja a naptárat?
+which events do you want to see when you enter the bcalendar.	calendar	hu	Naptárba lépéskor mely eseményeket szeretné látni?
+which of bcalendar view do you want to see, when you start bcalendar ?	calendar	hu	Melyik naptár nézetet akarja látni amikor elindítja a naptárat?
 whole day	calendar	hu	egész nap
 wk	calendar	hu	hét
 work day ends on	calendar	hu	Munkanapok vége
