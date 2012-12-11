@@ -16,19 +16,22 @@ $smarty->assign('d_NAZWA_BANKU', d_NAZWA_BANKU);
 $smarty->assign('d_NUMER_KONTA', d_NUMER_KONTA);
 $smarty->assign('d_NIP', d_NIP);
 $smarty->assign('SaleDate', $_GET['to']);
-$result = SendQuery("SELECT DISTINCT `contact_name`, `contact_value` FROM `egw_addressbook_extra` WHERE `contact_name` = 'NIP' or `contact_name` = 'franczyza' and `contact_id` = ".$cid);
+$result = SendQuery("SELECT DISTINCT `contact_name`, `contact_value` FROM `egw_addressbook_extra` WHERE (`contact_name` = 'NIP' or `contact_name` = 'franczyza' or `contact_name` = 'stawka' or `contact_name` = 'podatek_asystenta') and `contact_id` = ".$cid);
 while($row = GetNextRow($result))
 {
     switch ($row['contact_name'])
     {
-    case 'NIP':
-        $smarty->assign('NIP', $row['contact_value']);
-        break;
-    case 'franczyza':
-        $percent = $row['contact_value']*0.01;
-        break;
+        case 'NIP':
+            $smarty->assign('NIP', $row['contact_value']);
+            break;
+        case 'franczyza':
+            $percent = $row['contact_value']*0.01;
+            break;
         case 'stawka':
             $sr = $row['contact_value']/3600;
+            break;
+        case 'podatek_asystenta':
+            $at = $row['contact_value']*0.01;
     }
 }
 $result = SendQuery("SELECT DISTINCT `org_name`,`adr_one_street`,`adr_one_street2`,`adr_one_postalcode`,`adr_one_locality` FROM `egw_addressbook` WHERE `contact_id` = ".$cid);
@@ -50,16 +53,19 @@ switch ($_GET['type'])
     break;
     case 'ar':
         $brutto = 0;
-        $result = SendQuery("select `egw_cal`.`cal_title`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, 'egw_addressbook'.'n_fn' join 'egw_addressbook' on ('egw_addressbook'.'account_id' = `egw_cal`.`cal_owner`) where ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+        $an = strtok('α');
+        $smarty->assign('an', $an);
+        $result = SendQuery("select `egw_cal`.`cal_title`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `end`, `egw_addressbook`.`n_fn` from `egw_cal` join `egw_addressbook` on (`egw_addressbook`.`account_id` = `egw_cal`.`cal_owner`) where ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") and (SELECT DISTINCT  `egw_cal_user`.`cal_user_id` from  `egw_cal_user` where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' limit 1) in (" . $id . ", " . $cid . ")  order by `date`");
         while($row = GetNextRow($result))
         {
-            $DentistTable[] = $result['cal_title'];
+            $DentistTable[] = $row['cal_title'];
             $DentistTable[] = date('d.m.Y',$row['date']). ' r. '.date('G:i',$row['date']) . '&nbsp;-&nbsp;' . date('G:i',$row['end']);
-            $DentistTable[] = $result['n_fn'];
+            $DentistTable[] = $row['n_fn'];
             $amount = $sr*($row['end'] - $row['date']);
-            $DentistTable[] = str_replace(" ", $nbsp, number_format($amount, 2, ',', ' '));
+            $DentistTable[] = str_replace(" ", $nbsp, number_format(round($amount, 2), 2, ',', ' '));
+            $DentistTable[] = str_replace(" ", $nbsp, number_format(round($amount - ($amount * $at), 2), 2, ',', ' '));
             $brutto += $amount;
-            $gprn[$result['n_fn']] += $amount;
+            $gprn[$row['n_fn']] += $amount;
         }
         $dn = array();
         break;
@@ -390,9 +396,12 @@ switch ($_GET['type'])
         {
             $trt[] = $key;
             $trt[] = str_replace(" ", $nbsp, number_format(round($value, 2), 2, ',', ' '));
+            $trt[] = str_replace(" ", $nbsp, number_format(round($value - ($value*$at), 2), 2, ',', ' '));
         }
         $trt[] = 'Razem:';
-        $sum = str_replace(" ", $nbsp, number_format($brutto, 2, ',', ' '));
+        $sum = str_replace(" ", $nbsp, number_format(round($brutto, 2), 2, ',', ' '));
+        $trt[] = str_replace(" ", $nbsp, $sum);
+        $sum = str_replace(" ", $nbsp, number_format(round($brutto - $brutto*$at, 2), 2, ',', ' '));
         $trt[] = str_replace(" ", $nbsp, $sum);
         $smarty->assign('RateTable', $trt);
         break;  

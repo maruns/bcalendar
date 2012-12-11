@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Raport asystentki {$company}</title>
+  <title>Raport asystenta {if !$company}{$an}{/if}{$company}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style type="text/css">
 /*<![CDATA[*/
@@ -153,11 +153,11 @@ th {
             <tr><th>Nadawca:</th></tr>
             <tr>
                 <td>
-                    <p>{$company}</p>
+                    <p>{if !$company}{$an}{/if}{$company}</p>
                     <p>{$street}</p>
                     {if $PostalPlace}<p>{$place}</p>{/if}
                     <p>{$PostalCode} {if $PostalPlace}{$PostalPlace}{else}{$place}{/if}</p>
-                    <p>NIP: {$NIP}</p>
+                    {if $NIP}<p>NIP: {$NIP}</p>{/if}
                 </td>
             </tr>
         </table>
@@ -166,10 +166,10 @@ th {
     <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
-     cols="Nazwa wizyty, Data, Dentysta, Kwota dla asystenta"}
+     cols="Nazwa wizyty, Data, Dentysta, Kwota brutto dla asystenta, Kwota netto dla asystenta"}
     <div>
         {html_table table_attr='id="rt"' loop=$RateTable
-                    cols="dentysta, kwota dla asystenta"}
+                    cols="dentysta, kwota brutto dla asystenta, kwota netto dla asystenta"}
         <table id="sst">
             <tr><th>Razem do zapłaty:</th><th>{$sum}</th></tr>
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>
