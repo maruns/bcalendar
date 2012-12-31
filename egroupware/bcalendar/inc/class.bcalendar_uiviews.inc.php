@@ -156,7 +156,7 @@ class bcalendar_uiviews extends bcalendar_ui {
       
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
-    
+    $this->date = $_GET['date'];
     $GLOBALS['egw_info']['flags']['nonavbar'] = False;
     $app_header = array(
         'day' => lang('Dayview'),
@@ -166,7 +166,7 @@ class bcalendar_uiviews extends bcalendar_ui {
         'year' => lang('yearview'),
         'planner' => lang('Group planner'),
     );
-    $GLOBALS['egw_info']['flags']['app_header'] = $GLOBALS['egw_info']['apps']['calendar']['title'] .
+    $GLOBALS['egw_info']['flags']['app_header'] = $GLOBALS['egw_info']['apps']['bcalendar']['title'] .
             (isset($app_header[$this->view]) ? ' - ' . $app_header[$this->view] : '') .
             // for a single owner we add it's name to the app-header
             (count(explode(',', $this->owner)) == 1 ? ': ' . $this->bo->participant_name($this->owner) : '');
@@ -1017,7 +1017,8 @@ function open_edit(series)
                                                               0); //pobierz kolory rodzajów wizyt z bazy danych
     if ($this->debug > 1 || $this->debug === 'timeGridWidget')
       $this->bo->debug_message('uiviews::timeGridWidget(events=%1,granularity_m=%2,height=%3,,title=%4)', True, $daysEvents, $granularity_m, $height, $title);
-    $html = <<<SCRIPT
+    $html = parent::sidebox_menu();
+    $html .= <<<SCRIPT
    <script type="text/javascript">
        var calendarExt = {
          scroll : function(div) {
@@ -1064,7 +1065,6 @@ SCRIPT;
     $this->granularity_m = $granularity_m;
     $this->display_start = $this->wd_start - ($this->extraRows * $this->granularity_m);
     $this->display_end = $this->wd_end + ($this->extraRows * $this->granularity_m);
-
     if (!$this->wd_end)
       $this->wd_end = 1440;
     $totalDisplayMinutes = $this->wd_end - $this->wd_start;
@@ -1919,7 +1919,7 @@ SCRIPT;
    * @return string with widget
    */
   function &plannerWidget($events, $start, $end, $by_cat = 0, $indent = '') {
-    $content = $indent . '<div class="plannerWidget">' . "\n";
+    $content = parent::sidebox_menu() . $indent . '<div class="plannerWidget">' . "\n";
 
     // display the header, containing a headerTitle and multiple headerRows with the scales
     $content .= $indent . "\t" . '<div class="plannerHeader">' . "\n";

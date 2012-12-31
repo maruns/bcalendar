@@ -1,9 +1,9 @@
 <?php
-require_once('header.inc.php');
-$host = $GLOBALS['egw_domain']['default']['db_host'];
-$username = $GLOBALS['egw_domain']['default']['db_user'];
-$passwd = $GLOBALS['egw_domain']['default']['db_pass'];
-$dbname = $GLOBALS['egw_domain']['default']['db_name'];
+/*require_once('header.inc.php');*/
+$host = $GLOBALS['egw_domain']['default']['db_host'];$host = "localhost";
+$username = $GLOBALS['egw_domain']['default']['db_user'];$username = 'root';
+$passwd = $GLOBALS['egw_domain']['default']['db_pass'];$passwd = null;
+$dbname = $GLOBALS['egw_domain']['default']['db_name'];$dbname = 'egroupware';
 if ($passwd == '')
 {
     $passwd = null;

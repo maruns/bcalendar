@@ -34,7 +34,7 @@ define('EGW_ACL_INVITE',EGW_ACL_CUSTOM_3);
 /**
  * Required (!) include, as we use the MCAL_* constants, BEFORE instanciating (and therefore autoloading) the class
  */
-require_once(EGW_INCLUDE_ROOT.'/calendar/inc/class.bcalendar_so.inc.php');
+require_once(EGW_INCLUDE_ROOT.'/bcalendar/inc/class.bcalendar_so.inc.php');
 
 /**
  * Class to access all bcalendar data
@@ -197,13 +197,27 @@ class bcalendar_bo
 	 * @var array
 	 */
 	var $warnings = array();
+        
+        /**
+	 * Połączenie do bazy danych
+	 *
+	 * @var ADOConnection
+	 */
+	private $Link_ID = 0;
+        
+        /**
+	 * Przygotowane zapytanie o informacje o kontakcie
+	 *
+	 * @var string
+	 */
+	private $ContactsStatement;
 
 	/**
 	 * Constructor
 	 */
 	function __construct()
 	{
-		if ($this->debug > 0) $this->debug_message('calendar_bo::bocal() started',True,$param);
+		if ($this->debug > 0) $this->debug_message('bcalendar_bo::bocal() started',True,$param);
 
 		$this->so = new bcalendar_so();
 		$this->datetime = $GLOBALS['egw']->datetime;
@@ -246,6 +260,8 @@ class bcalendar_bo
 		$this->require_acl_invite = $GLOBALS['egw_info']['server']['require_acl_invite'];
 
 		$this->categories = new categories($this->user,'calendar');
+                $this->Link_ID = $GLOBALS['egw']->db->link_id();
+                $this->ContactsStatement = $this->Link_ID->Prepare("SELECT `n_given` , `n_family` , `contact_email` , `contact_email_home`, `tel_prefer`, `tel_cell_private`, `tel_cell`, `tel_work`, `tel_assistent`, `tel_home`, `tel_car`, `tel_other` FROM egw_addressbook WHERE contact_id=?");
 	}
 
 	/**
@@ -478,7 +494,7 @@ class bcalendar_bo
 
 		if ($this->debug && ($this->debug > 1 || $this->debug == 'search'))
 		{
-			$this->debug_message('calendar_bo::search(%1) start=%2, end=%3, daywise=%4, cat_id=%5, filter=%6, query=%7, offset=%8, num_rows=%9, order=%10, sql_filter=%11)',
+			$this->debug_message('bcalendar_bo::search(%1) start=%2, end=%3, daywise=%4, cat_id=%5, filter=%6, query=%7, offset=%8, num_rows=%9, order=%10, sql_filter=%11)',
 				True,$params,$start,$end,$daywise,$cat_id,$filter,$params['query'],$offset,(int)$params['num_rows'],$params['order'],$params['sql_filter']);
 		}
 		// date2ts(,true) converts to server time, db2data converts again to user-time
@@ -552,7 +568,7 @@ class bcalendar_bo
 		}
 		if ($this->debug && ($this->debug > 0 || $this->debug == 'search'))
 		{
-			$this->debug_message('calendar_bo::search(%1)=%2',True,$params,$events);
+			$this->debug_message('bcalendar_bo::search(%1)=%2',True,$params,$events);
 		}
 		//error_log(__METHOD__."() returning ".count($events)." entries, total=$this->total ".function_backtrace());
 		return $events;
@@ -651,13 +667,13 @@ class bcalendar_bo
 	{
 		if ((int) $this->debug >= 2 || $this->debug == 'check_move_horizont')
 		{
-			$this->debug_message('calendar_bo::check_move_horizont(%1) horizont=%2',true,$new_horizont,(int)$this->config['horizont']);
+			$this->debug_message('bcalendar_bo::check_move_horizont(%1) horizont=%2',true,$new_horizont,(int)$this->config['horizont']);
 		}
 		$new_horizont = $this->date2ts($new_horizont,true);	// now we are in server-time, where this function operates
 
 		if ($new_horizont <= $this->config['horizont'])	// no move necessary
 		{
-			if ($this->debug == 'check_move_horizont') $this->debug_message('calendar_bo::check_move_horizont(%1) horizont=%2 is bigger ==> nothing to do',true,$new_horizont,(int)$this->config['horizont']);
+			if ($this->debug == 'check_move_horizont') $this->debug_message('bcalendar_bo::check_move_horizont(%1) horizont=%2 is bigger ==> nothing to do',true,$new_horizont,(int)$this->config['horizont']);
 			return;
 		}
 		if (!empty($GLOBALS['egw_info']['server']['calendar_horizont']))
@@ -667,7 +683,7 @@ class bcalendar_bo
 		if (empty($maxdays)) $maxdays = 1000; // old default
 		if ($new_horizont > time()+$maxdays*DAY_s)		// some user tries to "look" more then the maximum number of days in the future
 		{
-			if ($this->debug == 'check_move_horizont') $this->debug_message('calendar_bo::check_move_horizont(%1) horizont=%2 new horizont more then %3 days from now --> ignoring it',true,$new_horizont,(int)$this->config['horizont'],$maxdays);
+			if ($this->debug == 'check_move_horizont') $this->debug_message('bcalendar_bo::check_move_horizont(%1) horizont=%2 new horizont more then %3 days from now --> ignoring it',true,$new_horizont,(int)$this->config['horizont'],$maxdays);
 			$this->warnings['horizont'] = lang('Requested date %1 outside allowed range of %2 days: recurring events obmitted!', egw_time::to($new_horizont,true), $maxdays);
 			return;
 		}
@@ -686,7 +702,7 @@ class bcalendar_bo
 			{
 				if ($this->debug == 'check_move_horizont')
 				{
-					$this->debug_message('calendar_bo::check_move_horizont(%1): calling set_recurrences(%2,%3)',true,$new_horizont,$event,$old_horizont);
+					$this->debug_message('bcalendar_bo::check_move_horizont(%1): calling set_recurrences(%2,%3)',true,$new_horizont,$event,$old_horizont);
 				}
 				// insert everything behind max(cal_start), which can be less then $old_horizont because of bugs in the past
 				$this->set_recurrences($event,egw_time::server2user($recuring[$cal_id]+1));	// set_recurences operates in user-time!
@@ -695,7 +711,7 @@ class bcalendar_bo
 		// update the horizont
 		config::save_value('horizont',$this->config['horizont'],'calendar');
 
-		if ($this->debug == 'check_move_horizont') $this->debug_message('calendar_bo::check_move_horizont(%1) new horizont=%2, exiting',true,$new_horizont,(int)$this->config['horizont']);
+		if ($this->debug == 'check_move_horizont') $this->debug_message('bcalendar_bo::check_move_horizont(%1) new horizont=%2, exiting',true,$new_horizont,(int)$this->config['horizont']);
 	}
 
 	/**
@@ -710,7 +726,7 @@ class bcalendar_bo
 	{
 		if ($this->debug && ((int) $this->debug >= 2 || $this->debug == 'set_recurrences' || $this->debug == 'check_move_horizont'))
 		{
-			$this->debug_message('calendar_bo::set_recurrences(%1,%2)',true,$event,$start);
+			$this->debug_message('bcalendar_bo::set_recurrences(%1,%2)',true,$event,$start);
 		}
 		// check if the caller gave us enough information and if not read it from the DB
 		if (!isset($event['participants']) || !isset($event['start']) || !isset($event['end']))
@@ -918,7 +934,7 @@ class bcalendar_bo
 		}
 		if ($this->debug && ($this->debug > 1 || $this->debug == 'read'))
 		{
-			$this->debug_message('calendar_bo::read(%1,%2,%3,%4,%5)=%6',True,$ids,$date,$ignore_acl,$date_format,$clear_private_infos_users,$return);
+			$this->debug_message('bcalendar_bo::read(%1,%2,%3,%4,%5)=%6',True,$ids,$date,$ignore_acl,$date_format,$clear_private_infos_users,$return);
 		}
 		return $return;
 	}
@@ -1025,7 +1041,7 @@ class bcalendar_bo
 
 		if ($this->debug && ($this->debug > 2 || $this->debug == 'add_adjust_event'))
 		{
-			$this->debug_message('calendar_bo::add_adjust_event(,%1,%2) as %3',True,$event_in,$date_ymd,$event);
+			$this->debug_message('bcalendar_bo::add_adjust_event(,%1,%2) as %3',True,$event_in,$date_ymd,$event);
 		}
 	}
         /**
@@ -1037,7 +1053,7 @@ class bcalendar_bo
          * @param string $description opis numeru telefonu dołączany po numerze
 	 * @return string łańcuch znaków z dołączonym numerem telefonu
 	 */
-        function AppendPhoneNumber(&$phones, &$isNotFirst, $number, $description = null)
+        private function AppendPhoneNumber(&$phones, &$isNotFirst, $number, $description = null)
         {
             $number = trim($number);
             if (isset($number) && $number != '')
@@ -1087,10 +1103,46 @@ class bcalendar_bo
 			}
 			else
 			{
-				list($info) = $this->resources[$uid[0]]['info'] ? 
+				/*list($info) = $this->resources[$uid[0]]['info'] ? 
                                               ExecMethod('addressbook.addressbook_bo.GetCalendarInfoWithPhones',substr($uid,1)) : 
-                                              false; //pobierz kontakty z numerami telefonów
-                                //print_r(ExecMethod('addressbook.addressbook_bo.GetCalendarInfoWithPhones',substr($uid,1)));
+                                              false;*/ //pobierz kontakty z numerami telefonów
+                                $cqr = array(); //zmienna na wynik zapytaniao informacje o kontakcie
+                                if (is_object($this->Link_ID)) //wykonanie przygotowanego zapytania o informacje o kontakcie
+                                {
+                                    $cqr = $this->Link_ID->Execute($this->ContactsStatement, array('contact_id' => substr($uid,1)));
+                                }
+                                foreach ($cqr as $contact) //operacje na wyniku zapytania
+                                {
+                                    $phones = ''; //ciąg znaków na numer telefonu
+                                    $ppn = trim($contact['tel_prefer']);
+                                    if (isset($ppn) && $ppn != '') //jeśli jest ustawiony numer preferowany, to tylko go dołącz
+                                    {
+                                        $phones = $contact[$ppn];
+                                    }
+                                    else //jeśli nie jest ustawiony numer prywatny, dołącz wszystkie numery telefonu
+                                    {
+                                        $IsNotFirst = false;
+                                        if (isset($contact['tel_cell_private']))
+                                        {
+                                            $phones = $contact['tel_cell_private'].' (tel. prywatny)';
+                                            $IsNotFirst = true;
+                                        }
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_cell'], ' (tel. kom.)');
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_work'], ' (tel. w firmie)');
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_assistent'], ' (tel. do asystenta)');
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_home'], ' (tel. dom.)');
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_car'], ' (tel. w samochodzie)');
+                                        $this->AppendPhoneNumber($phones, $IsNotFirst, $contact['tel_other']);
+                                    }
+                                    $data[] = array('res_id' => $uid,
+                                                    'email' => $contact['contact_email'] ? $contact['contact_email'] : 
+                                                               $contact['contact_email_home'],
+                                                    'rights' => EGW_ACL_READ_FOR_PARTICIPANTS,
+                                                    'name' => trim($contact['n_family'].', '.$contact['n_given']),
+                                                    'cn' => trim($contact['n_given'].' '.$contact['n_family']),
+                                                    'phones' => $phones);
+                                }
+                                list($info) = $data; //informacje o kontakcie jako pierwszy element stworzonej tablicy kontaktów
 				if ($info)
 				{
 					$info['type'] = $uid[0];
@@ -1105,7 +1157,7 @@ class bcalendar_bo
 		}
 		if ($this->debug && ($this->debug > 2 || $this->debug == 'resource_info'))
 		{
-			$this->debug_message('calendar_bo::resource_info(%1) = %2',True,$uid,$res_info_cache[$uid]);
+			$this->debug_message('bcalendar_bo::resource_info(%1) = %2',True,$uid,$res_info_cache[$uid]);
 		}
 		return $res_info_cache[$uid];
 	}
@@ -1220,7 +1272,7 @@ class bcalendar_bo
 		}
 		if ($this->debug && ($this->debug > 2 || $this->debug == 'check_perms'))
 		{
-			$this->debug_message('calendar_bo::check_perms(%1,%2,other=%3,%4,%5,user=%6)=%7',True,ACL_TYPE_IDENTIFER.$needed,$event,$other,$date_format,$date_to_read,$user,$access);
+			$this->debug_message('bcalendar_bo::check_perms(%1,%2,other=%3,%4,%5,user=%6)=%7',True,ACL_TYPE_IDENTIFER.$needed,$event,$other,$date_format,$date_to_read,$user,$access);
 		}
 		//error_log(__METHOD__."($needed,".array2string($event).",$other,...,$user) returning ".array2string($access));
 		return $access;
@@ -1787,7 +1839,7 @@ class bcalendar_bo
 		}
 		if ((int) $this->debug >= 2 || $this->debug == 'read_holidays')
 		{
-			$this->debug_message('calendar_bo::read_holidays(%1)=%2',true,$year,$this->cached_holidays[$year]);
+			$this->debug_message('bcalendar_bo::read_holidays(%1)=%2',true,$year,$this->cached_holidays[$year]);
 		}
 		return $this->cached_holidays[$year];
 	}

@@ -15,13 +15,13 @@
 	/* $Id: class.uiholiday.inc.php 28076 2009-10-11 11:37:46Z ralfbecker $ */
 
 	/**
-	 * User interface for bcalendar holidays
+	 * User interface for calendar holidays
 	 *
-	 * @package bcalendar
+	 * @package calendar
 	 * @author Mark Peters <skeeter@phpgroupware.org>
 	 * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
 	 */
-	class buiholiday
+	class uiholiday
 	{
 		var $debug = False;
 		var $base_url;
@@ -42,18 +42,18 @@
 
 		function uiholiday()
 		{
-			$this->bo =& CreateObject('bcalendar.boholiday');
+			$this->bo =& CreateObject('calendar.boholiday');
 			$this->bo->check_admin();
 			$this->base_url = $this->bo->base_url;
 			$this->template_dir = common::get_tpl_dir('calendar');
-			$this->sb =& CreateObject('bcalendar.sbox');
+			$this->sb =& CreateObject('calendar.sbox');
 
-			// bcalendar does not work with hidden sidebox atm.
+			// calendar does not work with hidden sidebox atm.
 			unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
 
 			$GLOBALS['egw_info']['flags']['app_header'] = $GLOBALS['egw_info']['apps']['calendar']['title'].' - '.lang('Holiday Management');
 
-			$GLOBALS['egw']->template->set_var('help_msg',lang('<b>Please note</b>: The bcalendar use the holidays of your country, which is set to %1. You can change it in your %2.<br />Holidays are %3 automatic installed from %4. You can changed it in %5.',
+			$GLOBALS['egw']->template->set_var('help_msg',lang('<b>Please note</b>: The calendar use the holidays of your country, which is set to %1. You can change it in your %2.<br />Holidays are %3 automatic installed from %4. You can changed it in %5.',
 				'<b>'.$GLOBALS['egw_info']['user']['preferences']['common']['country'].'</b>','<a href="'.$GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'preferences.uisettings.index',
 					'appname'    => 'preferences',
@@ -82,8 +82,8 @@
 
 			$var = Array(
 				'th_bg'		=> $GLOBALS['egw_info']['theme']['th_bg'],
-				'left_next_matchs'	=> $GLOBALS['egw']->nextmatchs->left('/index.php?menuaction=bcalendar.uiholiday.admin',$this->bo->start,$this->bo->total),
-				'right_next_matchs'	=> $GLOBALS['egw']->nextmatchs->right('/index.php?menuaction=bcalendar.uiholiday.admin',$this->bo->start,$this->bo->total),
+				'left_next_matchs'	=> $GLOBALS['egw']->nextmatchs->left('/index.php?menuaction=calendar.uiholiday.admin',$this->bo->start,$this->bo->total),
+				'right_next_matchs'	=> $GLOBALS['egw']->nextmatchs->right('/index.php?menuaction=calendar.uiholiday.admin',$this->bo->start,$this->bo->total),
 				'center'			=> '<td align="center">'.lang('Countries').'</td>',
 				'sort_name'		=> $GLOBALS['egw']->nextmatchs->show_sort_order($this->bo->sort,'hol_locale',$this->bo->order,'/calendar/'.basename($SCRIPT_FILENAME),lang('Country')),
 				'header_edit'	=> lang('Edit'),
@@ -115,10 +115,10 @@
 					$var = Array(
 						'tr_color'		=> $tr_color,
 						'group_name'	=> $value,
-						'edit_link'		=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_locale','locale'=>$value)) . '"> '.lang('Edit').' </a>',
-						'delete_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.delete_locale','locale'=>$value)).'"> '.lang('Delete').' </a>',
-						'extra_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.submit','locale'=>$value)).'"> '.lang('Submit').' </a>'.
-							' &nbsp; &nbsp; <a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.submit','locale'=>$value,'download'=>1)).'"> '.lang('Download').' </a>'
+						'edit_link'		=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_locale','locale'=>$value)) . '"> '.lang('Edit').' </a>',
+						'delete_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.delete_locale','locale'=>$value)).'"> '.lang('Delete').' </a>',
+						'extra_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.submit','locale'=>$value)).'"> '.lang('Submit').' </a>'.
+							' &nbsp; &nbsp; <a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.submit','locale'=>$value,'download'=>1)).'"> '.lang('Download').' </a>'
 					);
 					$p->set_var($var);
 					$p->parse('rows','row',True);
@@ -126,9 +126,9 @@
 			}
 
 			$var = Array(
-				'new_action'		=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_holiday','id'=>0)),
+				'new_action'		=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_holiday','id'=>0)),
 				'lang_add'			=> lang('add'),
-				'search_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.admin')),
+				'search_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.admin')),
 				'lang_search'		=> lang('search')
 			);
 
@@ -150,7 +150,7 @@
 			if(!$this->bo->total && !isset($this->bo->query))
 			{
 				$link_params = Array(
-					'menuaction'	=> 'bcalendar.uiholiday.admin'
+					'menuaction'	=> 'calendar.uiholiday.admin'
 				);
 				$GLOBALS['egw']->redirect_link($this->base_url,$link_params);
 			}
@@ -171,7 +171,7 @@
 			}
 			$html = &$GLOBALS['egw']->html;
 			$year_form = str_replace('<option value=""></option>','',$html->form($html->sbox_submit($this->sb->getYears('year',$this->bo->year),true),array(),
-				$this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0])));
+				$this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0])));
 			unset($html);
 
 			$holidays = $this->bo->get_holiday_list();
@@ -179,13 +179,13 @@
 
 			$var = Array(
 				'th_bg'				=> $GLOBALS['egw_info']['theme']['th_bg'],
-				'left_next_matchs'	=> $GLOBALS['egw']->nextmatchs->left('/index.php',$this->bo->start,$total,'&menuaction=bcalendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
-				'right_next_matchs'	=> $GLOBALS['egw']->nextmatchs->right('/index.php',$this->bo->start,$total,'&menuaction=bcalendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
+				'left_next_matchs'	=> $GLOBALS['egw']->nextmatchs->left('/index.php',$this->bo->start,$total,'&menuaction=calendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
+				'right_next_matchs'	=> $GLOBALS['egw']->nextmatchs->right('/index.php',$this->bo->start,$total,'&menuaction=calendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
 				'center'			=> '<td align="right">'.lang('Holidays').' ('.$this->bo->locales[0].')</td><td align="left">'.$year_form.'</td>',
-				'sort_name'			=> $GLOBALS['egw']->nextmatchs->show_sort_order($this->bo->sort,'hol_name',$this->bo->order,'/index.php',lang('Holiday'),'&menuaction=bcalendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
+				'sort_name'			=> $GLOBALS['egw']->nextmatchs->show_sort_order($this->bo->sort,'hol_name',$this->bo->order,'/index.php',lang('Holiday'),'&menuaction=calendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year),
 				'header_edit'		=> lang('Edit'),
 				'header_delete'		=> lang('Delete'),
-				'header_rule'		=> '<td>'.$GLOBALS['egw']->nextmatchs->show_sort_order($this->bo->sort,'hol_month_num,hol_mday',$this->bo->order,'/index.php',lang('Rule'),'&menuaction=bcalendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year).'</td>',
+				'header_rule'		=> '<td>'.$GLOBALS['egw']->nextmatchs->show_sort_order($this->bo->sort,'hol_month_num,hol_mday',$this->bo->order,'/index.php',lang('Rule'),'&menuaction=calendar.uiholiday.edit_locale&locale='.$this->bo->locales[0].'&year='.$this->bo->year).'</td>',
 				'header_extra'		=> lang('Copy'),
 				'extra_width'		=> 'width="5%"'
 			);
@@ -216,9 +216,9 @@
 						'header_delete'=> lang('Delete'),
 						'group_name'	=> $holidays[$i]['name'],
 						'rule'			=> '<td>'.$this->bo->rule_string($holidays[$i]).'</td>',
-						'edit_link'		=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Edit').' </a>',
-						'extra_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.copy_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Copy').' </a>',
-						'delete_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.delete_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Delete').' </a>'
+						'edit_link'		=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Edit').' </a>',
+						'extra_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.copy_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Copy').' </a>',
+						'delete_link'	=> '<a href="'.$GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.delete_holiday','locale'=>$this->bo->locales[0],'id'=>$holidays[$i]['index'],'year'=>$this->bo->year)).'"> '.lang('Delete').' </a>'
 					);
 
 					$p->set_var($var);
@@ -227,11 +227,11 @@
 			}
 
 			$var = Array(
-				'new_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_holiday','locale'=>$this->bo->locales[0],'id'=>0,'year'=>$this->bo->year)),
+				'new_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_holiday','locale'=>$this->bo->locales[0],'id'=>0,'year'=>$this->bo->year)),
 				'lang_add'		=> lang('add'),
-				'back_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.admin')),
+				'back_action'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.admin')),
 				'lang_back'		=> lang('Back'),
-				'search_action'=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0],'year'=>$this->bo->year)),
+				'search_action'=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0],'year'=>$this->bo->year)),
 				'lang_search'	=> lang('search')
 			);
 			$p->set_var($var);
@@ -287,7 +287,7 @@
 			$var = Array(
 				'title_holiday' => ($this->bo->id ? lang('Edit') : lang('Add')).' '.lang('Holiday'),
 				'message'       => $message,
-				'actionurl'     => $GLOBALS['egw']->link($this->base_url,'menuaction=bcalendar.boholiday.add&year='.$this->bo->year),
+				'actionurl'     => $GLOBALS['egw']->link($this->base_url,'menuaction=calendar.boholiday.add&year='.$this->bo->year),
 				'hidden_vars'   => '<input type="hidden" name="holiday[hol_id]" value="'.$this->bo->id.'">'."\n"
 					. '<input type="hidden" name="holiday[locales]" value="'.$this->bo->locales[0].'">'."\n"
 			);
@@ -346,7 +346,7 @@
 			if(@$this->bo->locales[0])
 			{
 				$link_params = Array(
-					'menuaction'	=> 'bcalendar.uiholiday.edit_locale',
+					'menuaction'	=> 'calendar.uiholiday.edit_locale',
 					'year'			=> $this->bo->year,
 					'locale'		=> $this->bo->locales[0]
 				);
@@ -354,7 +354,7 @@
 			else
 			{
 				$link_params = Array(
-					'menuaction'	=> 'bcalendar.uiholiday.admin'
+					'menuaction'	=> 'calendar.uiholiday.admin'
 				);
 			}
 
@@ -369,7 +369,7 @@
 			if ($this->bo->id)
 			{
 				$link_params = Array(
-					'menuaction'	=> 'bcalendar.uiholiday.delete_holiday',
+					'menuaction'	=> 'calendar.uiholiday.delete_holiday',
 					'year'			=> $this->bo->year,
 					'locale'		=> $this->bo->locales[0],
 					'id'			=> $this->bo->id
@@ -400,7 +400,7 @@
 			$p->set_var('messages',lang('Are you sure you want to delete this Country ?')."<br>".$this->bo->locales[0]);
 
 			$var = Array(
-				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.admin')),
+				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.admin')),
 				'action_text_button'	=> lang('No'),
 				'action_confirm_button'	=> '',
 				'action_extra_field'	=> ''
@@ -409,7 +409,7 @@
 			$p->parse('no','form_button');
 
 			$var = Array(
-				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.boholiday.delete_locale','locale'=>$this->bo->locales[0])),
+				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.boholiday.delete_locale','locale'=>$this->bo->locales[0])),
 				'action_text_button'	=> lang('Yes'),
 				'action_confirm_button'	=> '',
 				'action_extra_field'	=> ''
@@ -440,7 +440,7 @@
 			$p->set_var('messages',lang('Are you sure you want to delete this holiday ?')."<br>".$holiday['name'].' ('.$this->bo->locales[0].') '.$this->bo->rule_string($holiday));
 
 			$var = Array(
-				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0],'year'=>$this->bo->year)),
+				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.uiholiday.edit_locale','locale'=>$this->bo->locales[0],'year'=>$this->bo->year)),
 				'action_text_button'	=> lang('No'),
 				'action_confirm_button'	=> '',
 				'action_extra_field'	=> ''
@@ -449,7 +449,7 @@
 			$p->parse('no','form_button');
 
 			$var = Array(
-				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'bcalendar.boholiday.delete_holiday','locale'=>$this->bo->locales[0],'id'=>$this->bo->id,'year'=>$this->bo->year)),
+				'action_url_button'	=> $GLOBALS['egw']->link($this->base_url,Array('menuaction'=>'calendar.boholiday.delete_holiday','locale'=>$this->bo->locales[0],'id'=>$this->bo->id,'year'=>$this->bo->year)),
 				'action_text_button'	=> lang('Yes'),
 				'action_confirm_button'	=> '',
 				'action_extra_field'	=> ''

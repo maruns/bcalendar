@@ -824,43 +824,88 @@ function load_cal(url,id) {
 			);
 		}
 */
-		$appname = 'calendar';
+		$appname = 'bcalendar';
 		$menu_title = lang('Calendar Menu');
-		display_sidebox($appname,$menu_title,$file);
+//		display_sidebox($appname,$menu_title,$file);
 
 		// resources menu hooks
  		foreach ($this->bo->resources as $resource)
 		{
 			if(!is_array($resource['cal_sidebox'])) continue;
-			$menu_title = $resource['cal_sidebox']['menu_title'] ? $resource['cal_sidebox']['menu_title'] : lang($resource['app']);
-			$file = ExecMethod($resource['cal_sidebox']['file'],array(
+                    //$menu_title = $resource['cal_sidebox']['menu_title'] ? $resource['cal_sidebox']['menu_title'] : lang($resource['app']);
+			$file[] = ExecMethod($resource['cal_sidebox']['file'],array(
 				'menuaction' => $this->view_menuaction,
 				'owner' => $this->owner,
 			));
-			display_sidebox($appname,$menu_title,$file);
+//			display_sidebox($appname,$menu_title,$file);
 		}
-
+                $settings = '';
 		if ($GLOBALS['egw_info']['user']['apps']['preferences'])
 		{
-			$menu_title = lang('Preferences');
-			$file = Array(
+			//$menu_title = lang('Preferences');
+			$file[] = Array(
 				'Calendar preferences'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname=bcalendar'),
 				'Grant Access'=>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app=bcalendar'),
 				'Edit Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=bcalendar&cats_level=True&global_cats=True'),
 			);
-			display_sidebox($appname,$menu_title,$file);
+//			display_sidebox($appname,$menu_title,$file);
+                        $settings = '<div class="sideboxSpace"></div><div class="divSidebox">
+                                    <div class="divSideboxHeader"><span>Ustawienia</span></div><div><table width="100%" cellspacing="0" cellpadding="0">
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=preferences.uisettings.index&appname=calendar">Preferencje kalendarza</a></td>
+		</tr>
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=preferences.uiaclprefs.index&acl_app=bcalendar">Przyznaj dostęp</a></td>
+		</tr>
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=preferences.uicategories.index&cats_app=bcalendar&cats_level=True&global_cats=True">Edytuj kategorie</a></td>
+		</tr>
+		</table>
+	</div>
+</div>';
 		}
-
+                $al = '';
 		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
-			$menu_title = lang('Administration');
-			$file = Array(
+			//$menu_title = lang('Administration');
+			$file[] = Array(
 				'Configuration'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.uiconfig.index&appname=bcalendar'),
 				'Custom Fields'=>$GLOBALS['egw']->link('/index.php','menuaction=admin.customfields.edit&appname=bcalendar'),
 				'Holiday Management'=>$GLOBALS['egw']->link('/index.php','menuaction=bcalendar.uiholiday.admin'),
 				'Global Categories' =>$GLOBALS['egw']->link('/index.php','menuaction=admin.uicategories.index&appname=bcalendar'),
 			);
-			display_sidebox($appname,$menu_title,$file);
+//			display_sidebox($appname,$menu_title,$file);
+                        $al = '<div class="sideboxSpace"></div>
+<div class="divSidebox">
+	<div class="divSideboxHeader"><span>Administracja</span></div>
+	<div>
+		<table width="100%" cellspacing="0" cellpadding="0">
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=admin.uiconfig.index&appname=calendar">Konfiguracja</a></td>
+		</tr>
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=admin.customfields.edit&appname=calendar">Pola własne</a></td>
+		</tr>
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=calendar.uiholiday.admin">Zarządzanie świętami</a></td>
+		</tr>
+		<tr class="divSideboxEntry">
+			<td width="20" align="center" valign="middle" class="textSidebox"><img class="sideboxstar" src="/egroupware/phpgwapi/templates/idots/images/orange-ball.png" width="9" height="9" alt="ball"/></td><td class="textSidebox"><a class="textSidebox" href="/egroupware/index.php?menuaction=admin.uicategories.index&appname=bcalendar">Kategorie globalne</a></td>
+		</tr>
+		</table>
+	</div>
+</div>';
 		}
+                return '<div class="divSidebox"><div class="divSideboxHeader"><span>Menu kalendarza</span><div class="textSidebox"><a title="Utwórz fakturę zawierającą franszczyzę netto i brutto" onclick="window.open(\'' . $GLOBALS['egw']->link('/Invoice/index.php') . 
+                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
+                        '" />Tworzenie faktury</a><a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/PatientVisits/index.php') . 
+                        '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty</a><a title="Czas pracy dentystów - ustaw czas pracy w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
+                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a></div><div class="divSideboxEntry">' .
+                       $file[1]['text'] . '</div><div class="divSideboxEntry">' . $file[2]['text'] . '</div><div class="divSideboxEntry">' . 
+                       $file[3]['text'] . '</div><div class="divSideboxEntry">' . $file[4]['text'] . '</div><div class="divSideboxEntry">' . 
+                       $file[5]['text'] . '</div><div class="divSideboxEntry">' . $file[6]['text'] . '</div><div class="divSideboxEntry">' . 
+                       $file[7]['text'] . '</div>' . $settings . $al . '<div class="sideboxSpace"></div></div></div>';
 	}
 }
