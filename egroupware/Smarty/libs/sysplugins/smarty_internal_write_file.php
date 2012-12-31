@@ -24,7 +24,7 @@ class Smarty_Internal_Write_File {
      * @return boolean true
      */
     public static function writeFile($_filepath, $_contents, Smarty $smarty)
-    {echo $_filepath .'\n<pre>'.$_contents.'</pre>';/*
+    {
         $_error_reporting = error_reporting();
         error_reporting($_error_reporting & ~E_NOTICE & ~E_WARNING);
         if ($smarty->_file_perms !== null) {
@@ -51,7 +51,7 @@ class Smarty_Internal_Write_File {
          * Simply unlink()ing a file might cause other processes 
          * currently reading that file to fail, but linux' rename()
          * seems to be smart enough to handle that for us.
-         *//*
+         */
         if (Smarty::$_IS_WINDOWS) {
             // remove original file
             @unlink($_filepath);
@@ -80,7 +80,7 @@ class Smarty_Internal_Write_File {
             umask($old_umask);
         }
         error_reporting($_error_reporting);
-        return true;*/
+        return true;
     }
 
 }
