@@ -1,5 +1,5 @@
 <?php
-/*require_once('header.inc.php');*/
+require_once('header.inc.php');
 $host = $GLOBALS['egw_domain']['default']['db_host'];//$host = "localhost";
 $username = $GLOBALS['egw_domain']['default']['db_user'];//$username = 'root';
 $passwd = $GLOBALS['egw_domain']['default']['db_pass'];//$passwd = null;
