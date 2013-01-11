@@ -14,9 +14,11 @@
     </head>
     <body>
         <form action="../inc/Event.php" method="POST" enctype="multipart/form-data">
-            <p>Tytuł: <input type="text" name="title" />&nbsp;{if $id}#{$id}{/if}</p>
-            <p>Start: <input type="text" id="start" name="start" class="date-pick" /></p>
-            <p>Czas trwania: <input type="text" name="start" class="date-pick" /></p>
+            <p><label for="title">Tytuł: </label><input type="text" name="title" />&nbsp;{if $id}#{$id}{/if}</p>
+            <p><label for="start">Start: </label><input type="text" id="start" name="start" class="date-pick" /></p>
+            <p><label for="time">Czas trwania: </label><input type="text" name="time" />
+            <p><label for="description">Czas trwania: </label><textarea name="description" rows="4" cols="20">
+            </textarea></p>
             <p><input type="checkbox" id="private" name="private"><label for="private">Zdarzenie prywatne</label></input></p>
             <p><input type="submit" value="OK" name="ok" /><input type="submit" value="Zastosuj" name="apply" /></p>
         </form>

@@ -163,7 +163,7 @@ th {
         </table>
     </div>
     <div class="bc" id="separator">&nbsp;</div>
-    <h1 class="bc">Raport   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
+    <h1 class="bc">Raport   {if $in}{$in}{else}<sub>. . .</sub>  {/if}/{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
      cols="Nazwa wizyty, Data, Dentysta, Kwota brutto dla asystenta, Kwota netto dla asystenta"}

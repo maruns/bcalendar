@@ -22,6 +22,7 @@
         <p><input type="text" id="to" name="to" class="date-pick" /></p>
         <p>&nbsp;</p>
         <p><label for="vat">Podatek VAT: </label><input type="text" id="vat" name="vat" value="{$d_VAT}" size="2" maxlength="2" />%</p>
+        <p><label for="in">Numer faktury: </label><input type="text" id="in" name="in" size="2" maxlength="2" /></p>
         <p id="nbm">
             <input onchange="CheckType()" type="radio" name="type" checked="checked" value="invoice">
                 Faktura

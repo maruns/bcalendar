@@ -153,17 +153,17 @@ th {
             <tr><th>Nadawca:</th></tr>
             <tr>
                 <td>
-                    <p>{$company}</p>
-                    <p>{$street}</p>
+                    <p>{$company}{if !$company}<sub>. . .</sub>{/if}</p>
+                    <p>{$street}{if !$street}<sub>. . .</sub>{/if}</p>
                     {if $PostalPlace}<p>{$place}</p>{/if}
-                    <p>{$PostalCode} {if $PostalPlace}{$PostalPlace}{else}{$place}{/if}</p>
-                    <p>NIP: {$NIP}</p>
+                    <p>{$PostalCode} {if $PostalPlace}{$PostalPlace}{else}{$place}{if !$place}<sub>. . .</sub>{/if}{/if}</p>
+                    <p>NIP: {$NIP}{if !$NIP} <sub>. . . . . . . . . . . . . . .</sub>{/if}</p>
                 </td>
             </tr>
         </table>
     </div>
     <div class="bc" id="separator">&nbsp;</div>
-    <h1 class="bc">Faktura VAT   <sub>. . .</sub>  /{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
+    <h1 class="bc">Faktura VAT   {if $in}{$in}{else}<sub>. . .</sub>  {/if}/{$LastDate} oryginał</h1>
     {html_table loop=$DentistTable cols="Lp, Nazwa, Ilość, j.m., Rabat [%], Cena netto, VAT [%], Wartość netto, VAT, Wielkość brutto"}
     <div>
         {html_table table_attr='id="rt"' loop=$RateTable cols="według stawki VAT, wartość netto, kwota VAT, wartość brutto"}
