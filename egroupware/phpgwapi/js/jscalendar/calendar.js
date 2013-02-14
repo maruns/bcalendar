@@ -1875,7 +1875,7 @@ function ShowVideos() //pokazuje listę nagrań programu Motion z okresu zdarzen
 function OnEditFormLoad() //informuje, że okno edycji zdarzenia zostało załadowane
 {
     document.getElementById("calendar.edit").innerHTML += 
-    '<p><a target="_blank" href="bcalendar/inc/VisitInfo.php?date=' + GetParameterByName('date') + "&id=" + GetParameterByName('cal_id') +
+    '<p><a target="_blank" href="bcalendar/inc/VisitInfo.php?date=' + GetParameterByName('date') + "&cal_id=" + GetParameterByName('cal_id') +
     '" title="Pokaż informacje o wizycie przeznaczone do druku">Pokaż informacje do druku</a></p><p id="vl"><a onclick="ShowVideos()" title="Pokaż listę nagrań MPEG programu Motion z okresu zdarzenia i wyłącz podpowiedzi kontaktów">Pokaż nagrania i zablokuj podpowiedzi kontaktów</a></p>';
     var query = document.getElementById('exec[participants][resource][query]');
     query.addEventListener('keyup', function (event) {OnParticipantsQueryKeyPress(event);}, false);

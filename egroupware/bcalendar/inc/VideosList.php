@@ -5,14 +5,15 @@ $GLOBALS['egw_info'] = array(
                 'noheader'   => True
         ),
 );
-require '../../DatabaseConnection.php';
-$dates = SendQuery('select `cal_start`, `cal_end` FROM `egw_cal_dates` where `cal_id` = ' . intval($_GET['id']) . 
+require_once '../../DatabaseConnection.php';
+$dates = SendQuery('select `cal_start`, `cal_end` FROM `egw_cal_dates` where `cal_id` = ' . intval($_GET['cal_id']) . 
                    ' order by `cal_start`, `cal_end`');
 while ($row = GetNextRow($dates))
 {
     $d[] = array('cal_start' => date('His', $row['cal_start']), 'cal_end' => date('His', $row['cal_end']));
+    $ad[]= array('cal_start' => date('H-i-s', $row['cal_start']), 'cal_end' => date('H-i-s', $row['cal_end']));
 }
-$filenames = glob('/usr/local/apache2/htdocs/cam1/*'. $_GET['date'] . '*.mpeg');
+$filenames = glob('/usr/local/apache2/htdocs/cam1/*'. $_GET['date'] . '*.{avi,mpeg},/usr/local/etc/Monitoring/*.{avi,mpeg}', GLOB_BRACE);
 foreach ($filenames as $filename)
 {
     $vd = substr($filename, -11, 6);

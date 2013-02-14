@@ -136,7 +136,7 @@ ul#al li a:hover strong, ul#al li:hover a strong {
     background: url(bcalendar/WorkingHours/button4.gif) right top;
     cursor: pointer;
     font-weight: bold;
-    width: 180px !important;;
+    width: 180px !important;
     color: #fff;
 }
 div#wts {
@@ -165,4 +165,8 @@ p#sd {
 }
 p#nbm {
     margin-bottom: 0;
+}
+form#ef label {
+    width: 100px;
+    display: inline-block;
 }
