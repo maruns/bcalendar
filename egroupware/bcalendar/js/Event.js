@@ -25,16 +25,28 @@ function GetFromScript(script)
 {
     xmlhttpr = new XMLHttpRequest();
     xmlhttpr.open("GET", script, true);
+    var result;
     xmlhttpr.onreadystatechange = function()
     {
         if (xmlhttpr.readyState == 4 && xmlhttpr.status == 200)
         {
-            return xmlhttpr.responseText;
+            result =  xmlhttpr.responseText;
         }
     }
     xmlhttpr.send();
+    return result;
 }
 function OnLDChange()
 {
-    document.getElementById("dentist").innerHTML = GetFromScript('bcalendar/inc/DentistOptions.php?search=' + document.ef.ld.value);
+    document.getElementById("dentist").innerHTML = GetFromScript('DentistOptions.php?search=' + document.ef.ld.value + '&ce=' +
+                                                   document.ef.iad.value);
+}
+function OnLAChange()
+{
+    document.getElementById("assistant").innerHTML = GetFromScript('DentistOptions.php?search=' + document.ef.la.value + '&ce=' +
+                                                   document.ef.iaa.value);
+}
+function OnLPChange()
+{
+    document.getElementById("assistant").innerHTML = GetFromScript('ContactOptions.php?search=' + document.ef.lp.value);
 }

@@ -14,21 +14,24 @@
     </head>
     <body>
         <form id="ef" name="ef" action="Event.php" method="POST" enctype="multipart/form-data">
-            <p><label for="title">Tytuł: </label><input type="text" name="title" />&nbsp;{if $id}#{$id}{/if}</p>
+            <p>
+                <label for="title">Tytuł: </label>
+                <input type="text" name="title" />&nbsp;{if $id}#{$id}<input type="hidden" name="id" value="{$id}"/>{/if}
+            </p>
             <p><label for="start">Data: </label></p>
             <p><input type="text" id="date" name="date" class="date-pick" /></p><p>&nbsp;</p>
             <p><label for="start">Rozpoczęcie: <input type="text" name="title" />:<input type="text" name="title" /></label></p>
             <p><label for="time">Czas trwania: </label><input type="text" name="time" /></p>
             {if $PatientCanBeChanged}<p>
                 <label for="lp">Pacjent: </label>
-                <input id="lp" type="text" name="lp" />
+                <input id="lp" type="text" name="lp" onchange="OnLPChange()" />
                 <select id="patient" name="patient"><option></option></select>             
             </p>{/if}
             {if $DentistCanBeChanged}
                 <p>
                     <label for="dentist">Dentysta: </label>
                     {html_options id="dentist" name=dentist options=$dentists}
-                    <input type="checkbox" id="iad" name="iad"><label for="iad">Pokaż nieaktywnych</label></input>
+                    <input type="checkbox" id="iad" name="iad" onchange="OnLDChange()"><label for="iad">Pokaż nieaktywnych</label></input>
                     <label for="ld">Ogranicz do: </label>
                     <input id="ld" type="text" name="ld" onchange="OnLDChange()" />
                 </p>
@@ -38,7 +41,7 @@
             {if $AssistantCanBeChanged}<p>
                 <label for="assistant">Asystent: </label>
                 {html_options id="assistant" name=assistant options=$dentists}
-                <input type="checkbox" id="iaa" name="iaa"><label for="iaa">Pokaż nieaktywnych</label></input>
+                <input type="checkbox" id="iaa" name="iaa" onchange="OnLAChange()"><label for="iaa">Pokaż nieaktywnych</label></input>
                 <label for="la">Ogranicz do: </label>
                 <input id="la" type="text" name="la" onchange="OnLAChange()" />
             </p>{/if}
