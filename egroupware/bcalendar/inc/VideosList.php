@@ -14,6 +14,10 @@ while ($row = GetNextRow($dates))
     $ad[]= array('cal_start' => date('H-i-s', $row['cal_start']), 'cal_end' => date('H-i-s', $row['cal_end']));
 }
 $filenames = glob('/usr/local/apache2/htdocs/cam1/*'. $_GET['date'] . '*.{avi,mpeg},/usr/local/etc/Monitoring/*.{avi,mpeg}', GLOB_BRACE);
+if ($filenames === false)
+{
+    $filenames = array();
+}
 foreach ($filenames as $filename)
 {
     $vd = substr($filename, -11, 6);

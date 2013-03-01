@@ -175,7 +175,9 @@ th {
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>
         </table>
     </div>
-    <p class="bc"><strong>Zapłacono gotówką:   {$sum}</strong></p>
+    <p class="bc">
+        Dentysta miał {$vn} wizyt, które łącznie trwały {$hs} h {$mins} min. Wizyta średnio kosztowała {$ac|replace:'.':','} zł, czyli średnio {$ah|replace:'.':','} zł na godzinę.
+    </p>
     <table class="simple lc signature bc">
         <tr><th>Wystawił(a):</th></tr>
         <tr>

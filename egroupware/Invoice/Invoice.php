@@ -101,11 +101,16 @@ if ($_GET['type'] == 'report')
     $TVATVS = array();
 }
 $BruttoToNettoMultiplier = 1 / (1 + 0.01 * $_GET['vat']);
+$ss = 0;
+$vn = 0;
+$vs = 0;
 while($row = GetNextRow($result))
 {
     switch ($_GET['type'])
     {
     case 'report':
+        $vn += 1;
+        $ss += $row['end'] - $row['date'];
         $DentistTable[] = date('d.m.Y',$row['date']). ' r. '.date('G:i',$row['date']) . '&nbsp;-&nbsp;' . date('G:i',$row['end']);
         $DentistTable[] = $row['patient'];
         $DentistTable[] = $row['cal_title'];
@@ -119,6 +124,7 @@ while($row = GetNextRow($result))
         $DentistTable[] = str_replace(" ", $nbsp, number_format($ac, 2, ',', ' ')); //koszt asystenta
         $costs = $row['mc'] + $row['tc'] + $ac;
         $DentistTable[] = str_replace(" ", $nbsp, number_format($costs, 2, ',', ' ')); //suma kosztów
+        $vs += $row['vs'];
         $avbv = $percent * ($row['vs'] - $costs);
         $vbv = round($avbv, 2);
         $avnv = $avbv * $BruttoToNettoMultiplier;
@@ -209,8 +215,28 @@ if (!isset($DentistTable))
     $DentistTable = array('Nie pracował(a)!');
 }
 $smarty->assign('DentistTable', $DentistTable);
+$hs = $ss / 3600;
+$smarty->assign('hs', floor($hs));
+$smarty->assign('mins', ($ss / 60) % 60); 
+$smarty->assign('vn', $vn); 
+if ($vn == 0)
+{
+    $smarty->assign('ac', 0);
+}
+else
+{
+    $smarty->assign('ac', $vs / $vn);
+}
+if ($hs == 0)
+{
+    $smarty->assign('ah', 0);
+}
+else
+{
+    $smarty->assign('ah', $vs / $hs);
+}
 
- 
+
 $slowa = Array(
   'minus',
  

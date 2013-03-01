@@ -47,6 +47,17 @@ function SendQuery($query)
     return $mysqli->query($query);
 }
 /**
+ * Przygotowuje zapytanie SQL
+ *
+ * @param string $query zapytanie w języku SQL
+ * @return mixed przygotowane zapytanie
+ */
+function PrepareStatement($query)
+{
+    global $mysqli;
+    return $mysqli->prepare($query);
+}
+/**
  * Zwraca następny wiersz
  *
  * @param object $result wynik zapytania do bazy danych

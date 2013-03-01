@@ -166,7 +166,21 @@ p#sd {
 p#nbm {
     margin-bottom: 0;
 }
-form#ef label {
-    width: 100px;
+form#ef label.ll {
+    width: 200px;
     display: inline-block;
+}
+p#dp * {
+    vertical-align: middle;
+}
+label.cc {
+    margin-right: 10px;
+    display: inline-block;
+}
+a#erl, a#erl button {
+    position: fixed;
+    right: 10px;
+    text-decoration: none;
+    color: red;
+    font-size: 10px;
 }

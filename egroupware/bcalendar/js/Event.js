@@ -15,38 +15,50 @@ function EnableRepetition()
 }
 $(function()
 {
-    EnableRepetition();
+    //EnableRepetition();
     var match = RegExp('[?&]date=([^&]*)').exec(window.location.search);
     var date = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
     $('.date-pick').datePicker({startDate:'01/01/2013'});
     $('#start').datePicker().val(date[6] + date[7] + '.' + date[4] + date[5] + '.' + date[0] + date[1] + date[2] + date[3]).trigger('change');
 });
-function GetFromScript(script)
+function SetContentFromScript(id, script)
 {
     xmlhttpr = new XMLHttpRequest();
     xmlhttpr.open("GET", script, true);
-    var result;
     xmlhttpr.onreadystatechange = function()
     {
         if (xmlhttpr.readyState == 4 && xmlhttpr.status == 200)
         {
-            result =  xmlhttpr.responseText;
+            if (id == "assistant")
+            {
+                document.getElementById(id).innerHTML =  '<option value="0">Brak</option>' + xmlhttpr.responseText;
+            }
+            else
+            {
+                document.getElementById(id).innerHTML =  xmlhttpr.responseText;
+            }
+            
         }
-    }
+    };
     xmlhttpr.send();
     return result;
 }
 function OnLDChange()
 {
-    document.getElementById("dentist").innerHTML = GetFromScript('DentistOptions.php?search=' + document.ef.ld.value + '&ce=' +
-                                                   document.ef.iad.value);
+    SetContentFromScript("dentist", 'DentistOptions.php?search=' + document.ef.ld.value + '&ce=' + document.ef.iad.checked);
 }
 function OnLAChange()
 {
-    document.getElementById("assistant").innerHTML = GetFromScript('DentistOptions.php?search=' + document.ef.la.value + '&ce=' +
-                                                   document.ef.iaa.value);
+    SetContentFromScript("assistant", 'DentistOptions.php?search=' + document.ef.la.value + '&ce=' + document.ef.iaa.checked);
 }
 function OnLPChange()
 {
-    document.getElementById("assistant").innerHTML = GetFromScript('ContactOptions.php?search=' + document.ef.lp.value);
+    if (document.ef.lp.value != "")
+    {
+        SetContentFromScript("ep", 'ContactOptions.php?search=' + document.ef.lp.value);
+    }
+    else
+    {
+        document.getElementById("patient").innerHTML = '<option value="0">Brak</option>';
+    }
 }

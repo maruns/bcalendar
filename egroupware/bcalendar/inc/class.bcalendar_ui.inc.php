@@ -561,6 +561,15 @@ class bcalendar_ui
 	 */
 	function sidebox_menu()
 	{
+                $ActiveUsers = $GLOBALS['egw']->db->select('egw_accounts',
+                                                           '`account_id`',
+                                                           '`account_expires` > '.intval($_SERVER['REQUEST_TIME']) . 
+                                                           ' OR `account_expires` = -1',__LINE__,
+                                                           __FILE__,false,'',0,
+                                                           0, ''); //pobranie ID aktywnych kont
+                $GLOBALS['egw']->accounts->backend->contacts_join .= 
+                ' WHERE egw_accounts.`account_expires` = -1 OR egw_accounts.`account_expires` > ' . 
+                intval($_SERVER['REQUEST_TIME']); //zmiana zapytania o konta
 		$base_hidden_vars = $link_vars = array();
 		if (@$_POST['keywords'])
 		{
@@ -754,14 +763,47 @@ class bcalendar_ui
 			$grants = array();
 			foreach($this->bo->list_cals() as $grant)
 			{
-				$grants[] = $grant['grantor'];
+                            if ($grant['grantor'] == $this->user || !($grant['grantor'] > 0)) //filtrowanie kont
+                            {
+                                $grants[] = $grant['grantor'];
+                            }
+                            else
+                            {
+                                foreach ($ActiveUsers as $au)
+                                {
+                                    if ($au['account_id'] == $grant['grantor'])
+                                    {
+                                        $grants[] = $grant['grantor'];
+                                        break;
+                                    }
+                                }
+                            }
+                            //$grants[] = $grant['grantor'];
 			}
 			// exclude non-accounts from the account-selection
 			$accounts = array();
 			foreach(explode(',',$this->owner) as $owner)
 			{
-				if (is_numeric($owner)) $accounts[] = $owner;
-			}
+				if (is_numeric($owner))
+                                {$accounts[] = $owner;
+                                    /*if ($owner == $this->user)
+                                    {
+                                        $accounts[] = $owner;
+                                    }
+                                    else
+                                    {
+                                        foreach ($ActiveUsers as $au)
+                                        {echo '<div style="display:none">'; print_r($au); echo '</div>';
+                                            if ($au['account_id'] == $owner)
+                                            {
+                                                $accounts[] = $owner;
+                                                break;
+                                            }
+                                        }
+                                    }*/
+                                    
+                                }
+			}//echo '<div style="display:none">'; print_r($accounts); echo '</div>';
 			if (!$accounts) $grants[''] = lang('None');
 			$file[] = array(
 				'text' => "
@@ -781,16 +823,17 @@ function load_cal(url,id) {
 }
 </script>
 ".
-				$this->accountsel->selection('owner','uical_select_owner',$accounts,'calendar+',count($accounts) > 1 ? 4 : 1,False,
+				$this->accountsel->selection('owner','uical_select_owner',$accounts,'owngroups',count($accounts) > 1 ? 4 : 1,False,
 					' style="width: '.(count($accounts) > 1 && in_array($this->common_prefs['account_selection'],array('selectbox','groupmembers')) ? '100%' : '165px').';"'.
 					' title="'.lang('select a %1',lang('user')).'" size="4" multiple="multiple" onchange="load_cal(\''.
 					$GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => $this->view_menuaction,
 						'date' => $this->date,
-					)).'\',\'uical_select_owner\');"','',$grants),
+					)).'\',\'uical_select_owner\');"','',$grants) . 
+                                 "<input type=\"image\" name=\"search\" value=\"wybierz wiele kont\"  title=\"Wybierz konta\" onclick=\"if (selectBox = document.getElementById('uical_select_owner')) if (!selectBox.multiple) {selectBox.size=4; selectBox.multiple=true; if (selectBox.options[0].value=='') selectBox.options[0] = null; this.src='/egroupware/phpgwapi/templates/default/images/search.png'; this.title='Wyszukaj konta';} else {window.open('/egroupware/index.php?menuaction=phpgwapi.uiaccountsel.popup&app=calendar&use=both&element_id=uical_select_owner&multiple=1','uiaccountsel','width=600,height=400,toolbar=no,scrollbars=yes,resizable=yes');} return false;\" src=\"/egroupware/phpgwapi/templates/default/images/users.png\" />",
 				'no_lang' => True,
 				'link' => False
-			);
+			);//zamiana 'calendar+' na 'owngroups' i wymuszenie pokakazania hiperłącza wybrania kont
 		}
 		// Import & Export
 /*		$file[] = array(
@@ -897,12 +940,12 @@ function load_cal(url,id) {
 </div>';
 		}
                 return '<div class="divSidebox"><div class="divSideboxHeader"><span>Menu kalendarza</span><div class="textSidebox"><a title="Utwórz fakturę zawierającą franszczyzę netto i brutto" onclick="window.open(\'' . $GLOBALS['egw']->link('/Invoice/index.php') . 
-                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
+                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
                         '" />Tworzenie faktury</a><a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/PatientVisits/index.php') . 
                         '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty</a><a title="Czas pracy dentystów - ustaw czas pracy w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
-                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a></div><div class="divSideboxEntry">' .
+                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a></div><div class="divSideboxEntry">' .
                        $file[1]['text'] . '</div><div class="divSideboxEntry">' . $file[2]['text'] . '</div><div class="divSideboxEntry">' . 
                        $file[3]['text'] . '</div><div class="divSideboxEntry">' . $file[4]['text'] . '</div><div class="divSideboxEntry">' . 
                        $file[5]['text'] . '</div><div class="divSideboxEntry">' . $file[6]['text'] . '</div><div class="divSideboxEntry">' . 

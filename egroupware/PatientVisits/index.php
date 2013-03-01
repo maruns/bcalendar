@@ -1,7 +1,7 @@
 <?php  
 $GLOBALS['egw_info'] = array(
         'flags' => array(
-                'currentapp' => 'calendar',
+                'currentapp' => 'bcalendar',
                 'noheader'   => True
         ),
 );

@@ -173,6 +173,10 @@ class bcalendar_uiviews extends bcalendar_ui {
 
     // standard params for calling bocal::search for all views
     $this->owner = str_replace('%2C', ',', $this->owner);
+    if (!is_null($_GET['owner']))
+    {
+        $this->owner = $_GET['owner'];
+    }
     $this->search_params = array(
         'start' => $this->date,
         'cat_id' => $this->cat_id,
