@@ -1467,7 +1467,14 @@ SCRIPT;
         $html .= $indent . "\t" . '<div id="' . $droppableID . '" style="height:' . $this->rowHeight . 'px; top: ' . $i * $this->rowHeight .
                 'px;" class="calAddEvent'.$ec.'"'; //ze stylem zależnym od czasu pracy
         if ($this->allowEdit) {
-          $html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/index.php', $linkData)) . ';return false;"'; //z etykietą
+          //$html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/index.php', $linkData)) . ';return false;"'; //z etykietą
+            $EventWindowFields = $linkData; //skopiowanie tablicy pól łańcucha zapytania
+            unset($EventWindowFields['menuaction']); //usunięcie akcji z łańcucha zapytania
+            $html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/bcalendar/inc/Event.php', $EventWindowFields), 
+                                                            '_blank',
+                                                            750,
+                                                            'window.height') . 
+                     ';return false;"'; //z etykietą i nowym oknem zdarzenia
         }
         $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].$cwt.'</div></div>' . "\n"; //tekst w komórce
         if (is_object($this->dragdrop) && $dropPermission) {
@@ -1769,9 +1776,10 @@ SCRIPT;
       if ($event['recur_type'] != MCAL_RECUR_NONE) {
         $popup = ' onclick="edit_series(' . $event['id'] . ',' . $this->bo->date2string($event['start']) . ');"';
       } else {
-        $view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
-
-        $popup = ' onclick="' . $this->popup($view_link) . '; return false;"';
+        //$view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
+        $view_link = egw::link('/bcalendar/inc/Event.php',
+                               array('cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start']))); //nowe okno dla edycji
+        $popup = ' onclick="' . $this->popup($view_link, '_blank', 750, 'window.height') . '; return false;"';
       }
     }
     //_debug_array($event);

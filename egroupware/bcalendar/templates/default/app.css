@@ -560,10 +560,13 @@ p#vl, a.ael {
 p#vl a:hover, a.ael:hover {
     color: darkgoldenrod;
 }
-div.divSidebox {
+div.divSidebox { /*panel boczny*/
     float: left;
-    width: 203px;
+    width: 207px; /* dostosowanie szerokości do "mini-kalendarza" */
     margin-left: -8px;
+}
+div.divSidebox div.divSidebox { /* "Ustawienia", "Administracja" */
+    margin-left: 0px;
 }
 .textSidebox {
     font-size: 9px !important;

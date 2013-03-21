@@ -529,7 +529,7 @@ class bcalendar_ui
 	 */
 	function add_link($content,$date=null,$hour=null,$minute=0,array $vars=null)
 	{
-		$vars['menuaction'] = 'bcalendar.bcalendar_uiforms.edit';
+//		$vars['menuaction'] = 'bcalendar.bcalendar_uiforms.edit';
 		$vars['date'] =  $date ? $date : $this->date;
 
 		if (!is_null($hour))
@@ -537,8 +537,10 @@ class bcalendar_ui
 			$vars['hour'] = $hour;
 			$vars['minute'] = $minute;
 		}
-		return html::a_href($content,'/index.php',$vars,' target="_blank" title="'.html::htmlspecialchars(lang('Add')).
-			'" onclick="'.$this->popup('this.href','this.target').'; return false;"');
+//		return html::a_href($content,'/index.php',$vars,' target="_blank" title="'.html::htmlspecialchars(lang('Add')).
+//			'" onclick="'.$this->popup('this.href','this.target').'; return false;"');
+                return html::a_href($content,'/bcalendar/inc/Event.php',$vars,' target="_blank" title="'.html::htmlspecialchars(lang('Add')).
+			'" onclick="'.$this->popup('this.href','this.target', 750, 'window.height').'; return false;"');
 	}
 
 	/**

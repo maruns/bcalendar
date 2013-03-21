@@ -1,25 +1,48 @@
 function EnableRepetition()
 {
-    if (document.ef.repetition.value === "no")
+    if (document.forms.ef.repetition.value === "no")
     {   
-        document.ef.interval.disabled = true;
-        document.ef.re.disabled = true;
-        document.ef.odwh.disabled = true;
+        document.forms.ef.interval.disabled = true;
+        document.forms.ef.re.disabled = true;
+        document.forms.ef.odwh.disabled = true;
     }
     else
     {
-        document.ef.interval.disabled = false;
-        document.ef.re.disabled = false;
-        document.ef.odwh.disabled = false;
+        document.forms.ef.interval.disabled = false;
+        document.forms.ef.re.disabled = false;
+        document.forms.ef.odwh.disabled = false;
+    }
+}
+function OnTitleChange()
+{
+    if (($.trim(document.forms.ef.title.value)).length === 0)
+    {
+        document.getElementById("tp").style.backgroundColor = 'red';
+    }
+    else
+    {
+        document.getElementById("tp").style.backgroundColor = '';
     }
 }
 $(function()
 {
     //EnableRepetition();
+    OnTitleChange();
     var match = RegExp('[?&]date=([^&]*)').exec(window.location.search);
     var date = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
     $('.date-pick').datePicker({startDate:'01/01/2013'});
-    $('#start').datePicker().val(date[6] + date[7] + '.' + date[4] + date[5] + '.' + date[0] + date[1] + date[2] + date[3]).trigger('change');
+    if (date)
+    {
+        $('#date').datePicker().val(date[6] + date[7] + '.' + date[4] + date[5] + '.' + date[0] + date[1] + date[2] + date[3])
+                                .trigger('change');
+    }
+    else
+    {
+        if (($.trim(document.forms.ef.title.value)).length === 0)
+        {
+            $('#date').datePicker().val(new Date().asString()).trigger('change');
+        }
+    }
 });
 function SetContentFromScript(id, script)
 {
@@ -45,17 +68,17 @@ function SetContentFromScript(id, script)
 }
 function OnLDChange()
 {
-    SetContentFromScript("dentist", 'DentistOptions.php?search=' + document.ef.ld.value + '&ce=' + document.ef.iad.checked);
+    SetContentFromScript("dentist", 'DentistOptions.php?search=' + document.forms.ef.ld.value + '&ce=' + document.forms.ef.iad.checked);
 }
 function OnLAChange()
 {
-    SetContentFromScript("assistant", 'DentistOptions.php?search=' + document.ef.la.value + '&ce=' + document.ef.iaa.checked);
+    SetContentFromScript("assistant", 'DentistOptions.php?search=' + document.forms.ef.la.value + '&ce=' + document.forms.ef.iaa.checked);
 }
 function OnLPChange()
 {
-    if (document.ef.lp.value != "")
+    if (document.forms.ef.lp.value != "")
     {
-        SetContentFromScript("ep", 'ContactOptions.php?search=' + document.ef.lp.value);
+        SetContentFromScript("ep", 'ContactOptions.php?search=' + document.forms.ef.lp.value);
     }
     else
     {
