@@ -45,6 +45,7 @@ while($row = GetNextRow($result))
     $smarty->assign('place', $row['adr_one_locality']);
 }
 $nbsp = utf8_encode("\xA0");
+$dn = array();
 $gprn = array();
 $netto = 0;
 $brutto = 0;
@@ -116,10 +117,10 @@ while($row = GetNextRow($result))
         $DentistTable[] = $row['cal_title'];
         $DentistTable[] = $row['cal_description'];
         $DentistTable[] = $row['cat_name'];
-        $DentistTable[] = str_replace(" ", $nbsp, number_format($row['vs'], 2, ',', ' ')); //Kwota zapłacona 
+        $DentistTable[] = str_replace(" ", $nbsp, number_format(floatval($row['vs']), 2, ',', ' ')); //Kwota zapłacona 
         $DentistTable[] = $row['tn'];
-        $DentistTable[] = str_replace(" ", $nbsp, number_format($row['tc'], 2, ',', ' ')); //Koszt technika
-        $DentistTable[] = str_replace(" ", $nbsp, number_format($row['mc'], 2, ',', ' ')); //Materiały
+        $DentistTable[] = str_replace(" ", $nbsp, number_format(floatval($row['tc']), 2, ',', ' ')); //Koszt technika
+        $DentistTable[] = str_replace(" ", $nbsp, number_format(floatval($row['mc']), 2, ',', ' ')); //Materiały
         $ac = $row['ac']*($row['end'] - $row['date'])/3600;
         $DentistTable[] = str_replace(" ", $nbsp, number_format($ac, 2, ',', ' ')); //koszt asystenta
         $costs = $row['mc'] + $row['tc'] + $ac;
@@ -149,7 +150,6 @@ while($row = GetNextRow($result))
         $tas[$row['tn']] += $ac;
         $tcs[$row['tn']] += $costs;
         $TVATVS[$row['tn']] += $VVAT;
-        $dn = array();
         break;
     case 'invoice':
         switch($row['cal_extra_name'])
@@ -171,6 +171,7 @@ while($row = GetNextRow($result))
                 
         }
         $LastDate = date('m/Y', $row['date']);
+        break;              
     }
 }
 CloseConnection();
