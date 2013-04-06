@@ -215,6 +215,95 @@ div.combobox	span	{
     margin-left: -6px;
     font-size: 10px !important;
 }
+#multi-level {
+    height:18px; 
+    position:absolute;
+    top: 10px;
+    z-index:100; 
+    background:#fff url(bcalendar/templates/default/images/image_drop_back.gif) repeat-x; 
+    padding-left:1px;
+    border:1px solid #000; 
+    border-width:0 1px;
+    display: table-cell;
+}
+.menu, .menu ul {
+    list-style-type:none; 
+    padding:0; 
+    margin:0; 
+    font-family:arial, sans-serif; 
+    font-size:11px;
+}
+.menu li.top {
+    display:block; 
+    float:left; 
+    position:relative;
+}
+.menu li.top a.top_link {
+    display:block; 
+    float:left; 
+    height:18px; 
+    line-height:18px; 
+    text-decoration:none; 
+    margin-left: -3px;
+    color:#fff; 
+    background: url(bcalendar/templates/default/images/image_drop_1a.gif); 
+    padding:0;
+    border-left:1px solid #000; 
+    border-width:0 1px;
+}
+.menu li.top a.top_link span.span_top {
+    display:block; 
+    float:left; 
+    height:18px; 
+    background: url(bcalendar/templates/default/images/image_drop_1a.gif) right top; 
+    padding:0 27px 0 0;margin-left: 3px;
+}
+.menu li.top a.top_link span.drop {
+    background: url(bcalendar/templates/default/images/image_drop_0a.gif) right top; 
+    padding: 0 25px 0 0;
+    cursor: default;
+    color: #fff;
+}
+.menu a:hover {
+    visibility: visible; 
+    position:relative;
+}
+.menu li:hover {
+    position:relative; 
+    z-index:200;
+}
+.menu li.top a.top_link:hover, .menu li.top:hover a.top_link {
+    background: url(bcalendar/templates/default/images/image_drop_1b.gif);
+}
+.menu li.top a.top_link:hover span.span_top,
+.menu li.top:hover a.top_link span.span_top {background: url(bcalendar/templates/default/images/image_drop_1b.gif) right top;}
+.menu li.top a.top_link:hover span.drop,
+.menu li.top:hover a.top_link span.drop {background: url(bcalendar/templates/default/images/image_drop_0b.gif) right top;}
+.menu ul, 
+.menu ul ul, 
+.menu :hover ul :hover ul ul,
+.menu :hover ul :hover ul :hover ul ul,
+.menu :hover ul :hover ul :hover ul :hover ul ul {position:absolute; left:-9999px; top:-9999px; width:0; height:0;}
+.menu :hover ul.sub {left:0; top:18px; background: transparent; padding:3px 0 0 0; white-space:nowrap; width:135px; height:auto;}
+.menu :hover ul.sub li {display:block; float:left;}
+.menu :hover ul.sub li a {display:block; float:left; height:17px; width:235px; line-height:17px; color:#000; text-decoration:none; padding:0; background: url(bcalendar/templates/default/images/dropa_0.gif) no-repeat;
+    cursor: default;
+}
+.menu :hover ul.sub li a span
+{display:block; float:left; background: url(bcalendar/templates/default/images/drop_0.gif) right top; height:17px; width:192px; padding:0 10px 0 5px; font-weight:normal; color:#000;}
+.menu :hover ul.sub li a:hover,
+.menu :hover ul.sub li a:hover ul li a:hover,
+.menu :hover ul.sub li a:hover ul li a:hover ul li a:hover,
+.menu :hover ul.sub li a:hover ul li a:hover ul li a:hover ul li a:hover,
+.menu :hover ul.sub li a:hover ul li a:hover ul li a:hover ul li a:hover ul li a:hover
+{background: url(bcalendar/templates/default/images/dropba_1.gif) no-repeat; height:17px; line-height:17px; color:#fff;}
+.menu :hover ul.sub li a:hover span
+{background: url(bcalendar/templates/default/images/drop_1.gif) right top; color:#fff;}
+.menu :hover ul :hover ul,
+.menu :hover ul :hover ul :hover ul,
+.menu :hover ul :hover ul :hover ul :hover ul,
+.menu :hover ul :hover ul :hover ul :hover ul :hover ul
+{left:107px; top:0; background:transparent; padding:5px 5px 5px 0; white-space:nowrap; width:220px; z-index:200; height:auto;}
 select#ep {
     width: 170px !important;
 }
@@ -236,6 +325,9 @@ p#dp * {
 label.cc {
     margin-right: 10px;
     display: inline-block;
+}
+form#ef textarea#description {
+    width: 400px;
 }
 a#erl {
     position: fixed;

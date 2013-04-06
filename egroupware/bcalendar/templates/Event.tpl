@@ -14,6 +14,18 @@
       <link type="text/css" rel="stylesheet" href="../../Windows.css" />
     </head>
     <body{if $OpenerShouldBeRefreshed || $WindowShouldBeClosed} onload="{if $OpenerShouldBeRefreshed}opener.location.href = opener.location.href + '&amp;msg=' + {$msg};{/if}{if $WindowShouldBeClosed}{if $StandardWindowShouldBeOpened}egw_openWindowCentered2('/egroupware/index.php?menuaction=bcalendar.bcalendar_uiforms.edit{$OldQueryString}','_blank',750,410,'yes');{/if}window.close();{/if}"{/if}>
+        {if $products}<div id="multi-level">
+            <ul class="menu">
+                <li class="top">
+                    <a class="top_link"><span class="span_top drop">Wstaw dane ze sklepu</span></a>
+                    <ul class="sub">{foreach $products as $product}
+                        <li><a onclick="InsertData('{$product['product_id']}', '{$product['title']}', '{$product['commerce_price_amount']}', '{$product['field_koszty_00cznie_amount']}', '{$product['field_koszty_technika_amount']}', '{$product['name']}')">
+                                <span>{$product['title']}</span>
+                        </a></li>
+                    {/foreach}</ul>
+                </li>
+            </ul>
+        </div>{/if}
         <form id="ef" action="Event.php" method="post" enctype="multipart/form-data">
             <p id="tp">
                 <label class="ll" for="title">Tytuł: </label>
@@ -55,9 +67,7 @@
                     <a title="7 h 30 min">450</a>
                     <a title="8 h">480</a>
                 </div>
-            </div>
-            
-            
+            </div>      
             <script type="text/javascript" charset="utf-8">
                 var no = new ComboBox('time');
             </script>

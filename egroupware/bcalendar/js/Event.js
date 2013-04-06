@@ -52,19 +52,23 @@ function SetContentFromScript(id, script)
     {
         if (xmlhttpr.readyState == 4 && xmlhttpr.status == 200)
         {
-            if (id == "assistant")
+            switch(id)
             {
-                document.getElementById(id).innerHTML =  '<option value="0">Brak</option>' + xmlhttpr.responseText;
+                case "assistant":
+                    document.getElementById(id).innerHTML =  '<option value="0">Brak</option>' + xmlhttpr.responseText;
+                    break;
+                case "description":
+                    if (xmlhttpr.responseText != '')
+                    {
+                        document.forms.ef.description.value = xmlhttpr.responseText;
+                    }
+                    break;
+                default:
+                    document.getElementById(id).innerHTML =  xmlhttpr.responseText;
             }
-            else
-            {
-                document.getElementById(id).innerHTML =  xmlhttpr.responseText;
-            }
-            
         }
     };
     xmlhttpr.send();
-    return result;
 }
 function OnLDChange()
 {
@@ -84,4 +88,33 @@ function OnLPChange()
     {
         document.getElementById("patient").innerHTML = '<option value="0">Brak</option>';
     }
+}
+function InsertData(id, title, price, TotalCost, TechnicianCosts, category)
+{
+    document.forms.ef.title.value = title;
+    OnTitleChange();
+    document.forms.ef.suma_na_wizycie.value = price / 100;
+    if (TotalCost != '')
+    {
+        document.forms.ef.koszty_łącznie.value = TotalCost / 100;
+    }
+    if (TechnicianCosts != '')
+    {
+        document.forms.ef.koszty_technika.value = TechnicianCosts / 100;
+    }
+    if (category != '')
+    {
+        for (var i = 1; i < document.forms.ef.category.length; i++)
+        {
+            if (document.forms.ef.category.options[i].text.indexOf(category) == 0)
+            {
+                document.forms.ef.category.options[i].selected = true;
+            }
+            else
+            {
+                document.forms.ef.category.options[i].selected = false;
+            }
+        }
+    }
+    SetContentFromScript("description", 'ProductDescription.php?id=' + id);
 }
