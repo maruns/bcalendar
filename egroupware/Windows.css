@@ -171,6 +171,9 @@ form#ef label.ll {
 form#ef fieldset label.ll {
     width: 210px;
 }
+form#ef input#title {
+    width: 400px;
+}
 div.combobox	{
     position: relative;
     zoom: 1;
@@ -290,7 +293,7 @@ div.combobox	span	{
     cursor: default;
 }
 .menu :hover ul.sub li a span
-{display:block; float:left; background: url(bcalendar/templates/default/images/drop_0.gif) right top; height:17px; width:192px; padding:0 10px 0 5px; font-weight:normal; color:#000;}
+{display:block; float:left; background: url(bcalendar/templates/default/images/drop_0.gif) right top; height:17px; width:392px; padding:0 10px 0 5px; font-weight:normal; color:#000;}
 .menu :hover ul.sub li a:hover,
 .menu :hover ul.sub li a:hover ul li a:hover,
 .menu :hover ul.sub li a:hover ul li a:hover ul li a:hover,

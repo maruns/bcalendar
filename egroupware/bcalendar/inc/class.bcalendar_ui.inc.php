@@ -195,8 +195,9 @@ class bcalendar_ui
 			}
 		}
 		if (count($no_access))
-		{
-			$msg = '<p class="redItalic" align="center">'.lang('Access denied to the bcalendar of %1 !!!',implode(', ',$no_access))."</p>\n";
+		{       
+                        $msg = $this->sidebox_menu();
+			$msg .= '<p class="redItalic" align="center">'.lang('Access denied to the bcalendar of %1 !!!',implode(', ',$no_access))."</p>\n";
 
 			if ($GLOBALS['egw_info']['flags']['currentapp'] == 'home')
 			{

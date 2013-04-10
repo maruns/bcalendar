@@ -334,10 +334,10 @@ else
          $categories[$row['cat_id']] = $row['cat_name'] . ' - ' . $row['cat_appname'];
     }
     $smarty->assign('categories', $categories);
-    $result = SendQuery("SELECT `commerce_product`.title, `commerce_product`.product_id, `field_data_commerce_price`.commerce_price_amount, `field_revision_field_koszty_00cznie`.`field_koszty_00cznie_amount`, `field_revision_field_koszty_technika`.`field_koszty_technika_amount`, `taxonomy_term_data`.`name` FROM Bluedental.`commerce_product`
+    $result = SendQuery("SELECT `commerce_product`.title, `commerce_product`.product_id, `field_data_commerce_price`.commerce_price_amount, `field_data_field_koszty_00cznie`.`field_koszty_00cznie_amount`, `field_data_field_koszty_technika`.`field_koszty_technika_amount`, `taxonomy_term_data`.`name` FROM Bluedental.`commerce_product`
 LEFT JOIN Bluedental.`field_data_commerce_price` ON `commerce_product`.product_id = Bluedental.`field_data_commerce_price`.entity_id 
-LEFT JOIN Bluedental.`field_revision_field_koszty_00cznie` ON `commerce_product`.product_id = `field_revision_field_koszty_00cznie`.entity_id
-LEFT JOIN Bluedental.`field_revision_field_koszty_technika` ON `commerce_product`.product_id = `field_revision_field_koszty_technika`.entity_id
+LEFT JOIN Bluedental.`field_data_field_koszty_00cznie` ON `commerce_product`.product_id = `field_data_field_koszty_00cznie`.entity_id
+LEFT JOIN Bluedental.`field_data_field_koszty_technika` ON `commerce_product`.product_id = `field_data_field_koszty_technika`.entity_id
 LEFT JOIN (Bluedental.`taxonomy_term_data`, Bluedental.`field_data_field_category`) ON (`commerce_product`.product_id = `field_data_field_category`.`entity_id` AND `taxonomy_term_data`.`tid` = `field_data_field_category`.`field_category_tid`)
 WHERE Bluedental.`commerce_product`.`type` = 'visits'");
     while ($row = GetNextRow($result))

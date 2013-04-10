@@ -153,7 +153,7 @@ class bcalendar_uiviews extends bcalendar_ui {
    * @param array $set_states=null to manualy set / change one of the states, default NULL = use $_REQUEST
    */
   function __construct($set_states = null) {
-      
+  
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
     $this->date = $_GET['date'];
