@@ -71,17 +71,32 @@
             <script type="text/javascript" charset="utf-8">
                 var no = new ComboBox('time');
             </script>
-            {if $PatientCanBeChanged}<p>
-                <label class="ll" for="lp">Pacjent: </label>
+            {*if $PatientCanBeChanged*}
+            <p>
+                
+                <label for="lp" class="ll">Pacjent: </label>
                 <input id="lp" type="text" name="lp" onchange="OnLPChange()" onkeydown="OnLPChange()" />
-                <select id="ep" name="patient">
+                <select id="ep" name="patient" onchange="OnPatientChange()">
                     <option value="0">Brak</option>
-                {if $patient}<option value="{$patient}" selected="selected">{$pn}</option>{/if}
+                    <option value="-1">Nowy</option>
+                    {if $patient}<option value="{$patient}" selected="selected">{$pn}</option>{/if}
                 </select>
                 <label for="status">&nbsp;</label>
                 {html_options id="status" name=status options=$so selected=$status}
-            </p>{/if}
-            {if $DentistCanBeChanged}
+            </p>
+            <p id="nup">
+                
+                <label for="npn">Imię: </label>
+                <input id="npn" type="text" name="npn" />
+                <label for="nps">Nazwisko: </label>
+                <input id="nps" type="text" name="nps" />
+                <label for="phone">Pref. numer kom.: </label>
+                <input id="phone" type="text" name="phone" />
+                <label for="pesel">PESEL:</label>
+                <input id="pesel" type="text" name="pesel" />
+            </p>
+            {*/if*}
+            {*if $DentistCanBeChanged*}
                 <p>
                     <label class="ll" for="dentist">Dentysta: </label>
                     {html_options id="dentist" name=dentist options=$dentists selected=$owner}
@@ -91,15 +106,15 @@
                 </p>
                 <!--<p id="overlapping">&nbsp;</p>
                 <p id="whi">&nbsp;</p>-->
-            {/if}
-            {if $AssistantCanBeChanged}<p>
+            {*/if*}
+            {*if $AssistantCanBeChanged*}<p>
                 <label class="ll" for="assistant">Asystent: </label>
                 {html_options id="assistant" name=assistant options=$assistants selected=$assistant}
                 <label for="iaa"><input type="checkbox" id="iaa" name="iaa" onchange="OnLAChange()"/>Pokaż innych użytkowników</label>
                 <label for="la">Ogranicz do: </label>
                 <input id="la" type="text" name="la" onchange="OnLAChange()" onkeydown="OnLAChange()" />
                 {if $assistant}<input type="hidden" name="old_assistant" value="{$assistant}"/>{/if}
-            </p>{/if}
+            </p>{*/if*}
             <p id="dp">
                 <label class="ll" for="description">Opis: </label>
                 <textarea id="description" name="description" rows="4" cols="20">{$description}</textarea>

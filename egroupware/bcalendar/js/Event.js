@@ -24,10 +24,38 @@ function OnTitleChange()
         document.getElementById("tp").style.backgroundColor = '';
     }
 }
+
+function OnPatientChange()
+{
+    if (document.getElementById("ep").value == "-1")
+    {
+        document.getElementById("nup").style.display = "inline";
+        var str = document.forms.ef.lp.value;
+        var n = str.split(" ");
+        String.prototype.capitalize = function()
+        {
+            return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
+        };
+        if (n.length > 1)
+        {
+            document.forms.ef.npn.value = n[0].capitalize();
+            document.forms.ef.nps.value = str.replace(n[0] + " ", "").capitalize();
+        }
+        else
+        {
+            document.forms.ef.nps.value = n[0].capitalize();
+        }
+    }
+    else
+    {
+        document.getElementById("nup").style.display = "none";
+    }
+}
 $(function()
 {
     //EnableRepetition();
     OnTitleChange();
+    OnPatientChange();
     var match = RegExp('[?&]date=([^&]*)').exec(window.location.search);
     var date = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
     $('.date-pick').datePicker({startDate:'01/01/2013'});
@@ -63,6 +91,9 @@ function SetContentFromScript(id, script)
                         document.forms.ef.description.value = xmlhttpr.responseText;
                     }
                     break;
+                case "ep":
+                    document.getElementById(id).innerHTML =  xmlhttpr.responseText + '<option value="-1">Nowy</option>';
+                    break;
                 default:
                     document.getElementById(id).innerHTML =  xmlhttpr.responseText;
             }
@@ -86,7 +117,7 @@ function OnLPChange()
     }
     else
     {
-        document.getElementById("patient").innerHTML = '<option value="0">Brak</option>';
+        document.getElementById("patient").innerHTML = '<option value="0">Brak</option><option value="-1">Nowy</option>';
     }
 }
 function InsertData(id, title, price, TotalCost, TechnicianCosts, category)

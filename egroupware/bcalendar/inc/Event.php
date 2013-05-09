@@ -28,6 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
     $sm = intval($_POST['sm']);
     $time = intval($_POST['time']);
     $end = $sh * 60 + $sm + $time;
+    $nps = EscapeSpecialCharacters(trim($_POST['nps']));
+    $npn = EscapeSpecialCharacters(trim($_POST['npn']));
+    $phone = EscapeSpecialCharacters(trim($_POST['phone']));
+    $pesel = EscapeSpecialCharacters(trim($_POST['pesel']));
     foreach ($_POST as $key=>$value)
     {
         if ($key[0] == '_')
@@ -54,7 +58,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
         }
         else
         {
-            $PatientUpdateQuery = "";
+            if ($_POST['patient'] == "-1")
+            {
+                $PatientUpdateQuery = "; INSERT INTO `egw_addressbook` (contact_owner, n_family, n_given, n_fn, n_fileas, tel_cell, tel_prefer, contact_created, contact_creator, contact_modified, contact_uid) VALUES (-329, '" . $nps . "', '" . $npn . "', '" . $npn . " " . $nps . "', '" . $nps . ", " . $npn . "', '" . $phone . "', 'tel_cell', " . $modified . ", -329, " . $modified . ", concat_ws('-', 'addressbook', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_addressbook'), 'd2dad1acdc42885bfaa1a4046cb5c5ec'));";
+                if ($pesel && !is_null($pesel) && $pesel != '')
+                {
+                    $PatientUpdateQuery .= " INSERT INTO `egw_addressbook_extra`  (`contact_id`, `contact_owner`, `contact_name`, `contact_value`) VALUES (LAST_INSERT_ID(), 0, 'PESEL', " . $pesel . "); ";
+                }
+                if ($_POST['old_patient'] > 0)
+                {
+                    $PatientUpdateQuery .= " UPDATE egw_cal_user SET cal_user_type = 'c', cal_user_id = LAST_INSERT_ID(), cal_status = '" . $_POST['status'] . "' WHERE cal_role = 'REQ-PARTICIPANT' AND cal_id = " . $id . ";";
+                }
+                else
+                {
+                    $PatientUpdateQuery .= " INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (" . $id . ", 'c', LAST_INSERT_ID(), 'REQ-PARTICIPANT', '" . $_POST['status'] . "'); ";
+                }
+            }
+            else
+            {
+                $PatientUpdateQuery = ""; 
+            }
         }
         SendQueries("UPDATE `egw_cal` SET cal_title='" . $title . "', `cal_owner` = " . $dentist . ", cal_public = " . $public . ", `cal_modified` = " . $modified . ", cal_description = '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', cal_modifier = " . $dentist . ", cal_category = '" . intval($_POST['category']) . "' WHERE cal_id = " . $id .
                     "; UPDATE egw_cal_dates SET cal_start = " . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . ", cal_end = " . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60))  . " WHERE cal_id = " . $id . $PatientUpdateQuery);
@@ -97,33 +120,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
         if (!$_POST['more'])
         {
             SendQueries("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_category`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_description`,`cal_modifier`, `cal_creator`, `cal_created`) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), " . $dentist . ", '" . intval($_POST['category']) . "', '" . $modified . "', 2, " . $public . ", '" . $title . "', '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', " . $dentist . ", " . $dentist . ", " . $modified . "); INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (LAST_INSERT_ID()," . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . "," . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60)) . ")");
-            $result = SendQuery("SELECT LAST_INSERT_ID()");
-            while ($row = GetNextRow($result))
+            //$result = SendQuery("SELECT LAST_INSERT_ID()");
+            //            while ($row = GetNextRow($result))
+//            {
+//                $id = $row['LAST_INSERT_ID()'];
+//            }
+            $LIIDS = PrepareStatement("SELECT LAST_INSERT_ID()");
+            if (is_object($LIIDS))
             {
-                $id = $row['LAST_INSERT_ID()'];
-            }
-            $statement = PrepareStatement("INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (".$id.", ?, ?, ?, ?)");
-            if (is_object($statement))
-            {
-                $type = 'u';
-                $role = 'CHAIR';
-                $status = 'A';
-                $statement->bind_param('ssss', $type, $dentist, $role, $status);
-                $statement->execute();
-                if ($assistant > 0)
+                $LIIDS->execute();
+                $LIIDS->bind_result($id);
+                while ($LIIDS->fetch())
                 {
-                    $role = 'assistant';
-                    $statement->bind_param('ssss', $type, $assistant, $role, $status);
-                    $statement->execute();
                 }
-                if ($patient > 0)
+            
+                $statement = PrepareStatement("INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (".$id.", ?, ?, ?, ?)");
+                if (is_object($statement))
                 {
-                    $type = 'c';
-                    $role = 'REQ-PARTICIPANT';
-                    $statement->bind_param('ssss', $type, $patient, $role, $_POST['status']);
+                    $type = 'u';
+                    $role = 'CHAIR';
+                    $status = 'A';
+                    $statement->bind_param('ssss', $type, $dentist, $role, $status);
                     $statement->execute();
+                    if ($assistant > 0)
+                    {
+                        $role = 'assistant';
+                        $statement->bind_param('ssss', $type, $assistant, $role, $status);
+                        $statement->execute();
+                    }
+                    if ($patient == -1)
+                    {
+                        $modified = intval($_SERVER['REQUEST_TIME']);
+                        SendQueryQuickly("INSERT INTO `egw_addressbook` (contact_owner, n_family, n_given, n_fn, n_fileas, tel_cell, tel_prefer, contact_created, contact_creator, contact_modified, contact_uid) VALUES (-329, '" . $nps . "', '" . $npn . "', '" . $npn . " " . $nps . "', '" . $nps . ", " . $npn . "', '" . $phone . "', 'tel_cell', " . $modified . ", -329, " . $modified . ", concat_ws('-', 'addressbook', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_addressbook'), 'd2dad1acdc42885bfaa1a4046cb5c5ec'))");
+                        $LIIDS = PrepareStatement("SELECT LAST_INSERT_ID()");
+                        $LIIDS->execute();
+                        $LIIDS->bind_result($patient);
+                        while ($LIIDS->fetch())
+                        {
+                        }
+                        if ($pesel && !is_null($pesel) && $pesel != '')
+                        {
+                            SendQueryQuickly("INSERT INTO `egw_addressbook_extra`  (`contact_id`, `contact_owner`, `contact_name`, `contact_value`) VALUES (" . $patient . ", 0, 'PESEL', " . $pesel . ")");
+                        }
+                    }
+                    if ($patient > 0)
+                    {
+                        $type = 'c';
+                        $role = 'REQ-PARTICIPANT';
+                        $statement->bind_param('ssss', $type, $patient, $role, $_POST['status']);
+                        $statement->execute();
+                    }
+                    $statement->close();
                 }
-                $statement->close();
+                $LIIDS->close();
             }
             if (is_array($acf))
             {

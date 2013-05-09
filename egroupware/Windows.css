@@ -310,6 +310,21 @@ div.combobox	span	{
 select#ep {
     width: 170px !important;
 }
+form#ef p#nup {
+    display: none;
+}
+form#ef input#npn {
+    width: 100px;
+}
+form#ef input#nps {
+    width: 150px;
+}
+input#phone {
+    width: 90px;
+}
+input#pesel {
+    width: 80px;
+}
 form#ef input#date {
     margin-left: 219px;
 }
@@ -330,7 +345,8 @@ label.cc {
     display: inline-block;
 }
 form#ef textarea#description {
-    width: 400px;
+    width: 450px;
+    height: 50px;
 }
 a#erl {
     position: fixed;
