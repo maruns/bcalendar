@@ -157,6 +157,9 @@ class bcalendar_uiviews extends bcalendar_ui {
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
     $this->date = $_GET['date'];
+    $this->year = substr($this->date, 0, 4);
+    $this->month = substr($this->date, 4, 2);
+    $this->day = substr($this->date, 6, 2);
     $GLOBALS['egw_info']['flags']['nonavbar'] = False;
     $app_header = array(
         'day' => lang('Dayview'),
@@ -1632,7 +1635,7 @@ SCRIPT;
     }
     $is_private = !$this->bo->check_perms(EGW_ACL_READ, $event);
 
-    $icons = !$is_private ? $this->event_icons($event) : array(html::image('calendar', 'private', lang('private')));
+    $icons = !$is_private ? $this->event_icons($event) : array(html::image('bcalendar', 'private', lang('private')));
     $cats = $this->bo->categories($this->categories->check_list(EGW_ACL_READ, $event['category']), $color);
     // these values control varius aspects of the geometry of the eventWidget
     $small_trigger_width = 120 + 20 * count($icons);
