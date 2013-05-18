@@ -13,7 +13,7 @@
       <link type="text/css" rel="stylesheet" href="../../DatePicker/datePicker.css" />
       <link type="text/css" rel="stylesheet" href="../../Windows.css" />
     </head>
-    <body{if $OpenerShouldBeRefreshed || $WindowShouldBeClosed} onload="{if $OpenerShouldBeRefreshed}opener.location.href = opener.location.href + '&amp;msg=' + {$msg};{/if}{if $WindowShouldBeClosed}{if $StandardWindowShouldBeOpened}egw_openWindowCentered2('/egroupware/index.php?menuaction=bcalendar.bcalendar_uiforms.edit{$OldQueryString}','_blank',750,410,'yes');{/if}window.close();{/if}"{/if}>
+    <body{if $OpenerShouldBeRefreshed || $WindowShouldBeClosed} onload="{if $OpenerShouldBeRefreshed}opener.location.href = opener.location.href + '&amp;msg=' + {$msg};{/if}{if $WindowShouldBeClosed}{if $StandardWindowShouldBeOpened}egw_openWindowCentered2('/egroupware/index.php?menuaction=bcalendar.bcalendar_uiforms.edit&{$OldQueryString}&cal_id={$id}','_blank',800,410,'yes');{/if}window.close();{/if}"{/if}>
         {if $products}<div id="multi-level">
             <ul class="menu">
                 <li class="top">
@@ -30,7 +30,11 @@
             <p id="tp">
                 <label class="ll" for="title">Tytuł: </label>
                 <input onkeydown="OnTitleChange()" onchange="OnTitleChange()" type="text"{if $title} value="{$title}"{/if} id="title" name="title" />&nbsp;{if $id}#{$id}<input type="hidden" name="id" value="{$id}"/>{/if}
-                {if $CurrentQueryString}<input type="hidden" name="old_qs" value="{$CurrentQueryString}"/>{/if}
+                {if $CurrentQueryString}
+                    <input type="hidden" name="old_qs" value="{$CurrentQueryString}"/>
+                    {else}
+                    {if $OldQueryString}<input type="hidden" name="old_qs" value="{$OldQueryString}"/>{/if}
+                {/if}
             </p>
             <p><label for="date" class="ll">Data: </label></p>
             <p id="dpp"><input type="text" id="date" name="date" class="date-pick"{if $start} value="{$start}"{/if} /></p>
@@ -115,22 +119,59 @@
                 <input id="la" type="text" name="la" onchange="OnLAChange()" onkeydown="OnLAChange()" />
                 {if $assistant}<input type="hidden" name="old_assistant" value="{$assistant}"/>{/if}
             </p>{*/if*}
-            <p id="dp">
-                <label class="ll" for="description">Opis: </label>
-                <textarea id="description" name="description" rows="4" cols="20">{$description}</textarea>
-            </p>
-            <p>
-                <label for="private">
-                    <input class="ll" type="checkbox" id="private" name="private"{if $cal_public == '0'} checked="checked"{/if}/>Zdarzenie prywatne
-                </label>
-            </p>
+            <div id="atad">
+                <p>
+                    <label for="agreement">Zgoda pacjenta: </label>
+                    {if $_id}
+                        <a href="Agreement.php?date={$date}&amp;id={$id}&amp;pn={$pn}"
+                           title="Pokaż zgodę pacjenta na zabieg przeznaczone do druku" target="_blank">Pokaż zgodę pacjenta</a>
+                    {/if}
+                </p>
+                <p>
+                    <textarea id="agreement" name="agreement" rows="4" >{$Agreement}</textarea>
+                </p>
+            </div>
+            <div id="ptad">
+                <p>
+                    <label for="plan"{if $id} id="lbi"{/if}>Plan zabiegu: </label>
+                    {if $_id}
+                        <a title="Pokaż plan do druku" href="Plan.php?date={$date}&amp;id={$id}">
+                            <img src="../templates/default/images/Plan.png" alt="Do druku" />
+                        </a>
+                    {/if}
+                    <a id="rda" href="javascript:ReplaceDescription()">Zastąp opis planem ►</a>
+                </p>
+                <p>
+                    <textarea id="plan" name="plan" rows="4" >{$Plan}</textarea>
+                </p>
+            </div>
+            <div id="dtad">
+                <p>
+                    <label for="description">Opis: </label>
+                    {if $id}
+                        <a href="VisitInfo.php?date={$date}&amp;id={$id}"
+                           title="Pokaż informacje o wizycie przeznaczone do druku" target="_blank">Pokaż informacje do druku</a>
+                    {/if}
+                </p>
+                <p>
+                    <textarea id="description" name="description" rows="4" >{$description}</textarea>
+                </p>
+            </div>
+ 
+                
+
             <fieldset>
                 <legend>Pola niestandardowe</legend>
                 {$additional}
             </fieldset>
             <p>
-                <label class="ll" for="category">Kategoria: </label>&nbsp;
-                {html_options id="category" name=category options=$categories selected=$SelectedCategory}
+                <label for="private">
+                    <input class="ll" type="checkbox" id="private" name="private"{if $cal_public == '0'} checked="checked"{/if}/>Zdarzenie prywatne
+                </label>
+                <span id="cs">
+                    <label for="category">Kategoria: </label>&nbsp;
+                    {html_options id="category" name=category options=$categories selected=$SelectedCategory}
+                </span>
             </p>
             <!--<fieldset>
                 <legend>Powtarzanie</legend>
@@ -178,10 +219,7 @@
             {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
             </p>
         </form>
-        {if $id}<p>
-            <a href="VisitInfo.php?date={$date}&amp;id={$id}"
-               title="Pokaż informacje o wizycie przeznaczone do druku" target="_blank">Pokaż informacje do druku</a>
-        </p>{/if}
+        
         <p id="vl">{$videos}</p>
     </body>
 </html>

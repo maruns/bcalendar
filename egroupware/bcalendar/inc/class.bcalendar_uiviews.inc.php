@@ -1475,7 +1475,7 @@ SCRIPT;
             unset($EventWindowFields['menuaction']); //usunięcie akcji z łańcucha zapytania
             $html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/bcalendar/inc/Event.php', $EventWindowFields), 
                                                             '_blank',
-                                                            750,
+                                                            800,
                                                             'window.height') . 
                      ';return false;"'; //z etykietą i nowym oknem zdarzenia
         }
@@ -1782,7 +1782,7 @@ SCRIPT;
         //$view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
         $view_link = egw::link('/bcalendar/inc/Event.php',
                                array('cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start']))); //nowe okno dla edycji
-        $popup = ' onclick="' . $this->popup($view_link, '_blank', 750, 'window.height') . '; return false;"';
+        $popup = ' onclick="' . $this->popup($view_link, '_blank', 800, 'window.height') . '; return false;"';
       }
     }
     //_debug_array($event);

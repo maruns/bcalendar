@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
 {
     $modified = intval($_SERVER['REQUEST_TIME']);
     $id = intval($_POST['id']);
+    $smarty->assign('id', $id);
     $dentist = intval($_POST['dentist']);
     $assistant = intval($_POST['assistant']);
     $patient = intval($_POST['patient']);
@@ -32,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
     $npn = EscapeSpecialCharacters(trim($_POST['npn']));
     $phone = EscapeSpecialCharacters(trim($_POST['phone']));
     $pesel = EscapeSpecialCharacters(trim($_POST['pesel']));
+    $agreement = EscapeSpecialCharacters(trim($_POST['agreement']));
+    $plan = EscapeSpecialCharacters(trim($_POST['plan']));
     foreach ($_POST as $key=>$value)
     {
         if ($key[0] == '_')
@@ -79,8 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                 $PatientUpdateQuery = ""; 
             }
         }
+        if (($agreement != "" && $agreement != null) || ($plan != "" && $plan != null))
+        {
+            $AdditionalQuery = "; INSERT INTO Visits (cal_id, Agreement, Plan) VALUES (" . $id . ", '" . $agreement . "', '" . $plan .
+                               "') ON DUPLICATE KEY UPDATE Agreement = '" . $agreement . "', Plan = '" . $plan . "'";
+        }
+        else
+        {
+            $AdditionalQuery = "; DELETE FROM Visits WHERE cal_id = " . $id;
+        }
         SendQueries("UPDATE `egw_cal` SET cal_title='" . $title . "', `cal_owner` = " . $dentist . ", cal_public = " . $public . ", `cal_modified` = " . $modified . ", cal_description = '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', cal_modifier = " . $dentist . ", cal_category = '" . intval($_POST['category']) . "' WHERE cal_id = " . $id .
-                    "; UPDATE egw_cal_dates SET cal_start = " . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . ", cal_end = " . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60))  . " WHERE cal_id = " . $id . $PatientUpdateQuery);
+                    "; UPDATE egw_cal_dates SET cal_start = " . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . ", cal_end = " . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60))  . " WHERE cal_id = " . $id . $PatientUpdateQuery . $AdditionalQuery);
         $statement = PrepareStatement("UPDATE egw_cal_user SET cal_user_type = 'u', cal_user_id = ? WHERE cal_role = ? AND cal_id = " . $id);
         if (is_object($statement))
         {
@@ -119,12 +131,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
     {
         if (!$_POST['more'])
         {
-            SendQueries("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_category`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_description`,`cal_modifier`, `cal_creator`, `cal_created`) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), " . $dentist . ", '" . intval($_POST['category']) . "', '" . $modified . "', 2, " . $public . ", '" . $title . "', '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', " . $dentist . ", " . $dentist . ", " . $modified . "); INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (LAST_INSERT_ID()," . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . "," . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60)) . ")");
-            //$result = SendQuery("SELECT LAST_INSERT_ID()");
-            //            while ($row = GetNextRow($result))
-//            {
-//                $id = $row['LAST_INSERT_ID()'];
-//            }
+            if (($agreement != "" && $agreement != null) || ($plan != "" && $plan != null))
+            {
+                $AdditionalQuery = "; INSERT INTO Visits (cal_id, Agreement, Plan) VALUES (LAST_INSERT_ID(), '" . $agreement . "', '" . $plan . "')";
+            }
+            else
+            {
+                $AdditionalQuery = "";
+            }
+            SendQueries("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_category`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_description`,`cal_modifier`, `cal_creator`, `cal_created`) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), " . $dentist . ", '" . intval($_POST['category']) . "', '" . $modified . "', 2, " . $public . ", '" . $title . "', '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', " . $dentist . ", " . $dentist . ", " . $modified . "); INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (LAST_INSERT_ID()," . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . "," . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60)) . ")" . $AdditionalQuery);
             $LIIDS = PrepareStatement("SELECT LAST_INSERT_ID()");
             if (is_object($LIIDS))
             {
@@ -200,17 +215,18 @@ else
 {
     if ($_SERVER["QUERY_STRING"])
     {
-        $smarty->assign('CurrentQueryString', '&' . $_SERVER["QUERY_STRING"]);
+        $smarty->assign('CurrentQueryString', $_SERVER["QUERY_STRING"]);
     }
     $smarty->assign('id', $_GET['cal_id']);
 }
+$smarty->assign('OldQueryString', $_POST["old_qs"]);
 if ($_POST['ok'] || $_POST['more'])
 {
     $smarty->assign('WindowShouldBeClosed', true);
     if ($_POST['more'])
     {
         $smarty->assign('StandardWindowShouldBeOpened', true);
-        $smarty->assign('OldQueryString', '&' . $_POST["old_qs"]);
+        
     }
 }
 else
@@ -228,7 +244,7 @@ if ($id > 0)
     $smarty->assign('PatientCanBeChanged', true);
     $smarty->assign('DentistCanBeChanged', true);
     $smarty->assign('AssistantCanBeChanged', true);
-    $result = SendQuery("SELECT `egw_cal`.cal_title, `egw_cal`.cal_owner, `egw_cal`.cal_public, `egw_cal`.cal_description, `egw_cal`.cal_category, `egw_cal_dates`.cal_start, `egw_cal_dates`.cal_end, (SELECT DISTINCT `egw_cal_user`.cal_user_id FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `patient`, (SELECT DISTINCT `egw_cal_user`.cal_status FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `status`, (SELECT DISTINCT `egw_addressbook`.`n_fn` FROM `egw_addressbook` JOIN `egw_cal_user` ON ( `egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_user_id` ) WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `pn`, (SELECT DISTINCT `egw_cal_user`.cal_user_id FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant'  limit 1) AS `assistant` FROM `egw_cal` LEFT JOIN egw_cal_dates ON (`egw_cal`.cal_id = `egw_cal_dates`.cal_id) WHERE `egw_cal`.`cal_id` =" . $id);
+    $result = SendQuery("SELECT `egw_cal`.cal_title, `egw_cal`.cal_owner, `egw_cal`.cal_public, `egw_cal`.cal_description, `egw_cal`.cal_category, `egw_cal_dates`.cal_start, `egw_cal_dates`.cal_end, (SELECT DISTINCT `egw_cal_user`.cal_user_id FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT' limit 1) AS `patient`, (SELECT DISTINCT `egw_cal_user`.cal_status FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT' limit 1) AS `status`, (SELECT DISTINCT `egw_addressbook`.`n_fn` FROM `egw_addressbook` JOIN `egw_cal_user` ON ( `egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_user_id` ) WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT' limit 1) AS `pn`, (SELECT DISTINCT `egw_cal_user`.cal_user_id FROM `egw_cal_user` WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' limit 1) AS `assistant`, (SELECT DISTINCT Visits.Agreement FROM Visits WHERE Visits.cal_id = egw_cal.cal_id LIMIT 1) AS `Agreement`, (SELECT Visits.Plan FROM Visits WHERE Visits.cal_id = egw_cal.cal_id LIMIT 1) AS `Plan` FROM `egw_cal` LEFT JOIN (egw_cal_dates) ON (`egw_cal`.cal_id = `egw_cal_dates`.cal_id) WHERE `egw_cal`.`cal_id` = " . $id);
     while ($row = GetNextRow($result))
     {
          $smarty->assign('title', $row['cal_title']);
@@ -246,6 +262,8 @@ if ($id > 0)
          $assistant = $row['assistant'];
          $smarty->assign('owner', $row['cal_owner']);
          $owner = $row['cal_owner'];
+         $smarty->assign('Agreement', $row['Agreement']);
+         $smarty->assign('Plan', $row['Plan']);
     }
     $result = SendQuery("SELECT `cal_extra_name`, `cal_extra_value` FROM `egw_cal_extra` WHERE `cal_id` = " . $id);
     while ($row = GetNextRow($result))

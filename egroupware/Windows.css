@@ -171,8 +171,11 @@ form#ef label.ll {
 form#ef fieldset label.ll {
     width: 210px;
 }
+form#ef fieldset input[type="text"] {
+    width: 60%;
+}
 form#ef input#title {
-    width: 400px;
+    width: 500px;
 }
 div.combobox	{
     position: relative;
@@ -189,6 +192,8 @@ div.combobox	div.dropdownlist	{
     top: 22px;
     left: 223px;
     font-size: 10px !important;
+    z-index: 1;
+    
 }
 div.combobox	.dropdownlist	a	{
     display: block;
@@ -308,7 +313,7 @@ div.combobox	span	{
 .menu :hover ul :hover ul :hover ul :hover ul :hover ul
 {left:107px; top:0; background:transparent; padding:5px 5px 5px 0; white-space:nowrap; width:220px; z-index:200; height:auto;}
 select#ep {
-    width: 170px !important;
+    width: 220px !important;
 }
 form#ef p#nup {
     display: none;
@@ -332,21 +337,54 @@ form#ef p#dpp {
     margin-top: -25px;
 }
 select#dentist, select#assistant {
-    width: 90px !important;
+    width: 150px !important;
 }
 textarea {
     font-size: 10px;
-}
-p#dp * {
-    vertical-align: middle;
 }
 label.cc {
     margin-right: 10px;
     display: inline-block;
 }
-form#ef textarea#description {
-    width: 450px;
-    height: 50px;
+form#ef div#atad {
+    float: left;
+    width: 35%;
+}
+form#ef div#ptad {
+    float: left;
+    width: 30%;    
+    position: relative;
+}
+form#ef div#dtad {
+    float: left;
+    width: 35%;
+}
+form#ef div#atad p, form#ef div#ptad p, form#ef div#dtad p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+form#ef div#ptad p:first-child {
+    width: 90%;
+    height: 14px;
+}
+form#ef div#ptad label#lbi {
+    position:relative;
+    top: -2px;
+}
+form#ef div p textarea {
+    width: 90%;
+}
+form#ef div p textarea#description {
+    width: 95%;
+}
+form#ef span#cs {
+    margin-left: 30px;
+}
+form#ef a#rda {
+    position: absolute;
+    right: 10%;
+    margin-right: -4px;
+    font-size: 8px;
 }
 a#erl {
     position: fixed;

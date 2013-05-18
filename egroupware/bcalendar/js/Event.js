@@ -149,3 +149,7 @@ function InsertData(id, title, price, TotalCost, TechnicianCosts, category)
     }
     SetContentFromScript("description", 'ProductDescription.php?id=' + id);
 }
+function ReplaceDescription()
+{
+    document.forms.ef.description.value = document.forms.ef.plan.value;
+}
