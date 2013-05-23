@@ -147,7 +147,7 @@ function InsertData(id, title, price, TotalCost, TechnicianCosts, category)
             }
         }
     }
-    SetContentFromScript("description", 'ProductDescription.php?id=' + id);
+    SetContentFromScript("plan", 'ProductPlan.php?id=' + id);
 }
 function ReplaceDescription()
 {
