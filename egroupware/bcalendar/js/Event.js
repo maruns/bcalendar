@@ -85,10 +85,10 @@ function SetContentFromScript(id, script)
                 case "assistant":
                     document.getElementById(id).innerHTML =  '<option value="0">Brak</option>' + xmlhttpr.responseText;
                     break;
-                case "description":
+                case "plan":
                     if (xmlhttpr.responseText != '')
                     {
-                        document.forms.ef.description.value = xmlhttpr.responseText;
+                        document.forms.ef.plan.value = xmlhttpr.responseText;
                     }
                     break;
                 case "ep":
