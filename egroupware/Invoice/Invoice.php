@@ -35,6 +35,7 @@ while($row = GetNextRow($result))
             $at = $row['contact_value']*0.01;
     }
 }
+$rp = 1 - $percent;
 $result = SendQuery("SELECT DISTINCT `org_name`,`adr_one_street`,`adr_one_street2`,`adr_one_postalcode`,`adr_one_locality` FROM `egw_addressbook` WHERE `contact_id` = ".$cid);
 while($row = GetNextRow($result))
 {
@@ -156,18 +157,18 @@ while($row = GetNextRow($result))
         {
             case 'suma_na_wizycie':
 //                $netto += $row['cal_extra_value'];
-                $brutto += $row['cal_extra_value'];
-                $dn[date('d.m.Y', $row['date'])] += $row['cal_extra_value'];
+                $brutto += $row['cal_extra_value'] * $percent;
+                $dn[date('d.m.Y', $row['date'])] += $row['cal_extra_value'] * $percent;
                 break;
             case 'koszty_łącznie':
 //                $netto -= $row['cal_extra_value'];
-                $brutto -= $row['cal_extra_value'];
-                $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
+                $brutto += $row['cal_extra_value'] * $rp;
+                $dn[date('d.m.Y', $row['date'])] += $row['cal_extra_value'] * $rp;
                 break;
             case 'koszty_technika':
 //                $netto -= $row['cal_extra_value'];
-                $brutto -= $row['cal_extra_value'];
-                $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'];
+                $brutto -= $row['cal_extra_value'] * $percent;
+                $dn[date('d.m.Y', $row['date'])] -= $row['cal_extra_value'] * $percent;
                 
         }
         $LastDate = date('m/Y', $row['date']);
@@ -189,10 +190,10 @@ foreach($dn as $key => $value)
             $DentistTable[] = '1,000';
             $DentistTable[] = 'szt.';
             $DentistTable[] = '0,00'; 
-            $dv = $value*$percent;
-            $DayNetto = round($dv * $BruttoToNettoMultiplier, 2);
+//            $dv = $value*$percent;
+            $DayNetto = round($value * $BruttoToNettoMultiplier, 2);
             $netto += $DayNetto;
-            $dvt = round($dv, 2);
+            $dvt = round($value, 2);
             $fdvt = str_replace(" ", $nbsp, number_format(/*$dvt*/$DayNetto, 2, ',', ' '));
             $DentistTable[] = $fdvt; //Cena netto
             if ($_GET['type'] != 'report')
@@ -460,7 +461,7 @@ switch ($_GET['type'])
   case 'invoice':
 //    $netto = $netto*$percent;
 //    $TVAT = $netto*$VAT;
-      $brutto = $brutto * $percent;
+//      $brutto = $brutto * $percent;
 //      $netto = $brutto * $BruttoToNettoMultiplier;
 //    $TVAT = $brutto - $netto;
     $brutto = round($brutto/*$netto + $TVAT*/, 2);
@@ -482,12 +483,18 @@ $smarty->assign('FractionalPart', $SumParts[1]);
 switch ($_GET['type'])
 {
   case 'report':
-    $smarty->display('Report.tpl');
+    $smarty->display('templates/Report.tpl');
     break;
   case 'ar':
-      $smarty->display('Assistants.tpl');
+      $smarty->display('templates/Assistants.tpl');
       break;
   case 'invoice':
-    $smarty->display('Invoice.tpl');
+    $smarty->display('templates/Invoice.tpl');
+      break;
+  case 'pit':
+    $smarty->display('templates/PIT-5.tpl');
+      break;
+  case 'cr':
+    $smarty->display('templates/CostReport.tpl');
 }
 ?>

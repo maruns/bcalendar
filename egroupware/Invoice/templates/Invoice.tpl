@@ -120,7 +120,7 @@ th {
 <body>
     <div>
         <div class="lc">
-            <p>Bluedental s.c. Adam Okoń, Anita Okoń</p>
+            <p>Bluedental Anita Okoń</p>
             <p>ul. Zamenhofa 12/4, 00-187 Warszawa</p>
             <p>Tel.: 22 635 23 99, NIP: {$d_NIP}</p>
             <p>{$d_NAZWA_BANKU},</p>

@@ -18,5 +18,5 @@ CloseConnection();
 $smarty->assign('d_VAT',d_VAT);
 $smarty->assign('d_FRANCZYZA',d_FRANCZYZA);
 $smarty->assign('dentists',$dentists);
-$smarty->display('InvoiceWindow.tpl');
+$smarty->display('templates/InvoiceWindow.tpl');
 ?>
