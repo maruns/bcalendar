@@ -261,7 +261,7 @@ class bcalendar_bo
 
 		$this->categories = new categories($this->user,'calendar');
                 $this->Link_ID = $GLOBALS['egw']->db->link_id();
-                $this->ContactsStatement = $this->Link_ID->Prepare("SELECT `n_given` , `n_family` , `contact_email` , `contact_email_home`, `tel_prefer`, `tel_cell_private`, `tel_cell`, `tel_work`, `tel_assistent`, `tel_home`, `tel_car`, `tel_other` FROM egw_addressbook WHERE contact_id=?");
+                $this->ContactsStatement = $this->Link_ID->Prepare("SELECT `n_given` , `n_family` , `contact_email` , `contact_email_home`, `tel_prefer`, `tel_cell_private`, `tel_cell`, `tel_work`, `tel_assistent`, `tel_home`, `tel_car`, `tel_other`, (SELECT contact_value FROM egw_addressbook_extra WHERE egw_addressbook_extra.contact_name = 'PESEL' AND egw_addressbook_extra.`contact_id` = egw_addressbook.contact_id) AS PESEL FROM egw_addressbook WHERE egw_addressbook.contact_id = ?"); //zapytanie ze zwróceniem informacji o kontakcie do wyświetlenia
 	}
 
 	/**
@@ -1140,7 +1140,7 @@ class bcalendar_bo
                                                     'rights' => EGW_ACL_READ_FOR_PARTICIPANTS,
                                                     'name' => trim($contact['n_family'].', '.$contact['n_given']),
                                                     'cn' => trim($contact['n_given'].' '.$contact['n_family']),
-                                                    'phones' => $phones);
+                                                    'phones' => $phones, 'PESEL' => $contact['PESEL']); //numery telefonów i numer PESEL
                                 }
                                 list($info) = $data; //informacje o kontakcie jako pierwszy element stworzonej tablicy kontaktów
 				if ($info)
@@ -1560,6 +1560,10 @@ class bcalendar_bo
                                         {
                                             $phones = ' '.$info['phones'];
                                         }
+                                        if ($info['PESEL'] != '') //jeśli  kontakt ma numer PESEL
+                                        {
+                                            $PESEL = ' PESEL('.$info['PESEL'] . ')';
+                                        }
 				}
 			}
 			else
@@ -1569,7 +1573,7 @@ class bcalendar_bo
 			}
 		}
 		return $id2lid[$id].($append_email && $id2email[$id] ? ' <'.$id2email[$id].'>' : '').
-                                    $phones; //zwróć nazwisko z numerem telefonu
+                                    $phones . $PESEL; //zwróć nazwisko z numerem telefonu i numerem PESEL
 	}
 
 	/**
