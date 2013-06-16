@@ -18,10 +18,14 @@ function OnTitleChange()
     if (($.trim(document.forms.ef.title.value)).length === 0)
     {
         document.getElementById("tp").style.backgroundColor = 'red';
+        document.forms.ef.ok.disabled = true;
+        document.forms.ef.apply.disabled = true;
     }
     else
     {
         document.getElementById("tp").style.backgroundColor = '';
+        document.forms.ef.ok.disabled = false;
+        document.forms.ef.apply.disabled = false;
     }
 }
 

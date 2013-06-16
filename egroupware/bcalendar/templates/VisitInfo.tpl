@@ -26,7 +26,7 @@ p {
 #right {
     text-align: right;
 }
-#description {
+.description {
     text-indent: 0.5cm;
     text-align: justify;
 }
@@ -39,6 +39,6 @@ p {
         <p>Pacjent: {$patient}</p>
         <p>Dentysta: {$dentist}</p>
         <p>Czas: {$date} r. {$start} - {$end}</p>
-        <p id="description">{$description}</p>
+        <p class="description">{$description|regex_replace:"/[\r\n]/":"</p><p class='description'>"}</p>
     </body>
 </html>

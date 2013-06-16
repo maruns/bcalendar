@@ -156,7 +156,10 @@ class bcalendar_uiviews extends bcalendar_ui {
   
     parent::__construct(false, $set_states); // call the parent's constructor
     $this->extraRowsOriginal = $this->extraRows; //save original extraRows value
-    $this->date = $_GET['date'];
+    if ($_GET['date'])
+    {
+        $this->date = $_GET['date'];
+    }
     $this->year = substr($this->date, 0, 4);
     $this->month = substr($this->date, 4, 2);
     $this->day = substr($this->date, 6, 2);
@@ -1475,8 +1478,8 @@ SCRIPT;
             unset($EventWindowFields['menuaction']); //usunięcie akcji z łańcucha zapytania
             $html .= $CellTitle.' onclick="' . $this->popup($GLOBALS['egw']->link('/bcalendar/inc/Event.php', $EventWindowFields), 
                                                             '_blank',
-                                                            800,
-                                                            'window.height') . 
+                                                            'screen.width',
+                                                            'screen.height') . 
                      ';return false;"'; //z etykietą i nowym oknem zdarzenia
         }
         $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].$cwt.'</div></div>' . "\n"; //tekst w komórce
@@ -1782,7 +1785,7 @@ SCRIPT;
         //$view_link = egw::link('/index.php', array('menuaction' => 'bcalendar.bcalendar_uiforms.edit', 'cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start'])));
         $view_link = egw::link('/bcalendar/inc/Event.php',
                                array('cal_id' => $event['id'], 'date' => $this->bo->date2string($event['start']))); //nowe okno dla edycji
-        $popup = ' onclick="' . $this->popup($view_link, '_blank', 800, 'window.height') . '; return false;"';
+        $popup = ' onclick="' . $this->popup($view_link, '_blank', 'screen.width', 'screen.height') . '; return false;"';
       }
     }
     //_debug_array($event);

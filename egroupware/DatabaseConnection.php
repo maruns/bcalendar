@@ -99,6 +99,27 @@ function EscapeSpecialCharacters($string)
     return $mysqli->escape_string(stripslashes($string));
 }
 /**
+ * Rozpoczyna transakcje
+ *
+ */
+function BeginTransaction()
+{
+    global $mysqli;
+    $mysqli->autocommit(false);
+    //$mysqli->begin_transaction();
+    SendQueryQuickly('START TRANSACTION');
+}
+/**
+ * Zatwierdza bieżącą transakcje
+ *
+ */
+function Commit()
+{
+    global $mysqli;
+    $mysqli->commit();
+    $mysqli->autocommit(true);
+}
+/**
  * Zamyka połączenie z bazą danych
  *
  */

@@ -29,7 +29,7 @@
         <form id="ef" action="Event.php" method="post" enctype="multipart/form-data">
             <p id="tp">
                 <label class="ll" for="title">Tytuł: </label>
-                <input onkeydown="OnTitleChange()" onchange="OnTitleChange()" type="text"{if $title} value="{$title}"{/if} id="title" name="title" />&nbsp;{if $id}#{$id}<input type="hidden" name="id" value="{$id}"/>{/if}
+                <input onkeydown="OnTitleChange()" onkeyup="OnTitleChange()" onkeypress="OnTitleChange()" onchange="OnTitleChange()" type="text"{if $title} value="{$title}"{/if} id="title" name="title" />&nbsp;{if $id}#{$id}<input type="hidden" name="id" value="{$id}"/>{/if}
                 {if $CurrentQueryString}
                     <input type="hidden" name="old_qs" value="{$CurrentQueryString}"/>
                     {else}
@@ -105,7 +105,7 @@
                     <label class="ll" for="dentist">Dentysta: </label>
                     {html_options id="dentist" name=dentist options=$dentists selected=$owner}
                     <label for="iad"><input type="checkbox" id="iad" name="iad" onchange="OnLDChange()"/>Pokaż innych użytkowników</label>
-                    <label for="ld">Ogranicz do: </label>
+                    | <label for="ld">Ogranicz do: </label>
                     <input id="ld" type="text" name="ld" onchange="OnLDChange()" onkeydown="OnLDChange()" />
                 </p>
                 <!--<p id="overlapping">&nbsp;</p>
@@ -115,34 +115,41 @@
                 <label class="ll" for="assistant">Asystent: </label>
                 {html_options id="assistant" name=assistant options=$assistants selected=$assistant}
                 <label for="iaa"><input type="checkbox" id="iaa" name="iaa" onchange="OnLAChange()"/>Pokaż innych użytkowników</label>
-                <label for="la">Ogranicz do: </label>
+                | <label for="la">Ogranicz do: </label>
                 <input id="la" type="text" name="la" onchange="OnLAChange()" onkeydown="OnLAChange()" />
                 {if $assistant}<input type="hidden" name="old_assistant" value="{$assistant}"/>{/if}
             </p>{*/if*}
-            <div id="atad">
+            <div id="rtad">
                 <p>
-                    <label for="agreement">Zgoda pacjenta: </label>
+                    <label for="recipe">Recepta: </label>
                     {if $_id}
-                        <a href="Agreement.php?date={$date}&amp;id={$id}&amp;pn={$pn}"
-                           title="Pokaż zgodę pacjenta na zabieg przeznaczone do druku" target="_blank">Pokaż zgodę pacjenta</a>
+                        <a href="Recipe.php?date={$start} r.&amp;id={$id}&amp;pn={$pn};&amp;patient={$patient}&amp;owner={$owner}"
+                           title="Pokaż receptę przeznaczoną do druku" target="_blank">Pokaż receptę</a>
                     {/if}
                 </p>
                 <p>
-                    <textarea id="agreement" name="agreement" rows="4" >{$Agreement}</textarea>
+                    <textarea id="recipe" name="recipe" rows="4" cols="5">{$Recipe}</textarea>
+                </p>
+            </div>
+            <div id="atad">
+                <p>
+                    <label for="agreement">Zgoda pacjenta: </label>
+                    {if $id}
+                        <a href="Agreement.php?id={$id}&amp;pn={$pn}&amp;patient={$patient}"
+                           title="Pokaż zgodę pacjenta na zabieg przeznaczoną do druku" target="_blank">Do druku</a>
+                    {/if}
+                </p>
+                <p>
+                    <textarea id="agreement" name="agreement" rows="4" cols="5">{$Agreement}</textarea>
                 </p>
             </div>
             <div id="ptad">
                 <p>
                     <label for="plan"{if $id} id="lbi"{/if}>Plan zabiegu: </label>
-                    {if $_id}
-                        <a title="Pokaż plan do druku" href="Plan.php?date={$date}&amp;id={$id}">
-                            <img src="../templates/default/images/Plan.png" alt="Do druku" />
-                        </a>
-                    {/if}
                     <a id="rda" href="javascript:ReplaceDescription()">Zastąp opis planem ►</a>
                 </p>
                 <p>
-                    <textarea id="plan" name="plan" rows="4" >{$Plan}</textarea>
+                    <textarea id="plan" name="plan" rows="4" cols="5">{$Plan}</textarea>
                 </p>
             </div>
             <div id="dtad">
@@ -154,12 +161,21 @@
                     {/if}
                 </p>
                 <p>
-                    <textarea id="description" name="description" rows="4" >{$description}</textarea>
+                    <textarea id="description" name="description" rows="4" cols="5">{$description}</textarea>
                 </p>
             </div>
- 
-                
-
+            <div id="cltad">
+                <p>
+                    <label for="cl">Lista kontrolna: </label>
+                    {if $id}
+                        <a href="CheckList.php?pn={$pn}&amp;patient={$patient}&amp;id={$id}&amp;date={$start}+{$hour}:{$minute}"
+                           title="Pokaż informacje o wizycie przeznaczone do druku" target="_blank">Do druku</a>
+                    {/if}
+                </p>
+                <p>
+                    <textarea id="cl" name="cl" rows="4" cols="5">{$CheckList}</textarea>
+                </p>
+            </div>
             <fieldset>
                 <legend>Pola niestandardowe</legend>
                 {$additional}
@@ -213,9 +229,9 @@
                 
             </fieldset>-->
             <p>
-                <input type="submit" value="OK" name="ok" />
-                <input type="submit" value="Zastosuj" name="apply" />
-                <input type="submit" title="Wyświetl okno zaawansowane edycji zdarzeń" value="Więcej{$loss}" name="more" />
+                <input id="ok" type="submit" value="OK" name="ok" />
+                <input id="apply" type="submit" value="Zastosuj" name="apply" />
+                <input id="more" type="submit" title="Wyświetl okno zaawansowane edycji zdarzeń" value="Więcej{$loss}" name="more" />
             {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
             </p>
         </form>

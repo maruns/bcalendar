@@ -541,7 +541,7 @@ class bcalendar_ui
 //		return html::a_href($content,'/index.php',$vars,' target="_blank" title="'.html::htmlspecialchars(lang('Add')).
 //			'" onclick="'.$this->popup('this.href','this.target').'; return false;"');
                 return html::a_href($content,'/bcalendar/inc/Event.php',$vars,' target="_blank" title="'.html::htmlspecialchars(lang('Add')).
-			'" onclick="'.$this->popup('this.href','this.target', 'window.width', 'window.height').'; return false;"');
+			'" onclick="'.$this->popup('this.href','this.target', 'screen.width', 'screen.height').'; return false;"');
 	}
 
 	/**

@@ -175,7 +175,7 @@ form#ef fieldset input[type="text"] {
     width: 60%;
 }
 form#ef input#title {
-    width: 500px;
+    width: 60%;
 }
 div.combobox	{
     position: relative;
@@ -312,17 +312,20 @@ div.combobox	span	{
 .menu :hover ul :hover ul :hover ul :hover ul,
 .menu :hover ul :hover ul :hover ul :hover ul :hover ul
 {left:107px; top:0; background:transparent; padding:5px 5px 5px 0; white-space:nowrap; width:220px; z-index:200; height:auto;}
+input#lp {
+    width: 15% !important;
+}
 select#ep {
-    width: 220px !important;
+    width: 30% !important;
 }
 form#ef p#nup {
     display: none;
 }
 form#ef input#npn {
-    width: 100px;
+    width: 13%;
 }
 form#ef input#nps {
-    width: 150px;
+    width: 17%;
 }
 input#phone {
     width: 90px;
@@ -337,7 +340,10 @@ form#ef p#dpp {
     margin-top: -25px;
 }
 select#dentist, select#assistant {
-    width: 150px !important;
+    width: 25% !important;
+}
+input#ld, input#la {
+    width: 15% !important;
 }
 textarea {
     font-size: 10px;
@@ -346,20 +352,27 @@ label.cc {
     margin-right: 10px;
     display: inline-block;
 }
+form#ef div#rtad {
+    float: left;
+    width: 21%;
+}
 form#ef div#atad {
     float: left;
-    width: 35%;
+    width: 21%;
 }
 form#ef div#ptad {
     float: left;
-    width: 30%;    
-    position: relative;
+    width: 16%;
 }
 form#ef div#dtad {
     float: left;
-    width: 35%;
+    width: 21%;
 }
-form#ef div#atad p, form#ef div#ptad p, form#ef div#dtad p {
+form#ef div#cltad {
+    float: left;
+    width: 21%;
+}
+form#ef div#rtad p, form#ef div#atad p, form#ef div#ptad p, form#ef div#dtad p, form#ef div#cltad p {
     margin-top: 1px;
     margin-bottom: 1px;
 }
@@ -382,8 +395,8 @@ form#ef span#cs {
 }
 form#ef a#rda {
     position: absolute;
-    right: 10%;
-    margin-right: -4px;
+    right: 44%;
+    margin-right: -8px;
     font-size: 8px;
 }
 a#erl {
