@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -31,9 +32,9 @@
                 <label class="ll" for="title">Tytuł: </label>
                 <input onkeydown="OnTitleChange()" onkeyup="OnTitleChange()" onkeypress="OnTitleChange()" onchange="OnTitleChange()" type="text"{if $title} value="{$title}"{/if} id="title" name="title" />&nbsp;{if $id}#{$id}<input type="hidden" name="id" value="{$id}"/>{/if}
                 {if $CurrentQueryString}
-                    <input type="hidden" name="old_qs" value="{$CurrentQueryString}"/>
+                    <input type="hidden" name="old_qs" value="{$CurrentQueryString|escape:'html'}"/>
                     {else}
-                    {if $OldQueryString}<input type="hidden" name="old_qs" value="{$OldQueryString}"/>{/if}
+                    {if $OldQueryString}<input type="hidden" name="old_qs" value="{$OldQueryString|escape:'html'}"/>{/if}
                 {/if}
             </p>
             <p><label for="date" class="ll">Data: </label></p>
@@ -122,8 +123,8 @@
             <div id="rtad">
                 <p>
                     <label for="recipe">Recepta: </label>
-                    {if $_id}
-                        <a href="Recipe.php?date={$start} r.&amp;id={$id}&amp;pn={$pn};&amp;patient={$patient}&amp;owner={$owner}"
+                    {if $id}
+                        <a href="Recipe.php?date={$start} r.&amp;id={$id}&amp;pn={$pn}&amp;patient={$patient}&amp;owner={$owner}"
                            title="Pokaż receptę przeznaczoną do druku" target="_blank">Pokaż receptę</a>
                     {/if}
                 </p>

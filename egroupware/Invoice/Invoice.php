@@ -41,9 +41,9 @@ while($row = GetNextRow($result))
 {
     $smarty->assign('company', $row['org_name']);
     $smarty->assign('street', $row['adr_one_street']);
-    $smarty->assign('PostalPlace', $row['adr_one_street2']);
+    $smarty->assign('place', $row['adr_one_street2']);
     $smarty->assign('PostalCode', $row['adr_one_postalcode']);
-    $smarty->assign('place', $row['adr_one_locality']);
+    $smarty->assign('PostalPlace', $row['adr_one_locality']);
 }
 $nbsp = utf8_encode("\xA0");
 $dn = array();
