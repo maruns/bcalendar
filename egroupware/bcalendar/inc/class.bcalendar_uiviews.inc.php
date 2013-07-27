@@ -4,6 +4,10 @@
  */
 require_once 'MinutePeriod.php';
 /**
+ * Klucz API prognozy pogodu
+ */
+include_once '/var/lib/egroupware/Forecast.php';
+/**
  * eGroupWare - Calendar's views and widgets
  *
  * @link http://www.egroupware.org
@@ -146,6 +150,13 @@ class bcalendar_uiviews extends bcalendar_ui {
    * @var object
    */
   private $ColorsOfVisits;
+  
+  /**
+   * Prognoza pogody
+   * 
+   * @var array
+   */
+  private $Weather;
   
   /**
    * Constructor
@@ -1025,6 +1036,31 @@ function open_edit(series)
     $this->ColorsOfVisits = $GLOBALS['egw']->db->select('ColorsOfVisits','`cal_extra_value` , `FirstColor` , `SecondColor`',null,__LINE__,
                                                         __FILE__,false,'',0,
                                                               0); //pobierz kolory rodzajów wizyt z bazy danych
+    if (file_exists('/tmp/Weather.json') && time() - filemtime('/tmp/Weather.json') < 3600) //wczytaj z dysku, jeśli zapisany plik jest nowy
+    {
+        $json_string = unserialize(gzuncompress(file_get_contents('/tmp/Weather.json')));
+    }
+    else
+    {
+        $json_string = file_get_contents("http://api.wunderground.com/api/" . FORECAST_KEY . 
+                                         "/hourly10day/q/PL/Warsaw.json"); //pobierz plik z prognozą pogody poprzez adres URL
+        //$json_string = file_get_contents("http://38.102.136.138/api/" . FORECAST_KEY . 
+                                         //"/hourly10day/q/PL/Warsaw.json"); //pobierz plik z prognozą pogody poprzez numer IP
+        
+        file_put_contents('/tmp/Weather.json', gzcompress(serialize($json_string)));
+    }
+    $json_object = json_decode($json_string); //utwórz objekt JSON na podstawie odebranych danych
+    if ((is_object($json_object)) && is_array($json_object->hourly_forecast)) //jeżeli odkodowano poprawny obiekt pogody
+    {
+        foreach ($json_object->hourly_forecast as $forecast) //utwórz wielowymiarową tablicę pogody
+        {
+            if (is_object($forecast) && is_object($forecast->FCTTIME) && is_object($forecast->temp))
+            {
+                $this->Weather[$forecast->FCTTIME->year . $forecast->FCTTIME->mon_padded . $forecast->FCTTIME->mday_padded]
+                [$forecast->FCTTIME->hour_padded][$forecast->FCTTIME->min] = $forecast;
+            }
+        }
+    }
     if ($this->debug > 1 || $this->debug === 'timeGridWidget')
       $this->bo->debug_message('uiviews::timeGridWidget(events=%1,granularity_m=%2,height=%3,,title=%4)', True, $daysEvents, $granularity_m, $height, $title);
     $html = parent::sidebox_menu();
@@ -1482,7 +1518,14 @@ SCRIPT;
                                                             'screen.height') . 
                      ';return false;"'; //z etykietą i nowym oknem zdarzenia
         }
-        $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].$cwt.'</div></div>' . "\n"; //tekst w komórce
+        if (!$cwt && is_object($this->Weather[$linkData['date']][$linkData['hour']][$linkData['minute']])) //brak info o pracy => pogoda
+        {
+            $HourWeather = '<p class="weather">' . $this->Weather[$linkData['date']][$linkData['hour']][$linkData['minute']]->temp->metric 
+                           . ' °C <img src="' .
+                           $this->Weather[$linkData['date']][$linkData['hour']][$linkData['minute']]->icon_url . '" alt="' .
+                           $this->Weather[$linkData['date']][$linkData['hour']][$linkData['minute']]->condition . '" /></p>';
+        }
+        $html .= '><div class="ct">'.$linkData['hour'].':'.$linkData['minute'].$cwt.$HourWeather.'</div></div>' . "\n"; //tekst w komórce
         if (is_object($this->dragdrop) && $dropPermission) {
           $this->dragdrop->addDroppable(
                   $droppableID, array(
