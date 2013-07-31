@@ -15,6 +15,10 @@ setlocale(LC_ALL, 'pl_PL', 'pl', 'Polish_Poland.28592');
 $smarty->assign('d_NAZWA_BANKU', d_NAZWA_BANKU);
 $smarty->assign('d_NUMER_KONTA', d_NUMER_KONTA);
 $smarty->assign('d_NIP', d_NIP);
+if ($_GET['to'][1] == '.' && $_GET['type'] == 'pit')
+{
+    $_GET['to'] = '0' . $_GET['to'];
+}
 $smarty->assign('SaleDate', $_GET['to']);
 $smarty->assign('in', $_GET['in']);
 $result = SendQuery("SELECT DISTINCT `contact_name`, `contact_value` FROM `egw_addressbook_extra` WHERE (`contact_name` = 'NIP' or `contact_name` = 'franczyza' or `contact_name` = 'stawka' or `contact_name` = 'podatek_asystenta') and `contact_id` = ".$cid);
@@ -53,6 +57,13 @@ $brutto = 0;
 $TVAT = 0;
 switch ($_GET['type'])
 {
+    case 'pit':
+        if ($_GET['from'][1] == '.')
+        {
+            $_GET['from'] = '0' . $_GET['from'];
+        }
+        $smarty->assign('from', $_GET['from']);
+        break;
     case 'report':
         $result= SendQuery("SELECT `egw_cal`.`cal_title` , `egw_cal`.`cal_description` , `egw_categories`.`cat_name` , ( SELECT DISTINCT `egw_addressbook`.`n_fn` FROM `egw_addressbook` JOIN `egw_cal_user` ON ( `egw_addressbook`.`contact_id` = `egw_cal_user`.`cal_user_id` ) WHERE `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT'  limit 1) AS `patient` , (SELECT DISTINCT `egw_addressbook_extra`.`contact_value` FROM `egw_addressbook_extra` JOIN (`egw_addressbook`, `egw_cal_user`) ON ( `egw_addressbook_extra`.`contact_id` = `egw_addressbook`.`contact_id` and `egw_addressbook`.`account_id` = `egw_cal_user`.`cal_user_id` ) where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' and `egw_addressbook_extra`.`contact_name` = 'stawka'  limit 1) as ac, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `vs`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `mc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_technika' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tc`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'nazwa_pracowni_protetycznej' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tn` FROM `egw_cal` left JOIN ( `egw_categories` ) ON ( `egw_categories`.`cat_id` = CAST( `egw_cal`.`cal_category` AS UNSIGNED ) ) WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
     break;

@@ -114,6 +114,26 @@ a:link, a:visited, select, input, textarea {
 	border: none !important;
 }
 
+.iatd { /* komórka, w której znajduje się kotwica otwierająca okno czasu pracy, wizyt lub tworzenia faktury */
+    text-align: center;
+    width: 61px;
+}
+.iatd a { /* kotwica otwierająca okno czasu pracy, wizyt lub tworzenia faktury */
+    font-size: 10px;
+    line-height: 15px;
+    color: #000099;
+}
+.iatd a:hover { /* kotwica otwierająca okno czasu pracy, wizyt lub tworzenia faktury po najechaniu myszką */
+    color: #0000FF;
+}
+.iatd a img { /* obrazek hiperłącza okna czasu pracy, wizyt lub tworzenia faktury */
+    display: block;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -5px;
+}
+
 /* login page */
 #loginMainDiv {
 	padding: 0px;
@@ -132,22 +152,26 @@ a:link, a:visited, select, input, textarea {
 	background-image: url(../images/gradient22.png);
 
 }
-.iatd {
-    text-align: center;
-    width: 61px;
+#account_list { /* lista użytkowników na stronie logowania */
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    display: table;
+    margin-left: 0;
 }
-.iatd a {
+#account_list li { /* element listy użytkowników na stronie logowania */
+    border: #000000 solid 1px;
+    float: left;
+    height: 19px;
+    line-height: 19px;
     font-size: 10px;
-    line-height: 15px;
-    color: #000099;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 1px;
+    margin-bottom: 1px;
 }
-.iatd a:hover {
-    color: #0000FF;
-}
-.iatd a img {
-    display: block;
-    border: none;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -5px;
+#account_list li:hover { /* element listy użytkowników na stronie logowania po najechaniu myszką */
+    cursor: pointer;
 }
