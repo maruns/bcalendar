@@ -885,6 +885,24 @@ function load_cal(url,id) {
 			));
 //			display_sidebox($appname,$menu_title,$file);
 		}
+                if ($GLOBALS['egw_info']['user']['apps']['Invoice']) //pokaż link tworzenia faktury, jeśli użytkownik ma uprawnienia do faktur
+                {
+                    $links = '<a title="Utwórz fakturę zawierającą franszczyzę netto i brutto" onclick="window.open(\'' . $GLOBALS['egw']->link('/Invoice/index.php') . 
+                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
+                        '" />Tworzenie faktury</a><a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/PatientVisits/index.php') . 
+                        '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty</a><a title="Czas pracy dentystów - ustaw czas pracy w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
+                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a>';
+                }
+                else //w przeciwnym wypadku pokaż hiperłącza tylko do okna wizyt pacjentów i czasu pracy dentystów
+                {
+                    $links = '<a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/PatientVisits/index.php') . 
+                        '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty pacjentów</a><a title="Ustaw czas pracy dentystów w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
+                        $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
+                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" />Czas pracy</a>';
+                }
                 $settings = '';
 		if ($GLOBALS['egw_info']['user']['apps']['preferences'])
 		{
@@ -910,6 +928,13 @@ function load_cal(url,id) {
 	</div>
 </div>';
 		}
+                else //w przypadku braku uprawnień do ustawień
+                {
+                    $settings = '<div class="sideboxSpace"></div><div class="divSidebox">
+                                    <div class="divSideboxEnd"></div><div>
+	</div>
+</div>';
+                }
                 $al = '';
 		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
@@ -942,16 +967,12 @@ function load_cal(url,id) {
 	</div>
 </div>';
 		}
-                return '<div class="divSidebox"><div class="divSideboxHeader"><span>Menu kalendarza</span><div class="textSidebox"><a title="Utwórz fakturę zawierającą franszczyzę netto i brutto" onclick="window.open(\'' . $GLOBALS['egw']->link('/Invoice/index.php') . 
-                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
-                        '" />Tworzenie faktury</a><a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
-                        $GLOBALS['egw']->link('/PatientVisits/index.php') . 
-                        '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty</a><a title="Czas pracy dentystów - ustaw czas pracy w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
-                        $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
-                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a></div><div class="divSideboxEntry">' .
+                return '<div class="divSidebox"><div class="divSideboxHeader"><span>Menu kalendarza</span><div class="textSidebox">' . $links
+                       . '</div><div class="divSideboxEntry">' .
                        $file[1]['text'] . '</div><div class="divSideboxEntry">' . $file[2]['text'] . '</div><div class="divSideboxEntry">' . 
                        $file[3]['text'] . '</div><div class="divSideboxEntry">' . $file[4]['text'] . '</div><div class="divSideboxEntry">' . 
                        $file[5]['text'] . '</div><div class="divSideboxEntry">' . $file[6]['text'] . '</div><div class="divSideboxEntry">' . 
-                       $file[7]['text'] . '</div>' . $settings . $al . '<div class="sideboxSpace"></div></div></div>';
+                       $file[7]['text'] . '</div>' . $settings . $al .
+                       '<div class="sideboxSpace"></div></div></div>'; //zwróć kod HTML panela bocznego z hiperłączami otwierającymi okna
 	}
 }

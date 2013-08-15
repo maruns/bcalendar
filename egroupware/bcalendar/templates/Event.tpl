@@ -233,7 +233,8 @@
                 <input id="ok" type="submit" value="OK" name="ok" />
                 <input id="apply" type="submit" value="Zastosuj" name="apply" />
                 <input id="more" type="submit" title="Wyświetl okno zaawansowane edycji zdarzeń" value="Więcej{$loss}" name="more" />
-            {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
+                {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
+                {if $Creator}Twórca wizyty: {$Creator}{/if}
             </p>
         </form>
         

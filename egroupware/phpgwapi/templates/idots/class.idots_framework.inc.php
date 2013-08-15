@@ -11,7 +11,29 @@
  * @access public
  * @version $Id: class.idots_framework.inc.php 42864 2013-06-24 07:46:07Z ralfbecker $
  */
-
+/**
+ * Sprawdza czy jedno konto następuje po drugim
+ * 
+ * @param array $a pierwsze konto
+ * @param array $b drugie konto
+ * @return int < 0 jeśli $b następuje po $a, > 0 jeśli $a następuje po $b
+ */
+function Follows($a, $b)
+{
+    if ($a['account_lid'] == 'sysop' || $a['account_lid'] == 'anonymous')
+    {
+        return -1;
+    }
+    if ($b['account_lid'] == 'sysop' || $b['account_lid'] == 'anonymous')
+    {
+        return 1;
+    }
+    if ($a['account_lastname'] == $b['account_lastname'])
+    {
+        return strcmp($a['account_firstname'], $b['account_firstname']);
+    }
+    return strcmp($a['account_lastname'], $b['account_lastname']);
+}
 /**
 * eGW idots template
 *
@@ -260,6 +282,25 @@ class idots_framework extends egw_framework
 
 		return $content;
 	}
+        
+        /**
+	* Powiększa liczbę koloru RGB tła, jeśli jest mniejsza od 100
+	*
+	* @param int $number liczba koloru RGB tła do ewentualnej zmiany
+        * @return int liczba koloru RGB tła po ewentualnej zmianie
+	*/
+        private function IncreaseColorNumberForBackground($number)
+        {
+            if ($number < 0)
+            {
+                $number = -$number;
+            }
+            if ($number < 100)
+            {
+                $number += 100;
+            }
+            return $number;
+        }
 
 	/**
 	* displays a login screen
@@ -278,22 +319,52 @@ class idots_framework extends egw_framework
                         if ($NotEmpty)
                         {
                             $AccountList = '<ul id="account_list">';
+                            uasort(&$accounts, 'Follows');
                         }
                         foreach ($accounts as $account)
                         {
                             if ($account['account_type'] == 'u' && 
                                 ($account['account_status'] == 'A' || !$GLOBALS['egw']->accounts->is_expired($account)))
                             {
+                                $memberships = $GLOBALS['egw']->accounts->memberships($account['account_id'], true);
+                                $red = 255;
+                                $green = 255;
+                                $blue = 255;
+                                foreach ($memberships as $key => $value)
+                                {
+                                    $color = $key % 3;
+                                    switch ($color)
+                                    {
+                                        case 0:
+                                            $red += $value;
+                                            break;
+                                        case 1:
+                                            $green += $value;
+                                            break;
+                                        case 2:
+                                            $blue += $value;
+                                    }
+                                }
                                 if ($account['account_lid'] == 'sysop' || $account['account_lid'] == 'anonymous')
                                 {            
-                                    $AccountList .= "<li onclick='document.forms[0][\"login\"].value = \"" . $account['account_lid'] . 
-                                                    "\"'>" . 
+                                    $AccountList .= "<li style='background-color: rgb(" . $this->IncreaseColorNumberForBackground($red) . 
+                                                    ',' . 
+                                                    $this->IncreaseColorNumberForBackground($green) . ',' . 
+                                                    $this->IncreaseColorNumberForBackground($blue) . 
+                                                    ")' onclick='document.forms[0][\"login\"].value = \"" . $account['account_lid'] . 
+                                                    "\"; document.forms[0][\"passwd\"].value = \"\"; document.login_form.passwd.focus();'>"
+                                                    . 
                                                     $account['account_lid'] . '</li>';           
                                 }
                                 else
                                 {
-                                    $AccountList .= "<li onclick='document.forms[0][\"login\"].value = \"" . $account['account_lid'] . 
-                                                    "\"'>" . 
+                                    $AccountList .= "<li style='background-color: rgb(" . $this->IncreaseColorNumberForBackground($red) . 
+                                                    ',' . 
+                                                    $this->IncreaseColorNumberForBackground($green) . ',' . 
+                                                    $this->IncreaseColorNumberForBackground($blue) . 
+                                                    ")' onclick='document.forms[0][\"login\"].value = \"" . $account['account_lid'] . 
+                                                    "\"; document.forms[0][\"passwd\"].value = \"\"; document.login_form.passwd.focus();'>"
+                                                    . 
                                                     $account['account_firstname'] . ' ' . $account['account_lastname'] . '</li>';
                                 }        
                             }

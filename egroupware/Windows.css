@@ -168,6 +168,9 @@ form#ef label.ll {
     display: inline-block;
     text-align: right;
 }
+form#ef fieldset {
+    clear: both;
+}
 form#ef fieldset label.ll {
     width: 210px;
 }

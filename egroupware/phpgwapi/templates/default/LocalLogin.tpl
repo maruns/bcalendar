@@ -6,7 +6,7 @@
 	<div id="centerBox">
 		<div id="loginScreenMessage">{lang_message}</div>
 		<div id="loginCdMessage">{cd}</div>
-		<form name="login_form" method="post" action="{login_url}">
+		<form name="login_form" id="login_form" method="post" action="{login_url}"> <!-- formularz logowania z identyfikatorem -->
 			<table class="divLoginbox divSideboxEntry" cellspacing="0" cellpadding="2" border="0" align="center">
 				<tr class="divLoginboxHeader">
 					<td colspan="3">{website_title}</td>
@@ -49,7 +49,9 @@
 				</tr>
 				<tr>
 					<td align="right">{lang_password}:&nbsp;</td>
-					<td><input name="passwd" tabindex="5" type="password" size="30" /></td>
+					<td> <!-- pole na hasło z identyfikatorem -->
+                                            <input name="passwd" id="passwd" tabindex="5" type="password" size="30" />
+                                        </td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

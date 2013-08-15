@@ -44,6 +44,13 @@
 	padding-top: 0;
 }
 
+.divSideboxEnd { /* pusty nagłówek na końcu panelu "bcalendar" dla użytkownika nie posiadającego uprawnień do ustawień */
+	border: none;
+	height: 18px;
+	line-height: 18px;
+	padding-top: 0;
+}
+
 #divAppbox {
 	padding-left: 15px;
 	padding-right: 10px;
