@@ -250,7 +250,7 @@ class bcalendar_ui
 	function manage_states($set_states=NULL)
 	{
 		$states = $states_session = $GLOBALS['egw']->session->appsession('session_data','calendar');
-
+                
 		// retrieve saved states from prefs
 		if(!$states)
 		{
@@ -347,7 +347,8 @@ class bcalendar_ui
 			$func = $this->view;
 			$class = $this->view == 'listview' ? 'calendar_uilist' : 'calendar_uiviews';
 		}
-		if ($class == 'calendar_uiviews' || $class == 'calendar_uilist')
+		if ($class == 'calendar_uiviews' || $class == 'calendar_uilist' || $class == 'bcalendar_uilist' || 
+                    $class == 'bcalendar_uilist') //calendar lub bcalendar
 		{
 			// if planner_start_with_group is set in the users prefs: switch owner for planner to planner_start_with_group and back
 			if ($this->cal_prefs['planner_start_with_group'])
@@ -374,15 +375,20 @@ class bcalendar_ui
 		$this->view_menuaction = $this->view == 'listview' ? 'bcalendar.bcalendar_uilist.listview' : 'bcalendar.bcalendar_uiviews.'.$this->view;
 
 		if ($this->debug > 0 || $this->debug == 'manage_states') $this->bo->debug_message('uical::manage_states(%1) session was %2, states now %3',True,$set_states,$states_session,$states);
-		// save the states in the session only when we are in bcalendar
-		if ($GLOBALS['egw_info']['flags']['currentapp']=='calendar')
-		{
-			$GLOBALS['egw']->session->appsession('session_data','calendar',$states);
+		// save the states in the session only when we are in calendar or bcalendar
+		if ($GLOBALS['egw_info']['flags']['currentapp'] =='calendar' || $GLOBALS['egw_info']['flags']['currentapp'] == 'bcalendar')
+		{ //calendar lub bcalendar
+			$GLOBALS['egw']->session->appsession('session_data','bcalendar',$states); //stany bcalendar
+                        if (!is_null($_GET['owner']) && $states['owner'] != $_GET['owner']) //jeżeli zmieniła się lista użytkowników
+                        {
+                            $states['owner'] = $_GET['owner'];
+                            $changed = true;
+                        }
 			// save defined states into the user-prefs
 			if(!empty($states) && is_array($states))
 			{
 				$saved_states = serialize(array_intersect_key($states,array_flip($this->states_to_save)));
-				if ($saved_states != $this->cal_prefs['saved_states'])
+				if ($saved_states != $this->cal_prefs['saved_states'] || $changed) //zapisz stan, jeśli zmieniony
 				{
 					$GLOBALS['egw']->preferences->add('calendar','saved_states',$saved_states);
 					$GLOBALS['egw']->preferences->save_repository(false,'user',true);
