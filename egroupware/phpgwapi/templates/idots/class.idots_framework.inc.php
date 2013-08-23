@@ -310,8 +310,8 @@ class idots_framework extends egw_framework
 	function login_screen($extra_vars)
 	{
 		$tmpl = new Template($GLOBALS['egw_info']['server']['template_dir']);
-
-		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') //lista użytkowników, jeśli serwer lokalny
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1' ||
+                    substr($_SERVER['REMOTE_ADDR'], 0, 7) == '192.168') //wyświetl listę użytkowników, jeśli serwer  jest lokalny
 		{
 			$tmpl->set_file(array('login_form' => 'LocalLogin.tpl'));
                         $accounts = $GLOBALS['egw']->accounts->search();
