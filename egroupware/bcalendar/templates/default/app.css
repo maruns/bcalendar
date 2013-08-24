@@ -569,6 +569,10 @@ div.divSidebox { /*panel boczny*/
     width: 207px; /* dostosowanie szerokości do "mini-kalendarza" */
     margin-left: -8px;
 }
+div.divSidebox tfoot .ttip { /* stała wysokość podpowiedzi pod mini-kalendarzem */
+    height: 36px;
+    vertical-align: top;
+}
 div.divSidebox div.divSidebox { /* "Ustawienia", "Administracja" */
     margin-left: 0px;
 }

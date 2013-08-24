@@ -740,31 +740,31 @@ class bcalendar_ui
 		{
 			$baseurl = egw::link('/index.php',array('menuaction'=>'bcalendar.bcalendar_uiviews.index'));
 		}
-		// Category Selection
-		$file[++$n] = $this->_select_box('Category','cat_id',
-			'<option value="0">'.lang('All categories').'</option>'.
-		$this->categories->formatted_list('select','all',$this->cat_id,'True'),$baseurl ? $baseurl.'&cat_id=' : '');
+		// Category Selection - bez listy kategorii
+//		$file[++$n] = $this->_select_box('Category','cat_id',
+//			'<option value="0">'.lang('All categories').'</option>'.
+//		$this->categories->formatted_list('select','all',$this->cat_id,'True'),$baseurl ? $baseurl.'&cat_id=' : '');
 
-		// Filter all or hideprivate
-		$options = '';
-		foreach(array(
-			'default'     => array(lang('Not rejected'), lang('Show all status, but rejected')),
-			'accepted'    => array(lang('Accepted'), lang('Show only accepted events')),
-			'unknown'     => array(lang('Invitations'), lang('Show only invitations, not yet accepted or rejected')),
-			'tentative'   => array(lang('Tentative'), lang('Show only tentative accepted events')),
-			'delegated'   => array(lang('Delegated'), lang('Show only delegated events')),
-			'rejected'    => array(lang('Rejected'),lang('Show only rejected events')),
-			'owner'       => array(lang('Owner too'),lang('Show also events just owned by selected user')),
-			'all'         => array(lang('All incl. rejected'),lang('Show all status incl. rejected events')),
-			'hideprivate' => array(lang('Hide private infos'),lang('Show all events, as if they were private')),
-			'showonlypublic' =>  array(lang('Hide private events'),lang('Show only events flagged as public, (not checked as private)')),
-			'no-enum-groups' => array(lang('only group-events'),lang('Do not include events of group members')),
-		) as $value => $label)
-		{
-			list($label,$title) = $label;
-			$options .= '<option value="'.$value.'"'.($this->filter == $value ? ' selected="selected"' : '').' title="'.$title.'">'.$label.'</options>'."\n";
-		}
-		$file[] = $this->_select_box('Filter','filter',$options,$baseurl ? $baseurl.'&filter=' : '');
+		// Filter all or hideprivate - bez filtrowania zdarzeń
+//		$options = '';
+//		foreach(array(
+//			'default'     => array(lang('Not rejected'), lang('Show all status, but rejected')),
+//			'accepted'    => array(lang('Accepted'), lang('Show only accepted events')),
+//			'unknown'     => array(lang('Invitations'), lang('Show only invitations, not yet accepted or rejected')),
+//			'tentative'   => array(lang('Tentative'), lang('Show only tentative accepted events')),
+//			'delegated'   => array(lang('Delegated'), lang('Show only delegated events')),
+//			'rejected'    => array(lang('Rejected'),lang('Show only rejected events')),
+//			'owner'       => array(lang('Owner too'),lang('Show also events just owned by selected user')),
+//			'all'         => array(lang('All incl. rejected'),lang('Show all status incl. rejected events')),
+//			'hideprivate' => array(lang('Hide private infos'),lang('Show all events, as if they were private')),
+//			'showonlypublic' =>  array(lang('Hide private events'),lang('Show only events flagged as public, (not checked as private)')),
+//			'no-enum-groups' => array(lang('only group-events'),lang('Do not include events of group members')),
+//		) as $value => $label)
+//		{
+//			list($label,$title) = $label;
+//			$options .= '<option value="'.$value.'"'.($this->filter == $value ? ' selected="selected"' : '').' title="'.$title.'">'.$label.'</options>'."\n";
+//		}
+//		$file[] = $this->_select_box('Filter','filter',$options,$baseurl ? $baseurl.'&filter=' : '');
 
 		// Calendarselection: User or Group
 		if(count($this->bo->grants) > 0 && $this->accountsel->account_selection != 'none')
