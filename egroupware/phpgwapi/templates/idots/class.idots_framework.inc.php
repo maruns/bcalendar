@@ -18,7 +18,7 @@
  * @param array $b drugie konto
  * @return int < 0 jeśli $b następuje po $a, > 0 jeśli $a następuje po $b
  */
-function Follows($a, $b)
+function FollowsAsAccount($a, $b)
 {
     if ($a['account_lid'] == 'sysop' || $a['account_lid'] == 'anonymous')
     {
@@ -319,7 +319,7 @@ class idots_framework extends egw_framework
                         if ($NotEmpty)
                         {
                             $AccountList = '<ul id="account_list">';
-                            uasort(&$accounts, 'Follows');
+                            uasort($accounts, 'FollowsAsAccount');
                         }
                         foreach ($accounts as $account)
                         {
