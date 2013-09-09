@@ -85,16 +85,20 @@ switch ($_GET['type'])
         $dn = array();
         break;
     case 'invoice':
-    $result= SendQuery("select (SELECT DISTINCT `egw_addressbook_extra`.`contact_value` FROM `egw_addressbook_extra` JOIN (`egw_addressbook`, `egw_cal_user`) ON ( `egw_addressbook_extra`.`contact_id` = `egw_addressbook`.`contact_id` and `egw_addressbook`.`account_id` = `egw_cal_user`.`cal_user_id` ) where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' and `egw_addressbook_extra`.`contact_name` = 'stawka'  limit 1) as `ac`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end` FROM `egw_cal` WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
-    $dn = array();
-    while($row = GetNextRow($result))
-    {
-        $iac = $row['ac'] * ($row['end'] - $row['date']) / 3600;
-        $dn[date('d.m.Y', $row['date'])] -= $iac;
-//        $netto -= $iac;
-        $brutto -= $iac;
-    }
-    $result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date` from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_technika') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ') order by `date`');
+        $result= SendQuery("select (SELECT DISTINCT `egw_addressbook_extra`.`contact_value` FROM `egw_addressbook_extra` JOIN (`egw_addressbook`, `egw_cal_user`) ON ( `egw_addressbook_extra`.`contact_id` = `egw_addressbook`.`contact_id` and `egw_addressbook`.`account_id` = `egw_cal_user`.`cal_user_id` ) where  `egw_cal_user`.`cal_id` = `egw_cal`.`cal_id` AND `egw_cal_user`.`cal_role` = 'assistant' and `egw_addressbook_extra`.`contact_name` = 'stawka'  limit 1) as `ac`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end` FROM `egw_cal` WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+        $dn = array();
+        while($row = GetNextRow($result))
+        {
+            $iac = $row['ac'] * ($row['end'] - $row['date']) / 3600;
+            $dn[date('d.m.Y', $row['date'])] -= $iac;
+    //        $netto -= $iac;
+            $brutto -= $iac;
+        }
+        $result = SendQuery("select `egw_cal_extra`.`cal_extra_value`, `egw_cal_extra`.`cal_extra_name`, (select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) as `date` from `egw_cal_extra` where (`egw_cal_extra`.`cal_extra_name` = 'suma_na_wizycie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_łącznie' or `egw_cal_extra`.`cal_extra_name` = 'koszty_technika') and (select `egw_cal`.`cal_owner` from `egw_cal` where `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`) = ".$id." and ((select `egw_cal_dates`.`cal_end` from `egw_cal_dates` where `egw_cal_extra`.`cal_id` = `egw_cal_dates`.`cal_id`) between ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ') order by `date`');
+        break;
+    case 'cr':
+        $result= SendQuery("SELECT `egw_cal`.`cal_title` , `egw_cal`.`cal_description`, ( SELECT DISTINCT `egw_cal_dates`.`cal_start` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) AS `date`, ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id`  limit 1) AS `end`, (select DISTINCT `egw_cal_extra`.`cal_extra_value` from `egw_cal_extra` where `egw_cal_extra`.`cal_extra_name` = 'koszty_technika' and `egw_cal_extra`.`cal_id` = `egw_cal`.`cal_id`  limit 1) as `tc` FROM `egw_cal` WHERE `egw_cal`.`cal_owner` = " . $id . " AND ( ( SELECT DISTINCT `egw_cal_dates`.`cal_end` FROM `egw_cal_dates` WHERE `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` limit 1) BETWEEN ".strtotime($_GET['from']. '00:00'). ' and '.strtotime($_GET['to']. '23:59'). ") order by `date`");
+        $sum = 0;
 }
 $VAT = 0.01*$_GET['vat'];
 
@@ -183,7 +187,14 @@ while($row = GetNextRow($result))
                 
         }
         $LastDate = date('m/Y', $row['date']);
-        break;              
+        break;
+    case 'cr':
+        $DentistTable[] = $row['cal_title'];
+        $DentistTable[] = $row['cal_description'];
+        $DentistTable[] = date('d.m.Y',$row['date']). ' r. ';
+        $DentistTable[] = date('G:i',$row['date']) . '&nbsp;-&nbsp;' . date('G:i',$row['end']);
+        $DentistTable[] = $row['tc'];
+        $sum += $row['tc'];
     }
 }
 CloseConnection();
@@ -482,6 +493,9 @@ switch ($_GET['type'])
                                        str_replace(" ", $nbsp, number_format(round($TVAT, 2), 2, ',', ' ')), $sum,
                                        'Razem: ', str_replace(" ", $nbsp, number_format(round($netto, 2), 2, ',', ' ')),
                                        str_replace(" ", $nbsp, number_format(round($TVAT, 2), 2, ',', ' ')), $sum));
+    break;
+    case 'cr':
+        $sum = str_replace(" ", $nbsp, number_format(round($sum, 2), 2, ',', ' '));
 }
 $smarty->assign('sum', $sum);
 $SumParts = explode(',', $sum);

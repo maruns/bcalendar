@@ -124,6 +124,13 @@ class bcalendar_ui
 	 * @var array $states_to_save all states that will be saved to the user prefs
 	 */
 	var $states_to_save = array('owner','filter');
+        
+        /**
+	 * Unikalne identyfikatory kont, których termin ważności nie minął
+	 *
+	 * @var array
+	 */
+	private $NotExpiredUsers;
 
 	/**
 	 * Constructor
@@ -163,7 +170,29 @@ class bcalendar_ui
 
 		// bcalendar does not work with hidden sidebox atm.
 		unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
+                
+                $NotExpiredUsersResult = $GLOBALS['egw']->db->select('egw_accounts',
+                                                           '`account_id`',
+                                                           '`account_expires` > '.intval($_SERVER['REQUEST_TIME']) . 
+                                                           ' OR `account_expires` = -1',__LINE__,
+                                                           __FILE__,false,'',0,
+                                                           0, ''); //pobranie ID kont, których termin ważności nie minął
+                foreach($NotExpiredUsersResult as $neu) //utworzenie tablicy z ID kont, których termin ważności nie minął
+                {
+                    $this->NotExpiredUsers[$neu['account_id']] = $neu['account_id'];
+                }
 	}
+        
+        /**
+	 * Sprawdza czy minął termin ważności konta
+	 *
+	 * @param int $$AccountID unikalny identyfikator konta
+	 * @return boolean czy minął termin ważności konta
+	 */
+        function IsNotExpired($AccountID)
+        {
+            return isset($this->NotExpiredUsers[$AccountID]);
+        }
 
 	/**
 	 * Checks and terminates (or returns for home) with a message if $this->owner include a user/resource we have no read-access to
@@ -183,7 +212,9 @@ class bcalendar_ui
 				foreach($GLOBALS['egw']->accounts->member($owner) as $member)
 				{
 					$member = $member['account_id'];
-					if (!$this->bo->check_perms(EGW_ACL_READ|EGW_ACL_READ_FOR_PARTICIPANTS|EGW_ACL_FREEBUSY,0,$member))
+					if ($this->IsNotExpired($member) && 
+                                            !$this->bo->check_perms(EGW_ACL_READ|EGW_ACL_READ_FOR_PARTICIPANTS|EGW_ACL_FREEBUSY,
+                                                                    0,$member)) //komunikat tylko dla użytkowników, których termin nie minął
 					{
 						$no_access_group[$member] = $this->bo->participant_name($member);
 					}
@@ -197,7 +228,8 @@ class bcalendar_ui
 		if (count($no_access))
 		{       
                         $msg = $this->sidebox_menu();
-			$msg .= '<p class="redItalic" align="center">'.lang('Access denied to the bcalendar of %1 !!!',implode(', ',$no_access))."</p>\n";
+			$msg .= '<p class="redItalic" align="center">'.
+                                lang('Access denied to the bcalendar of %1 !!!',implode('; ',$no_access))."</p>\n"; //średnik jako separator
 
 			if ($GLOBALS['egw_info']['flags']['currentapp'] == 'home')
 			{
@@ -213,7 +245,8 @@ class bcalendar_ui
 		}
 		if (count($no_access_group))
 		{
-			$this->group_warning = lang('Groupmember(s) %1 not included, because you have no access.',implode(', ',$no_access_group));
+			$this->group_warning = lang('Groupmember(s) %1 not included, because you have no access.',
+                                                    implode('; ',$no_access_group)); //średnik jako separator
 		}
 		return false;
 	}
@@ -390,8 +423,12 @@ class bcalendar_ui
 				$saved_states = serialize(array_intersect_key($states,array_flip($this->states_to_save)));
 				if ($saved_states != $this->cal_prefs['saved_states'] || $changed) //zapisz stan, jeśli zmieniony
 				{
-					$GLOBALS['egw']->preferences->add('calendar','saved_states',$saved_states);
-					$GLOBALS['egw']->preferences->save_repository(false,'user',true);
+                                    if (defined('E_DEPRECATED')) //pokaż tylko błędy, jeśli dostępne są komunikaty o przestarzałych funkcjach
+                                    {
+                                        error_reporting(E_ERROR);
+                                    }
+                                    $GLOBALS['egw']->preferences->add('calendar','saved_states',$saved_states);
+                                    $GLOBALS['egw']->preferences->save_repository(false,'user',true);
 				}
 			}
 		}
@@ -570,15 +607,6 @@ class bcalendar_ui
 	 */
 	function sidebox_menu()
 	{
-                $ActiveUsers = $GLOBALS['egw']->db->select('egw_accounts',
-                                                           '`account_id`',
-                                                           '`account_expires` > '.intval($_SERVER['REQUEST_TIME']) . 
-                                                           ' OR `account_expires` = -1',__LINE__,
-                                                           __FILE__,false,'',0,
-                                                           0, ''); //pobranie ID aktywnych kont
-                $GLOBALS['egw']->accounts->backend->contacts_join .= 
-                ' WHERE egw_accounts.`account_expires` = -1 OR egw_accounts.`account_expires` > ' . 
-                intval($_SERVER['REQUEST_TIME']); //zmiana zapytania o konta
 		$base_hidden_vars = $link_vars = array();
 		if (@$_POST['keywords'])
 		{
@@ -772,20 +800,11 @@ class bcalendar_ui
 			$grants = array();
 			foreach($this->bo->list_cals() as $grant)
 			{
-                            if ($grant['grantor'] == $this->user || !($grant['grantor'] > 0)) //filtrowanie kont
+                            if ($grant['grantor'] == $this->user || 
+                                !($grant['grantor'] > 0) || 
+                                $this->IsNotExpired($grant['grantor'])) //filtrowanie kont
                             {
                                 $grants[] = $grant['grantor'];
-                            }
-                            else
-                            {
-                                foreach ($ActiveUsers as $au)
-                                {
-                                    if ($au['account_id'] == $grant['grantor'])
-                                    {
-                                        $grants[] = $grant['grantor'];
-                                        break;
-                                    }
-                                }
                             }
                             //$grants[] = $grant['grantor'];
 			}
@@ -894,20 +913,29 @@ function load_cal(url,id) {
                 if ($GLOBALS['egw_info']['user']['apps']['Invoice']) //pokaż link tworzenia faktury, jeśli użytkownik ma uprawnienia do faktur
                 {
                     $links = '<a title="Utwórz fakturę zawierającą franszczyzę netto i brutto" onclick="window.open(\'' . $GLOBALS['egw']->link('/Invoice/index.php') . 
-                        '\',\'_blank\',\'width=\'+400+\',height=\'+400+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
+                        '\',\'_blank\',\'width=\'+400+\',height=\'+450+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/Invoice.png') . 
                         '" />Tworzenie faktury</a><a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/PatientVisits/index.php') . 
                         '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty</a><a title="Czas pracy dentystów - ustaw czas pracy w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
-                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" /></a>';
+                    '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="'
+                    . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . 
+                    '" /></a><a title="Zobacz usunięte zdarzenia" onclick="window.open(\'' . 
+                    $GLOBALS['egw']->link('/DeletedEvents/index.php') . 
+                    '\',\'_blank\',\'width=\'+1000+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="'
+                    . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/DeletedEvents.png') . '" /></a>';
                 }
-                else //w przeciwnym wypadku pokaż hiperłącza tylko do okna wizyt pacjentów i czasu pracy dentystów
+                else //w przeciwnym wypadku pokaż hiperłącza tylko do okna wizyt pacjentów, czasu pracy dentystów i usuniętych zdarzeń
                 {
                     $links = '<a title="Zobacz wizyty pacjentów" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/PatientVisits/index.php') . 
                         '\',\'_blank\',\'width=\'+750+\',height=\'+600+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/PatientVisits.png') . '" />Wizyty pacjentów</a><a title="Ustaw czas pracy dentystów w dniach tygodnia i terminach szczególnych" onclick="window.open(\'' . 
                         $GLOBALS['egw']->link('/bcalendar/WorkingHours/index.php') . 
-                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') . '" />Czas pracy</a>';
+                        '\',\'_blank\',\'width=\'+605+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="' . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/WorkingHours.png') .
+                    '" />Czas pracy</a><a title="Zobacz usunięte zdarzenia" onclick="window.open(\'' . 
+                    $GLOBALS['egw']->link('/DeletedEvents/index.php') . 
+                    '\',\'_blank\',\'width=\'+1000+\',height=\'+screen.height+\',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes\');"><img src="'
+                    . $GLOBALS['egw']->link('/phpgwapi/templates/idots/images/DeletedEvents.png') . '" /></a>';
                 }
                 $settings = '';
 		if ($GLOBALS['egw_info']['user']['apps']['preferences'])

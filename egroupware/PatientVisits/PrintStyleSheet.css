@@ -1,0 +1,10 @@
+* {
+    position: static;
+    overflow: auto;
+}
+h1 {
+    text-align: center;
+}
+form {
+    display: none;
+}

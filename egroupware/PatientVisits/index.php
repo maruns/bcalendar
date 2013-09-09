@@ -9,46 +9,96 @@ require_once('../DatabaseConnection.php');
 require_once('../SmartyConfig.php');
 if ($_GET['search'] == null)
 {
-    $patients = SendQuery("select `n_fn`, `contact_id` from `egw_addressbook` order by `n_family`, `n_given`, `n_middle`");
+    $patients = SendQuery("select `n_fn`, `egw_addressbook`.`contact_id`, `tel_prefer`, `tel_cell_private`, `tel_cell`, `tel_work`, `tel_assistent`, `tel_home`, `tel_car`, `tel_other`, `contact_value` from `egw_addressbook` LEFT JOIN `egw_addressbook_extra` ON (`egw_addressbook`.`contact_id` = `egw_addressbook_extra`.`contact_id` AND `egw_addressbook_extra`.`contact_name` = 'PESEL') order by `n_family`, `n_given`, `n_middle`");
 }
 else
 {
     $smarty->assign('search', $_GET['search']);
-    $patients = SendQuery("select `n_fn`, `contact_id` from `egw_addressbook` where `n_fn` like '%".EscapeSpecialCharacters($_GET['search'])
-                          ."%' order by `n_family`, `n_given`, `n_middle`");
+    $patients = SendQuery("select `n_fn`, `egw_addressbook`.`contact_id`, `tel_prefer`, `tel_cell_private`, `tel_cell`, `tel_work`, `tel_assistent`, `tel_home`, `tel_car`, `tel_other`, `contact_value` from `egw_addressbook` LEFT JOIN `egw_addressbook_extra` ON (`egw_addressbook`.`contact_id` = `egw_addressbook_extra`.`contact_id` AND `egw_addressbook_extra`.`contact_name` = 'PESEL') where `n_fn` like '%" . EscapeSpecialCharacters($_GET['search']) . "%' order by `n_family`, `n_given`, `n_middle`");
 }
 while ($row = GetNextRow($patients))
 {
-    $ps[$row['contact_id']] = $row['n_fn'];
-}
-$smarty->assign('patient', $ps);
-if ($_GET['patient'] != null)
-{
-    $smarty->assign('focus', 'patient');
-    $smarty->assign('sp', $_GET['patient']);
-    $visits= SendQuery("select `egw_addressbook`.`n_fn`, `egw_cal`.`cal_title`, `egw_cal`.`cal_description`, `egw_cal_dates`.`cal_start`, `egw_cal_dates`.`cal_end` from `egw_cal` left join (`egw_addressbook`, `egw_cal_dates`, `egw_cal_user`) on (`egw_cal`.`cal_owner` = `egw_addressbook`.`account_id` and `egw_cal`.`cal_id` = `egw_cal_dates`.`cal_id` and `egw_cal`.`cal_id` = `egw_cal_user`.`cal_id`) where `egw_cal_user`.`cal_role` = 'REQ-PARTICIPANT' and `egw_cal_user`.`cal_user_id` = ".intval($_GET['patient']));
-    while ($row = GetNextRow($visits))
+    if ($row['n_fn'])
     {
-        $vt[] = $row['cal_title'];
-        if ($row['cal_description'] == '')
+        $ps[] = $row['n_fn'];
+    }
+    else
+    {
+        $ps[] = '&nbsp;';
+    }
+    $tel_prefer = trim($row[$row['tel_prefer']]);
+    if ($tel_prefer)
+    {
+        $ps[] = $tel_prefer;
+    }
+    else
+    {
+        $tel_cell_private = trim($row['tel_cell_private']);
+        if ($tel_cell_private)
         {
-            $vt[] = '&nbsp;';
+            $ps[] = $tel_cell_private;
         }
         else
         {
-            $vt[] = $row['cal_description'];
+            $tel_cell_private = trim($row['tel_work']);
+            if ($tel_cell)
+            {
+                $ps[] = $tel_cell;
+            }
+            else
+            {
+                $tel_work = trim($row['tel_work']);
+                if ($tel_work)
+                {
+                    $ps[] = $tel_work;
+                }
+                else
+                {
+                    $tel_assistent = trim($row['tel_assistent']);
+                    if ($tel_assistent)
+                    {
+                        $ps[] = $tel_assistent;
+                    }
+                    else
+                    {
+                        $tel_home = trim($row['tel_home']);
+                        if ($tel_home)
+                        {
+                            $ps[] = $tel_home;
+                        }
+                        else
+                        {
+                            $tel_home = trim($row['tel_car']);
+                            if ($tel_car)
+                            {
+                                $ps[] = $tel_car;
+                            }
+                            else
+                            {
+                                $ps[] = trim($row['tel_other']);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        $vt[] = $row['n_fn'];
-        $vt[] = date('d.m.Y',$row['cal_start']).' r.';
-        $vt[] = date('G:i',$row['cal_start']);
-        $vt[] = date('G:i',$row['cal_end']);
     }
-    $smarty->assign('visits', $vt);
+    $ps[] = $row['contact_value'];
+    $attr[] = "onclick=\"window.open('PatientVisits.php?name=" . htmlentities($row['n_fn'], ENT_QUOTES | ENT_XHTML) . "&amp;patient=" . 
+              $row['contact_id'] . 
+              "','_blank','width='+1000+',height='+400+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');\"";
+}
+$smarty->assign('patient', $ps);
+$smarty->assign('attr', $attr);
+if ($_GET['patient'] != null)
+{
+    $smarty->assign('focus', 'patient');
+    
 }
 else
 {
     $smarty->assign('focus', 'search');
 }
 CloseConnection();
-$smarty->display('PatientVisits.tpl');
+$smarty->display('Patients.tpl');
 ?>

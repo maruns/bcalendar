@@ -142,7 +142,7 @@ th {
             <tr><th>Sprzedawca:</th></tr>
             <tr>
                 <td>
-                    <p>Bluedental s.c. Adam Okoń, Anita Okoń</p>
+                    <p>Bluedental Anita Okoń</p>
                     <p>ul. Zamenhofa 12/4</p>
                     <p>00-187 Warszawa</p>
                     <p>NIP: {$d_NIP}</p>
@@ -163,15 +163,13 @@ th {
         </table>
     </div>
     <div class="bc" id="separator">&nbsp;</div>
-    <h1 class="bc">Raport   {if $in}{$in}{else}<sub>. . .</sub>  {/if}/{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
+    <h1 class="bc">Raport kosztów   {if $in}{$in}{else}<sub>. . .</sub>  {/if}/{$smarty.now|date_format: '%m/%Y'} oryginał</h1>
     {html_table
      loop=$DentistTable
-     cols="Nazwa zdarzenia, Data, Czas, Koszt"}
+     cols="Tytuł, Opis, Data, Czas, Koszt"}
     <div>
-        {html_table table_attr='id="rt"' loop=$RateTable
-                    cols="dentysta, kwota brutto dla asystenta, kwota netto dla asystenta"}
         <table id="sst">
-            <tr><th>Razem do zapłaty:</th><th>{$sum}</th></tr>
+            <tr><th>Razem:</th><th>{$sum}</th></tr>
             <tr><td><strong>Słownie: </strong>{$InWords}</td><td>PLN {$FractionalPart}/100</td></tr>
         </table>
     </div>

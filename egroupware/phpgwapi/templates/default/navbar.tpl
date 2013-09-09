@@ -42,18 +42,42 @@
 	<div id="divAppIconBar">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top: 7px">
 			<tr>
-				<td width="100"></td> 
-                                <td class="iatd"><a title="Ustaw czas pracy w dniach tygodnia i terminach szczególnych"
-onclick="window.open('bcalendar/WorkingHours/index.php','_blank','width='+605+',height='+screen.height+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/WorkingHours.png" alt="Czas pracy dentystów"/>
-                                Czas pracy dentystów</a></td>
-                                <td class="iatd"><a title="Zobacz wizyty pacjentów"
-onclick="window.open('PatientVisits/index.php','_blank','width='+750+',height='+600+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/PatientVisits.png" alt="Wizyty pacjentów"/>
-                                Wizyty pacjentów</a></td>
-                                <td class="iatd">
+				<td width="70"></td> <!-- odstęp pomiędzy ikonami, a lewym brzegiem strony -->
+                                <td class="iatd"> <!-- ikona czasu pracy dentystów -->
+                                    <a title="Ustaw czas pracy w dniach tygodnia i terminach szczególnych"
+                                       onclick="window.open('bcalendar/WorkingHours/index.php',
+                                                            '_blank',
+                                                            'width='+605+',height='+screen.height+
+                                                            ',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');">
+                                        <img src="{img_root}/WorkingHours.png" alt="Czas pracy dentystów"/>
+                                    Czas pracy dentystów</a>
+                                </td>
+                                <td class="iatd"> <!-- ikona wizyt pacjentów -->
+                                    <a title="Zobacz wizyty pacjentów"
+                                       onclick="window.open('PatientVisits/index.php',
+                                                            '_blank',
+                                                            'width='+750+',height='+600+
+                                                            ',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');">
+                                        <img src="{img_root}/PatientVisits.png" alt="Wizyty pacjentów"/>
+                                    Wizyty pacjentów</a>
+                                </td>
+                                <td class="iatd"> <!-- ikona tworzenia faktury -->
                                     <a title="Utwórz fakturę zawierającą franszczyzę netto i brutto"
-onclick="window.open('Invoice/index.php','_blank','width='+400+',height='+400+',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');"><img src="{img_root}/Invoice.png" alt="Tworzenie faktury"/>
-                                Tworzenie faktury</a></td>
-				<td valign="bottom">
+                                       onclick="window.open('Invoice/index.php','_blank','width='+400+',height='+450+
+                                               ',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');">
+                                        <img src="{img_root}/Invoice.png" alt="Tworzenie faktury"/>
+                                    Tworzenie faktury</a>
+                                </td>
+                                <td class="iatd"> <!-- ikona zdarzeń usuniętych -->
+                                    <a title="Zobacz zdarzenia, które zostały usunięte"
+                                       onclick="window.open('DeletedEvents/index.php',
+                                               '_blank',
+                                               'width='+1000+',height='+screen.height+
+                                               ',location=no,menubar=no,toolbar=no,scrollbars=yes,status=yes');">
+                                        <img src="{img_root}/DeletedEvents.png" alt="Zdarzenia usunięte"/>
+                                    Zdarzenia usunięte</a>
+                                </td>
+				<td valign="middle"> <!-- wyśrodkowane ikony aplikacji (na bliższej wysokości do wysokości ikon okien) -->
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 <!-- BEGIN app_icon_block -->

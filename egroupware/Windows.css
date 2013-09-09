@@ -30,27 +30,59 @@ h1 {
 p, label, input, select, table, li {
     font-size: 10px;
 }
-body#pv {
-    width: 700px;
-}
-input#search {
-    width: 130px;
-}
-select#patient, table {
-    width: 100%;
-}
-div#vc {
-    margin-top: 10px;
-    width: 100%;
-    height: 300px;
-    overflow-y: scroll;
+tr td, tr th {
+    border: 1px inset black;
 }
 table {   
     border-spacing: 0;
     background-color: white;
     text-align: center;
     empty-cells: show;
-    overflow: scroll;
+    border: 1px outset black;
+    width: 100%;
+}
+a#refresh {
+    text-decoration: none;
+}
+body#pv {
+    height: 100%;
+}
+body#pv h1, body#pv p {
+    overflow-y: hidden;
+}
+body#pv a img {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+input#search {
+    width: 130px;
+}
+div#aa {
+    height: 100%;
+    overflow-y: hidden;
+}
+div.ao {
+    position:absolute;
+    bottom: 0px;
+    overflow-y: scroll;
+    width: 100%;
+    right: 0;
+}
+div#pc {
+    top: 97px;
+}
+div#vc {
+    top: 73px;
+}
+div#dec {
+    top: 177px;
+}
+table#pt tr:hover td {
+    cursor: pointer;
+    background-color: lightsteelblue;
+}
+tr.deleted td {
+    color: red;
 }
 html#wh, body#whb {
     width: 700px;
@@ -168,21 +200,33 @@ form#ef label.ll {
     display: inline-block;
     text-align: right;
 }
-form#ef fieldset {
+form#ef fieldset#cf, p#desp {
     clear: both;
 }
-form#ef fieldset label.ll {
+form#ef fieldset#cf label.ll {
     width: 210px;
 }
-form#ef fieldset input[type="text"] {
+form#ef fieldset#cf {
     width: 60%;
+    float: left;
+}
+form#ef fieldset#cf input[type="text"] {
+    width: 60%;
+}
+form#ef fieldset#files {
+    width: 30%;
+}
+div.fnc {
+    width: 50%;
+    float: left;
+    clear: both;
+    font-size: 10px;
 }
 form#ef input#title {
     width: 60%;
 }
 div.combobox	{
     position: relative;
-    zoom: 1;
 }
 div.combobox	div.dropdownlist	{
     display: none;
@@ -403,7 +447,7 @@ form#ef a#rda {
     font-size: 8px;
 }
 a#erl {
-    position: fixed;
+    position: absolute;
     right: 10px;
     text-decoration: none;
     color: red;
@@ -430,4 +474,9 @@ p#vl, a.ael {
 }
 p#vl a:hover, a.ael:hover {
     color: darkgoldenrod;
+}
+div#desdd {
+    float: left;
+    margin-top: -3px;
+    margin-right: 10px;
 }

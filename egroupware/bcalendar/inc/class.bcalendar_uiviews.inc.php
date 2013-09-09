@@ -2094,7 +2094,9 @@ SCRIPT;
       } elseif ($enum_groups && $GLOBALS['egw']->accounts->get_type($user) == 'g') { // groups
         foreach ((array) $GLOBALS['egw']->accounts->member($user) as $data) {
           $user = $data['account_id'];
-          if ($this->bo->check_perms(EGW_ACL_READ | EGW_ACL_FREEBUSY, 0, $user)) {
+          if (parent::IsNotExpired($user) && 
+              $this->bo->check_perms(EGW_ACL_READ | EGW_ACL_FREEBUSY, 0, $user)) //kalendarz tylko użytkowników, których termin nie minął
+          {
             $users[$user] = $this->bo->participant_name($user);
           }
         }

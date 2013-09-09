@@ -14,7 +14,7 @@
     <h1>Tworzenie faktury</h1>
     <form target="_blank" action="Invoice.php">
         <p><label for="dentist">Dentysta: </label></p>
-        <p>{html_options onchange="document.getElementById('submit').disabled = false;" options=$dentists id=dentist size="4" name=dentist}</p> 
+        <p>{html_options options=$dentists selected=$lu name=dentist}</p> 
         <p><label for="from">Od dnia: </label></p>
         <p><input type="text" id="from" name="from" class="date-pick" /></p>
         <p>&nbsp;</p>
@@ -24,13 +24,12 @@
         <p><label for="vat">Podatek VAT: </label><input type="text" id="vat" name="vat" value="{$d_VAT}" size="2" maxlength="2" />%</p>
         <p><label for="in">Numer faktury: </label><input type="text" id="in" name="in" size="2" maxlength="2" /></p>
         <p id="nbm">
-            <input onchange="CheckType()" type="radio" name="type" checked="checked" value="invoice">
-                Faktura
-            </input>
+            <label><input onchange="CheckType()" type="radio" name="type" checked="checked" value="invoice"/>Faktura</label>
         </p>
-        <p><input onchange="CheckType()" type="radio" name="type" value="report">Raport</input></p>
-        <p><input onchange="CheckType()" type="radio" name="type" value="ar">Raport asystenta</input></p>
-        <p><input type="submit" id="submit" value="Utwórz fakturę" disabled="disabled"/></p>
+        <p><label><input onchange="CheckType()" type="radio" name="type" value="report"/>Raport</label></p>
+        <p><label><input onchange="CheckType()" type="radio" name="type" value="ar"/>Raport asystenta</label></p>
+        <p><label><input onchange="CheckType()" type="radio" name="type" value="cr"/>Raport kosztów                                                                                                                                                                                                             </label></p>
+        <p><input type="submit" id="submit" value="Utwórz fakturę"/></p>
     </form>
 </body>
 </html>

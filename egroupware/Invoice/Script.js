@@ -9,7 +9,7 @@ function CheckType() //sprawdza typ faktury i blokuje lub odblokowuje pole tekst
             value = radios[i].value;       
         }
     }
-    if (value === 'ar')
+    if (value === 'ar' || value === 'cr')
     {
         document.getElementById('vat').disabled = true;
     }
