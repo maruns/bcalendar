@@ -159,14 +159,13 @@ function CloseConnection()
     $mysqli->close();
 }
 /**
- * Zwraca hiperłącze do pliku
+ * Zwraca nazwę pliku, który będzie miniaturką lub ikoną danego pliku
  *
- * @param string $file nazwa pliku
+ * @param string $file nazwa pliku, dla którego ma być ikona
  * @param int $cal_id identyfikator wizyty
- * @param string $comment komentarz do pliku
- * @return string hiperłącze
+ * @return string nazwa pliku ikony
  */
-function ShowLinkToFile($file, $cal_id, $comment)
+function GetIcon($file, $cal_id)
 {
     $ending = strtolower(substr($file, -4));
     switch($ending)
@@ -176,32 +175,26 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case 'jpeg':
         case '.gif':
         case '.bmp':
-            $icon = '"><img src="../etemplate/thumbnail.php?path=%2Fapps%2Fcalendar%2F70%2F' . urlencode($file);
-            break;                       
+            return 'thumbnail.php?path=%2Fapps%2Fcalendar%2F' . $cal_id . '%2F' . urlencode($file);                      
         case '.doc':
         case '.dot':
         case 'docx':
         case 'docm':
         case 'dotx':
         case 'dotm':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_msword.gif';
-            break;
+            return 'templates/default/images/mime16_application_msword.gif';
         case '.bin':
         case '.dms':
         case '.exe':
         case '.lha':
         case '.lzh':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_octet-stream.gif';
-            break;
+            return 'templates/default/images/mime16_application_octet-stream.gif';
         case '.pdf':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_pdf.gif';
-            break;
+            return 'templates/default/images/mime16_application_pdf.gif';
         case '.eps':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_postscript.png';
-            break;
+            return 'templates/default/images/mime16_application_postscript.png';
         case '.rtf':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_rtf.png';
-            break;
+            return 'templates/default/images/mime16_application_rtf.png';
         case '.xls':
         case '.xst':
         case '.xlm':
@@ -211,8 +204,7 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case 'xltm':       
         case 'xlsb':
         case '.xlw':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.ms-excel.gif';
-            break; 
+            return 'templates/default/images/mime16_application_vnd.ms-excel.gif';
         case '.ppt':
         case '.pps':
         case 'pptx':
@@ -221,40 +213,30 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case 'pptm':       
         case 'ppsm':
         case '.ppa':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.ms-powerpoint.gif';
-            break; 
+            return 'templates/default/images/mime16_application_vnd.ms-powerpoint.gif'; 
         case '.odb':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.oasis.opendocument.database.gif';
-            break;
+            return 'templates/default/images/mime16_application_vnd.oasis.opendocument.database.gif';
         case '.odg':
         case 'fodg':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.oasis.opendocument.graphics.gif';
-            break;
+            return 'templates/default/images/mime16_application_vnd.oasis.opendocument.graphics.gif';
         case '.odp':
         case 'fodp':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.oasis.opendocument.presentation.gif';
-            break;
+            return 'templates/default/images/mime16_application_vnd.oasis.opendocument.presentation.gif';
         case '.ods':
         case 'fods':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.oasis.opendocument.spreadsheet.gif';
-            break;
+            return 'templates/default/images/mime16_application_vnd.oasis.opendocument.spreadsheet.gif';
         case '.odt':
         case 'fodt':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_vnd.oasis.opendocument.text.gif';
-            break;
+            return 'templates/default/images/mime16_application_vnd.oasis.opendocument.text.gif';
         case 'gtar':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_x-gtar.png';
-            break;
+            return 'templates/default/images/mime16_application_x-gtar.png';
         case '.php':
         case 'php5':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_x-httpd-php.png';
-            break;
+            return 'templates/default/images/mime16_application_x-httpd-php.png';
         case '.tar':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_x-tar.png';
-            break;
+            return 'templates/default/images/mime16_application_x-tar.png';
         case '.zip':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_application_zip.gif';
-            break;
+            return 'templates/default/images/mime16_application_zip.gif';
         case '.aif':
         case 'aifc':
         case 'aiff':
@@ -265,8 +247,7 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case '.rmi':
         case '.snd':
         case '.wma':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_audio.png';
-            break;
+            return 'templates/default/images/mime16_audio.png';
         case '.cmx':
         case '.cod':
         case '.ico':
@@ -284,11 +265,9 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case '.xbm':
         case '.xpm':
         case '.xwd':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_image.png';
-            break;
+            return 'templates/default/images/mime16_image.png';
         case 'jpe':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_image_jpeg.gif';
-            break;
+            return 'templates/default/images/mime16_image_jpeg.gif';
         case '.323':
         case '.bas':
         case '.css':
@@ -297,21 +276,17 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case '.htt':       
         case '.rtx':
         case '.txt':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_text.png';
-            break;
+            return 'templates/default/images/mime16_text.png';
         case 'ical':
         case '.ics':
         case '.ifb':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_text_calendar.png';
-            break;
+            return 'templates/default/images/mime16_text_calendar.png';
         case '.htm':
         case 'html':
         case '.stm':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_text_html.png';
-            break;
+            return 'templates/default/images/mime16_text_html.png';
         case '.vcf':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_text_x-vcard.png';
-            break;
+            return 'templates/default/images/mime16_text_x-vcard.png';
         case '.asf':
         case '.asr':
         case '.asx':
@@ -326,37 +301,43 @@ function ShowLinkToFile($file, $cal_id, $comment)
         case 'mpv2':
         case '.wmv':
         case 'rmvb':
-            $icon = '"><img src="../etemplate/templates/default/images/mime16_video.png';
-            break;
+            return 'templates/default/images/mime16_video.png';
         default:
             switch (substr($ending, -3))
             {
                 case '.ai':
                 case '.ps':
-                    $icon = '"><img src="../etemplate/templates/default/images/mime16_application_postscript.png';
-                    break;
+                    return 'templates/default/images/mime16_application_postscript.png';
                 case '.sh':
-                    $icon = '"><img src="../etemplate/templates/default/images/mime16_application_x-sh.png';
-                    break;
+                    return 'templates/default/images/mime16_application_x-sh.png';
                 case '.au':
                 case '.ra':
-                    $icon = '"><img src="../etemplate/templates/default/images/mime16_audio.png';
-                    break;
+                    return 'templates/default/images/mime16_audio.png';
                 default:
                     $LongerEnding = strtolower(substr($file, -10));
                     if ($LongerEnding == '.icalendar')
                     {
-                        $icon = '"><img src="../etemplate/templates/default/images/mime16_text_calendar.png';
-                        break;
+                        return 'templates/default/images/mime16_text_calendar.png';
                     }
                     if (substr($LongerEnding, -6) == '.movie')
                     {
-                        $icon = '"><img src="../etemplate/templates/default/images/mime16_video.png';
-                        break;
+                        return 'templates/default/images/mime16_video.png';
                     }
-                    $icon = '"><img src="../etemplate/templates/default/images/mime16_unknown.png';
-            }
+                    return 'templates/default/images/mime16_unknown.png';
+            }           
     }
+}
+/**
+ * Zwraca hiperłącze do pliku
+ *
+ * @param string $file nazwa pliku
+ * @param int $cal_id identyfikator wizyty
+ * @param string $comment komentarz do pliku
+ * @return string hiperłącze
+ */
+function ShowLinkToFile($file, $cal_id, $comment)
+{
+    $icon = '"><img src="../etemplate/' . GetIcon($file, $cal_id);
     if ($comment)
     {
         $alt = $comment;
