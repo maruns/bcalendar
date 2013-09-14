@@ -19,13 +19,15 @@ function OnTitleChange()
     {
         document.getElementById("tp").style.backgroundColor = 'red';
         document.forms.ef.ok.disabled = true;
-        document.forms.ef.apply.disabled = true;
+        document.forms.ef.na.disabled = true;
+        document.forms.ef.fa.disabled = true;
     }
     else
     {
         document.getElementById("tp").style.backgroundColor = '';
         document.forms.ef.ok.disabled = false;
-        document.forms.ef.apply.disabled = false;
+        document.forms.ef.na.disabled = false;
+        document.forms.ef.fa.disabled = false;
     }
 }
 
@@ -156,4 +158,9 @@ function InsertData(id, title, price, TotalCost, TechnicianCosts, category)
 function ReplaceDescription()
 {
     document.forms.ef.description.value = document.forms.ef.plan.value;
+}
+function RemoveFile(fid)
+{
+    document.forms.ef.rf.value = fid;
+    document.forms.ef.submit();
 }

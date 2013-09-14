@@ -214,9 +214,13 @@ form#ef fieldset#cf input[type="text"] {
     width: 60%;
 }
 form#ef fieldset#files {
-    width: 30%;
+    width: 35%;
 }
 div.fnc {
+    clear: both;
+    margin-top: 5px;
+}
+div.fnc div:first-child {
     width: 50%;
     float: left;
     clear: both;

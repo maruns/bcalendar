@@ -177,11 +177,36 @@
                     <textarea id="cl" name="cl" rows="4" cols="5">{$CheckList}</textarea>
                 </p>
             </div>
-            <fieldset>
+            <fieldset id="cf">
                 <legend>Pola niestandardowe</legend>
                 {$additional}
             </fieldset>
-            <p>
+            <fieldset id="files">
+                <legend>Pliki</legend>
+                <input type="file" name="file" />
+                <p>
+                    <label for="comment">Komentarz do nowego pliku: </label><input type="text" id="comment" name="comment"/>
+                    <input id="fa" type="submit" value="Zastosuj" name="apply" />
+                </p>
+                <div>
+                    {foreach $files as $file}
+                        <div class="fnc">
+                            <div class="fnc">
+                                <a href="../../webdav.php/apps/calendar/{$id}/{$file['FileName']}" target="_blank" title="Otwórz plik">
+                                    <img src="../../etemplate/{$file['image']}" alt="Plik&nbsp;"/>{$file['FileName']}
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:RemoveFile({$file['ID']})" title="Usuń plik {$file['FileName']}"><img src="../../phpgwapi/templates/idots/images/delete.png" alt="Usuń"/></a>
+                                <label for="#{$file['ID']}">&nbsp;</label>
+                                <input type="text" name="#{$file['ID']}" id="#{$file['ID']}" value="{$file['prop_value']}" title="Komentarz do pliku {$file['FileName']}" />
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+                <input id="rf" name="rf" type="hidden"/>
+            </fieldset>
+            <p id="desp">
                 <label for="private">
                     <input class="ll" type="checkbox" id="private" name="private"{if $cal_public == '0'} checked="checked"{/if}/>Zdarzenie prywatne
                 </label>
@@ -231,10 +256,10 @@
             </fieldset>-->
             <p>
                 <input id="ok" type="submit" value="OK" name="ok" />
-                <input id="apply" type="submit" value="Zastosuj" name="apply" />
+                <input id="na" type="submit" value="Zastosuj" name="apply" />
                 <input id="more" type="submit" title="Wyświetl okno zaawansowane edycji zdarzeń" value="Więcej{$loss}" name="more" />
-                {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
                 {if $Creator}Twórca wizyty: {$Creator}{/if}
+                {if $id}<a id="erl" href="?remove={$id}">Usuń zdarzenie</a>{/if}
             </p>
         </form>
         

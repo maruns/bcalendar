@@ -39,13 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
     $cl = EscapeSpecialCharacters(trim($_POST['cl']));
     foreach ($_POST as $key=>$value)
     {
-        if ($key[0] == '_')
+        switch($key[0])
         {
-            if ($value === 'on')
-            {
-                $value = '1';
-            }
-            $acf[substr($key, 1)] = $value;
+            case '_':
+                if ($value === 'on')
+                {
+                    $value = '1';
+                }
+                $acf[substr($key, 1)] = $value;
+                break;
+            case '#':
+                $comment[intval(substr($key, 1))] = $value;
         }
     }
     if ($id > 0)
@@ -54,11 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
         {
             if ($_POST['old_patient'] > 0)
             {
-                $PatientUpdateQuery = "; UPDATE egw_cal_user SET cal_user_type = 'c', cal_user_id = '" . $patient . "', cal_status = '" . $_POST['status'] . "' WHERE cal_role = 'REQ-PARTICIPANT' AND cal_id = " . $id;
+                $PatientUpdateQuery = "; UPDATE egw_cal_user SET cal_user_type = 'c', cal_user_id = '" . $patient . "', cal_status = '" . EscapeSpecialCharacters($_POST['status']) . "' WHERE cal_role = 'REQ-PARTICIPANT' AND cal_id = " . $id;
             }
             else
             {
-                $PatientUpdateQuery = "; INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (" . $id . ", 'c', '" . $patient . "', 'REQ-PARTICIPANT', '" . $_POST['status'] . "')";
+                $PatientUpdateQuery = "; INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (" . $id . ", 'c', '" . $patient . "', 'REQ-PARTICIPANT', '" . EscapeSpecialCharacters($_POST['status']) . "')";
             }
         }
         else
@@ -72,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                 }
                 if ($_POST['old_patient'] > 0)
                 {
-                    $PatientUpdateQuery .= " UPDATE egw_cal_user SET cal_user_type = 'c', cal_user_id = LAST_INSERT_ID(), cal_status = '" . $_POST['status'] . "' WHERE cal_role = 'REQ-PARTICIPANT' AND cal_id = " . $id . ";";
+                    $PatientUpdateQuery .= " UPDATE egw_cal_user SET cal_user_type = 'c', cal_user_id = LAST_INSERT_ID(), cal_status = '" . EscapeSpecialCharacters($_POST['status']) . "' WHERE cal_role = 'REQ-PARTICIPANT' AND cal_id = " . $id . ";";
                 }
                 else
                 {
-                    $PatientUpdateQuery .= " INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (" . $id . ", 'c', LAST_INSERT_ID(), 'REQ-PARTICIPANT', '" . $_POST['status'] . "'); ";
+                    $PatientUpdateQuery .= " INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (" . $id . ", 'c', LAST_INSERT_ID(), 'REQ-PARTICIPANT', '" . EscapeSpecialCharacters($_POST['status']) . "'); ";
                 }
             }
             else
@@ -96,8 +100,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
         {
             $AdditionalQuery = "; DELETE FROM Visits WHERE cal_id = " . $id;
         }
+        $FileIsUploaded = file_exists($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name']);
+        if ($FileIsUploaded)
+        {
+            $FileQuery = "; INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT 10, " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . ") LIMIT 1";
+            BeginTransaction();
+        }
         SendQueries("UPDATE `egw_cal` SET cal_title='" . $title . "', `cal_owner` = " . $dentist . ", cal_public = " . $public . ", `cal_modified` = " . $modified . ", cal_description = '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', cal_modifier = " . $dentist . ", cal_category = '" . intval($_POST['category']) . "' WHERE cal_id = " . $id .
-                    "; UPDATE egw_cal_dates SET cal_start = " . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . ", cal_end = " . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60))  . " WHERE cal_id = " . $id . $PatientUpdateQuery . $AdditionalQuery);
+                    "; UPDATE egw_cal_dates SET cal_start = " . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . ", cal_end = " . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60))  . " WHERE cal_id = " . $id . $PatientUpdateQuery . $AdditionalQuery . $FileQuery);
+        if ($FileIsUploaded)
+        {
+            $result = SendQuery("SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . " LIMIT 1");
+            $nfc = EscapeSpecialCharacters(trim($_POST['comment']));
+            $creator = EscapeSpecialCharacters($_COOKIE['last_loginid']);
+            while($row = GetNextRow($result))
+            {
+                if ($nfc)
+                {
+                    SendQueries("INSERT INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_size, fs_creator, fs_modifier, fs_active) VALUES (" . $row['fs_id'] . ", '" . basename($_FILES['file']['name']) . "', 0, (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 0, NOW(), NOW(), '" . EscapeSpecialCharacters($_FILES['file']['type']) . "', " . intval($_FILES['file']['size']) . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 1); INSERT INTO egw_sqlfs_props (fs_id, prop_namespace, prop_name, prop_value) VALUES (LAST_INSERT_ID(), 'http://egroupware.org/', 'comment', '" . $nfc . "')");
+                }
+                else
+                {
+                    SendQueryQuickly("INSERT INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_size, fs_creator, fs_modifier, fs_active) VALUES (" . $row['fs_id'] . ", '" . basename($_FILES['file']['name']) . "', 0, (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 0, NOW(), NOW(), '" . EscapeSpecialCharacters($_FILES['file']['type']) . "', " . intval($_FILES['file']['size']) . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 1)");
+                }
+            }
+            $result = SendQuery("SELECT LAST_INSERT_ID() as ID");
+            while($row = GetNextRow($result))
+            {
+                $l = strlen($row['ID']);
+                $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($row['ID'][$l - 4]) . intval($row['ID'][$l - 3]);
+                if (!is_dir($dir))
+                {
+                    mkdir($dir, 0700, true);
+                }
+                move_uploaded_file($_FILES['file']['tmp_name'], $dir . '/' . $row['ID']);
+            }
+            Commit();
+        }
         $statement = PrepareStatement("UPDATE egw_cal_user SET cal_user_type = 'u', cal_user_id = ? WHERE cal_role = ? AND cal_id = " . $id);
         if (is_object($statement))
         {
@@ -131,6 +170,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                 $statement->execute();
             }
         }
+        if (is_array($comment))
+        {
+            $statement = PrepareStatement("INSERT INTO egw_sqlfs_props (fs_id, prop_namespace, prop_name, prop_value) VALUES (?, 'http://egroupware.org/', 'comment', ?) ON DUPLICATE KEY UPDATE prop_value = ?");
+            $statement->bind_param('iss', $key, $value, $value);
+            $DeleteStatement = PrepareStatement("DELETE FROM egw_sqlfs_props WHERE fs_id = ?");
+            $DeleteStatement->bind_param('i', $key);
+            foreach($comment as $key=>$value)
+            {
+                $value = trim($value);
+                if ($value)
+                {
+                    $statement->execute();
+                }
+                else
+                {
+                    $DeleteStatement->execute();
+                }
+            }
+        }
+        $rf = intval($_POST['rf']);
+        if ($rf)
+        {
+            SendQueries('DELETE FROM egw_sqlfs WHERE fs_id = ' . $rf . '; DELETE FROM egw_sqlfs_props WHERE fs_id = ' . $_POST['rf']);
+            $l = strlen($rf);
+            $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($row['ID'][$l - 4]) . intval($row['ID'][$l - 3]);
+            $FileToDelete = '/var/lib/egroupware/default/files/sqlfs/' . $dir . '/' . $rf;
+            if (file_exists($FileToDelete))
+            {
+                unlink($FileToDelete);
+            }
+        }
     }
     else
     {
@@ -146,8 +216,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
             {
                 $AdditionalQuery = "";
             }
+            $FileIsUploaded = file_exists($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name']);
+            if ($FileIsUploaded)
+            {
+                $AdditionalQuery .= "; ";
+            }
+            $creator = EscapeSpecialCharacters($_COOKIE['last_loginid']);
             BeginTransaction();
-            SendQueries("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_category`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_description`,`cal_modifier`, `cal_creator`, `cal_created`) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), " . $dentist . ", '" . intval($_POST['category']) . "', '" . $modified . "', 2, " . $public . ", '" . $title . "', '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', " . $dentist . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . EscapeSpecialCharacters($_COOKIE['last_loginid']) . "' LIMIT 1), " . $modified . "); INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (LAST_INSERT_ID()," . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . "," . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60)) . ")" . $AdditionalQuery);
+            SendQueries("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_category`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_description`,`cal_modifier`, `cal_creator`, `cal_created`) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), " . $dentist . ", '" . intval($_POST['category']) . "', '" . $modified . "', 2, " . $public . ", '" . $title . "', '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', " . $dentist . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), " . $modified . "); INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (LAST_INSERT_ID()," . strtotime($_POST['date'] . " ".sprintf("%02d",$sh).':'.sprintf("%02d",$sm)) . "," . strtotime($_POST['date'] . " ".sprintf("%02d",floor($end / 60)).':'.sprintf("%02d",$end % 60)) . ")" . $AdditionalQuery);
             $LIIDS = PrepareStatement("SELECT LAST_INSERT_ID()");
             if (is_object($LIIDS))
             {
@@ -174,7 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                     {
                         $modified = intval($_SERVER['REQUEST_TIME']);
                         SendQueryQuickly("INSERT INTO `egw_addressbook` (contact_owner, n_family, n_given, n_fn, n_fileas, tel_cell, tel_prefer, contact_created, contact_creator, contact_modified, contact_uid) VALUES (-329, '" . $nps . "', '" . $npn . "', '" . $npn . " " . $nps . "', '" . $nps . ", " . $npn . "', '" . $phone . "', 'tel_cell', " . $modified . ", -329, " . $modified . ", concat_ws('-', 'addressbook', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_addressbook'), 'd2dad1acdc42885bfaa1a4046cb5c5ec'))");
-                        $LIIDS = PrepareStatement("SELECT LAST_INSERT_ID()");
                         $LIIDS->execute();
                         $LIIDS->bind_result($patient);
                         while ($LIIDS->fetch())
@@ -194,16 +269,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                     }
                     $statement->close();
                 }
-                $LIIDS->close();
-            }
-            if (is_array($acf))
-            {
-                $statement = PrepareStatement("INSERT INTO egw_cal_extra (cal_id, cal_extra_name, cal_extra_value) VALUES (?, ?, ?)");
-                $statement->bind_param('iss', $id, $key, $value);
-                foreach($acf as $key=>$value)
+                if (is_array($acf))
                 {
-                    $statement->execute();
+                    $statement = PrepareStatement("INSERT INTO egw_cal_extra (cal_id, cal_extra_name, cal_extra_value) VALUES (?, ?, ?)");
+                    if (is_object($statement))
+                    {
+                        $statement->bind_param('iss', $id, $key, $value);
+                        foreach($acf as $key=>$value)
+                        {
+                            $statement->execute();
+                        }
+                        $statement->close();
+                    }            
                 }
+                if ($FileIsUploaded)
+                {
+                    SendQueryQuickly("INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT 10, " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = '" . $id . "') LIMIT 1");
+                    $result = SendQuery("SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . " LIMIT 1");
+                    $nfc = EscapeSpecialCharacters(trim($_POST['comment']));               
+                    while($row = GetNextRow($result))
+                    {
+                        if ($nfc)
+                        {
+                            SendQueries("INSERT INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_size, fs_creator, fs_modifier, fs_active) VALUES (" . $row['fs_id'] . ", '" . basename($_FILES['file']['name']) . "', 0, (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 0, NOW(), NOW(), '" . EscapeSpecialCharacters($_FILES['file']['type']) . "', " . intval($_FILES['file']['size']) . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 1); INSERT INTO egw_sqlfs_props (fs_id, prop_namespace, prop_name, prop_value) VALUES (LAST_INSERT_ID(), 'http://egroupware.org/', 'comment', '" . $nfc . "')");
+                        }
+                        else
+                        {
+                            SendQueryQuickly("INSERT INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_size, fs_creator, fs_modifier, fs_active) VALUES (" . $row['fs_id'] . ", '" . basename($_FILES['file']['name']) . "', 0, (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 0, NOW(), NOW(), '" . EscapeSpecialCharacters($_FILES['file']['type']) . "', " . intval($_FILES['file']['size']) . ", (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), (SELECT account_id FROM egw_accounts WHERE account_lid = '" . $creator . "' LIMIT 1), 1)");
+                        }
+                    }
+                    $LIIDS->execute();
+                    $LIIDS->bind_result($fid);
+                    while ($LIIDS->fetch())
+                    {
+                    }
+                    $l = strlen($fid);
+                    $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($row['ID'][$l - 4]) . intval($row['ID'][$l - 3]);
+                    if (!is_dir($dir))
+                    {
+                        mkdir($dir, 0700, true);
+                    }
+                    move_uploaded_file($_FILES['file']['tmp_name'], $dir . '/' . $fid);
+                }
+                $LIIDS->close();
             }
             Commit();
         }
@@ -281,6 +389,15 @@ if ($id > 0)
     {
          $cfv[$row['cal_extra_name']] = $row['cal_extra_value'];
     }
+    $result = SendQuery("select s.fs_name AS FileName, prop_value, s.fs_id as ID FROM egw_sqlfs as f join egw_sqlfs as s on (f.fs_id = s.fs_dir) LEFT JOIN egw_sqlfs_props ON (s.fs_id = egw_sqlfs_props.fs_id) where f.fs_name = " . $id);
+    $mask = ENT_XHTML | ENT_QUOTES;
+    while ($row = GetNextRow($result))
+    {
+        $row['image'] = GetIcon($row['FileName'], $id);
+        $row['FileName'] = htmlspecialchars($row['FileName'], $mask);
+        $files[] = $row;
+    }
+    $smarty->assign('files', $files);
 }
 else
 {
