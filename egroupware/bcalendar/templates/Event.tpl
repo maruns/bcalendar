@@ -38,7 +38,7 @@
                 {/if}
             </p>
             <p><label for="date" class="ll">Data: </label></p>
-            <p id="dpp"><input type="text" id="date" name="date" class="date-pick"{if $start} value="{$start}"{/if} /></p>
+            <p class="dpp"><input type="text" id="date" name="date" class="date-pick"{if $start} value="{$start}"{/if} /></p>
             <p>&nbsp;{if $patient}<input type="hidden" name="old_patient" value="{$patient}"/>{/if}</p>
             <p>
                 <label class="ll" for="sh">Rozpoczęcie: </label>

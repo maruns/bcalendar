@@ -14,8 +14,10 @@ a.dp-choose-date.dp-disabled {
     cursor: default;
 }
 input.dp-applied {
-    width: 140px;
     float: left;
+}
+input.date-pick {
+    width: 100px !important;
 }
 body {
     background-color: window;
@@ -384,11 +386,14 @@ input#phone {
 input#pesel {
     width: 80px;
 }
-form#ef input#date {
+form#ef p.dpp {
+    margin-top: -25px;
+}
+form#ef p.dpp input#date {
     margin-left: 219px;
 }
-form#ef p#dpp {
-    margin-top: -25px;
+form#ef fieldset p.dpp input {
+    margin-left: 210px;
 }
 select#dentist, select#assistant {
     width: 25% !important;

@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
         $FileIsUploaded = file_exists($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name']);
         if ($FileIsUploaded)
         {
-            $FileQuery = "; INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT 10, " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . ") LIMIT 1";
+            $FileQuery = "; INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT (SELECT fs_id FROM egw_sqlfs WHERE fs_name = 'calendar' LIMIT 1), " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . ") LIMIT 1";
             BeginTransaction();
         }
         SendQueries("UPDATE `egw_cal` SET cal_title='" . $title . "', `cal_owner` = " . $dentist . ", cal_public = " . $public . ", `cal_modified` = " . $modified . ", cal_description = '" . EscapeSpecialCharacters(trim($_POST['description'])) . "', cal_modifier = " . $dentist . ", cal_category = '" . intval($_POST['category']) . "' WHERE cal_id = " . $id .
@@ -189,13 +189,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                 }
             }
         }
-        $rf = intval($_POST['rf']);
+        $rf = EscapeSpecialCharacters($_POST['rf']);
         if ($rf)
         {
-            SendQueries('DELETE FROM egw_sqlfs WHERE fs_id = ' . $rf . '; DELETE FROM egw_sqlfs_props WHERE fs_id = ' . $_POST['rf']);
+            SendQueries('DELETE FROM egw_sqlfs WHERE fs_id = ' . $rf . '; DELETE FROM egw_sqlfs_props WHERE fs_id = ' . $rf);
             $l = strlen($rf);
-            $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($row['ID'][$l - 4]) . intval($row['ID'][$l - 3]);
-            $FileToDelete = '/var/lib/egroupware/default/files/sqlfs/' . $dir . '/' . $rf;
+            $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($rf[$l - 4]) . intval($rf[$l - 3]);
+            $FileToDelete = $dir . '/' . $rf;
             if (file_exists($FileToDelete))
             {
                 unlink($FileToDelete);
@@ -284,7 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                 }
                 if ($FileIsUploaded)
                 {
-                    SendQueryQuickly("INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT 10, " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = '" . $id . "') LIMIT 1");
+                    SendQueryQuickly("INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT (SELECT fs_id FROM egw_sqlfs WHERE fs_name = 'calendar' LIMIT 1), " . $id . ", 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = '" . $id . "') LIMIT 1");
                     $result = SendQuery("SELECT fs_id FROM egw_sqlfs WHERE fs_name = " . $id . " LIMIT 1");
                     $nfc = EscapeSpecialCharacters(trim($_POST['comment']));               
                     while($row = GetNextRow($result))
@@ -303,13 +303,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $title != "" && $title != null)
                     while ($LIIDS->fetch())
                     {
                     }
-                    $l = strlen($fid);
-                    $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($row['ID'][$l - 4]) . intval($row['ID'][$l - 3]);
+                    $fidt = strval($fid);
+                    $l = strlen($fidt);
+                    $dir = '/var/lib/egroupware/default/files/sqlfs/' . intval($fidt[$l - 4]) . intval($fidt[$l - 3]);
                     if (!is_dir($dir))
                     {
                         mkdir($dir, 0700, true);
                     }
-                    move_uploaded_file($_FILES['file']['tmp_name'], $dir . '/' . $fid);
+                    move_uploaded_file($_FILES['file']['tmp_name'], $dir . '/' . $fidt);
                 }
                 $LIIDS->close();
             }
@@ -511,6 +512,15 @@ else
                 $additional .= '<label for="' . $fk . '" class="cc"><input type="checkbox" id="' . $fk . 
                                '" name="_' . $fk . 
                                '"' . $value . '/>' . $field['label'] . '</label>';
+                break;
+            case 'date':
+                if ($id > 0)
+                {
+                    $value = ' value="' . $cfv[$fk] . '"';
+                }
+                $additional .= '<p><label class="ll" for="' . $fk . '">' . $field['label'] . 
+                               ': </label></p><p class="dpp"><input type="text" id="' . $fk . 
+                               '" name="_' . $fk . '"' . $value . ' class="date-pick"/></p><p>&nbsp;</p>';
                 break;
             default:
                 if ($id > 0)
