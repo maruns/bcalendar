@@ -181,6 +181,110 @@ class bcalendar_ui
                 {
                     $this->NotExpiredUsers[$neu['account_id']] = $neu['account_id'];
                 }
+                
+                $UserDirectories = @scandir('/home/egroupware/ToAttach'); // pobierz katalogi z plikami do utworzenia zdarzeń
+                if ($UserDirectories) // jeśli są jakieś katalogi, sprawdź ich zawartość i ewentualnie utwórz zdarzenia
+                {
+                    $first = true;
+                    $FirstEvent = true;
+                    $FirstToSave = true;
+                    foreach ($UserDirectories as $dir)
+                    {
+                         $UserDirectory = '/home/egroupware/ToAttach/' . $dir;
+                         if ($dir != '.' && $dir != '..' && is_dir($UserDirectory))
+                         {
+                             $files = scandir($UserDirectory);
+                             foreach ($files as $file)
+                             {
+                                 $f = '/home/egroupware/ToAttach/' . $dir . '/' . $file;
+                                 if (!is_dir($f))
+                                 {
+                                     if ($first)
+                                     {
+                                         $AddedFiles = $GLOBALS['egw']->db->select('AddedFiles','`Name`, `account_id`, `Date`', null, 
+                                                                                   __LINE__, __FILE__, false, '', 0, 0);
+                                     }
+                                     $first = false;
+                                     $exif = @exif_read_data($f);
+                                     if ($exif && $exif['DateTimeOriginal'])
+                                     {
+                                         $time = strtotime($exif['DateTimeOriginal']);
+                                     }
+                                     else
+                                     {
+                                        $time = filectime($f); 
+                                     }
+                                     $NotFound = true;
+                                     foreach ($AddedFiles as $ad)
+                                     {
+                                         if ($ad['account_id'] == $dir && $ad['Name'] == $file && $ad['Date'] == $time)
+                                         {
+                                             $NotFound = false;
+                                         }
+                                     }
+                                     if ($NotFound)
+                                     {
+                                         if ($FirstEvent)
+                                         {
+                                             $Link_ID = $GLOBALS['egw']->db->link_id();
+                                             $EventCreation = $Link_ID->Prepare("INSERT INTO `egw_cal` (tz_id, caldav_name, `cal_uid`, `cal_owner`, `cal_modified`, `cal_priority`, `cal_public`, `cal_title`, `cal_modifier`, cal_creator) VALUES (316, concat((SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), '.ics'), concat_ws('-', 'calendar', (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'egroupware' AND TABLE_NAME = 'egw_cal'), 'e8fae07b2c2f77b2907ac91601c846fb'), ?, NOW(), 2, 1, ?, ?, ?)");
+                                             $LastID = $Link_ID->Prepare("SELECT LAST_INSERT_ID() AS ID");
+                                             $DateCreation = $Link_ID->Prepare("INSERT INTO egw_cal_dates (cal_id, cal_start, cal_end) VALUES (?, ?, ?)");
+                                             $DentistCreation = $Link_ID->Prepare("INSERT INTO egw_cal_user (cal_id, cal_user_type, cal_user_id, cal_role, cal_status) VALUES (?, 'u', ?, 'CHAIR', 'A')");
+                                             $DirectoryCreation = $Link_ID->Prepare("INSERT IGNORE INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_creator, fs_active) SELECT (SELECT fs_id FROM egw_sqlfs WHERE fs_name = 'calendar' LIMIT 1), ?, 0, 0, 0, NOW(), NOW(), 'httpd/unix-directory', 0, 1 FROM egw_sqlfs WHERE NOT EXISTS (SELECT fs_id FROM egw_sqlfs WHERE fs_name = LAST_INSERT_ID()) LIMIT 1");
+                                             $DirID = $Link_ID->Prepare("SELECT fs_id FROM egw_sqlfs WHERE fs_name = ? LIMIT 1");
+                                             $FileCreation = $Link_ID->Prepare("INSERT INTO egw_sqlfs (fs_dir, fs_name, fs_mode, fs_uid, fs_gid, fs_created, fs_modified, fs_mime, fs_size, fs_creator, fs_modifier, fs_active) VALUES (?, ?, 0, ?, 0, NOW(), NOW(), ?, ?, ?, ?, 1)");
+                                         }
+                                         $FirstEvent = false;
+                                         $GLOBALS['egw']->db->transaction_begin();
+                                         $Link_ID->Execute($EventCreation, array($dir, $file, $dir, $dir));
+                                         $LastIDResult = $Link_ID->Execute($LastID, array());
+                                         foreach ($LastIDResult as $LastIDRow)
+                                         {
+                                             $Link_ID->Execute($DateCreation, array($LastIDRow['ID'], $time, $time + 1800));
+                                             $Link_ID->Execute($DentistCreation, array($LastIDRow['ID'], $dir));
+                                             $Link_ID->Execute($DirectoryCreation, array($LastIDRow['ID']));
+                                             $DirIDResult = $Link_ID->Execute($DirID, array($LastIDRow['ID']));
+                                         }
+                                         foreach ($DirIDResult as $DirIDRow)
+                                         {
+                                             $Link_ID->Execute($FileCreation, array($DirIDRow['fs_id'], $file, $dir, mime_content_type($f), 
+                                                               filesize($f), $dir, $dir));
+                                             $fidt = strval($DirIDRow['fs_id']);
+                                         }
+                                         $LastIDResult = $Link_ID->Execute($LastID, array());
+                                         foreach ($LastIDResult as $LastIDRow)
+                                         {
+                                             $fidt = strval($LastIDRow['ID']);
+                                         }
+                                         if ($GLOBALS['egw']->db->transaction_commit())
+                                         {
+                                             $l = strlen($fidt);
+                                             $DirToSave = '/var/lib/egroupware/default/files/sqlfs/' . intval($fidt[$l - 4]) . 
+                                                          intval($fidt[$l - 3]);
+                                             if (!is_dir($DirToSave))
+                                             {
+                                                 mkdir($DirToSave, 0700, true);
+                                             }
+                                             if (copy($f, $DirToSave . '/' . $fidt))
+                                             {
+                                                if (!@unlink($f))
+                                                {
+                                                    if ($FirstToSave)
+                                                    {
+                                                        $AddedFilesQuery = $Link_ID->Prepare("INSERT INTO AddedFiles (Name, account_id, Date) VALUES (?, ?, ?)");
+                                                        $FirstToSave = false;
+                                                    }
+                                                    $Link_ID->Execute($AddedFilesQuery, array($file, $dir, $time));
+                                                }
+                                             }
+                                         }                                        
+                                     }
+                                 }
+                             }
+                         }
+                    }
+                }
 	}
         
         /**
